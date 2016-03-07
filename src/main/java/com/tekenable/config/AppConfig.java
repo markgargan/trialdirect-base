@@ -16,6 +16,9 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.stereotype.Controller;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -43,7 +46,18 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
 
   @Bean
   public DataSource dataSource() {
-    return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
+
+      DataSource datasource = null;
+      try {
+          InitialContext ic = new InitialContext();
+          Context initialContext = (Context) ic.lookup("java:comp/env");
+          datasource = (DataSource) initialContext.lookup("jdbc/MySQLDS");
+
+      } catch (NamingException e) {
+          e.printStackTrace();
+      }
+
+      return datasource;
   }
 
   @Bean
