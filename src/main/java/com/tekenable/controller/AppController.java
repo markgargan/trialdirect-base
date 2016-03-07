@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/trialdirect")
+@RequestMapping("/")
 public class AppController {
 
   @RequestMapping(method = RequestMethod.GET)
