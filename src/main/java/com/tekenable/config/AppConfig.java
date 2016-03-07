@@ -29,69 +29,74 @@ import static org.hibernate.cfg.AvailableSettings.HBM2DDL_AUTO;
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.tekenable.repository"})
 @ComponentScan(basePackages = "com.tekenable", excludeFilters = {
-    @ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION),
-    @ComponentScan.Filter(value = Configuration.class, type = FilterType.ANNOTATION)
+        @ComponentScan.Filter(value = Controller.class, type = FilterType.ANNOTATION),
+        @ComponentScan.Filter(value = Configuration.class, type = FilterType.ANNOTATION)
 })
 public class AppConfig extends RepositoryRestMvcConfiguration {
-  
-  @Override
-  protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-    super.configureRepositoryRestConfiguration(config);
-    try {
-      config.setBaseUri(new URI("/api"));
-    } catch (URISyntaxException e) {
-      e.printStackTrace();
+
+    @Override
+    protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        super.configureRepositoryRestConfiguration(config);
+        try {
+            config.setBaseUri(new URI("/api"));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  @Bean
-  public DataSource dataSource() {
+    @Bean
+    public DataSource dataSource() {
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
+    }
 
-      DataSource datasource = null;
-      try {
-          InitialContext ic = new InitialContext();
-          Context initialContext = (Context) ic.lookup("java:comp/env");
-          datasource = (DataSource) initialContext.lookup("jdbc/MySQLDS");
+//    @Bean
+//    public DataSource dataSource() {
+//
+//        DataSource datasource = null;
+//        try {
+//            InitialContext ic = new InitialContext();
+//            Context initialContext = (Context) ic.lookup("java:comp/env");
+//            datasource = (DataSource) initialContext.lookup("jdbc/MySQLDS");
+//
+//        } catch (NamingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return datasource;
+//    }
 
-      } catch (NamingException e) {
-          e.printStackTrace();
-      }
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setShowSql(true);
+        adapter.setGenerateDdl(true);
+        adapter.setDatabase(Database.HSQL);
+        return adapter;
+    }
 
-      return datasource;
-  }
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws ClassNotFoundException {
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setDataSource(dataSource());
+        factoryBean.setPackagesToScan("com.tekenable.model");
+        factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+        factoryBean.setJpaProperties(jpaProperties());
 
-  @Bean
-  public JpaVendorAdapter jpaVendorAdapter() {
-    HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-    adapter.setShowSql(true);
-    adapter.setGenerateDdl(true);
-    adapter.setDatabase(Database.HSQL);
-    return adapter;
-  }
+        return factoryBean;
+    }
 
-  @Bean
-  public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws ClassNotFoundException {
-    LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-    factoryBean.setDataSource(dataSource());
-    factoryBean.setPackagesToScan("com.tekenable.model");
-    factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-    factoryBean.setJpaProperties(jpaProperties());
+    @Bean
+    public JpaTransactionManager transactionManager() throws ClassNotFoundException {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 
-    return factoryBean;
-  }
+        return transactionManager;
+    }
 
-  @Bean
-  public JpaTransactionManager transactionManager() throws ClassNotFoundException {
-    JpaTransactionManager transactionManager = new JpaTransactionManager();
-    transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
-
-    return transactionManager;
-  }
-
-  @Bean
-  public Properties jpaProperties() {
-    Properties properties = new Properties();
-    properties.put(HBM2DDL_AUTO, "create-drop");
-    return properties;
-  }
+    @Bean
+    public Properties jpaProperties() {
+        Properties properties = new Properties();
+        properties.put(HBM2DDL_AUTO, "create-drop");
+        return properties;
+    }
 }
