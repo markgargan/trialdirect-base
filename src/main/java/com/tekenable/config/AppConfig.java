@@ -44,26 +44,26 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
         }
     }
 
-//    @Bean
-//    public DataSource dataSource() {
-//        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
-//    }
-
     @Bean
     public DataSource dataSource() {
-
-        DataSource datasource = null;
-        try {
-            InitialContext ic = new InitialContext();
-            Context initialContext = (Context) ic.lookup("java:comp/env");
-            datasource = (DataSource) initialContext.lookup("jdbc/MySQLDS");
-
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-
-        return datasource;
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
     }
+
+//    @Bean
+//    public DataSource dataSource() {
+//
+//        DataSource datasource = null;
+//        try {
+//            InitialContext ic = new InitialContext();
+//            Context initialContext = (Context) ic.lookup("java:comp/env");
+//            datasource = (DataSource) initialContext.lookup("jdbc/MySQLDS");
+//
+//        } catch (NamingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return datasource;
+//    }
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
