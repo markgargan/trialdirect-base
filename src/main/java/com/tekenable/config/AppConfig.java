@@ -44,33 +44,33 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
         }
     }
 
-    @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
-    }
-
 //    @Bean
 //    public DataSource dataSource() {
-//
-//        DataSource datasource = null;
-//        try {
-//            InitialContext ic = new InitialContext();
-//            Context initialContext = (Context) ic.lookup("java:comp/env");
-//            datasource = (DataSource) initialContext.lookup("jdbc/MySQLDS");
-//
-//        } catch (NamingException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return datasource;
+//        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
 //    }
+
+    @Bean
+    public DataSource dataSource() {
+
+        DataSource datasource = null;
+        try {
+            InitialContext ic = new InitialContext();
+            Context initialContext = (Context) ic.lookup("java:comp/env");
+            datasource = (DataSource) initialContext.lookup("jdbc/MySQLDS");
+
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+
+        return datasource;
+    }
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setShowSql(true);
         adapter.setGenerateDdl(true);
-        adapter.setDatabase(Database.HSQL);
+        adapter.setDatabase(Database.MYSQL);
         return adapter;
     }
 
@@ -96,7 +96,7 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
     @Bean
     public Properties jpaProperties() {
         Properties properties = new Properties();
-        properties.put(HBM2DDL_AUTO, "create-drop");
+        properties.put(HBM2DDL_AUTO, "update");
         return properties;
     }
 }
