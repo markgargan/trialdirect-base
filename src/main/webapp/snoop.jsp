@@ -120,6 +120,8 @@ MemoryPoolMXBean item = (MemoryPoolMXBean) iter.next();
 	<TH align=right>Path translated:</TH>
 	<TD><%= request.getPathTranslated() %></TD>
 </TR>
+
+    
 <TR>
 	<TH align=right>Query string:</TH>
 	<TD><% if(request.getQueryString()!=null) out.write(request.getQueryString().replaceAll("<", "&lt;").replaceAll(">","&gt;")); %></TD>
