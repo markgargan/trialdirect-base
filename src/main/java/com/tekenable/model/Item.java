@@ -3,26 +3,13 @@ package com.tekenable.model;
 import javax.persistence.*;
 
 @Entity
-public class Item {
+public class Item extends BaseEntity{
 
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  private int id;
-  
   @Column
   private boolean checked;
   
   @Column
   private String description;
-
-  public int getId() {
-    return id;
-  }
-
-
-  public void setId(int id) {
-    this.id = id;
-  }
 
   public boolean isChecked() {
     return checked;
