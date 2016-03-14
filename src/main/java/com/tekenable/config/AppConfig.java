@@ -1,5 +1,6 @@
 package com.tekenable.config;
 
+import com.tekenable.config.prime.TrialDirectPrimer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -96,7 +97,12 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
     @Bean
     public Properties jpaProperties() {
         Properties properties = new Properties();
-        properties.put(HBM2DDL_AUTO, "update");
+        properties.put(HBM2DDL_AUTO, "create");
         return properties;
+    }
+
+    @Bean
+    public TrialDirectPrimer trialDirectPrimer() {
+        return new TrialDirectPrimer();
     }
 }

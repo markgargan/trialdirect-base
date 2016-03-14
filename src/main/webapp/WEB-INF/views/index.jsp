@@ -15,7 +15,7 @@
         <div class="form-group" ng-repeat="item in items">
           <div class="checkbox col-xs-9">
             <label>
-              <input type="checkbox" ng-model="item.checked" ng-change="updateItem(item)"/> {{item.description}}
+              <input type="checkbox" ng-model="item.questionText" ng-change="updateItem(item)"/> {{item.area}}
             </label>
           </div>
           <div class="col-xs-3">
@@ -27,7 +27,7 @@
         </div>
         <hr />
         <div class="input-group">
-          <input type="text" class="form-control" ng-model="newItem" placeholder="Enter the description..." />
+          <input type="text" class="form-control" ng-model="newItem" placeholder="Enter the area..." />
           <span class="input-group-btn">
             <button class="btn btn-default" type="submit" ng-disabled="!newItem" title="Add">
               <span class="glyphicon glyphicon-plus"></span>

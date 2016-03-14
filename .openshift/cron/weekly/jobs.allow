@@ -6,7 +6,7 @@
 #           and chrono.dat files in this directory will be ignored.
 #
 #           The README file is actually ignored due to the entry in the
-#           jobs.deny which is checked before jobs.allow (this file).
+#           jobs.deny which is questionText before jobs.allow (this file).
 #
 chronograph
 

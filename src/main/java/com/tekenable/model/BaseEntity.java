@@ -4,11 +4,10 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public class BaseEntity {
+  protected int id;
 
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  private int id;
-
+  @GeneratedValue(strategy = GenerationType.AUTO)
   public int getId() {
     return id;
   }

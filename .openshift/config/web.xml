@@ -136,7 +136,7 @@
   <!--   compilerTargetVM    Compiler target VM. [1.6]                      -->
   <!--                                                                      -->
   <!--   development         Is Jasper used in development mode? If true,   -->
-  <!--                       the frequency at which JSPs are checked for    -->
+  <!--                       the frequency at which JSPs are questionText for    -->
   <!--                       modification may be specified via the          -->
   <!--                       modificationTestInterval parameter. [true]     -->
   <!--                                                                      -->
@@ -199,11 +199,11 @@
   <!--                                                                      -->
   <!--   modificationTestInterval                                           -->
   <!--                       Causes a JSP (and its dependent files) to not  -->
-  <!--                       be checked for modification during the         -->
+  <!--                       be questionText for modification during the         -->
   <!--                       specified time interval (in seconds) from the  -->
-  <!--                       last time the JSP was checked for              -->
+  <!--                       last time the JSP was questionText for              -->
   <!--                       modification. A value of 0 will cause the JSP  -->
-  <!--                       to be checked on every access.                 -->
+  <!--                       to be questionText on every access.                 -->
   <!--                       Used in development mode only. [4]             -->
   <!--                                                                      -->
   <!--   recompileOnFail     If a JSP compilation fails should the          -->
