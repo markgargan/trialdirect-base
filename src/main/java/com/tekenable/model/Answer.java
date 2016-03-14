@@ -7,24 +7,28 @@ import java.util.Set;
 @Entity
 public class Answer extends BaseEntity {
 
-    private String name;
+    private String answerText;
     private Question question;
 
     public Answer() {
 
     }
 
-    public Answer(String name, Question question) {
-        this.name = name;
+    public Answer(String answerText) {
+        this.answerText = answerText;
+    }
+
+    public Answer(String answerText, Question question) {
+        this.answerText = answerText;
         this.question = question;
     }
 
-    public String getName() {
-        return name;
+    public String getAnswerText() {
+        return answerText;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
     }
 
     @ManyToOne

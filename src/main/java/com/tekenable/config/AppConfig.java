@@ -1,6 +1,8 @@
 package com.tekenable.config;
 
+import com.tekenable.config.prime.QuestionAndAnswersPrimer;
 import com.tekenable.config.prime.TrialDirectPrimer;
+import com.tekenable.config.prime.TrialPrimer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -8,8 +10,6 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -97,8 +97,18 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
     @Bean
     public Properties jpaProperties() {
         Properties properties = new Properties();
-        properties.put(HBM2DDL_AUTO, "create");
+        properties.put(HBM2DDL_AUTO, "create-drop");
         return properties;
+    }
+
+    @Bean
+    public QuestionAndAnswersPrimer questionAndAnswersPrimer() {
+        return new QuestionAndAnswersPrimer();
+    }
+
+    @Bean
+    public TrialPrimer trialPrimer() {
+        return new TrialPrimer();
     }
 
     @Bean
