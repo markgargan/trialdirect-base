@@ -10,9 +10,7 @@ public class Answer extends BaseEntity {
 
     private String answerText;
     private Question question;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "answer")
-    private Collection<TrialSelector> trialSelector;
+    private Collection<QuestionEntry> questionEntries;
 
     public Answer() {
 
@@ -35,7 +33,7 @@ public class Answer extends BaseEntity {
         this.answerText = answerText;
     }
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "question_id")
     public Question getQuestion() {
         return question;
@@ -45,4 +43,12 @@ public class Answer extends BaseEntity {
         this.question = question;
     }
 
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Collection<QuestionEntry> getQuestionEntry() {
+        return questionEntries;
+    }
+
+    public void setQuestionEntry(Collection<QuestionEntry> questionEntries) {
+        this.questionEntries = questionEntries;
+    }
 }

@@ -28,7 +28,7 @@ public class TrialPrimer extends QuestionAndAnswersPrimer{
             add(tl_lundbegTrial);
             add(tl_fooTrial);
         }});
-
+//
 //        trialSelectorRepository.save(new HashSet<TrialSelector>(){{
 //            add(ts_lundbegCancer0_18Selector);
 //            add(ts_lundbegCancer35_70Selector);

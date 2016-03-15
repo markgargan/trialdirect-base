@@ -12,9 +12,8 @@ import java.util.HashSet;
 public class QuestionAndAnswersPrimer {
 
     // Create the TherapeuticAreas
-    // Create TherapeuticArea
     protected final TherapeuticArea ta_cancer = new TherapeuticArea("cancer");
-    protected final TherapeuticArea ta_diabetes = new TherapeuticArea("ta_diabetes");
+    protected final TherapeuticArea ta_diabetes = new TherapeuticArea("diabetes");
 
     protected final Question qn_patientsCondition = new Question("What is your patients's condition", new HashSet<TherapeuticArea>() {{
         add(ta_cancer);
@@ -25,8 +24,8 @@ public class QuestionAndAnswersPrimer {
         add(ta_diabetes);
     }});
 
-    protected Answer ar_type1Diabetes = new Answer("Type 1 ta_diabetes", qn_patientsCondition);
-    protected Answer ar_type2Diabetes = new Answer("Type 2 ta_diabetes", qn_patientsCondition);
+    protected Answer ar_type1Diabetes = new Answer("Type 1 diabetes", qn_patientsCondition);
+    protected Answer ar_type2Diabetes = new Answer("Type 2 diabetes", qn_patientsCondition);
 
     protected Answer ar_age0_18 = new Answer("0-18", qn_patientsAge);
     protected Answer ar_age19_35 =new Answer("19-35", qn_patientsAge);

@@ -10,9 +10,6 @@ import javax.annotation.PostConstruct;
 public class TrialDirectPrimer {
 
     @Autowired
-    QuestionAndAnswersPrimer questionAndAnswersPrimer;
-
-    @Autowired
     TrialPrimer trialPrimer;
 
     @PostConstruct

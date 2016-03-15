@@ -1,12 +1,13 @@
 package com.tekenable.model;
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
 public class TherapeuticArea extends BaseEntity {
 
   private String name;
-  private Set<Question> questions;
+  private Collection<Question> questions;
 
   public TherapeuticArea(){
 
@@ -30,11 +31,11 @@ public class TherapeuticArea extends BaseEntity {
   }
 
   @ManyToMany(mappedBy = "therapeuticAreas")
-  public Set<Question> getQuestions() {
+  public Collection<Question> getQuestions() {
     return questions;
   }
 
-  public void setQuestions(Set<Question> questions) {
+  public void setQuestions(Collection<Question> questions) {
     this.questions = questions;
   }
 }

@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class TrialSelector implements Serializable {
 
     @EmbeddedId
-    protected TrialSelectorPK TrialSelectorPK;
+    protected TrialSelectorPK trialSelectorPK;
 
     public TrialSelector(Trial trial, Question question, Answer answer) {
         this.trial = trial;
