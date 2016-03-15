@@ -1,10 +1,8 @@
 package com.tekenable.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
-/**
- * Created by mark on 14/03/2016.
- */
 @Entity
 public class Trial{
 
@@ -12,9 +10,8 @@ public class Trial{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private TrialSelector trialSelector;
+    @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<TrialSelector> trialSelector;
 
     private String trialSummary;
 
@@ -26,6 +23,11 @@ public class Trial{
         this.trialSummary = trialSummary;
     }
 
+    public Trial(Set<TrialSelector> trialSelector, String trialSummary) {
+        this.trialSelector = trialSelector;
+        this.trialSummary = trialSummary;
+    }
+
     public String getTrialSummary() {
         return trialSummary;
     }
@@ -34,4 +36,11 @@ public class Trial{
         this.trialSummary = trialSummary;
     }
 
+    public Set<TrialSelector> getTrialSelector() {
+        return trialSelector;
+    }
+
+    public void setTrialSelector(Set<TrialSelector> trialSelector) {
+        this.trialSelector = trialSelector;
+    }
 }

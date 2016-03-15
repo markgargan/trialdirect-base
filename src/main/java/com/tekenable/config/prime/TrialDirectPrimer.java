@@ -18,8 +18,6 @@ public class TrialDirectPrimer {
     @PostConstruct
     public void initDB() {
 
-        questionAndAnswersPrimer.initDB();
-
         trialPrimer.initDB();
     }
 }

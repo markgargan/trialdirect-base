@@ -1,6 +1,7 @@
 package com.tekenable.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -9,6 +10,9 @@ public class Question extends BaseEntity {
     private String questionText;
     private Set<TherapeuticArea> therapeuticAreas;
     private Set<Answer> answers;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    private Collection<TrialSelector> trialSelector;
 
     public Question() {}
 

@@ -1,47 +1,33 @@
 package com.tekenable.model;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @Entity
-public class TrialSelector{
+public class TrialSelector implements Serializable {
 
-    @Id
-    Long id;
+    @EmbeddedId
+    protected TrialSelectorPK TrialSelectorPK;
 
-    @MapsId
-    @OneToOne(mappedBy = "trialSelector")
+    public TrialSelector(Trial trial, Question question, Answer answer) {
+        this.trial = trial;
+        this.question = question;
+        this.answer = answer;
+    }
+
+    @JoinColumn(name = "trial_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
     private Trial trial;
 
-    @Column
-    private String createdBy;
+    @JoinColumn(name = "question_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Question question;
 
-    public TrialSelector(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public TrialSelector(String createdBy, Trial trial) {
-        this.createdBy = createdBy;
-        this.trial = trial;
-    }
-
-    public Trial getTrial() {
-        return trial;
-    }
-
-    public void setTrial(Trial trial) {
-        this.trial = trial;
-    }
-
-//    private Set<AcceptableAnswer> acceptableAnswers;
-//
-//    @OneToMany(mappedBy = "trialSelector", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    public Set<AcceptableAnswer> getAcceptableAnswers() {
-//        return acceptableAnswers;
-//    }
-//
-//    public void setAcceptableAnswers(Set<AcceptableAnswer> acceptableAnswers) {
-//        this.acceptableAnswers = acceptableAnswers;
-//    }
+    @JoinColumn(name = "answer_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Answer answer;
 
 }
