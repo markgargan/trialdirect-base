@@ -8,9 +8,9 @@ import java.util.Set;
 public class Question extends BaseEntity {
 
     private String questionText;
-    private Collection<TherapeuticArea> therapeuticAreas;
-    private Collection<QuestionEntry> questionEntries;
-    private Collection<Answer> answers;
+    private Set<TherapeuticArea> therapeuticAreas;
+    private Set<QuestionEntry> questionEntries;
+    private Set<Answer> answers;
 
     public Question() {}
 
@@ -18,7 +18,7 @@ public class Question extends BaseEntity {
         this.questionText = questionText;
     }
 
-    public Question(String questionText, Collection<TherapeuticArea> therapeuticAreas) {
+    public Question(String questionText, Set<TherapeuticArea> therapeuticAreas) {
         this.questionText = questionText;
         this.therapeuticAreas = therapeuticAreas;
     }
@@ -35,30 +35,29 @@ public class Question extends BaseEntity {
     @JoinTable(name = "question_therapeuticArea",
             joinColumns = @JoinColumn(name = "question_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "therapeuticArea_id", referencedColumnName = "id"))
-    public Collection<TherapeuticArea> getTherapeuticAreas() {
+    public Set<TherapeuticArea> getTherapeuticAreas() {
         return therapeuticAreas;
     }
-    
 
-    public void setTherapeuticAreas(Collection<TherapeuticArea> therapeuticAreas) {
+    public void setTherapeuticAreas(Set<TherapeuticArea> therapeuticAreas) {
         this.therapeuticAreas = therapeuticAreas;
     }
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Collection<Answer> getAnswers() {
+    public Set<Answer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(Collection<Answer> answers) {
+    public void setAnswers(Set<Answer> answers) {
         this.answers = answers;
     }
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Collection<QuestionEntry> getQuestionEntries() {
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<QuestionEntry> getQuestionEntries() {
         return questionEntries;
     }
 
-    public void setQuestionEntries(Collection<QuestionEntry> questionEntries) {
+    public void setQuestionEntries(Set<QuestionEntry> questionEntries) {
         this.questionEntries = questionEntries;
     }
 }

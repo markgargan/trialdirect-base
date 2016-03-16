@@ -7,7 +7,7 @@ import java.util.Set;
 public class TherapeuticArea extends BaseEntity {
 
   private String name;
-  private Collection<Question> questions;
+  private Set<Question> questions;
 
   public TherapeuticArea(){
 
@@ -31,11 +31,11 @@ public class TherapeuticArea extends BaseEntity {
   }
 
   @ManyToMany(mappedBy = "therapeuticAreas")
-  public Collection<Question> getQuestions() {
+  public Set<Question> getQuestions() {
     return questions;
   }
 
-  public void setQuestions(Collection<Question> questions) {
+  public void setQuestions(Set<Question> questions) {
     this.questions = questions;
   }
 }

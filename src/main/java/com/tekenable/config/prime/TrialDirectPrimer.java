@@ -4,9 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 
-/**
- * Created by mark on 14/03/2016.
- */
 public class TrialDirectPrimer {
 
     @Autowired
@@ -15,6 +12,10 @@ public class TrialDirectPrimer {
     @PostConstruct
     public void initDB() {
 
-        trialPrimer.initDB();
+        try {
+            trialPrimer.initDB();
+        }catch (NullPointerException pae) {
+            pae.printStackTrace();
+        }
     }
 }

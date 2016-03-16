@@ -6,30 +6,44 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(
-        name="question_entity_type",
-        discriminatorType=DiscriminatorType.STRING
+        name = "question_entity_type",
+        discriminatorType = DiscriminatorType.STRING
 )
+
 @DiscriminatorValue("qe")
+@Table(
+        uniqueConstraints=
+        @UniqueConstraint(columnNames={"question_id", "answer_id", "question_entity_type"})
+)
 public class QuestionEntry implements Serializable {
 
-    @EmbeddedId
-    private QuestionEntryId questionEntryId;
+    protected int id;
 
-    @ManyToOne
-    @JoinColumn(name = "question_id", insertable=false, updatable=false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private Question question;
 
-    @ManyToOne
-    @JoinColumn(name = "answer_id", insertable=false, updatable=false)
     private Answer answer;
+
+    public QuestionEntry(){}
 
     public QuestionEntry(Question question, Answer answer) {
         this.question = question;
         this.answer = answer;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "answer_id")
     public Answer getAnswer() {
         return answer;
     }
@@ -38,6 +52,8 @@ public class QuestionEntry implements Serializable {
         this.answer = answer;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "question_id")
     public Question getQuestion() {
         return question;
     }
