@@ -2,8 +2,6 @@ package com.tekenable.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -15,7 +13,7 @@ import java.util.Set;
 @DiscriminatorValue("qe")
 @Table(
         uniqueConstraints=
-        @UniqueConstraint(columnNames={"question_id", "answer_id", "question_entity_type"})
+        @UniqueConstraint(columnNames={"trial_id", "question_id", "answer_id", "question_entity_type"})
 )
 public class QuestionEntry implements Serializable {
 

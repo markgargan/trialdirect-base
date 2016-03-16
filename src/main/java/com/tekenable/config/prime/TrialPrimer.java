@@ -16,7 +16,7 @@ public class TrialPrimer extends QuestionAndAnswersPrimer{
     protected final Trial tl_fooTrial = new Trial("Foo");
 
     protected final QuestionEntry qe_lundbeg_age0_18 = new QuestionEntry(qn_patientsAge, ar_age0_18);
-    protected final TrialSelectorEntry tse_lundbeg_age0_18 = new TrialSelectorEntry(qn_patientsAge, ar_age0_18);
+    protected final TrialSelectorEntry tse_lundbeg_age0_18 = new TrialSelectorEntry(qn_patientsAge, ar_age0_18, tl_lundbegTrial);
 
     /**
      * Lundbeg Trial Question
