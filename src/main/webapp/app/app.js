@@ -1,5 +1,15 @@
-(function(angular) {
-  angular.module("myApp.controllers", []);
-  angular.module("myApp.services", []);
-  angular.module("myApp", ["ngResource", "spring-data-rest", "myApp.controllers", "myApp.services"]);
-}(angular));
+angular.module('trialdirect',[
+  'ngResource',
+  'spring-data-rest',
+  'ui.router'
+]).config(['$stateProvider', '$urlRouterProvider',
+  function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+        .state('item', {
+          url: '/item',
+          templateUrl: 'views/templates/item.view.htm',
+          controller: 'AppController'
+        });
+
+    $urlRouterProvider.otherwise('/');
+  }]);

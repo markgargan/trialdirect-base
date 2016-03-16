@@ -1,6 +1,8 @@
-(function(angular) {
-  var HATEOAS_URL = './api/items';
-  var ItemFactory = function($http, SpringDataRestAdapter) {
+var HATEOAS_URL = './api/items';
+
+angular.module('trialdirect').factory('Item', ['$http', 'SpringDataRestAdapter',
+
+  function($http, SpringDataRestAdapter) {
     function Item(item) {
       
       if (item._resources) {
@@ -47,8 +49,5 @@
     Item.resources = null;
     
     return Item;
-  };
-  
-  ItemFactory.$inject = ['$http', 'SpringDataRestAdapter'];
-  angular.module("myApp.services").factory("Item", ItemFactory);
-}(angular));
+  }]
+);

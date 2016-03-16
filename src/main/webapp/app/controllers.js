@@ -1,5 +1,5 @@
-(function(angular) {
-  var AppController = function($scope, Item) {
+angular.module('trialdirect')
+    .controller('AppController', function($scope, Item) {
     Item.query(function(response) {
       $scope.items = response ? response : [];
     });
@@ -23,8 +23,5 @@
         $scope.items.splice($scope.items.indexOf(item), 1);
       });
     };
-  };
-  
-  AppController.$inject = ['$scope', 'Item'];
-  angular.module("myApp.controllers").controller("AppController", AppController);
-}(angular));
+  }
+);
