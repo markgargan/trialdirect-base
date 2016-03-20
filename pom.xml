@@ -129,19 +129,19 @@
                             <!--<goal>exec</goal>-->
                         <!--</goals>-->
                     <!--</execution>-->
-                    <execution>
-                        <id>exec-bower-install</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <executable>bower</executable>
-                            <arguments>
-                                <argument>install</argument>
-                            </arguments>
-                        </configuration>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
+                    <!--<execution>-->
+                        <!--<id>exec-bower-install</id>-->
+                        <!--<phase>generate-sources</phase>-->
+                        <!--<configuration>-->
+                            <!--<executable>bower</executable>-->
+                            <!--<arguments>-->
+                                <!--<argument>install</argument>-->
+                            <!--</arguments>-->
+                        <!--</configuration>-->
+                        <!--<goals>-->
+                            <!--<goal>exec</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
                     <!--<execution>-->
                         <!--<id>exec-grunt</id>-->
                         <!--<phase>process-resources</phase>-->
