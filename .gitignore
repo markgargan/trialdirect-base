@@ -3,3 +3,4 @@ target
 *.log
 vendor
 bower_components
+*.iml
