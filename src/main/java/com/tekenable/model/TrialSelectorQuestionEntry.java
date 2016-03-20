@@ -7,31 +7,22 @@ import java.io.Serializable;
 
 @Table(
         uniqueConstraints=
-        @UniqueConstraint(columnNames={"question_id", "answer_id"})
+        @UniqueConstraint(columnNames={"trial_id", "question_id", "answer_id"})
 )
-public class QuestionEntry implements Serializable {
-
-    protected int id;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+public class TrialSelectorQuestionEntry extends BaseEntity{
 
     private Question question;
 
     private Answer answer;
 
-    public QuestionEntry(){}
+    private Trial trial;
 
-    public QuestionEntry(Question question, Answer answer) {
+    public TrialSelectorQuestionEntry(){}
+
+    public TrialSelectorQuestionEntry(Question question, Answer answer, Trial trial) {
         this.question = question;
         this.answer = answer;
+        this.trial = trial;
     }
 
     @ManyToOne
@@ -54,4 +45,13 @@ public class QuestionEntry implements Serializable {
         this.question = question;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "trial_id")
+    public Trial getTrial() {
+        return trial;
+    }
+
+    public void setTrial(Trial trial) {
+        this.trial = trial;
+    }
 }

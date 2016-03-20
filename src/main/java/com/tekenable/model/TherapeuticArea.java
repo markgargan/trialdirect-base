@@ -30,7 +30,14 @@ public class TherapeuticArea extends BaseEntity {
     this.name = name;
   }
 
-  @ManyToMany(mappedBy = "therapeuticAreas")
+  /**
+   * To understand the cascading options
+   *
+   * @link http://vladmihalcea.com/2015/03/05/a-beginners-guide-to-jpa-and-hibernate-cascade-types/
+   * @return
+   **/
+  @ManyToMany(mappedBy = "therapeuticAreas",
+          cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   public Set<Question> getQuestions() {
     return questions;
   }

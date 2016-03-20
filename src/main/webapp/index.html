@@ -1,24 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.css"/>
-    </head>
+<head>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.css"/>
+    <link rel="stylesheet" href="./css/style.css"/>
+</head>
 
-    <body ng-app="trialdirect">
+<body ng-app="trialdirect">
 
-    <div class="container">
-        <div ui-view></div>
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="#">Home</a>
+        <ul class="nav">
+
+            <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
+                 will set the links to 'active' if, for example on the first link, 'contacts' or any of
+                 its descendant states are activated. -->
+            <li ng-class="{active: $state.includes('therapeuticarea')}"><a ui-sref="therapeuticarea">Therapeutic Areas</a></li>
+            <li ng-class="{active: $state.includes('question')}"><a ui-sref="question">Questions And Answers</a></li>
+        </ul>
+
+        <p ui-view="hint" class="navbar-text pull-right"></p>
     </div>
+</div>
 
-    <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
-    <script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script type="text/javascript"
-            src="./bower_components/angular-spring-data-rest/dist/angular-spring-data-rest.js"></script>
-    <script type="text/javascript" src="./bower_components/lodash/dist/lodash.js"></script>
-    <script type="text/javascript" src="./app/app.js"></script>
-    <script type="text/javascript" src="./app/controllers.js"></script>
-    <script type="text/javascript" src="./app/services.js"></script>
-    </body>
+<div class="container slide">
+    <div ui-view></div>
+</div>
+
+<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script type="text/javascript"
+        src="./bower_components/angular-spring-data-rest/dist/angular-spring-data-rest.js"></script>
+<script type="text/javascript" src="./bower_components/lodash/dist/lodash.js"></script>
+
+<script type="text/javascript" src="./app/app.js"></script>
+<script type="text/javascript" src="./app/controllers/AppController.js"></script>
+<script type="text/javascript" src="./app/controllers/QuestionController.js"></script>
+<script type="text/javascript" src="./app/controllers/TherapeuticAreaController.js"></script>
+
+<script type="text/javascript" src="./app/services/ItemService.js"></script>
+<script type="text/javascript" src="./app/services/QuestionService.js"></script>
+<script type="text/javascript" src="./app/services/AnswerService.js"></script>
+<script type="text/javascript" src="./app/services/TherapeuticAreaResourceService.js"></script>
+
+</body>
 
 </html>

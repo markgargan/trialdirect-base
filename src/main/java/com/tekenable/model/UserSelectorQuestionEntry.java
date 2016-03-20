@@ -1,37 +1,27 @@
 package com.tekenable.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 
 @Table(
         uniqueConstraints=
-        @UniqueConstraint(columnNames={"question_id", "answer_id"})
+        @UniqueConstraint(columnNames={"question_id", "answer_id", "user_session_id"})
 )
-public class QuestionEntry implements Serializable {
-
-    protected int id;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+public class UserSelectorQuestionEntry extends BaseEntity{
 
     private Question question;
 
     private Answer answer;
 
-    public QuestionEntry(){}
+    private Long userSessionId;
 
-    public QuestionEntry(Question question, Answer answer) {
+    public UserSelectorQuestionEntry(){}
+
+    public UserSelectorQuestionEntry(Long userSessionId, Question question, Answer answer) {
         this.question = question;
         this.answer = answer;
+        this.userSessionId = userSessionId;
     }
 
     @ManyToOne
@@ -54,4 +44,12 @@ public class QuestionEntry implements Serializable {
         this.question = question;
     }
 
+    @Column(name = "user_session_id")
+    public Long getUserSessionId() {
+        return userSessionId;
+    }
+
+    public void setUserSessionId(Long userSessionId) {
+        this.userSessionId = userSessionId;
+    }
 }

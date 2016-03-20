@@ -10,8 +10,7 @@ public class Trial{
 
     private String trialSummary;
 
-//    private Set<QuestionEntry> questionEntries;
-    private Set<TrialSelectorEntry> trialSelectorEntries;
+    private Set<TrialSelectorQuestionEntry> trialSelectorQuestionEntries;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,17 +28,17 @@ public class Trial{
         this.trialSummary = trialSummary;
     }
 
-    public Trial(String trialSummary, Set<TrialSelectorEntry> questionEntries) {
+    public Trial(String trialSummary, Set<TrialSelectorQuestionEntry> trialSelectorQuestionEntries) {
         this.trialSummary = trialSummary;
-        this.trialSelectorEntries = trialSelectorEntries;
+        this.trialSelectorQuestionEntries = trialSelectorQuestionEntries;
     }
 
-    @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<TrialSelectorEntry> getTrialSelectorEntries() {
-        return trialSelectorEntries;
+    @OneToMany(mappedBy = "trial", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    public Set<TrialSelectorQuestionEntry> getTrialSelectorQuestionEntries() {
+        return trialSelectorQuestionEntries;
     }
 
-    public void setTrialSelectorEntries(Set<TrialSelectorEntry> trialSelectorEntries) {
-        this.trialSelectorEntries = trialSelectorEntries;
+    public void setTrialSelectorQuestionEntries(Set<TrialSelectorQuestionEntry> trialSelectorQuestionEntries) {
+        this.trialSelectorQuestionEntries = trialSelectorQuestionEntries;
     }
 }

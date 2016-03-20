@@ -16,7 +16,7 @@ public class QuestionAndAnswersPrimer {
     protected final TherapeuticArea ta_diabetes = new TherapeuticArea("diabetes");
 
     protected final Question qn_patientsCondition = new Question("What is your patients's condition", new HashSet<TherapeuticArea>() {{
-        add(ta_cancer);
+        add(ta_diabetes);
     }});
 
     protected final Question qn_patientsAge = new Question("What is your patients's age", new HashSet<TherapeuticArea>() {{

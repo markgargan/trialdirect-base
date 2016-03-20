@@ -2,10 +2,10 @@ package com.tekenable.config.prime;
 
 import com.tekenable.model.QuestionEntry;
 import com.tekenable.model.Trial;
-import com.tekenable.model.TrialSelectorEntry;
+import com.tekenable.model.TrialSelectorQuestionEntry;
 import com.tekenable.repository.QuestionEntryRepository;
 import com.tekenable.repository.TrialRepository;
-import com.tekenable.repository.TrialSelectorEntryRepository;
+import com.tekenable.repository.TrialSelectorQuestionEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class TrialPrimer extends QuestionAndAnswersPrimer{
     protected final Trial tl_fooTrial = new Trial("Foo");
 
     protected final QuestionEntry qe_lundbeg_age0_18 = new QuestionEntry(qn_patientsAge, ar_age0_18);
-    protected final TrialSelectorEntry tse_lundbeg_age0_18 = new TrialSelectorEntry(qn_patientsAge, ar_age0_18, tl_lundbegTrial);
+    protected final TrialSelectorQuestionEntry tse_lundbeg_age0_18 = new TrialSelectorQuestionEntry(qn_patientsAge, ar_age0_18, tl_lundbegTrial);
 
     /**
      * Lundbeg Trial Question
@@ -33,7 +33,7 @@ public class TrialPrimer extends QuestionAndAnswersPrimer{
             add(qe_lundbeg_age0_18);
         }});
 
-        trialSelectorEntryRepository.save(new HashSet<TrialSelectorEntry>(){{
+        trialSelectorQuestionEntryRepository.save(new HashSet<TrialSelectorQuestionEntry>(){{
             add(tse_lundbeg_age0_18);
         }});
 
@@ -46,6 +46,6 @@ public class TrialPrimer extends QuestionAndAnswersPrimer{
     private QuestionEntryRepository questionEntryRepository;
 
     @Autowired
-    private TrialSelectorEntryRepository trialSelectorEntryRepository;
+    private TrialSelectorQuestionEntryRepository trialSelectorQuestionEntryRepository;
 
 }
