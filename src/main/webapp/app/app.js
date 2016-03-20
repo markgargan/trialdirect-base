@@ -46,7 +46,7 @@ angular.module('trialdirect', [
         $stateProvider
             .state('home', {
                 url: "/",
-                templateUrl: 'views/templates/home.view.htm',
+                //templateUrl: 'views/templates/home.view.htm',
                 views: {
                     "viewA": therapeuticAreaState
                     ,
