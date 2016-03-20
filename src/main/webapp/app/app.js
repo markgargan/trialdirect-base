@@ -44,21 +44,21 @@ angular.module('trialdirect', [
         };
 
         $stateProvider
-            .state('home', {
-                url: "/",
-                //templateUrl: 'views/templates/home.view.htm',
-                views: {
-                    "viewA": therapeuticAreaState
-                    ,
-                    "viewB": questionState
-                }
-            })
-            .state('therapeuticarea', {
-                url: '/therapeuticarea',
-                views: {
-                    "viewA": therapeuticAreaState
-                }
-            })
+            //.state('home', {
+            //    url: "/",
+            //    //templateUrl: 'views/templates/home.view.htm',
+            //    views: {
+            //        "viewA": therapeuticAreaState
+            //        ,
+            //        "viewB": questionState
+            //    }
+            //})
+            //.state('therapeuticarea', {
+            //    url: '/therapeuticarea',
+            //    views: {
+            //        "viewA": therapeuticAreaState
+            //    }
+            //})
             .state('item', {
                 url: '/item',
                 templateUrl: 'views/templates/item.view.htm',
@@ -70,7 +70,7 @@ angular.module('trialdirect', [
                 }
             });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/question');
     }]).filter('reverse', function () {
     return function (items) {
         return items.slice().reverse();
