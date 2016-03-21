@@ -4,14 +4,24 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Trial{
+public class Trial {
 
     protected int id;
 
-    private String trialSummary;
+    private String title;
 
-//    private Set<QuestionEntry> questionEntries;
     private Set<TrialSelectorEntry> trialSelectorEntries;
+
+    public Trial() {}
+
+    public Trial(String title) {
+        this.title = title;
+    }
+
+    public Trial(String title, Set<TrialSelectorEntry> questionEntries) {
+        this.title = title;
+        this.trialSelectorEntries = questionEntries;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,15 +33,12 @@ public class Trial{
         this.id = id;
     }
 
-    public Trial() {}
-
-    public Trial(String trialSummary) {
-        this.trialSummary = trialSummary;
+    public String getTitle() {
+        return title;
     }
 
-    public Trial(String trialSummary, Set<TrialSelectorEntry> questionEntries) {
-        this.trialSummary = trialSummary;
-        this.trialSelectorEntries = trialSelectorEntries;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

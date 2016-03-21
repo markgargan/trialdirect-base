@@ -1,6 +1,7 @@
 package com.tekenable.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,12 +11,18 @@ public class Question extends BaseEntity {
     private Set<TherapeuticArea> therapeuticAreas;
     private Set<QuestionEntry> questionEntries;
     private Set<QuestionnaireEntry> questionnaireEntries;
-    private Set<Answer> answers;
+    private Set<Result> results;
 
     public Question() {}
 
     public Question(String questionText) {
         this.questionText = questionText;
+    }
+
+    public Question(String questionText, TherapeuticArea area) {
+        this.questionText = questionText;
+        this.therapeuticAreas = new HashSet();
+        this.therapeuticAreas.add(area);
     }
 
     public Question(String questionText, Set<TherapeuticArea> therapeuticAreas) {
@@ -43,15 +50,6 @@ public class Question extends BaseEntity {
         this.therapeuticAreas = therapeuticAreas;
     }
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    public Set<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(Set<Answer> answers) {
-        this.answers = answers;
-    }
-
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<QuestionEntry> getQuestionEntries() {
         return questionEntries;
@@ -68,5 +66,14 @@ public class Question extends BaseEntity {
 
     public void setQuestionnaireEntries(Set<QuestionnaireEntry> questionnaireEntries) {
         this.questionnaireEntries = questionnaireEntries;
+    }
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(Set<Result> results) {
+        this.results = results;
     }
 }

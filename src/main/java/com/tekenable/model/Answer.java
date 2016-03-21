@@ -8,10 +8,9 @@ import java.util.Set;
 public class Answer extends BaseEntity {
 
     private String answerText;
-    private Question question;
     private Set<QuestionEntry> questionEntries;
     private Set<QuestionnaireEntry> questionnaireEntries;
-
+    private Set<Result> results;
     public Answer() {
 
     }
@@ -20,27 +19,12 @@ public class Answer extends BaseEntity {
         this.answerText = answerText;
     }
 
-    public Answer(String answerText, Question question) {
-        this.answerText = answerText;
-        this.question = question;
-    }
-
     public String getAnswerText() {
         return answerText;
     }
 
     public void setAnswerText(String answerText) {
         this.answerText = answerText;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "question_id")
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
     }
 
     @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -59,5 +43,14 @@ public class Answer extends BaseEntity {
 
     public void setQuestionnaireEntries(Set<QuestionnaireEntry> questionnaireEntries) {
         this.questionnaireEntries = questionnaireEntries;
+    }
+
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(Set<Result> results) {
+        this.results = results;
     }
 }

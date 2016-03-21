@@ -1,6 +1,8 @@
 package com.tekenable.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -18,6 +20,26 @@ public class QuestionnaireEntry extends BaseEntity {
     private Questionnaire questionnaire;
 
     public QuestionnaireEntry() {
+    }
+
+    public QuestionnaireEntry(String title, String question, String answer) {
+        this.title= title;
+        this.question = new Question(question);
+        this.answers = new LinkedHashSet();
+        this.answers.add(new Answer(answer));
+    }
+
+    public QuestionnaireEntry(String title, Question question, Answer answer) {
+        this.title = title;
+        this.question = question;
+        this.answers = new LinkedHashSet();
+        this.answers.add(answer);
+    }
+
+    public QuestionnaireEntry(String title, Question question, Set<Answer> answers) {
+        this.title = title;
+        this.question = question;
+        this.answers = answers;
     }
 
     @Column(name= "title")

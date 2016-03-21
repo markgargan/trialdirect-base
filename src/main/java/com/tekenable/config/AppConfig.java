@@ -1,6 +1,7 @@
 package com.tekenable.config;
 
 
+import com.tekenable.config.prime.CancerTrialPrimer;
 import com.tekenable.config.prime.TrialDirectPrimer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -43,11 +44,6 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
             e.printStackTrace();
         }
     }
-
-//    @Bean
-//    public DataSource dataSource() {
-//        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
-//    }
 
     @Bean
     public DataSource dataSource() {
@@ -99,6 +95,9 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
         properties.put(HBM2DDL_AUTO, "create-drop");
         return properties;
     }
+
+    @Bean
+    public CancerTrialPrimer cancerTrialPrimer() { return new CancerTrialPrimer(); }
 
     @Bean
     public TrialDirectPrimer trialDirectPrimer() {
