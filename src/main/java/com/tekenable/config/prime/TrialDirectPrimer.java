@@ -14,7 +14,6 @@ public class TrialDirectPrimer {
 
         try {
             cancerTrialPrimer.initDB();
-
         }catch (NullPointerException pae) {
             pae.printStackTrace();
         }

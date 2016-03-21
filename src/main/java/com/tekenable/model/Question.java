@@ -9,9 +9,8 @@ public class Question extends BaseEntity {
 
     private String questionText;
     private Set<TherapeuticArea> therapeuticAreas;
-    private Set<QuestionEntry> questionEntries;
+//    private Set<QuestionEntry> questionEntries;
     private Set<QuestionnaireEntry> questionnaireEntries;
-    private Set<Result> results;
 
     public Question() {}
 
@@ -50,14 +49,14 @@ public class Question extends BaseEntity {
         this.therapeuticAreas = therapeuticAreas;
     }
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<QuestionEntry> getQuestionEntries() {
-        return questionEntries;
-    }
-
-    public void setQuestionEntries(Set<QuestionEntry> questionEntries) {
-        this.questionEntries = questionEntries;
-    }
+//    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    public Set<QuestionEntry> getQuestionEntries() {
+//        return questionEntries;
+//    }
+//
+//    public void setQuestionEntries(Set<QuestionEntry> questionEntries) {
+//        this.questionEntries = questionEntries;
+//    }
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<QuestionnaireEntry> getQuestionnaireEntries() {
@@ -68,12 +67,4 @@ public class Question extends BaseEntity {
         this.questionnaireEntries = questionnaireEntries;
     }
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<Result> getResults() {
-        return results;
-    }
-
-    public void setResults(Set<Result> results) {
-        this.results = results;
-    }
 }

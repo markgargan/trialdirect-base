@@ -103,4 +103,5 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
     public TrialDirectPrimer trialDirectPrimer() {
         return new TrialDirectPrimer();
     }
+
 }

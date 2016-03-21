@@ -8,9 +8,8 @@ import java.util.Set;
 public class Answer extends BaseEntity {
 
     private String answerText;
-    private Set<QuestionEntry> questionEntries;
+//    private Set<QuestionEntry> questionEntries;
     private Set<QuestionnaireEntry> questionnaireEntries;
-    private Set<Result> results;
     public Answer() {
 
     }
@@ -27,14 +26,14 @@ public class Answer extends BaseEntity {
         this.answerText = answerText;
     }
 
-    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<QuestionEntry> getQuestionEntries() {
-        return questionEntries;
-    }
-
-    public void setQuestionEntries(Set<QuestionEntry> questionEntries) {
-        this.questionEntries = questionEntries;
-    }
+//    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    public Set<QuestionEntry> getQuestionEntries() {
+//        return questionEntries;
+//    }
+//
+//    public void setQuestionEntries(Set<QuestionEntry> questionEntries) {
+//        this.questionEntries = questionEntries;
+//    }
 
     @ManyToMany(mappedBy = "answers")
     public Set<QuestionnaireEntry> getQuestionnaireEntries() {
@@ -45,12 +44,4 @@ public class Answer extends BaseEntity {
         this.questionnaireEntries = questionnaireEntries;
     }
 
-    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<Result> getResults() {
-        return results;
-    }
-
-    public void setResults(Set<Result> results) {
-        this.results = results;
-    }
 }

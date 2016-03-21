@@ -16,23 +16,6 @@ angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapt
                         });
                     };
 
-                    question.saveAnswer = function (answerText, callback) {
-
-                        var data = {
-                            'answerText': answerText,
-                            'question' : 'http://localhost:8080/api/questions/1'
-                        };
-
-                        var deferred = $http.post(question._links.answers.href, data);
-                        return SpringDataRestAdapter.process(deferred).then(function (postedAnswerResponse) {
-                            callback && callback(postedAnswerResponse);
-                        });
-
-                        question._links.answers.update({answerText:answerText}, function () {
-                            callback && callback(question);
-                        });
-                    };
-
                     question.remove = function (callback) {
                         question.resources.remove(function () {
                             callback && callback(question);
@@ -55,15 +38,15 @@ angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapt
 
             Question.query = function () {
                 var deferred = $http.get(HATEOAS_URL);
-                return SpringDataRestAdapter.process(deferred, 'answers').then(function (data) {
+                return SpringDataRestAdapter.process( deferred ).then(function (data) {
                     Question.resources = data._resources("self");
 
                     return _.map(data._embeddedItems, function (question) {
 
-                        var i=0;
-                        angular.forEach(question.answers._embeddedItems, function(answer) {
-                            question.answers._embeddedItems[i++] = new Answer(answer);
-                        });
+                        //var i=0;
+                        //angular.forEach(question.answers._embeddedItems, function(answer) {
+                        //    question.answers._embeddedItems[i++] = new Answer(answer);
+                        //});
 
                         return new Question(question);
                     });
