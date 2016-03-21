@@ -1,0 +1,20 @@
+<div class="trialSearch">
+	<h4>Trial Search</h4>
+
+	<form class="wide" ng-controller="SearchController as search" >
+		
+		<div class="qa" data-ng-repeat="d in d">
+			<div class="question">
+				<p>{{d.question + selValue}}</p>
+				<div class="clear"></div>
+			</div>
+			<div class="answers">
+				<label data-ng-repeat="a in d.answers">
+					<input type="radio" name="ans{{d.id}}" value="{{a}}" ng-model="selValue" ng-change="newValue(selValue)"> <span>{{a}}</span>
+				</label>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+	</form>
+</div>

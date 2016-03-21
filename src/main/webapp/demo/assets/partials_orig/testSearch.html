@@ -1,0 +1,40 @@
+<!--
+
+<div class="trialSearch">
+	<h3>Trial Search</h3>
+
+	<div ng-controller="TestSearchController as demo">
+
+		<div data-ng-repeat="d in d._embedded.therapeuticareas">
+			{{d.name}}
+		</div>
+
+		<div data-ng-repeat="q in q._embedded.questions">
+			{{q.questionText}}
+		</div>
+
+	</div>
+
+</div>
+
+-->
+<div class="trialSearch">
+	<h3>Trial Search</h3>
+
+	<form class="wide" ng-controller="SearchController as search" >
+		
+		<div class="qa" data-ng-repeat="d in d">
+			<div class="question">
+				<p>{{d.question + selValue}}</p>
+				<div class="clear"></div>
+			</div>
+			<div class="answers">
+				<label data-ng-repeat="a in d.answers">
+					<input type="radio" name="ans{{d.id}}" value="{{a}}" ng-model="selValue" ng-change="newValue(selValue)"> <span>{{a}}</span>
+				</label>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+	</form>
+</div>

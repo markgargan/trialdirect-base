@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<title>Trial Direct</title>
+<!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800"> -->
+<link rel="stylesheet" type="text/css" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/base.min.css">
+</head>
+<body>
+
+<div ng-include="'assets/partials/NavAdmin.html'"></div>
+<div ng-include="'assets/partials/header.html'"></div>
+
+<main>
+	<div class="limiter">
+		<div class="view-container">
+			<div ng-view class="view-frame"></div>
+		</div>
+	</div>
+</main>
+
+<div ng-include="'assets/partials/footer.html'"></div>
+
+<!-- jQuery -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery-functions.min.js"></script>
+
+<!-- Angular -->
+<script src="assets/js/angular.min.js"></script>
+<script src="assets/js/angular-libs.min.js"></script>
+<script src="assets/js/angular-app.min.js"></script>
+
+</body>
+</html>

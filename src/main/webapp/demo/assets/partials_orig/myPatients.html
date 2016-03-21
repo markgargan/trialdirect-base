@@ -1,0 +1,17 @@
+<h3>My Patients</h3>
+<table ng-controller="MyPatientsController">
+	<tr>
+		<th>Patient</th>
+		<th>Status</th>
+		<th>Referral Date</th>
+		<th>Investigator</th>
+		<th>Contact</th>
+	</tr>
+	<tr data-ng-repeat="d in d | orderBy:'name'">
+		<td>{{d.name}}</td>
+		<td>{{d.status}}</td>
+		<td>{{d.date}}</td>
+		<td>{{d.investigator}}</td>
+		<td>{{d.contact_by}}</td>
+	</tr>
+</table>
