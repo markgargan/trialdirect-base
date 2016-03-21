@@ -21,6 +21,10 @@ public class Questionnaire extends BaseEntity {
     public Questionnaire() {
     }
 
+    public Questionnaire(String title) {
+        this.title = title;
+    }
+
     public Questionnaire(String title, Set<QuestionnaireEntry> entries) {
         this.title =title;
         this.questionaireEntries = entries;

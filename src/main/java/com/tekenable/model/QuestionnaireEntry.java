@@ -29,17 +29,26 @@ public class QuestionnaireEntry extends BaseEntity {
         this.answers.add(new Answer(answer));
     }
 
+    public QuestionnaireEntry(String title, Question question, Answer answer, Questionnaire questionnaire) {
+        this.title = title;
+        this.question = question;
+        this.answers = new LinkedHashSet();
+        this.answers.add(answer);
+        this.questionnaire = questionnaire;
+    }
+
+    public QuestionnaireEntry(String title, Question question, Set<Answer> answers, Questionnaire questionnaire) {
+        this.title = title;
+        this.question = question;
+        this.answers = answers;
+        this.questionnaire = questionnaire;
+    }
+
     public QuestionnaireEntry(String title, Question question, Answer answer) {
         this.title = title;
         this.question = question;
         this.answers = new LinkedHashSet();
         this.answers.add(answer);
-    }
-
-    public QuestionnaireEntry(String title, Question question, Set<Answer> answers) {
-        this.title = title;
-        this.question = question;
-        this.answers = answers;
     }
 
     @Column(name= "title")
