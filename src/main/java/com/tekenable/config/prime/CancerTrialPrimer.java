@@ -25,7 +25,7 @@ public class CancerTrialPrimer {
     private QuestionEntryRepository questionEntryRepository;
 
     @Autowired
-    private TrialSelectorEntryRepository trialSelectorEntryRepository;
+    private TrialSelectorQuestionEntryRepository trialSelectorEntryRepository;
 
     // main question (no wrong answers here, it determines the inital path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
@@ -59,16 +59,16 @@ public class CancerTrialPrimer {
     protected final QuestionnaireEntry entry3 = new QuestionnaireEntry("Patient age", q3, answers3);
 
     // creating questionnaire out of above questions
-    protected final Set cancerEntries = new HashSet() {{add(entry1); add(entry2); add(entry3);}};
+    protected final Set cancerEntries = new HashSet<QuestionnaireEntry>() {{add(entry1); add(entry2); add(entry3);}};
     protected final Questionnaire cancerQuestionnaire = new Questionnaire("Cancer Questionnaire", cancerEntries);
 
     // creating trial structure
     protected final Trial cancerTrial = new Trial("Cancer Trial");
     protected final QuestionEntry qe11 = new QuestionEntry(q2, a23);
-    protected final TrialSelectorEntry ts11 = new TrialSelectorEntry(q2, a23, cancerTrial);
+    protected final TrialSelectorQuestionEntry ts11 = new TrialSelectorQuestionEntry(q2, a23, cancerTrial);
 
     protected final QuestionEntry qe12 = new QuestionEntry(q3, a32);
-    protected final TrialSelectorEntry ts12 = new TrialSelectorEntry(q3, a32, cancerTrial);
+    protected final TrialSelectorQuestionEntry ts12 = new TrialSelectorQuestionEntry(q3, a32, cancerTrial);
 
     public void initDB() {
 
@@ -89,7 +89,7 @@ public class CancerTrialPrimer {
             add(qe12);
         }});
 
-        trialSelectorEntryRepository.save(new HashSet<TrialSelectorEntry>(){{
+        trialSelectorEntryRepository.save(new HashSet<TrialSelectorQuestionEntry>(){{
             add(ts11);
             add(ts12);
         }});
