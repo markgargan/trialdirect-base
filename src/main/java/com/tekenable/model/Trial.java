@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Trial {
-
-    protected int id;
+public class Trial extends BaseEntity{
 
     private String title;
 
@@ -21,16 +19,6 @@ public class Trial {
     public Trial(String title, Set<TrialSelectorEntry> questionEntries) {
         this.title = title;
         this.trialSelectorEntries = questionEntries;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {

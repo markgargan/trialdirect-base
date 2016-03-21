@@ -1,12 +1,12 @@
 package com.tekenable.model;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
-@DiscriminatorValue("ts")
 @Entity
+@Table(
+        uniqueConstraints=
+        @UniqueConstraint(columnNames={"trial_id", "question_id", "answer_id"})
+)
 public class TrialSelectorEntry extends QuestionEntry {
 
     private Trial trial;

@@ -4,23 +4,17 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(
-        name = "question_entity_type",
-        discriminatorType = DiscriminatorType.STRING
-)
-
-@DiscriminatorValue("qe")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(
         uniqueConstraints=
-        @UniqueConstraint(columnNames={"trial_id", "question_id", "answer_id", "question_entity_type"})
+        @UniqueConstraint(columnNames={"question_id", "answer_id"})
 )
 public class QuestionEntry implements Serializable {
 
     protected int id;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public int getId() {
         return id;
     }

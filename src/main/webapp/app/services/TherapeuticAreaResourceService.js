@@ -8,8 +8,8 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService', ['$http'
 
 
             // The load function 
-            // Queries the /api/therapeticareas url to bring back all available therapeticAreas
-            // It is called during the resolve function of the therapeticarea state in the stateController
+            // Queries the /api/therapeuticareas url to bring back all available therapeuticAreas
+            // It is called during the 'resolve' function of the therapeticarea state in the stateController
             TherapeuticAreaResourceService.load = function () {
                 // Create promise with the resource url for the top level therapeuticAreas resource
                 var deferred = $http.get(RESOURCE_URL);
