@@ -3,45 +3,19 @@ package com.tekenable.model;
 import javax.persistence.*;
 
 @Entity
-
 @Table(
         uniqueConstraints=
-        @UniqueConstraint(columnNames={"question_id", "answer_id", "user_session_id"})
+        @UniqueConstraint(columnNames={"user_session_id", "question_id", "answer_id"})
 )
-public class UserSelectorQuestionEntry extends BaseEntity{
-
-    private Question question;
-
-    private Answer answer;
+public class UserSelectorQuestionEntry extends QuestionEntry {
 
     private Long userSessionId;
 
     public UserSelectorQuestionEntry(){}
 
     public UserSelectorQuestionEntry(Long userSessionId, Question question, Answer answer) {
-        this.question = question;
-        this.answer = answer;
+        super(question, answer);
         this.userSessionId = userSessionId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "answer_id")
-    public Answer getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "question_id")
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
     }
 
     @Column(name = "user_session_id")

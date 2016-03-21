@@ -24,7 +24,7 @@ angular.module('trialdirect').controller('QuestionController',
             });
         };
 
-        $scope.addAnswer =  function (question, answerText) {
+        $scope.addAnswer = function (question, answerText) {
             new Answer({
                 answerText: answerText,
                 question: question._links.self.href
@@ -38,7 +38,7 @@ angular.module('trialdirect').controller('QuestionController',
             answer.save();
         };
 
-        $scope.deleteAnswer= function (question, answer) {
+        $scope.deleteAnswer = function (question, answer) {
             answer.remove(function () {
                 var answerList = question.answers._embeddedItems;
                 answerList.splice(answerList.indexOf(answer), 1);
