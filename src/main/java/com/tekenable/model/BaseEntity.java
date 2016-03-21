@@ -1,13 +1,14 @@
 package com.tekenable.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @MappedSuperclass
-public class BaseEntity {
+public class BaseEntity implements Serializable {
   protected int id;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return id;
   }
@@ -15,5 +16,4 @@ public class BaseEntity {
   public void setId(int id) {
     this.id = id;
   }
-
 }
