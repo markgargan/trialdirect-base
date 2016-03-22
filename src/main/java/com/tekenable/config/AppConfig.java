@@ -2,7 +2,9 @@ package com.tekenable.config;
 
 
 import com.tekenable.config.prime.CancerTrialPrimer;
+import com.tekenable.config.prime.DiabetesTrialPrimer;
 import com.tekenable.config.prime.TrialDirectPrimer;
+import com.tekenable.controller.QuestionnaireController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -100,8 +102,12 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
     public CancerTrialPrimer cancerTrialPrimer() { return new CancerTrialPrimer(); }
 
     @Bean
-    public TrialDirectPrimer trialDirectPrimer() {
-        return new TrialDirectPrimer();
-    }
+    public TrialDirectPrimer trialDirectPrimer() { return new TrialDirectPrimer(); }
+
+    @Bean
+    public DiabetesTrialPrimer diabetesTrialPrimer() { return new DiabetesTrialPrimer(); }
+
+    @Bean
+    public QuestionnaireController questionnaireController() { return new QuestionnaireController(); }
 
 }
