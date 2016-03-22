@@ -1,0 +1,5 @@
+<decorator name="login" page="login.jsp">
+    <pattern>/</pattern>
+    <pattern>/login.do</pattern>
+    <pattern>/spring_security_login</pattern>
+</decorator>
