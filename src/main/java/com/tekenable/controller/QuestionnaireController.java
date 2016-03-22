@@ -16,8 +16,9 @@ import java.util.Set;
  */
 
 /**
- * this class cannot be spring controller at present
+ * this class cannot be full spring controller at present
  * since it is used by the primer to populate the database
+ * (controllers are instantiated later than the primer)
  */
 
 public class QuestionnaireController {
