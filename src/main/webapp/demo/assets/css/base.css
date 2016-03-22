@@ -66,7 +66,6 @@ a:hover.more{text-decoration:none;}
 }
 @media screen and (max-width: 900px){body{font-size:.9em;}
 .trialIntro,.trialInfo,.trialLocation,.trialSearch,.trialResults,.trialRight{float:none;width:auto;text-align:left;margin-bottom:2em;}
-.question,.answers{float:none;text-align:center;width:auto;}
 .qa{padding:1em 0 1.5em;}
 .trialCountH{display:none;}
 .trialCount{display:block;float:right;padding:.1em 1em;}
@@ -77,4 +76,6 @@ a:hover.more{text-decoration:none;}
 .header img{max-width:6em;}
 .nav a{padding:.25em;}
 .header,.footer{padding:.5em 0;}
+}
+@media screen and (max-width: 600px){.question,.answers{float:none;text-align:center;width:auto;}
 }
