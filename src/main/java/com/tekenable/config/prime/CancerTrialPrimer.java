@@ -9,6 +9,7 @@ import java.util.Set;
 
 /**
  * Created by smoczyna on 17/03/16.
+ * this is the first method of questionnaire population
  */
 public class CancerTrialPrimer {
 

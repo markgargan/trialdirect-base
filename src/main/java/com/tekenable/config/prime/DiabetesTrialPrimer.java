@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by smoczyna on 22/03/16.
+ * this is another way to population the questionnaire
  */
 public class DiabetesTrialPrimer {
 
@@ -19,5 +20,7 @@ public class DiabetesTrialPrimer {
 
         this.questionnaireController.addQuestionaireEntry("Second Question", "diabetes",
                 "How long do you have diabetes problem (in years)?", new String[] {"0-3", "3-5", "5-10", "10 and more"});
+
+
     }
 }
