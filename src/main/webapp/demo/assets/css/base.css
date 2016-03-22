@@ -26,7 +26,7 @@ form.wide{display:block;margin:auto;}
 .answers label span .fa{display:none;}
 .answers label input:checked+span .fa{display:inline;}
 main{display:block;min-height:50em;border-top:1px solid #f2f2f2;border-bottom:1px solid #f2f2f2;background:#fcfcfc;}
-.limiter{display:block;margin:auto;width:92.5%;max-width:80em;min-width:27.5em;}
+.limiter{display:block;margin:auto;width:92.5%;max-width:100em;min-width:27.5em;}
 .header,.footer{display:block;padding:1em 0;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;-webkit-transition:all 0.2s ease;-moz-transition:all 0.2s ease;-ms-transition:all 0.2s ease;-o-transition:all 0.2s ease;transition:all 0.2s ease;}
 .header img{max-width:9em;-webkit-transition:all 0.2s ease;-moz-transition:all 0.2s ease;-ms-transition:all 0.2s ease;-o-transition:all 0.2s ease;transition:all 0.2s ease;}
 .nav{display:block;background:#ddd;padding:.5em 0;}
