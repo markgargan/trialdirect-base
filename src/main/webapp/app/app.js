@@ -1,4 +1,5 @@
 angular.module('trialdirect', [
+        'uiRouterSample.therapeuticarea',
         'uiRouterSample.contacts',
         'uiRouterSample.contacts.service',
         'uiRouterSample.utils.service',
@@ -16,6 +17,17 @@ angular.module('trialdirect', [
                 // to active whenever 'contacts.list' or one of its decendents is active.
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
+
+                $rootScope.$on("$stateChangeError", console.log.bind(console));
+
+                $rootScope.$on('$stateChangeSuccess',
+                    function(event, toState, toParams, fromState, fromParams){
+                        console.log('Changing state from :-');
+                        console.log(fromState);
+                        console.log('to state :-');
+                        console.log(toState);
+
+                    })
             }
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
@@ -107,6 +119,4 @@ angular.module('trialdirect', [
         return items.slice().reverse();
     };
     // Debugging for the UI router
-}).run(function ($rootScope) {
-    $rootScope.$on("$stateChangeError", console.log.bind(console));
 });

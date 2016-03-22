@@ -42,9 +42,9 @@ angular.module('trialdirect').controller('QuestionnaireController',
             new Answer({
                 answerText: answerText
             }).save(function (answer) {
-                new QuestionnaireEntryResourceService({
-                    "answer": answer.getHrefLink()
-                }).save(function (savedQuestionnaireEntry) {
+
+                // No content returned from link creation hence empty function arguments
+                questionnaireEntry.createAssociation('answers', answer, function () {
                     questionnaireEntry.answers._embeddedItems.unshift(answer);
                 });
             });
@@ -57,9 +57,12 @@ angular.module('trialdirect').controller('QuestionnaireController',
 
         $scope.deleteAnswer = function (questionnaireEntry, answer) {
 
-            answer.remove(function () {
-                var answerList = question.answers._embeddedItems;
-                answerList.splice(answerList.indexOf(answer), 1);
+            questionnaireEntry.removeAssociation('answers', answer, function () {
+                answer.remove(function () {
+                    var answerList = questionnaireEntry.answers._embeddedItems;
+                    answerList.splice(answerList.indexOf(answer), 1);
+                });
+
             });
         };
 

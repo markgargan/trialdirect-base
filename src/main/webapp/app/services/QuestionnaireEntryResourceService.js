@@ -1,5 +1,6 @@
-angular.module('trialdirect').factory('QuestionnaireEntryResourceService', ['$http', 'SpringDataRestAdapter',
-        function ($http, SpringDataRestAdapter) {
+angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
+    ['$http', 'SpringDataRestAdapter', 'Question', 'Answer',
+        function ($http, SpringDataRestAdapter, Question, Answer) {
 
             var RESOURCE_URL = './api/questionnaireentrys';
 
@@ -17,6 +18,15 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService', ['$ht
                     QuestionnaireEntryResourceService.resources = data._resources("self");
 
                     return _.map(data._embeddedItems, function (questionnaireEntry) {
+
+                        // Wrap the question with the extra functions
+                        questionnaireEntry.question = new Question(questionnaireEntry.question);
+
+                        // Wrap the answers with the extra functions.
+                        var answerList = questionnaireEntry.answers._embeddedItems;
+                        angular.forEach(answerList, function(unwrappedAnswer) {
+                            answerList[answerList.indexOf(unwrappedAnswer)] = new Answer(unwrappedAnswer);
+                        });
 
                         return new QuestionnaireEntryResourceService(questionnaireEntry);
                     });
@@ -57,6 +67,33 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService', ['$ht
                     questionnaireEntry.remove = function (callback) {
                         questionnaireEntry.resources.remove(function () {
                             callback && callback(questionnaireEntry);
+                        });
+                    };
+
+                    questionnaireEntry.createAssociation = function(associationName, associatedEntity, callback) {
+
+                        var deferred = $http({
+                            method: 'PATCH',
+                            headers: { 'Content-Type': 'text/uri-list'},
+                            data: associatedEntity._links.self.href,
+                            url: questionnaireEntry._links.self.href + '/' + associationName
+                        });
+
+                        // no response bar 204 from an association creation.
+                        return SpringDataRestAdapter.process(deferred).then(function () {
+
+                            callback && callback();
+                        });
+                    };
+
+                    questionnaireEntry.removeAssociation = function(associationName, associatedEntity, callback) {
+
+                        var deferred = $http.delete(questionnaireEntry._links.self.href + '/' + associationName + '/' + associatedEntity.id);
+
+                        // no response bar 204 from an association deletion.
+                        return SpringDataRestAdapter.process(deferred).then(function () {
+
+                            callback && callback();
                         });
                     };
                 }
