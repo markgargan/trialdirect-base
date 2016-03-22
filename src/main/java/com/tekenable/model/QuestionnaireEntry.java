@@ -1,12 +1,18 @@
 package com.tekenable.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
  * Created by smoczyna on 17/03/16.
+ *
+ * Create a new QuestionnaireEntry via Data Rest
+ * curl -v -X PUT -H "Content-Type: text/uri-list" \
+ -d "http://localhost:7070/study-spring-data/teacher/1" \
+ http://localhost:7070/study-spring-data/course/123/teacher
+ *
+ *
  */
 @Entity
 public class QuestionnaireEntry extends BaseEntity {
@@ -14,7 +20,6 @@ public class QuestionnaireEntry extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
 
-    private String title;
     private Question question;
     private Set<Answer> answers;
     private Questionnaire questionnaire;
@@ -22,33 +27,21 @@ public class QuestionnaireEntry extends BaseEntity {
     public QuestionnaireEntry() {
     }
 
-    public QuestionnaireEntry(String title, String question, String answer) {
-        this.title= title;
+    public QuestionnaireEntry(String question, String answer) {
         this.question = new Question(question);
         this.answers = new LinkedHashSet();
         this.answers.add(new Answer(answer));
     }
 
-    public QuestionnaireEntry(String title, Question question, Answer answer) {
-        this.title = title;
+    public QuestionnaireEntry(Question question, Answer answer) {
         this.question = question;
         this.answers = new LinkedHashSet();
         this.answers.add(answer);
     }
 
-    public QuestionnaireEntry(String title, Question question, Set<Answer> answers) {
-        this.title = title;
+    public QuestionnaireEntry(Question question, Set<Answer> answers) {
         this.question = question;
         this.answers = answers;
-    }
-
-    @Column(name= "title")
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     @ManyToOne

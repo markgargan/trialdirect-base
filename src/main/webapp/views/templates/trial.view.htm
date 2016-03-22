@@ -1,0 +1,37 @@
+<div class="col-xs-offset-1">
+    <div class="page-header">
+        <h1>Edit Trial</h1>
+    </div>
+    <div class="alert alert-info" role="alert" ng-hide="trials && trials.length > 0">
+        There are no trials yet.
+    </div>
+    <form class="form-horizontal" role="form" ng-submit="addTrial(newTrial)">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="newTrial.title" placeholder="Enter a new Trial..."/>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit" ng-disabled="!newTrial" title="Add">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+        </div>
+
+        <hr/>
+
+        <div class="form-group" ng-repeat="trial in trials">
+            <div class="checkbox col-xs-8">
+                <label>
+                    <input type="checkbox" ng-model="trial.checked" ng-change="updateTrial(trial)"/>
+                    {{trial.title}}
+                </label>
+            </div>
+
+            <div class="col-xs-4">
+                <button class="pull-left btn btn-danger" type="button" title="Delete"
+                        ng-click="deleteTrial(trial)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <hr/>
+</div>

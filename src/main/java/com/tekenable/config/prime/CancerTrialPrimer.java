@@ -22,12 +22,12 @@ public class CancerTrialPrimer {
     private TrialRepository trialRepository;
 
     @Autowired
-    private QuestionEntryRepository questionEntryRepository;
+    private QuestionnaireEntryRepository questionEntryRepository;
 
     @Autowired
     private TrialSelectorQuestionEntryRepository trialSelectorEntryRepository;
 
-    // main question (no wrong answers here, it determines the inital path (the right questionnaire) to be follow
+    // main question (no wrong answers here, it determines the initial path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
     protected final Question q1 = new Question("What kind of disease you've got?");
     protected final Answer a11 = new Answer("Astma");
@@ -35,7 +35,7 @@ public class CancerTrialPrimer {
     protected final Answer a13 = new Answer("Alergy");
     protected final Answer a14 = new Answer("Diabetes");
     protected Set answers1 = new HashSet() {{add(a11); add(a12); add(a13); add(a14);}};
-    protected final QuestionnaireEntry entry1 = new QuestionnaireEntry("Type of disease", q1, answers1);
+    protected final QuestionnaireEntry entry1 = new QuestionnaireEntry(q1, answers1);
 
     // the only acceptable answer right now is A12 which is supposed to lead to the following questionnaire
     // however there is no way to do that yet
@@ -48,7 +48,7 @@ public class CancerTrialPrimer {
     protected final Answer a23 = new Answer("Lungs");
     protected final Answer a24 = new Answer("Larynx");
     protected final Set answers2 = new HashSet() {{add(a21); add(a22); add(a23); add(a24);}};
-    protected final QuestionnaireEntry entry2 = new QuestionnaireEntry("Type of cancer", q2, answers2);
+    protected final QuestionnaireEntry entry2 = new QuestionnaireEntry(q2, answers2);
 
     protected final Question q3 = new Question("What is your age?", taCancer); // this is not cancer specific question actually
     protected Answer a31 = new Answer("0-18");
@@ -56,7 +56,7 @@ public class CancerTrialPrimer {
     protected Answer a33 = new Answer("35-70");
     protected Answer a34 = new Answer("70+");
     protected final Set answers3 = new HashSet() {{add(a31); add(a32); add(a33); add(a34);}};
-    protected final QuestionnaireEntry entry3 = new QuestionnaireEntry("Patient age", q3, answers3);
+    protected final QuestionnaireEntry entry3 = new QuestionnaireEntry( q3, answers3);
 
     // creating questionnaire out of above questions
     protected final Set cancerEntries = new HashSet<QuestionnaireEntry>() {{add(entry1); add(entry2); add(entry3);}};
@@ -64,10 +64,10 @@ public class CancerTrialPrimer {
 
     // creating trial structure
     protected final Trial cancerTrial = new Trial("Cancer Trial");
-    protected final QuestionEntry qe11 = new QuestionEntry(q2, a23);
+//    protected final QuestionEntry qe11 = new QuestionEntry(q2, a23);
     protected final TrialSelectorQuestionEntry ts11 = new TrialSelectorQuestionEntry(q2, a23, cancerTrial);
 
-    protected final QuestionEntry qe12 = new QuestionEntry(q3, a32);
+//    protected final QuestionEntry qe12 = new QuestionEntry(q3, a32);
     protected final TrialSelectorQuestionEntry ts12 = new TrialSelectorQuestionEntry(q3, a32, cancerTrial);
 
     public void initDB() {
@@ -78,16 +78,20 @@ public class CancerTrialPrimer {
             add(q3);
         }});
 
+        entry1.setQuestionnaire(cancerQuestionnaire);
+        entry2.setQuestionnaire(cancerQuestionnaire);
+        entry3.setQuestionnaire(cancerQuestionnaire);
+
         questionnaireRepository.save(new HashSet<Questionnaire>() {{
             add(cancerQuestionnaire);
         }});
 
         trialRepository.save(cancerTrial);
 
-        questionEntryRepository.save(new HashSet<QuestionEntry>(){{
-            add(qe11);
-            add(qe12);
-        }});
+//        questionEntryRepository.save(new HashSet<QuestionEntry>(){{
+//            add(qe11);
+//            add(qe12);
+//        }});
 
         trialSelectorEntryRepository.save(new HashSet<TrialSelectorQuestionEntry>(){{
             add(ts11);

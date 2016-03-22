@@ -16,8 +16,9 @@
             <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
                  will set the links to 'active' if, for example on the first link, 'contacts' or any of
                  its descendant states are activated. -->
+            <li ng-class="{active: $state.includes('trial')}"><a ui-sref="trial">Trials</a></li>
             <li ng-class="{active: $state.includes('therapeuticarea')}"><a ui-sref="therapeuticarea">Therapeutic Areas</a></li>
-            <li ng-class="{active: $state.includes('question')}"><a ui-sref="question">Questions And Answers</a></li>
+            <li ng-class="{active: $state.includes('questionnaire')}"><a ui-sref="questionnaire">Questions And Answers</a></li>
             <li ng-class="{active: $state.includes('contacts')}"><a ui-sref="contacts.list">Contacts</a></li>
 
         </ul>
@@ -55,13 +56,16 @@
 
 <script type="text/javascript" src="./app/app.js"></script>
 <script type="text/javascript" src="./app/controllers/ItemController.js"></script>
-<script type="text/javascript" src="./app/controllers/QuestionController.js"></script>
+<script type="text/javascript" src="./app/controllers/QuestionnaireController.js"></script>
+<script type="text/javascript" src="./app/controllers/TrialController.js"></script>
 <script type="text/javascript" src="./app/controllers/TherapeuticAreaController.js"></script>
 
 <script type="text/javascript" src="./app/services/ItemService.js"></script>
 <script type="text/javascript" src="./app/services/QuestionService.js"></script>
 <script type="text/javascript" src="./app/services/AnswerService.js"></script>
 <script type="text/javascript" src="./app/services/TherapeuticAreaResourceService.js"></script>
+<script type="text/javascript" src="./app/services/TrialResourceService.js"></script>
+<script type="text/javascript" src="./app/services/QuestionnaireEntryResourceService.js"></script>
 
 <!-- contacts.js declares the uiRouterSample.contacts module, and adds a number of contact
          related states

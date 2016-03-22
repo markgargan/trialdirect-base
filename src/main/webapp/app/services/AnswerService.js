@@ -33,6 +33,10 @@ angular.module('trialdirect').factory('Answer', ['$http', 'SpringDataRestAdapter
                     };
                 }
 
+                answer.getHrefLink = function() {
+                    return answer._links.self.href;
+                };
+
                 return answer;
             }
 

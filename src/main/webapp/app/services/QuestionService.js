@@ -33,6 +33,10 @@ angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapt
                     };
                 }
 
+                question.getHrefLink = function() {
+                    return question._links.self.href;
+                };
+
                 return question;
             }
 
@@ -43,10 +47,10 @@ angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapt
 
                     return _.map(data._embeddedItems, function (question) {
 
-                        //var i=0;
-                        //angular.forEach(question.answers._embeddedItems, function(answer) {
-                        //    question.answers._embeddedItems[i++] = new Answer(answer);
-                        //});
+                        var i=0;
+                        angular.forEach(question.answers._embeddedItems, function(answer) {
+                            question.answers._embeddedItems[i++] = new Answer(answer);
+                        });
 
                         return new Question(question);
                     });

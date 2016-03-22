@@ -3,23 +3,29 @@ package com.tekenable.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+/**
+ * REST API :-
+ * Create a new QuestionEntry
+ *
+ *
+ */
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(
         uniqueConstraints=
         @UniqueConstraint(columnNames={"question_id", "answer_id"})
 )
+@MappedSuperclass
 public class QuestionEntry implements Serializable {
 
-    protected int id;
+    protected Integer id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
