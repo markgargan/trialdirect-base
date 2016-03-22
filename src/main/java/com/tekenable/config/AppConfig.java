@@ -27,6 +27,8 @@ import java.util.Properties;
 
 import static org.hibernate.cfg.AvailableSettings.HBM2DDL_AUTO;
 
+@Import(SecurityConfig.class)
+
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.tekenable.repository"})
 @ComponentScan(basePackages = "com.tekenable", excludeFilters = {

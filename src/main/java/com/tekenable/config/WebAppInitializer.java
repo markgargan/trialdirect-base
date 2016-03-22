@@ -1,5 +1,6 @@
 package com.tekenable.config;
 
+import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -34,6 +35,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
   protected Filter[] getServletFilters() {
     CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
     characterEncodingFilter.setEncoding(StandardCharsets.UTF_8.name());
-    return new Filter[] { characterEncodingFilter };
+    return new Filter[] { new SiteMeshFilter(), characterEncodingFilter };
   }
 }
