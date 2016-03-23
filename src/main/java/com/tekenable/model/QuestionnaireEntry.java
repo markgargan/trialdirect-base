@@ -1,5 +1,7 @@
 package com.tekenable.model;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -54,7 +56,7 @@ public class QuestionnaireEntry extends BaseEntity {
         this.question = question;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "questionnaireEntry_answer",
             joinColumns=@JoinColumn(name="questionnaire_entry_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="answer_id", referencedColumnName="id"))

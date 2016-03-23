@@ -1,5 +1,5 @@
-angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapter', 'Answer',
-        function ($http, SpringDataRestAdapter, Answer) {
+angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapter',
+        function ($http, SpringDataRestAdapter) {
             var HATEOAS_URL = './api/questions';
 
             function Question(question) {

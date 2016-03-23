@@ -21,10 +21,7 @@ angular.module('uiRouterSample.therapeuticarea', [
                     }
                   },
 
-            controller: ['$scope', '$state', 'therapeuticAreas',
-                function (  $scope,   $state,   therapeuticAreas ) {
-                  $scope.therapeuticAreas = therapeuticAreas;
-                }]
+            controller: 'TherapeuticAreaController'
             }}
         })
         .state('therapeuticAreas.list', {

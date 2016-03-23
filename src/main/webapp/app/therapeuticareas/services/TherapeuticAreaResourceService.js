@@ -1,30 +1,16 @@
 angular.module('trialdirect').factory('TherapeuticAreaResourceService',
-    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService', '$q',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, $q ) {
+    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService',
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService ) {
 
             var RESOURCE_URL = './api/therapeuticareas';
 
             TherapeuticAreaResourceService.resources = null;
-
-            TherapeuticAreaResourceService.initialize = function () {
-                // Create promise with the resource url for the top level therapeuticAreas resource
-                var deferred = $http.get(RESOURCE_URL);
-
-                // The SpringDataRestAdapter's process method takes the promise
-                // and makes the call
-                return SpringDataRestAdapter.process(deferred, ['questionnaire']).then(function (data) {
-                    TherapeuticAreaResourceService.resources = data._resources("self");
-
-                });
-            };
 
             // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
             TherapeuticAreaResourceService.loadTherapeuticArea = function (therapeuticAreaId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + therapeuticAreaId);
 
                 return SpringDataRestAdapter.process(deferred).then(function (data) {
-
-                    TherapeuticAreaResourceService.resources = data._resources("self");
 
                     return new TherapeuticAreaResourceService(data);
                 });
@@ -131,6 +117,10 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
                         });
                     };
                 }
+
+                therapeuticArea.getHrefLink = function() {
+                    return therapeuticArea._links.self.href;
+                };
 
                 // return the TherapeuticArea as a interactible representation
                 // of the backend entity

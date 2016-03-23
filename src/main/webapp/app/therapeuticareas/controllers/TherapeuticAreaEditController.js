@@ -1,18 +1,20 @@
 angular.module('trialdirect').controller('TherapeuticAreaEditController',
-    ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'therapeuticArea', 'questionnaireEntries',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries) {
+    ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'therapeuticArea', 'questionnaireEntries', 'TherapeuticAreaResourceService',
+        function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries, TherapeuticAreaResourceService ) {
 
             $scope.therapeuticArea = therapeuticArea;
 
             $scope.questionnaireEntries = questionnaireEntries;
 
-            $scope.addQuestion = function (questionnaireEntry, questionText) {
+            $scope.addQuestion = function (questionText) {
                 new Question({
                     questionText: questionText
                 }).save(function (question) {
                     new QuestionnaireEntryResourceService({
-                        question: question.getHrefLink()
+                        question: question.getHrefLink(),
+                        therapeuticArea:therapeuticArea.getHrefLink()
                     }).save(function (questionnaireEntry) {
+                        questionnaireEntry.question = question;
                         $scope.questionnaireEntries.unshift(questionnaireEntry);
                     })
                 });
@@ -23,11 +25,10 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
                 question.save();
             };
 
-            $scope.deleteQuestion = function (questionnaireEntry, questionnaireEntry) {
-                questionnaireEntry.remove(function () {
-                    questionnaireEntry.question.remove(function () {
-                        $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);
-                    });
+            $scope.deleteQuestion = function (questionnaireEntry) {
+
+                questionnaireEntry.remove( function () {
+                    $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);
                 });
             };
 

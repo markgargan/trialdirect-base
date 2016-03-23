@@ -10,7 +10,7 @@
         <div class="input-group">
             <input type="text" class="form-control" ng-model="newQuestion" placeholder="Enter the question..."/>
               <span class="input-group-btn">
-                <button class="btn btn-default" type="submit" ng-disabled="!newQuestion" title="Add">
+                <button class="btn btn-default" ng-click="addQuestion(newQuestion)" ng-disabled="!newQuestion" title="Add">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
               </span>
@@ -18,33 +18,33 @@
 
         <hr/>
 
-        <div class="form-group" ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'question.id'">
-            <div class="col-xs-8">
+        <div class="form-group" ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
+            <div class="col-xs-9">
                 <label>
                     {{questionnaireEntry.question.questionText}}
                 </label>
             </div>
 
-            <div class="col-xs-4">
-                <button class="pull-right btn btn-danger" type="button" title="Delete"
+            <div class="col-xs-3">
+                <button class="left btn btn-remove" type="button" title="Delete"
                         ng-click="deleteQuestion(questionnaireEntry)">
-                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </div>
 
             <div class="col-xs-offset-1">
-                <div class="row" ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                <div class="row" ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'-id'">
 
-                    <div class="col-xs-8">
+                    <div class="col-xs-offset-2 col-xs-4">
                         <label>
                             {{answer.answerText}}
                         </label>
                     </div>
 
                     <div class="col-xs-2">
-                        <button class="pull-right btn small btn-remove-answer" type="button" title="Delete"
+                        <button class="left btn btn-remove" type="button" title="Delete"
                                 ng-click="deleteAnswer(questionnaireEntry, answer)">
-                            <span class="glyphicon glyphicon-trash"></span>
+                            <span class="glyphicon glyphicon-remove-sign"></span>
                         </button>
                     </div>
                 </div>

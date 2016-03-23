@@ -29,7 +29,8 @@ public class Question extends BaseEntity {
         this.questionText = questionText;
     }
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL,
+            orphanRemoval = true,fetch = FetchType.LAZY)
     public Set<QuestionnaireEntry> getQuestionnaireentries() {
         return questionnaireentries;
     }

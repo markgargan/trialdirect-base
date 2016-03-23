@@ -26,7 +26,7 @@ public class Answer extends BaseEntity {
         this.answerText = answerText;
     }
 
-    @ManyToMany(mappedBy = "answers")
+    @ManyToMany(mappedBy = "answers", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     public Set<QuestionnaireEntry> getQuestionnaireentries() {
         return questionnaireentries;
     }
