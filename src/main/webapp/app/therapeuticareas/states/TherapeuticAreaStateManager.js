@@ -2,7 +2,7 @@ angular.module('uiRouterSample.therapeuticarea', [
   'ui.router'
 ])
 .config(
-  [          '$stateProvider', '$urlRouterProvider',
+  ['$stateProvider', '$urlRouterProvider',
     function ($stateProvider,  $urlRouterProvider) {
       $stateProvider
         .state('therapeuticAreas', {
@@ -37,7 +37,7 @@ angular.module('uiRouterSample.therapeuticarea', [
 
               // So this one is targeting the unnamed view within the parent state's template.
               '': {
-                  templateUrl: 'views/templates/therapeutic.area.questionnaire.view.htm',
+                  templateUrl: 'app/therapeuticareas/views/therapeutic.area.questionnaire.view.htm',
                   controller: 'TherapeuticAreaEditController',
                   resolve: {
 

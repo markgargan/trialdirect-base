@@ -1,4 +1,5 @@
 angular.module('trialdirect', [
+        'uiRouterSample.therapeuticarea',
         'uiRouterSample.contacts',
         'uiRouterSample.contacts.service',
         'uiRouterSample.utils.service',
@@ -44,7 +45,7 @@ angular.module('trialdirect', [
 
 
         var therapeuticAreaState = {
-            templateUrl: 'views/templates/therapeutic.area.view.htm',
+            templateUrl: 'app/therapeuticareas/views/therapeutic.area.questionnaire.view.htm',
             controller: 'TherapeuticAreaEditController',
 
             // We use the 'resolve' below to prime the page with the therapeutic area
