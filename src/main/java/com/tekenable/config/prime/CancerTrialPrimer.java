@@ -25,8 +25,8 @@ public class CancerTrialPrimer {
     @Autowired
     private QuestionEntryRepository questionEntryRepository;
 
-    /*@Autowired
-    private TrialSelectorEntryRepository trialSelectorEntryRepository;*/
+    @Autowired
+    private TrialSelectorQuestionEntryRepository trialSelectorQuestionEntryRepository;
 
 
     // main class holding the trial questions and all possible answers
@@ -36,6 +36,7 @@ public class CancerTrialPrimer {
     // all below questions belong to CANCER therapeutic area so all further questions has TS attached
     protected final TherapeuticArea taCancer = new TherapeuticArea("cancer");
 
+    //all of the answers are correct here
     protected final Question q1 = new Question("What is the type of your cancer?", taCancer);
     protected final Answer a11 = new Answer("Stomach");
     protected final Answer a12 = new Answer("Skin");
@@ -44,35 +45,37 @@ public class CancerTrialPrimer {
     protected final Set answers1 = new HashSet() {{add(a11); add(a12); add(a13); add(a14);}};
     protected final QuestionnaireEntry entry2 = new QuestionnaireEntry("Type of cancer", q1, answers1, cancerQuestionnaire);
 
+    // only 1 answer is right here
     protected final Question q2 = new Question("How long do (number of years) you suffer from cancer?");
     protected final Answer a21 = new Answer("1-2");
     protected final Answer a22 = new Answer("2-5");
-    protected final Answer a23 = new Answer("5-10");
+    protected final Answer a23 = new Answer("5-10"); // this is the expected answer
     protected final Answer a24 = new Answer("10 and more");
     protected final Set answers2 = new HashSet() {{add(a21); add(a22); add(a23); add(a24);}};
     protected final QuestionnaireEntry entry1 = new QuestionnaireEntry("Cancer time frame", q1, answers2, cancerQuestionnaire);
+    protected final QuestionEntry qe2 = new QuestionEntry(q2, a23);
 
+    // only 1 answer is right here
     protected final Question q3 = new Question("What is your age?", taCancer);
     protected Answer a31 = new Answer("0-18");
-    protected Answer a32 =new Answer("19-35");
+    protected Answer a32 =new Answer("19-35"); // this is the expected answer
     protected Answer a33 = new Answer("35-70");
     protected Answer a34 = new Answer("70+");
     protected final Set answers3 = new HashSet() {{add(a31); add(a32); add(a33); add(a34);}};
     protected final QuestionnaireEntry entry3 = new QuestionnaireEntry("Patient age", q3, answers3, cancerQuestionnaire);
+    protected final QuestionEntry qe3 = new QuestionEntry(q3, a32);
 
     // creating questionnaire out of above questions
     protected final Set cancerEntries = new HashSet() {{add(entry1); add(entry2); add(entry3);}};
 
-    // this thing doesn't save questionnaire id in questionnaire entries but why ???
+    // this thing doesn't save questionnaire id in questionnaire entries (they are not explicitly assigned)
     //protected final Questionnaire cancerQuestionnaire = new Questionnaire("Cancer Questionnaire", cancerEntries);
 
     // creating trial structure
     protected final Trial cancerTrial = new Trial("Cancer Trial");
-    protected final QuestionEntry qe11 = new QuestionEntry(q2, a23);
-    //protected final TrialSelectorEntry ts11 = new TrialSelectorEntry(q2, a23, cancerTrial);
 
-    protected final QuestionEntry qe12 = new QuestionEntry(q3, a32);
-    //protected final TrialSelectorEntry ts12 = new TrialSelectorEntry(q3, a32, cancerTrial);
+    protected final TrialSelectorQuestionEntry ts11 = new TrialSelectorQuestionEntry(q2, a23, cancerTrial);
+    protected final TrialSelectorQuestionEntry ts12 = new TrialSelectorQuestionEntry(q3, a32, cancerTrial);
 
     public void initDB() {
 
@@ -90,13 +93,13 @@ public class CancerTrialPrimer {
         trialRepository.save(cancerTrial);
 
         questionEntryRepository.save(new HashSet<QuestionEntry>(){{
-            add(qe11);
-            add(qe12);
+            add(qe2);
+            add(qe3);
         }});
 
-        /*trialSelectorEntryRepository.save(new HashSet<TrialSelectorEntry>(){{
+        trialSelectorQuestionEntryRepository.save(new HashSet<TrialSelectorQuestionEntry>(){{
             add(ts11);
             add(ts12);
-        }});*/
+        }});
     }
 }

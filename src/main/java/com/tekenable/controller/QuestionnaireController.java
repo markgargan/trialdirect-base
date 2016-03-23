@@ -73,7 +73,7 @@ public class QuestionnaireController {
      * @return true if successful
      * this method assumes that the question attached to the entry
      * has already been saved
-     *
+     * Hibernate error is thrown otherwise
      */
     public boolean addQuestionnaireEntry(QuestionnaireEntry entry) {
         entry.setQuestionnaire(this.getQuestionnaire());
