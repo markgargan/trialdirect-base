@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.2.3.1.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.css"/>
     <link rel="stylesheet" href="./css/style.css"/>
 </head>
@@ -16,6 +16,7 @@
             <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
                  will set the links to 'active' if, for example on the first link, 'contacts' or any of
                  its descendant states are activated. -->
+            <li ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Therapeutic Areas</a></li>
             <li ng-class="{active: $state.includes('trial')}"><a ui-sref="trial">Trials</a></li>
             <li ng-class="{active: $state.includes('therapeuticarea')}"><a ui-sref="therapeuticarea">Therapeutic Areas</a></li>
             <li ng-class="{active: $state.includes('questionnaire')}"><a ui-sref="questionnaire">Questions And Answers</a></li>
@@ -31,7 +32,7 @@
     <div class="row">
         <!--<div class="col-xs-6" ui-view></div>-->
 
-        <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-offset-2 col-xs-8" ui-view="viewA"></div>
+        <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-offset-1 col-xs-10" ui-view="viewA"></div>
 
         <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewA"></div>
         <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewB"></div>
@@ -61,14 +62,21 @@
 <script type="text/javascript" src="./app/controllers/ItemController.js"></script>
 <script type="text/javascript" src="./app/controllers/QuestionnaireController.js"></script>
 <script type="text/javascript" src="./app/controllers/TrialController.js"></script>
-<script type="text/javascript" src="./app/controllers/TherapeuticAreaController.js"></script>
 
 <script type="text/javascript" src="./app/services/ItemService.js"></script>
 <script type="text/javascript" src="./app/services/QuestionService.js"></script>
 <script type="text/javascript" src="./app/services/AnswerService.js"></script>
-<script type="text/javascript" src="./app/services/TherapeuticAreaResourceService.js"></script>
+<script type="text/javascript" src="app/therapeuticareas/services/TherapeuticAreaResourceService.js"></script>
 <script type="text/javascript" src="./app/services/TrialResourceService.js"></script>
 <script type="text/javascript" src="./app/services/QuestionnaireEntryResourceService.js"></script>
+
+
+<!-- TherapeuticAreas start -->
+<script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaController.js"></script>
+<script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaEditController.js"></script>
+<script type="text/javascript" src="app/therapeuticareas/states/TherapeuticAreaStateManager.js"></script>
+
+<!-- TherapeuticAreas end -->
 
 <!-- contacts.js declares the uiRouterSample.contacts module, and adds a number of contact
          related states

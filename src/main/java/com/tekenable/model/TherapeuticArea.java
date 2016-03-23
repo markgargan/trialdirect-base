@@ -1,48 +1,42 @@
 package com.tekenable.model;
-import javax.persistence.*;
-import java.util.Collection;
-import java.util.Set;
 
+import java.util.Set;
+import javax.persistence.*;
+
+/**
+ * Created by smoczyna on 17/03/16.
+ */
 @Entity
 public class TherapeuticArea extends BaseEntity {
 
-  private String name;
-  private Set<Question> questions;
+    private static final long serialVersionUID = 1L;
 
-  public TherapeuticArea(){
+    private String title;
+    private Set<QuestionnaireEntry> questionnaireentries;
 
-  }
+    public TherapeuticArea() {
+    }
 
-  public TherapeuticArea(String name){
-    this.name = name;
-  }
+    public TherapeuticArea(String title, Set<QuestionnaireEntry> entries) {
+        this.title =title;
+        this.questionnaireentries = entries;
+    }
 
-  public TherapeuticArea(String name, Set<Question> questions){
-    this.name = name;
-    this.questions = questions;
-  }
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    @OneToMany(mappedBy = "therapeuticArea", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    public Set<QuestionnaireEntry> getQuestionnaireentries() {
+        return questionnaireentries;
+    }
 
-  /**
-   * To understand the cascading options
-   *
-   * @link http://vladmihalcea.com/2015/03/05/a-beginners-guide-to-jpa-and-hibernate-cascade-types/
-   * @return
-   **/
-  @ManyToMany(mappedBy = "therapeuticAreas",
-          cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-  public Set<Question> getQuestions() {
-    return questions;
-  }
-
-  public void setQuestions(Set<Question> questions) {
-    this.questions = questions;
-  }
+    public void setQuestionnaireentries(Set<QuestionnaireEntry> questionnaireentries) {
+        this.questionnaireentries = questionnaireentries;
+    }
 }

@@ -20,14 +20,14 @@ angular.module('trialdirect', [
 
                 $rootScope.$on("$stateChangeError", console.log.bind(console));
 
-                $rootScope.$on('$stateChangeSuccess',
-                    function(event, toState, toParams, fromState, fromParams){
-                        console.log('Changing state from :-');
-                        console.log(fromState);
-                        console.log('to state :-');
-                        console.log(toState);
-
-                    })
+                //$rootScope.$on('$stateChangeSuccess',
+                //    function (event, toState, toParams, fromState, fromParams) {
+                //        console.log('Changing state from :-');
+                //        console.log(fromState);
+                //        console.log('to state :-');
+                //        console.log(toState);
+                //
+                //    })
             }
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
@@ -46,7 +46,7 @@ angular.module('trialdirect', [
 
         var therapeuticAreaState = {
             templateUrl: 'views/templates/therapeutic.area.view.htm',
-            controller: 'TherapeuticAreaController',
+            controller: 'TherapeuticAreaEditController',
 
             // We use the 'resolve' below to prime the page with the therapeutic area
             // so that they're available before the page loads preventing the flickering
@@ -107,13 +107,13 @@ angular.module('trialdirect', [
                 templateUrl: 'views/templates/item.view.htm',
                 controller: 'AppController'
             }).state('questionnaire', {
-                url: '/questionnaire',
-                views: {
-                    "viewA": questionnaireState
-                }
-            });
+            url: '/questionnaire',
+            views: {
+                "viewA": questionnaireState
+            }
+        });
 
-        $urlRouterProvider.otherwise('/questionnaire');
+        $urlRouterProvider.otherwise('/therapeuticareas');
     }]).filter('reverse', function () {
     return function (items) {
         return items.slice().reverse();

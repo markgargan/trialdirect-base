@@ -2,17 +2,26 @@
   <div class="span3">
     <div class="pa-sidebar well well-small">
       <ul class="nav nav-list">
-        <li ng-class="{ active: $state.includes('contacts.list') }"><a ui-sref="contacts.list">All Contacts</a></li>
-        <li class="nav-header">Top Contacts</li>
+        <li ng-class="{ active: $state.includes('therapeuticAreas.list') }"><a ui-sref="therapeuticAreas.list">All Therapeutic Areas</a></li>
+        <li class="nav-header">Therapeutic Areas</li>
 
-        <!-- This <li> will only add the 'active' class if 'contacts.detail' or its descendants are active
+        <!-- This <li> will only add the 'active' class if 'therapeuticAreas.detail' or its descendants are active
              AND if it is the link for the active contact (aka contactId) -->
-        <li ng-repeat="contact in contacts | limitTo:2" ui-sref-active="active">
+        <li ng-repeat="therapeuticArea in therapeuticAreas " ui-sref-active="active">
 
           <!-- Here's a ui-sref that is also providing necessary parameters -->
-          <a ui-sref="contacts.detail({contactId:contact.id})">{{contact.name}}</a>
+          <a ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})">{{therapeuticArea.title}}</a>
         </li>
       </ul>
+      <hr>
+      <input type="text" class="form-control" ng-model="newTherapeuticArea" placeholder="e.g. Cardiovascular"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="addTherapeuticArea(newTherapeuticArea)"
+                ng-disabled="!newTherapeuticArea" title="Add">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </span>
+
       <hr>
 
       <!-- Another named view -->
@@ -21,5 +30,5 @@
   </div>
 
   <!-- Our unnamed main ui-view for this template -->
-  <div ui-view class="col-xs-5 slide"></div>
+  <div ui-view class="span9 slide"></div>
 </div>

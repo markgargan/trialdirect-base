@@ -2,20 +2,25 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
     ['$http', 'SpringDataRestAdapter', 'Question', 'Answer',
         function ($http, SpringDataRestAdapter, Question, Answer) {
 
-            var RESOURCE_URL = './api/questionnaireentrys';
+            var THERAPEUTIC_AREA_PARENT_URL_PREFIX = './api/therapeuticareas';
+            var RESOURCE_URL = './api/questionnaireentries';
 
             // initialise the resources object.
             QuestionnaireEntryResourceService.resources = null;
 
-            QuestionnaireEntryResourceService.load = function () {
+            QuestionnaireEntryResourceService.initialize = function () {
                 var deferred = $http.get(RESOURCE_URL);
 
-                // As we're loading the QuestionnaireEntries,
-                // load both the corresponding question resource
-                // and the answer resource and supply them in a
-                // fashion that's consumable by the view.
-                return SpringDataRestAdapter.process(deferred, ['question', 'answers']).then(function (data) {
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
                     QuestionnaireEntryResourceService.resources = data._resources("self");
+                });
+            };
+
+            // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
+            QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticArea = function (therapeuticAreaId) {
+                var deferred = $http.get(THERAPEUTIC_AREA_PARENT_URL_PREFIX + '/' + therapeuticAreaId + '/questionnaireentries');
+
+                return SpringDataRestAdapter.process(deferred, ['question', 'answers']).then(function (data) {
 
                     return _.map(data._embeddedItems, function (questionnaireEntry) {
 
@@ -24,7 +29,7 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
 
                         // Wrap the answers with the extra functions.
                         var answerList = questionnaireEntry.answers._embeddedItems;
-                        angular.forEach(answerList, function(unwrappedAnswer) {
+                        angular.forEach(answerList, function (unwrappedAnswer) {
                             answerList[answerList.indexOf(unwrappedAnswer)] = new Answer(unwrappedAnswer);
                         });
 
@@ -33,13 +38,33 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
                 });
             };
 
+            QuestionnaireEntryResourceService.inflateQuestionnaireEntry = function (questionnaireEntry) {
+
+                var deferred = $http.get(RESOURCE_URL + '/' + questionnaireEntry.id);
+
+                return SpringDataRestAdapter.process(deferred, ['question', 'answers']).then(function (data) {
+
+                    QuestionnaireEntryResourceService.resources = data._resources("self");
+
+                    // Wrap the question with the extra functions
+                    data.question = new Question(data.question);
+
+                    // Wrap the answers with the extra functions.
+                    var answerList = data.answers._embeddedItems;
+                    angular.forEach(answerList, function (unwrappedAnswer) {
+                        answerList[answerList.indexOf(unwrappedAnswer)] = new Answer(unwrappedAnswer);
+                    });
+
+                    return new QuestionnaireEntryResourceService(data);
+                });
+            };
 
             function QuestionnaireEntryResourceService(questionnaireEntry) {
 
                 if (angular.isUndefined(questionnaireEntry._resources)) {
-                    
+
                     questionnaireEntry.save = function (callback) {
-                        
+
                         QuestionnaireEntryResourceService.resources.save(questionnaireEntry, function (questionnaireEntry, headers) {
 
                             var deferred = $http.get(headers().location);
@@ -49,7 +74,7 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
                             });
                         });
                     };
-                    
+
 
                 } else {
                     questionnaireEntry.resources = questionnaireEntry._resources("self", {}, {
@@ -70,11 +95,11 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
                         });
                     };
 
-                    questionnaireEntry.createAssociation = function(associationName, associatedEntity, callback) {
+                    questionnaireEntry.createAssociation = function (associationName, associatedEntity, callback) {
 
                         var deferred = $http({
                             method: 'PATCH',
-                            headers: { 'Content-Type': 'text/uri-list'},
+                            headers: {'Content-Type': 'text/uri-list'},
                             data: associatedEntity._links.self.href,
                             url: questionnaireEntry._links.self.href + '/' + associationName
                         });
@@ -86,7 +111,7 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
                         });
                     };
 
-                    questionnaireEntry.removeAssociation = function(associationName, associatedEntity, callback) {
+                    questionnaireEntry.removeAssociation = function (associationName, associatedEntity, callback) {
 
                         var deferred = $http.delete(questionnaireEntry._links.self.href + '/' + associationName + '/' + associatedEntity.id);
 

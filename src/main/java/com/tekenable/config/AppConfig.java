@@ -44,7 +44,6 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
 
             config.exposeIdsFor(Answer.class);
             config.exposeIdsFor(Question.class);
-            config.exposeIdsFor(Questionnaire.class);
             config.exposeIdsFor(QuestionnaireEntry.class);
             config.exposeIdsFor(Trial.class);
             config.exposeIdsFor(TherapeuticArea.class);

@@ -13,10 +13,10 @@ import java.util.Set;
 public class CancerTrialPrimer {
 
     @Autowired
-    private QuestionRepository questionRepository;
+    private TherapeuticAreaRepository therapeuticAreaRepository;
 
     @Autowired
-    private QuestionnaireRepository questionnaireRepository;
+    private QuestionRepository questionRepository;
 
     @Autowired
     private TrialRepository trialRepository;
@@ -40,9 +40,8 @@ public class CancerTrialPrimer {
     // the only acceptable answer right now is A12 which is supposed to lead to the following questionnaire
     // however there is no way to do that yet
     // all below questions belong to CANCER therapeutic area so all further questions has TS attached
-    protected final TherapeuticArea taCancer = new TherapeuticArea("cancer");
 
-    protected final Question q2 = new Question("What is the type of your cancer?", taCancer);
+    protected final Question q2 = new Question("What is the type of your cancer?");
     protected final Answer a21 = new Answer("Stomach");
     protected final Answer a22 = new Answer("Skin");
     protected final Answer a23 = new Answer("Lungs");
@@ -50,7 +49,7 @@ public class CancerTrialPrimer {
     protected final Set answers2 = new HashSet() {{add(a21); add(a22); add(a23); add(a24);}};
     protected final QuestionnaireEntry entry2 = new QuestionnaireEntry(q2, answers2);
 
-    protected final Question q3 = new Question("What is your age?", taCancer); // this is not cancer specific question actually
+    protected final Question q3 = new Question("What is your age?"); // this is not cancer specific question actually
     protected Answer a31 = new Answer("0-18");
     protected Answer a32 =new Answer("19-35");
     protected Answer a33 = new Answer("35-70");
@@ -60,14 +59,14 @@ public class CancerTrialPrimer {
 
     // creating questionnaire out of above questions
     protected final Set cancerEntries = new HashSet<QuestionnaireEntry>() {{add(entry1); add(entry2); add(entry3);}};
-    protected final Questionnaire cancerQuestionnaire = new Questionnaire("Cancer Questionnaire", cancerEntries);
+
+    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer", cancerEntries);
 
     // creating trial structure
     protected final Trial cancerTrial = new Trial("Cancer Trial");
-//    protected final QuestionEntry qe11 = new QuestionEntry(q2, a23);
+
     protected final TrialSelectorQuestionEntry ts11 = new TrialSelectorQuestionEntry(q2, a23, cancerTrial);
 
-//    protected final QuestionEntry qe12 = new QuestionEntry(q3, a32);
     protected final TrialSelectorQuestionEntry ts12 = new TrialSelectorQuestionEntry(q3, a32, cancerTrial);
 
     public void initDB() {
@@ -78,20 +77,13 @@ public class CancerTrialPrimer {
             add(q3);
         }});
 
-        entry1.setQuestionnaire(cancerQuestionnaire);
-        entry2.setQuestionnaire(cancerQuestionnaire);
-        entry3.setQuestionnaire(cancerQuestionnaire);
+        entry1.setTherapeuticArea(therapeuticAreaCancer);
+        entry2.setTherapeuticArea(therapeuticAreaCancer);
+        entry3.setTherapeuticArea(therapeuticAreaCancer);
 
-        questionnaireRepository.save(new HashSet<Questionnaire>() {{
-            add(cancerQuestionnaire);
-        }});
+        therapeuticAreaRepository.save(therapeuticAreaCancer);
 
         trialRepository.save(cancerTrial);
-
-//        questionEntryRepository.save(new HashSet<QuestionEntry>(){{
-//            add(qe11);
-//            add(qe12);
-//        }});
 
         trialSelectorEntryRepository.save(new HashSet<TrialSelectorQuestionEntry>(){{
             add(ts11);

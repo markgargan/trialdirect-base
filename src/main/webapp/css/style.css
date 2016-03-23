@@ -38,3 +38,7 @@
     transform: scaleX(1);
     opacity: 1;
 }
+
+.input[type="text"] {
+    height:34px;
+}
