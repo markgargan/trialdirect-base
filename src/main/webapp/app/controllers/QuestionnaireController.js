@@ -4,7 +4,7 @@ angular.module('trialdirect').controller('QuestionnaireController',
 
         $scope.questionnaireEntries = questionnaireEntries;
 
-        $scope.addQuestion = function (questionText) {
+        $scope.addQuestion = function (questionnaireEntry, questionText) {
             new Question({
                 questionText: questionText
             }).save(function (question) {
@@ -21,7 +21,7 @@ angular.module('trialdirect').controller('QuestionnaireController',
             question.save();
         };
 
-        $scope.deleteQuestion = function (questionnaireEntry) {
+        $scope.deleteQuestion = function (questionnaireEntry, questionnaireEntry) {
             questionnaireEntry.remove(function () {
                 questionnaireEntry.question.remove(function(){
                     $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);

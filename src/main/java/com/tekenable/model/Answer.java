@@ -8,8 +8,8 @@ import java.util.Set;
 public class Answer extends BaseEntity {
 
     private String answerText;
-//    private Set<QuestionEntry> questionEntries;
-    private Set<QuestionnaireEntry> questionnaireEntries;
+    // lowercased in order to keep the rest api all lower case
+    private Set<QuestionnaireEntry> questionnaireentries;
     public Answer() {
 
     }
@@ -26,22 +26,12 @@ public class Answer extends BaseEntity {
         this.answerText = answerText;
     }
 
-//    @OneToMany(mappedBy = "answer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    public Set<QuestionEntry> getQuestionEntries() {
-//        return questionEntries;
-//    }
-//
-//    public void setQuestionEntries(Set<QuestionEntry> questionEntries) {
-//        this.questionEntries = questionEntries;
-//    }
-
     @ManyToMany(mappedBy = "answers")
-    public Set<QuestionnaireEntry> getQuestionnaireEntries() {
-        return questionnaireEntries;
+    public Set<QuestionnaireEntry> getQuestionnaireentries() {
+        return questionnaireentries;
     }
 
-    public void setQuestionnaireEntries(Set<QuestionnaireEntry> questionnaireEntries) {
-        this.questionnaireEntries = questionnaireEntries;
+    public void setQuestionnaireentries(Set<QuestionnaireEntry> questionnaireentries) {
+        this.questionnaireentries = questionnaireentries;
     }
-
 }

@@ -1,43 +1,73 @@
-angular.module('trialdirect').factory('TherapeuticAreaResourceService', ['$http', 'SpringDataRestAdapter',
-        function ($http, SpringDataRestAdapter) {
+angular.module('trialdirect').factory('TherapeuticAreaResourceService',
+    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService', '$q',
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, $q ) {
 
             var RESOURCE_URL = './api/therapeuticareas';
 
-            // initialise the resources object.
             TherapeuticAreaResourceService.resources = null;
 
-
-            // The load function 
-            // Queries the /api/therapeuticareas url to bring back all available therapeuticAreas
-            // It is called during the 'resolve' function of the therapeticarea state in the stateController
-            TherapeuticAreaResourceService.load = function () {
+            TherapeuticAreaResourceService.initialize = function () {
                 // Create promise with the resource url for the top level therapeuticAreas resource
                 var deferred = $http.get(RESOURCE_URL);
-                
+
                 // The SpringDataRestAdapter's process method takes the promise
                 // and makes the call
-                return SpringDataRestAdapter.process(deferred).then(function (data) {
-                    
-                    // Upon successful execution of the promise ( simply a GET to the RESOURCE_URL )
-                    // The resources function created by SpringDataRestAdapter
-                    // is made available on the TherapeuticAreaResourceService object.
-                    // This provides methods like save/update/delete at the '/api/therapeuticareas' level
+                return SpringDataRestAdapter.process(deferred, ['questionnaire']).then(function (data) {
                     TherapeuticAreaResourceService.resources = data._resources("self");
 
-                    // From this method we return a map passing in all the embeddedItems that came back from
-                    // the call to the top level api 'api/therapeuticareas'
+                });
+            };
+
+            // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
+            TherapeuticAreaResourceService.loadTherapeuticArea = function (therapeuticAreaId) {
+                var deferred = $http.get(RESOURCE_URL + '/' + therapeuticAreaId);
+
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
+
+                    TherapeuticAreaResourceService.resources = data._resources("self");
+
+                    return new TherapeuticAreaResourceService(data);
+                });
+            };
+
+            // Just load the therapeuticAreas themselves, don't eagerly pull back their questionnaires.
+            TherapeuticAreaResourceService.load = function () {
+                var deferred = $http.get(RESOURCE_URL);
+
+                return SpringDataRestAdapter.process(deferred ).then(function (data) {
+
+                    TherapeuticAreaResourceService.resources = data._resources("self");
+
                     return _.map(data._embeddedItems, function (therapeuticArea) {
 
-                        // For each therapeuticArea in the _embeddedItems of the return value
-                        // it instantiates a new TherapeuticAreaResource and places it in the map.
-                        // Now instead of just having a map with JSON values representing the TherapeuticArea
-                        // we have a map of objects representing each TherapeuticArea
-                        // which also have methods like update/save/delete for convenience.
                         return new TherapeuticAreaResourceService(therapeuticArea);
                     });
                 });
             };
 
+            // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
+            TherapeuticAreaResourceService.inflateTherapeuticArea = function (therapeuticAreaId) {
+                var deferred = $http.get(RESOURCE_URL + '/' + therapeuticAreaId);
+                
+                return SpringDataRestAdapter.process(deferred, ['questionnaireentries', ['question', 'answers']]).then(function (data) {
+                    
+                    TherapeuticAreaResourceService.resources = data._resources("self");
+
+                    // Inflate all the questionnaireEntries so that their question and corresponding answers
+                    // are retrieved
+                    var promises = [];
+
+                    var questionnaireentriesList = data.questionnaireentries._embeddedItems;
+                    angular.forEach(questionnaireentriesList, function (uninflatedQuestionnaireEntry) {
+                            QuestionnaireEntryResourceService.inflateQuestionnaireEntry(uninflatedQuestionnaireEntry)
+                                .then(function(inflatedQuestionnaireEntry){
+                                    questionnaireentriesList[questionnaireentriesList.indexOf(uninflatedQuestionnaireEntry)] = inflatedQuestionnaireEntry;
+                            });
+                    });
+
+                    return new TherapeuticAreaResourceService(data);
+                });
+            };
 
             // e.g. '/api/therapeuticareas/1' is being initialized
             // as a therapeuticAreaResource in it's own right.

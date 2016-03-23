@@ -22,7 +22,7 @@ public class QuestionnaireEntry extends BaseEntity {
 
     private Question question;
     private Set<Answer> answers;
-    private Questionnaire questionnaire;
+    private TherapeuticArea therapeuticArea;
 
     public QuestionnaireEntry() {
     }
@@ -67,13 +67,13 @@ public class QuestionnaireEntry extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "questionnaire_id")
-    public Questionnaire getQuestionnaire() {
-        return questionnaire;
+    @JoinColumn(name = "therapeutic_area_id")
+    public TherapeuticArea getTherapeuticArea() {
+        return therapeuticArea;
     }
 
-    public void setQuestionnaire(Questionnaire questionnaire) {
-        this.questionnaire = questionnaire;
+    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
+        this.therapeuticArea = therapeuticArea;
     }
 
 }
