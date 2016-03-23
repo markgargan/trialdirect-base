@@ -25,6 +25,6 @@ public class DiabetesTrialPrimer {
                 "What is your weight (kg)?", new String[] {"less than 60", "60-80", "80-100", "100 or more"});
 
         this.questionnaireController.addQuestionaireEntry("Fourth Question", "diabetes",
-                "Do you have any other serious helth issue?", new String[] {"Yes", "No"});
+                "Do you have any other serious health issue?", new String[] {"Yes", "No"});
     }
 }
