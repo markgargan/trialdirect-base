@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
-    ['$http', 'SpringDataRestAdapter', 'Question', 'Answer',
-        function ($http, SpringDataRestAdapter, Question, Answer) {
+    ['$http', 'SpringDataRestAdapter', 'Question', 'Answer', '$q',
+        function ($http, SpringDataRestAdapter, Question, Answer, $q) {
 
             var THERAPEUTIC_AREA_PARENT_URL_PREFIX = './api/therapeuticareas';
             var RESOURCE_URL = './api/questionnaireentries';
@@ -119,6 +119,22 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
                         return SpringDataRestAdapter.process(deferred).then(function () {
 
                             callback && callback();
+                        });
+                    };
+
+                    // Must remove the Question and the TherapeuticArea from the QuestionnaireEntry row before
+                    // we may delete the QuestionnaireEntry.
+                    questionnaireEntry.removeQEAssociation = function (therapeuticAreaId, callback) {
+
+                        var removeQuestionAssociationPromise
+                            = $http.delete(questionnaireEntry._links.self.href + '/question/' + questionnaireEntry.question.id);
+                        return SpringDataRestAdapter.process(removeQuestionAssociationPromise).then(function () {
+
+                            var removeTherapeuticAreaAssociationPromise
+                                = $http.delete(questionnaireEntry._links.self.href + '/therapeuticArea/' + therapeuticAreaId);
+                            return SpringDataRestAdapter.process(removeTherapeuticAreaAssociationPromise).then(function () {
+                                callback && callback();
+                            });
                         });
                     };
                 }

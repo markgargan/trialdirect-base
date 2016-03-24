@@ -25,10 +25,12 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
                 question.save();
             };
 
-            $scope.deleteQuestion = function (questionnaireEntry) {
+            $scope.deleteQuestionnaireEntry = function (questionnaireEntry) {
 
-                questionnaireEntry.remove( function () {
-                    $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);
+                questionnaireEntry.removeQEAssociation($scope.therapeuticArea.id, function () {
+                   questionnaireEntry.remove(function () {
+                       $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);
+                   });
                 });
             };
 
