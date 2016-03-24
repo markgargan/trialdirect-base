@@ -1,0 +1,6 @@
+<h2>All Trial Selectors</h2>
+<ul>
+  <li ng-repeat="trialSelector in trialSelectors">
+    <a ui-sref="trialSelectors.detail({trialSelectorId:trialSelector.id})">{{trialSelector.title}}</a>
+  </li>
+</ul>    

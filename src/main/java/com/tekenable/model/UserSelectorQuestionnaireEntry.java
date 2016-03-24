@@ -7,14 +7,14 @@ import javax.persistence.*;
         uniqueConstraints=
         @UniqueConstraint(columnNames={"user_session_id", "question_id", "answer_id"})
 )
-public class UserSelectorQuestionEntry extends QuestionEntry {
+public class UserSelectorQuestionnaireEntry extends QuestionnaireEntry {
 
     private Long userSessionId;
 
-    public UserSelectorQuestionEntry(){}
+    public UserSelectorQuestionnaireEntry(){}
 
-    public UserSelectorQuestionEntry(Long userSessionId, Question question, Answer answer) {
-        super(question, answer);
+    public UserSelectorQuestionnaireEntry(Long userSessionId, Question question, TherapeuticArea therapeuticArea, Answer answer) {
+        super(question, answer, therapeuticArea);
         this.userSessionId = userSessionId;
     }
 

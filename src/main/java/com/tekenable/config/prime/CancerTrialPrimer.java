@@ -19,14 +19,19 @@ public class CancerTrialPrimer {
     private QuestionRepository questionRepository;
 
     @Autowired
+    private AnswerRepository answerRepository;
+
+    @Autowired
     private TrialRepository trialRepository;
 
     @Autowired
     private QuestionnaireEntryRepository questionEntryRepository;
 
     @Autowired
-    private TrialSelectorQuestionEntryRepository trialSelectorEntryRepository;
+    private TrialSelectorQuestionnaireEntryRepository trialSelectorQuestionnaireEntryRepository;
 
+    // This primer is for questions for the Cancer TherapeuticArea.
+    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer");
     // main question (no wrong answers here, it determines the initial path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
     protected final Question q1 = new Question("What kind of disease you've got?");
@@ -35,7 +40,7 @@ public class CancerTrialPrimer {
     protected final Answer a13 = new Answer("Alergy");
     protected final Answer a14 = new Answer("Diabetes");
     protected Set answers1 = new HashSet() {{add(a11); add(a12); add(a13); add(a14);}};
-    protected final QuestionnaireEntry entry1 = new QuestionnaireEntry(q1, answers1);
+    protected final QuestionnaireEntry entry1 = new QuestionnaireEntry(q1, answers1, therapeuticAreaCancer);
 
     // the only acceptable answer right now is A12 which is supposed to lead to the following questionnaire
     // however there is no way to do that yet
@@ -47,7 +52,7 @@ public class CancerTrialPrimer {
     protected final Answer a23 = new Answer("Lungs");
     protected final Answer a24 = new Answer("Larynx");
     protected final Set answers2 = new HashSet() {{add(a21); add(a22); add(a23); add(a24);}};
-    protected final QuestionnaireEntry entry2 = new QuestionnaireEntry(q2, answers2);
+    protected final QuestionnaireEntry entry2 = new QuestionnaireEntry(q2, answers2, therapeuticAreaCancer);
 
     protected final Question q3 = new Question("What is your age?"); // this is not cancer specific question actually
     protected Answer a31 = new Answer("0-18");
@@ -55,21 +60,22 @@ public class CancerTrialPrimer {
     protected Answer a33 = new Answer("35-70");
     protected Answer a34 = new Answer("70+");
     protected final Set answers3 = new HashSet() {{add(a31); add(a32); add(a33); add(a34);}};
-    protected final QuestionnaireEntry entry3 = new QuestionnaireEntry( q3, answers3);
+    protected final QuestionnaireEntry entry3 = new QuestionnaireEntry(q3, answers3, therapeuticAreaCancer);
 
     // creating questionnaire out of above questions
     protected final Set cancerEntries = new HashSet<QuestionnaireEntry>() {{add(entry1); add(entry2); add(entry3);}};
 
-    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer", cancerEntries);
-
     // creating trial structure
     protected final Trial cancerTrial = new Trial("Cancer Trial");
 
-    protected final TrialSelectorQuestionEntry ts11 = new TrialSelectorQuestionEntry(q2, a23, cancerTrial);
-
-    protected final TrialSelectorQuestionEntry ts12 = new TrialSelectorQuestionEntry(q3, a32, cancerTrial);
-
     public void initDB() {
+
+        // Associate the QuestionnaireEntries with the Cancer TherapeuticArea
+        therapeuticAreaCancer.setQuestionnaireentries(new HashSet<QuestionnaireEntry>(){{
+            add(entry1);
+            add(entry2);
+            add(entry3);
+        }});
 
         questionRepository.save(new HashSet<Question>() {{
             add(q1);
@@ -85,7 +91,14 @@ public class CancerTrialPrimer {
 
         trialRepository.save(cancerTrial);
 
-        trialSelectorEntryRepository.save(new HashSet<TrialSelectorQuestionEntry>(){{
+        Answer answer23 = answerRepository.findOne(a23.getId());
+        Answer answer32 = answerRepository.findOne(a32.getId());
+
+        final TrialSelectorQuestionnaireEntry ts11 = new TrialSelectorQuestionnaireEntry(q2, answer23, therapeuticAreaCancer, cancerTrial);
+
+        final TrialSelectorQuestionnaireEntry ts12 = new TrialSelectorQuestionnaireEntry(q3, answer32, therapeuticAreaCancer, cancerTrial);
+
+        trialSelectorQuestionnaireEntryRepository.save(new HashSet<TrialSelectorQuestionnaireEntry>(){{
             add(ts11);
             add(ts12);
         }});

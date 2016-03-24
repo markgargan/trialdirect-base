@@ -17,9 +17,8 @@ public class TherapeuticArea extends BaseEntity {
     public TherapeuticArea() {
     }
 
-    public TherapeuticArea(String title, Set<QuestionnaireEntry> entries) {
+    public TherapeuticArea(String title) {
         this.title =title;
-        this.questionnaireentries = entries;
     }
 
     @Column(name = "title")

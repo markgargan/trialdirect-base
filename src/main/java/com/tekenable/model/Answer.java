@@ -10,6 +10,8 @@ public class Answer extends BaseEntity {
     private String answerText;
     // lowercased in order to keep the rest api all lower case
     private Set<QuestionnaireEntry> questionnaireentries;
+    private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
+
     public Answer() {
 
     }
@@ -33,5 +35,14 @@ public class Answer extends BaseEntity {
 
     public void setQuestionnaireentries(Set<QuestionnaireEntry> questionnaireentries) {
         this.questionnaireentries = questionnaireentries;
+    }
+
+    @ManyToMany(mappedBy = "answers", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    public Set<TrialSelectorQuestionnaireEntry> getTrialselectorquestionnaireentries() {
+        return trialselectorquestionnaireentries;
+    }
+
+    public void setTrialselectorquestionnaireentries(Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries) {
+        this.trialselectorquestionnaireentries = trialselectorquestionnaireentries;
     }
 }

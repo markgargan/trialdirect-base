@@ -18,9 +18,10 @@
                  will set the links to 'active' if, for example on the first link, 'contacts' or any of
                  its descendant states are activated. -->
             <li ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Therapeutic Areas</a></li>
-            <li ng-class="{active: $state.includes('trial')}"><a ui-sref="trial">Trials</a></li>
-            <li ng-class="{active: $state.includes('therapeuticarea')}"><a ui-sref="therapeuticarea">Therapeutic Areas</a></li>
-            <li ng-class="{active: $state.includes('questionnaire')}"><a ui-sref="questionnaire">Questions And Answers</a></li>
+            <li ng-class="{active: $state.includes('trialSelectors')}"><a ui-sref="trialSelectors.list">Trial Selectors</a></li>
+            <!--<li ng-class="{active: $state.includes('trial')}"><a ui-sref="trial">Trials</a></li>-->
+            <!--<li ng-class="{active: $state.includes('therapeuticarea')}"><a ui-sref="therapeuticarea">Therapeutic Areas</a></li>-->
+            <!--<li ng-class="{active: $state.includes('questionnaire')}"><a ui-sref="questionnaire">Questions And Answers</a></li>-->
             <li ng-class="{active: $state.includes('contacts')}"><a ui-sref="contacts.list">Contacts</a></li>
 
         </ul>
@@ -67,7 +68,6 @@
 <script type="text/javascript" src="./app/services/ItemService.js"></script>
 <script type="text/javascript" src="./app/services/QuestionService.js"></script>
 <script type="text/javascript" src="./app/services/AnswerService.js"></script>
-<script type="text/javascript" src="app/therapeuticareas/services/TherapeuticAreaResourceService.js"></script>
 <script type="text/javascript" src="./app/services/TrialResourceService.js"></script>
 <script type="text/javascript" src="./app/services/QuestionnaireEntryResourceService.js"></script>
 
@@ -76,8 +76,17 @@
 <script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaController.js"></script>
 <script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaEditController.js"></script>
 <script type="text/javascript" src="app/therapeuticareas/states/TherapeuticAreaStateManager.js"></script>
-
+<script type="text/javascript" src="app/therapeuticareas/services/TherapeuticAreaResourceService.js"></script>
 <!-- TherapeuticAreas end -->
+
+<!-- TrialSelectors start -->
+<script type="text/javascript" src="app/trialselectors/controllers/TrialSelectorController.js"></script>
+<script type="text/javascript" src="app/trialselectors/controllers/TrialSelectorEditController.js"></script>
+<script type="text/javascript" src="app/trialselectors/states/TrialSelectorStateManager.js"></script>
+<script type="text/javascript" src="app/trialselectors/services/TrialSelectorResourceService.js"></script>
+<!-- TrialSelectors end -->
+
+
 
 <!-- contacts.js declares the uiRouterSample.contacts module, and adds a number of contact
          related states

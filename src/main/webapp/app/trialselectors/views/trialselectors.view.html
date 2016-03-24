@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="span3">
+    <div class="pa-sidebar well well-small">
+      <ul class="nav nav-list">
+        <li ng-class="{ active: $state.includes('trialSelectors.list') }"><a ui-sref="trialSelectors.list">All Trial Selectors</a></li>
+        <li class="nav-header">Therapeutic Areas</li>
+
+        <!-- This <li> will only add the 'active' class if 'trialSelectors.detail' or its descendants are active
+             AND if it is the link for the active contact (aka contactId) -->
+        <li ng-repeat="trialSelector in trialSelectors " ui-sref-active="active">
+
+          <!-- Here's a ui-sref that is also providing necessary parameters -->
+          <a ui-sref="trialSelectors.detail({trialSelectorId:trialSelector.id})">{{trialSelector.title}}</a>
+        </li>
+      </ul>
+      <hr>
+      <input type="text" class="form-control" ng-model="newTrialSelector" placeholder="e.g. Cardiovascular"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="addTrialSelector(newTrialSelector)"
+                ng-disabled="!newTrialSelector" title="Add">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </span>
+
+      <hr>
+
+      <!-- Another named view -->
+      <div ui-view="menuTip" class="slide"></div>
+    </div>
+  </div>
+
+  <!-- Our unnamed main ui-view for this template -->
+  <div ui-view class="span9 slide"></div>
+</div>

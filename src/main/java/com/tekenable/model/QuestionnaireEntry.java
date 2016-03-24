@@ -22,9 +22,9 @@ public class QuestionnaireEntry extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
 
-    private Question question;
-    private Set<Answer> answers;
-    private TherapeuticArea therapeuticArea;
+    protected Question question;
+    protected Set<Answer> answers;
+    protected TherapeuticArea therapeuticArea;
 
     public QuestionnaireEntry() {
     }
@@ -35,15 +35,17 @@ public class QuestionnaireEntry extends BaseEntity {
         this.answers.add(new Answer(answer));
     }
 
-    public QuestionnaireEntry(Question question, Answer answer) {
+    public QuestionnaireEntry(Question question, Answer answer, TherapeuticArea therapeuticArea) {
         this.question = question;
         this.answers = new LinkedHashSet();
         this.answers.add(answer);
+        this.therapeuticArea = therapeuticArea;
     }
 
-    public QuestionnaireEntry(Question question, Set<Answer> answers) {
+    public QuestionnaireEntry(Question question, Set<Answer> answers, TherapeuticArea therapeuticArea) {
         this.question = question;
         this.answers = answers;
+        this.therapeuticArea = therapeuticArea;
     }
 
     @ManyToOne

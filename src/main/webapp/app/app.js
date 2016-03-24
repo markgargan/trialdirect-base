@@ -1,5 +1,6 @@
 angular.module('trialdirect', [
         'uiRouterSample.therapeuticarea',
+        'uiRouterSample.trialSelector',
         'uiRouterSample.contacts',
         'uiRouterSample.contacts.service',
         'uiRouterSample.utils.service',

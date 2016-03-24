@@ -8,7 +8,7 @@ public class Trial extends BaseEntity{
 
     private String title;
 
-    private Set<TrialSelectorQuestionEntry> trialSelectorEntries;
+    private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
 
     public Trial() {}
 
@@ -16,9 +16,9 @@ public class Trial extends BaseEntity{
         this.title = title;
     }
 
-    public Trial(String title, Set<TrialSelectorQuestionEntry> questionEntries) {
+    public Trial(String title, Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries) {
         this.title = title;
-        this.trialSelectorEntries = questionEntries;
+        this.trialselectorquestionnaireentries = trialselectorquestionnaireentries;
     }
 
     public String getTitle() {
@@ -30,11 +30,11 @@ public class Trial extends BaseEntity{
     }
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<TrialSelectorQuestionEntry> getTrialSelectorEntries() {
-        return trialSelectorEntries;
+    public Set<TrialSelectorQuestionnaireEntry> getTrialSelectorQuestionnaireEntries() {
+        return trialselectorquestionnaireentries;
     }
 
-    public void setTrialSelectorEntries(Set<TrialSelectorQuestionEntry> trialSelectorEntries) {
-        this.trialSelectorEntries = trialSelectorEntries;
+    public void setTrialSelectorQuestionnaireEntries(Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries) {
+        this.trialselectorquestionnaireentries = trialselectorquestionnaireentries;
     }
 }
