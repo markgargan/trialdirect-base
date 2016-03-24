@@ -85,9 +85,9 @@ public class CancerTrialPrimer {
 
         trialRepository.save(cancerTrial);
 
-        trialSelectorEntryRepository.save(new HashSet<TrialSelectorQuestionEntry>(){{
-            add(ts11);
-            add(ts12);
-        }});
+//        trialSelectorEntryRepository.save(new HashSet<TrialSelectorQuestionEntry>(){{
+//            add(ts11);
+//            add(ts12);
+//        }});
     }
 }
