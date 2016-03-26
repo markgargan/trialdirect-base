@@ -4,6 +4,7 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
 
             var RESOURCE_URL = './api/therapeuticareas';
 
+
             TherapeuticAreaResourceService.resources = null;
 
             // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers

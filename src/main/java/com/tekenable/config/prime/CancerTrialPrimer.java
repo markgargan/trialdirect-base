@@ -28,7 +28,11 @@ public class CancerTrialPrimer {
     private QuestionnaireEntryRepository questionEntryRepository;
 
     @Autowired
-    private TrialSelectorQuestionnaireEntryRepository trialSelectorQuestionnaireEntryRepository;
+    private TrialSelectorQuestionnaireEntryRepository trialSelectorQuestionEntryRepository;
+
+    @Autowired
+    private UserSelectorQuestionnaireEntryRepository userSelectorQuestionEntryRepository;
+
 
     // This primer is for questions for the Cancer TherapeuticArea.
     protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer");
@@ -66,7 +70,16 @@ public class CancerTrialPrimer {
     protected final Set cancerEntries = new HashSet<QuestionnaireEntry>() {{add(entry1); add(entry2); add(entry3);}};
 
     // creating trial structure
-    protected final Trial cancerTrial = new Trial("Cancer Trial");
+    protected final Trial cancerTrial = new Trial("Cancer Trial", therapeuticAreaCancer);
+
+    protected final TrialSelectorQuestionnaireEntry ts11 = new TrialSelectorQuestionnaireEntry(q2, a23, cancerTrial);
+
+    protected final TrialSelectorQuestionnaireEntry ts12 = new TrialSelectorQuestionnaireEntry(q3, a32, cancerTrial);
+
+    protected final UserSelectorQuestionnaireEntry us11 = new UserSelectorQuestionnaireEntry(1000L, q2, a23, therapeuticAreaCancer);
+
+    protected final UserSelectorQuestionnaireEntry us12 = new UserSelectorQuestionnaireEntry(1001L, q3, a32, therapeuticAreaCancer);
+
 
     public void initDB() {
 
@@ -91,16 +104,10 @@ public class CancerTrialPrimer {
 
         trialRepository.save(cancerTrial);
 
-        Answer answer23 = answerRepository.findOne(a23.getId());
-        Answer answer32 = answerRepository.findOne(a32.getId());
-
-        final TrialSelectorQuestionnaireEntry ts11 = new TrialSelectorQuestionnaireEntry(q2, answer23, therapeuticAreaCancer, cancerTrial);
-
-        final TrialSelectorQuestionnaireEntry ts12 = new TrialSelectorQuestionnaireEntry(q3, answer32, therapeuticAreaCancer, cancerTrial);
-
-        trialSelectorQuestionnaireEntryRepository.save(new HashSet<TrialSelectorQuestionnaireEntry>(){{
-            add(ts11);
-            add(ts12);
+        userSelectorQuestionEntryRepository.save(new HashSet<UserSelectorQuestionnaireEntry>(){{
+            add(us11);
+            add(us12);
         }});
+
     }
 }

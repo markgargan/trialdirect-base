@@ -8,15 +8,15 @@ import java.util.Set;
         uniqueConstraints=
         @UniqueConstraint(columnNames={"trial_id", "question_id", "answer_id"})
 )
-public class TrialSelectorQuestionnaireEntry extends QuestionnaireEntry {
+public class TrialSelectorQuestionnaireEntry extends QuestionEntry {
 
     private Trial trial;
 
     public TrialSelectorQuestionnaireEntry() {
     }
 
-    public TrialSelectorQuestionnaireEntry(Question question, Answer answer, TherapeuticArea therapeuticArea, Trial trial) {
-        super(question, answer, therapeuticArea);
+    public TrialSelectorQuestionnaireEntry(Question question, Answer answer, Trial trial) {
+        super(question, answer);
         this.trial = trial;
     }
 
