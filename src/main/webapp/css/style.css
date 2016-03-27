@@ -32,6 +32,10 @@ input[type="text"] {
 }
 
 .add-new-group {
-    margin-top:27px;
+    margin-top:1em;
 }
 
+.new-group-label {
+    font-weight:normal;
+    padding:0;
+}

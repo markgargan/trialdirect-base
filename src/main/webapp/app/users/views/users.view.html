@@ -17,6 +17,8 @@
 
             <form class="form-horizontal" role="form" ng-submit="addUser(newUser)">
 
+                <label for="newUserInput" class="nav-header new-group-label">Begin User Assessment </label>
+
                 <div ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
                     <div class="radio">
                         <label><input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
@@ -26,11 +28,11 @@
                 </div>
 
                 <div class="input-group add-new-group">
-                    <input type="text" class="form-control" ng-disabled="!newUser.therapeuticArea"
+                    <input id="newUserInput" type="text" class="form-control" ng-disabled="!newUser.therapeuticArea"
                            ng-model="newUser.pseudonym" placeholder="e.g. Kate's assessment"/>
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="submit"
-                            ng-disabled="!newUser.therapeuticArea" title="Add">
+                            ng-disabled="!newUser.pseudonym" title="Add">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                   </span>

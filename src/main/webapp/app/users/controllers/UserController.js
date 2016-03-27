@@ -8,6 +8,16 @@ angular.module('trialdirect').controller('UserController',
 
             $scope.newUser={};
 
+            $scope.reset = function() {
+
+                // Reset the radio buttons
+                angular.forEach($scope.therapeuticAreas, function(therapeuticArea) {
+                    therapeuticArea.checked=false;
+                });
+            };
+
+            $scope.reset();
+
             $scope.addUser = function (newUser) {
                 new UserResourceService({
                     pseudonym: newUser.pseudonym,
