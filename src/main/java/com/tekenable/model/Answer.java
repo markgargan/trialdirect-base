@@ -10,6 +10,7 @@ public class Answer extends BaseEntity {
     private String answerText;
     // lowercased in order to keep the rest api all lower case
     private Set<QuestionnaireEntry> questionnaireentries;
+
     public Answer() {
 
     }

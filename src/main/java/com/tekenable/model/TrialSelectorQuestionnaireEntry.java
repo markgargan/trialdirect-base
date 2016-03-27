@@ -1,20 +1,21 @@
 package com.tekenable.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(
         uniqueConstraints=
         @UniqueConstraint(columnNames={"trial_id", "question_id", "answer_id"})
 )
-public class TrialSelectorQuestionEntry extends QuestionEntry {
+public class TrialSelectorQuestionnaireEntry extends QuestionEntry {
 
     private Trial trial;
 
-    public TrialSelectorQuestionEntry() {
+    public TrialSelectorQuestionnaireEntry() {
     }
 
-    public TrialSelectorQuestionEntry(Question question, Answer answer, Trial trial) {
+    public TrialSelectorQuestionnaireEntry(Question question, Answer answer, Trial trial) {
         super(question, answer);
         this.trial = trial;
     }

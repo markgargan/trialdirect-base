@@ -8,7 +8,8 @@ angular.module('trialdirect').controller('TherapeuticAreaController',
                 new TherapeuticAreaResourceService({
                     title: therapeuticAreaTitle
                 }).save(function (newTherapeuticArea) {
-                    // Goto the new instance on the far side
+                    $scope.therapeuticAreas.unshift(newTherapeuticArea);
+                    
                     $state.go("therapeuticAreas.detail", { 'therapeuticAreaId': newTherapeuticArea.id});
                 });
 

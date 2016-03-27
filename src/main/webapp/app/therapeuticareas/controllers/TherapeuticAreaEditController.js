@@ -63,10 +63,11 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
             $scope.deleteAnswer = function (questionnaireEntry, answer) {
 
                 questionnaireEntry.removeAssociation('answers', answer, function () {
-                    answer.remove(function () {
-                        var answerList = questionnaireEntry.answers._embeddedItems;
-                        answerList.splice(answerList.indexOf(answer), 1);
-                    });
+                    // We don't remove the answer from the database
+                    // but we need to propagate the delete from the trialSelector & userSelector tables
+                    // when the services are in place.
+                    var answerList = questionnaireEntry.answers._embeddedItems;
+                    answerList.splice(answerList.indexOf(answer), 1);
 
                 });
             };

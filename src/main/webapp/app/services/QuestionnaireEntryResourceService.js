@@ -2,6 +2,7 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
     ['$http', 'SpringDataRestAdapter', 'Question', 'Answer', '$q',
         function ($http, SpringDataRestAdapter, Question, Answer, $q) {
 
+            var TRIAL_PARENT_URL_PREFIX = './api/trials';
             var THERAPEUTIC_AREA_PARENT_URL_PREFIX = './api/therapeuticareas';
             var RESOURCE_URL = './api/questionnaireentries';
 
@@ -34,6 +35,34 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
                         });
 
                         return new QuestionnaireEntryResourceService(questionnaireEntry);
+                    });
+                });
+            };
+
+            // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
+            QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink= function (linkname, linkId) {
+
+                var deferred1 = $http.get('api/' + linkname + '/' + linkId + '/therapeuticArea');
+
+                return SpringDataRestAdapter.process(deferred1).then(function (therapeuticArea) {
+
+                    var deferred = $http.get(THERAPEUTIC_AREA_PARENT_URL_PREFIX + '/' + therapeuticArea.id + '/questionnaireentries');
+
+                    return SpringDataRestAdapter.process(deferred, ['question', 'answers']).then(function (data) {
+
+                        return _.map(data._embeddedItems, function (questionnaireEntry) {
+
+                            // Wrap the question with the extra functions
+                            questionnaireEntry.question = new Question(questionnaireEntry.question);
+
+                            // Wrap the answers with the extra functions.
+                            var answerList = questionnaireEntry.answers._embeddedItems;
+                            angular.forEach(answerList, function (unwrappedAnswer) {
+                                answerList[answerList.indexOf(unwrappedAnswer)] = new Answer(unwrappedAnswer);
+                            });
+
+                            return new QuestionnaireEntryResourceService(questionnaireEntry);
+                        });
                     });
                 });
             };

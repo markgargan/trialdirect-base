@@ -4,21 +4,20 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@EntityListeners(TrialListener.class)
 public class Trial extends BaseEntity{
 
     private String title;
 
-    private Set<TrialSelectorQuestionEntry> trialSelectorEntries;
+    private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
+
+    private TherapeuticArea therapeuticArea;
 
     public Trial() {}
 
-    public Trial(String title) {
+    public Trial( String title, TherapeuticArea therapeuticArea) {
         this.title = title;
-    }
-
-    public Trial(String title, Set<TrialSelectorQuestionEntry> questionEntries) {
-        this.title = title;
-        this.trialSelectorEntries = questionEntries;
+        this.therapeuticArea = therapeuticArea;
     }
 
     public String getTitle() {
@@ -30,11 +29,21 @@ public class Trial extends BaseEntity{
     }
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<TrialSelectorQuestionEntry> getTrialSelectorEntries() {
-        return trialSelectorEntries;
+    public Set<TrialSelectorQuestionnaireEntry> getTrialselectorquestionnaireentries() {
+        return trialselectorquestionnaireentries;
     }
 
-    public void setTrialSelectorEntries(Set<TrialSelectorQuestionEntry> trialSelectorEntries) {
-        this.trialSelectorEntries = trialSelectorEntries;
+    public void setTrialselectorquestionnaireentries(Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries) {
+        this.trialselectorquestionnaireentries = trialselectorquestionnaireentries;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "therapeutic_area_id")
+    public TherapeuticArea getTherapeuticArea() {
+        return therapeuticArea;
+    }
+
+    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
+        this.therapeuticArea = therapeuticArea;
     }
 }

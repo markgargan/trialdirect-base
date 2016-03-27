@@ -13,13 +13,15 @@ public class TherapeuticArea extends BaseEntity {
 
     private String title;
     private Set<QuestionnaireEntry> questionnaireentries;
+    private Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries;
+
+    private Set<Trial> trials;
 
     public TherapeuticArea() {
     }
 
-    public TherapeuticArea(String title, Set<QuestionnaireEntry> entries) {
+    public TherapeuticArea(String title) {
         this.title =title;
-        this.questionnaireentries = entries;
     }
 
     @Column(name = "title")
@@ -39,4 +41,23 @@ public class TherapeuticArea extends BaseEntity {
     public void setQuestionnaireentries(Set<QuestionnaireEntry> questionnaireentries) {
         this.questionnaireentries = questionnaireentries;
     }
+
+    @OneToMany(mappedBy = "therapeuticArea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    public Set<Trial> getTrials() {
+        return trials;
+    }
+
+    public void setTrials(Set<Trial> trials) {
+        this.trials = trials;
+    }
+
+    @OneToMany(mappedBy = "therapeuticArea", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<UserSelectorQuestionnaireEntry> getUserselectorquestionnaireentries() {
+        return userselectorquestionnaireentries;
+    }
+
+    public void setUserselectorquestionnaireentries(Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries) {
+        this.userselectorquestionnaireentries = userselectorquestionnaireentries;
+    }
+
 }

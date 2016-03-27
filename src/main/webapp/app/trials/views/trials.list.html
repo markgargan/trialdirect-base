@@ -1,0 +1,6 @@
+<h2>All Trials</h2>
+<ul>
+  <li ng-repeat="trial in trials">
+    <a ui-sref="trials.detail({trialId:trial.id})">{{trial.title}}</a>
+  </li>
+</ul>    

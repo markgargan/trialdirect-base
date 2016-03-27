@@ -31,3 +31,11 @@ input[type="text"] {
     height:34px;
 }
 
+.add-new-group {
+    margin-top:1em;
+}
+
+.new-group-label {
+    font-weight:normal;
+    padding:0;
+}

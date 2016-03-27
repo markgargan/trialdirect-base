@@ -10,10 +10,6 @@ import java.io.Serializable;
  *
  */
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(
-        uniqueConstraints=
-        @UniqueConstraint(columnNames={"question_id", "answer_id"})
-)
 @MappedSuperclass
 public class QuestionEntry implements Serializable {
 
