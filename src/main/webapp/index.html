@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="./css/bootstrap.2.3.1.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.css"/>
-    <link rel="stylesheet" href="./css/style.css"/>
+    <link href="./css/style.css" rel="stylesheet"/>
 </head>
 
 <body ng-app="trialdirect">
@@ -16,10 +17,9 @@
             <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
                  will set the links to 'active' if, for example on the first link, 'contacts' or any of
                  its descendant states are activated. -->
-            <li ng-class="{active: $state.includes('trial')}"><a ui-sref="trial">Trials</a></li>
-            <li ng-class="{active: $state.includes('therapeuticarea')}"><a ui-sref="therapeuticarea">Therapeutic Areas</a></li>
-            <li ng-class="{active: $state.includes('questionnaire')}"><a ui-sref="questionnaire">Questions And Answers</a></li>
-            <li ng-class="{active: $state.includes('contacts')}"><a ui-sref="contacts.list">Contacts</a></li>
+            <li ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Therapeutic Areas</a></li>
+            <li ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.list">Trial Selectors</a></li>
+            <li ng-class="{active: $state.includes('users')}"><a ui-sref="users.list">User Selectors</a></li>
 
         </ul>
 
@@ -31,17 +31,20 @@
     <div class="row">
         <!--<div class="col-xs-6" ui-view></div>-->
 
-        <div class="col-xs-6" ui-view="viewA"></div>
-        <div class="col-xs-6" ui-view="viewB"></div>
+        <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-offset-1 col-xs-10" ui-view="viewA"></div>
+
+        <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewA"></div>
+        <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewB"></div>
     </div>
-    <pre>
-          <!-- Here's some values to keep an eye on in the sample in order to understand $state and $stateParams -->
-          $state = {{$state.current.name}}
-          $stateParams = {{$stateParams}}
-          $state full url = {{ $state.$current.url.source }}
-        <!-- $state.$current is not a public api, we are using it to
-             display the full url for learning purposes-->
-    </pre>
+    <!--<pre>-->
+          <!--&lt;!&ndash; Here's some values to keep an eye on in the sample in order to understand $state and $stateParams &ndash;&gt;-->
+          <!--$state = {{$state.$current.name}}-->
+          <!--$state full url = {{ $state.$current.url.source }}-->
+          <!--$stateParams = {{$stateParams}}-->
+          <!--Use full screen = {{$state.current.views.hasOwnProperty('viewB')}}-->
+        <!--&lt;!&ndash; $state.$current is not a public api, we are using it to-->
+             <!--display the full url for learning purposes&ndash;&gt;-->
+    <!--</pre>-->
 
     <hr/>
 </div>
@@ -58,14 +61,37 @@
 <script type="text/javascript" src="./app/controllers/ItemController.js"></script>
 <script type="text/javascript" src="./app/controllers/QuestionnaireController.js"></script>
 <script type="text/javascript" src="./app/controllers/TrialController.js"></script>
-<script type="text/javascript" src="./app/controllers/TherapeuticAreaController.js"></script>
 
 <script type="text/javascript" src="./app/services/ItemService.js"></script>
 <script type="text/javascript" src="./app/services/QuestionService.js"></script>
 <script type="text/javascript" src="./app/services/AnswerService.js"></script>
-<script type="text/javascript" src="./app/services/TherapeuticAreaResourceService.js"></script>
 <script type="text/javascript" src="./app/services/TrialResourceService.js"></script>
 <script type="text/javascript" src="./app/services/QuestionnaireEntryResourceService.js"></script>
+
+
+<!-- TherapeuticAreas start -->
+<script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaController.js"></script>
+<script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaEditController.js"></script>
+<script type="text/javascript" src="app/therapeuticareas/states/TherapeuticAreaStateManager.js"></script>
+<script type="text/javascript" src="app/therapeuticareas/services/TherapeuticAreaResourceService.js"></script>
+<!-- TherapeuticAreas end -->
+
+<!-- Trials start -->
+<script type="text/javascript" src="app/trials/controllers/TrialController.js"></script>
+<script type="text/javascript" src="app/trials/controllers/TrialEditController.js"></script>
+<script type="text/javascript" src="app/trials/states/TrialStateManager.js"></script>
+<script type="text/javascript" src="app/trials/services/TrialResourceService.js"></script>
+<script type="text/javascript" src="app/trials/services/TrialSelectorQuestionnaireEntryResourceService.js"></script>
+<!-- Trials end -->
+
+
+<!--&lt;!&ndash; Users start &ndash;&gt;-->
+<script type="text/javascript" src="app/users/controllers/UserController.js"></script>
+<script type="text/javascript" src="app/users/controllers/UserEditController.js"></script>
+<script type="text/javascript" src="app/users/states/UserStateManager.js"></script>
+<script type="text/javascript" src="app/users/services/UserResourceService.js"></script>
+<script type="text/javascript" src="app/users/services/UserSelectorQuestionnaireEntryResourceService.js"></script>
+<!-- Users end -->
 
 <!-- contacts.js declares the uiRouterSample.contacts module, and adds a number of contact
          related states

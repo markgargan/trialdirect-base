@@ -1,17 +1,5 @@
-.blue {
-    color:blue;
-}
-
-.btn-remove-answer {
-    color: #fff;
-    background-color: #4c5fd9;
-    border-color: #2223d4;
-}
-
-.btn-remove-answer:hover {
-    color: #fff;
-    background-color: #374bd9;
-    border-color: #1618d4;
+.btn-remove {
+    color: #08c;
 }
 
 .slide.ng-leave {
@@ -37,4 +25,17 @@
     -o-transform: scaleX(1);
     transform: scaleX(1);
     opacity: 1;
+}
+
+input[type="text"] {
+    height:34px;
+}
+
+.add-new-group {
+    margin-top:1em;
+}
+
+.new-group-label {
+    font-weight:normal;
+    padding:0;
 }

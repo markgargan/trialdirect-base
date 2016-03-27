@@ -1,5 +1,7 @@
 package com.tekenable.model;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,9 +22,9 @@ public class QuestionnaireEntry extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
 
-    private Question question;
-    private Set<Answer> answers;
-    private Questionnaire questionnaire;
+    protected Question question;
+    protected Set<Answer> answers;
+    protected TherapeuticArea therapeuticArea;
 
     public QuestionnaireEntry() {
     }
@@ -33,15 +35,17 @@ public class QuestionnaireEntry extends BaseEntity {
         this.answers.add(new Answer(answer));
     }
 
-    public QuestionnaireEntry(Question question, Answer answer) {
+    public QuestionnaireEntry(Question question, Answer answer, TherapeuticArea therapeuticArea) {
         this.question = question;
         this.answers = new LinkedHashSet();
         this.answers.add(answer);
+        this.therapeuticArea = therapeuticArea;
     }
 
-    public QuestionnaireEntry(Question question, Set<Answer> answers) {
+    public QuestionnaireEntry(Question question, Set<Answer> answers, TherapeuticArea therapeuticArea) {
         this.question = question;
         this.answers = answers;
+        this.therapeuticArea = therapeuticArea;
     }
 
     @ManyToOne
@@ -54,7 +58,7 @@ public class QuestionnaireEntry extends BaseEntity {
         this.question = question;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "questionnaireEntry_answer",
             joinColumns=@JoinColumn(name="questionnaire_entry_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="answer_id", referencedColumnName="id"))
@@ -67,13 +71,13 @@ public class QuestionnaireEntry extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "questionnaire_id")
-    public Questionnaire getQuestionnaire() {
-        return questionnaire;
+    @JoinColumn(name = "therapeutic_area_id")
+    public TherapeuticArea getTherapeuticArea() {
+        return therapeuticArea;
     }
 
-    public void setQuestionnaire(Questionnaire questionnaire) {
-        this.questionnaire = questionnaire;
+    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
+        this.therapeuticArea = therapeuticArea;
     }
 
 }

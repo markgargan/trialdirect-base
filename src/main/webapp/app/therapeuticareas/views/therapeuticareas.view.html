@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="span3">
+        <div class="pa-sidebar well well-small">
+            <ul class="nav nav-list">
+                <li ng-class="{ active: $state.includes('therapeuticAreas.list') }"><a ui-sref="therapeuticAreas.list">All
+                    Therapeutic Areas</a></li>
+                <li class="nav-header">Therapeutic Areas</li>
+
+                <!-- This <li> will only add the 'active' class if 'therapeuticAreas.detail' or its descendants are active
+                     AND if it is the link for the active contact (aka contactId) -->
+                <li ng-repeat="therapeuticArea in therapeuticAreas " ui-sref-active="active">
+
+                    <!-- Here's a ui-sref that is also providing necessary parameters -->
+                    <a ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})">{{therapeuticArea.title}}</a>
+                </li>
+            </ul>
+            <hr>
+            <form name="CreateTherapeuticArea" role="form" ng-submit="addTherapeuticArea(newTherapeuticArea)">
+
+                <label for="newThereapeuticAreaInput" class="nav-header new-group-label">Create Therapeutic Area</label>
+                <div class="input-group add-new-group">
+                    <input id="newThereapeuticAreaInput" type="text" class="form-control" ng-model="newTherapeuticArea"
+                           placeholder="e.g. Cardiovascular"/>
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit"
+                              ng-disabled="!newTherapeuticArea" title="Add">
+                          <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </span>
+                </div>
+            </form>
+            <hr>
+            <!-- Another named view -->
+            <div ui-view="menuTip" class="slide"></div>
+        </div>
+    </div>
+
+    <!-- Our unnamed main ui-view for this template -->
+    <div ui-view class="span9 slide"></div>
+</div>

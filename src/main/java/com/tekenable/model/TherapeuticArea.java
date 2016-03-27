@@ -1,48 +1,63 @@
 package com.tekenable.model;
-import javax.persistence.*;
-import java.util.Collection;
-import java.util.Set;
 
+import java.util.Set;
+import javax.persistence.*;
+
+/**
+ * Created by smoczyna on 17/03/16.
+ */
 @Entity
 public class TherapeuticArea extends BaseEntity {
 
-  private String name;
-  private Set<Question> questions;
+    private static final long serialVersionUID = 1L;
 
-  public TherapeuticArea(){
+    private String title;
+    private Set<QuestionnaireEntry> questionnaireentries;
+    private Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries;
 
-  }
+    private Set<Trial> trials;
 
-  public TherapeuticArea(String name){
-    this.name = name;
-  }
+    public TherapeuticArea() {
+    }
 
-  public TherapeuticArea(String name, Set<Question> questions){
-    this.name = name;
-    this.questions = questions;
-  }
+    public TherapeuticArea(String title) {
+        this.title =title;
+    }
 
-  public String getName() {
-    return name;
-  }
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  /**
-   * To understand the cascading options
-   *
-   * @link http://vladmihalcea.com/2015/03/05/a-beginners-guide-to-jpa-and-hibernate-cascade-types/
-   * @return
-   **/
-  @ManyToMany(mappedBy = "therapeuticAreas",
-          cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-  public Set<Question> getQuestions() {
-    return questions;
-  }
+    @OneToMany(mappedBy = "therapeuticArea", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    public Set<QuestionnaireEntry> getQuestionnaireentries() {
+        return questionnaireentries;
+    }
 
-  public void setQuestions(Set<Question> questions) {
-    this.questions = questions;
-  }
+    public void setQuestionnaireentries(Set<QuestionnaireEntry> questionnaireentries) {
+        this.questionnaireentries = questionnaireentries;
+    }
+
+    @OneToMany(mappedBy = "therapeuticArea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    public Set<Trial> getTrials() {
+        return trials;
+    }
+
+    public void setTrials(Set<Trial> trials) {
+        this.trials = trials;
+    }
+
+    @OneToMany(mappedBy = "therapeuticArea", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<UserSelectorQuestionnaireEntry> getUserselectorquestionnaireentries() {
+        return userselectorquestionnaireentries;
+    }
+
+    public void setUserselectorquestionnaireentries(Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries) {
+        this.userselectorquestionnaireentries = userselectorquestionnaireentries;
+    }
+
 }

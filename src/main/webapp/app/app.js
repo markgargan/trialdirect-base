@@ -1,4 +1,7 @@
 angular.module('trialdirect', [
+        'uiRouterSample.therapeuticarea',
+        'uiRouterSample.trial',
+        'uiRouterSample.user',
         'uiRouterSample.contacts',
         'uiRouterSample.contacts.service',
         'uiRouterSample.utils.service',
@@ -16,6 +19,17 @@ angular.module('trialdirect', [
                 // to active whenever 'contacts.list' or one of its decendents is active.
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
+
+                $rootScope.$on("$stateChangeError", console.log.bind(console));
+
+                //$rootScope.$on('$stateChangeSuccess',
+                //    function (event, toState, toParams, fromState, fromParams) {
+                //        console.log('Changing state from :-');
+                //        console.log(fromState);
+                //        console.log('to state :-');
+                //        console.log(toState);
+                //
+                //    })
             }
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
@@ -33,8 +47,8 @@ angular.module('trialdirect', [
 
 
         var therapeuticAreaState = {
-            templateUrl: 'views/templates/therapeutic.area.view.htm',
-            controller: 'TherapeuticAreaController',
+            templateUrl: 'app/therapeuticareas/views/therapeutic.area.questionnaire.view.htm',
+            controller: 'TherapeuticAreaEditController',
 
             // We use the 'resolve' below to prime the page with the therapeutic area
             // so that they're available before the page loads preventing the flickering
@@ -95,18 +109,16 @@ angular.module('trialdirect', [
                 templateUrl: 'views/templates/item.view.htm',
                 controller: 'AppController'
             }).state('questionnaire', {
-                url: '/questionnaire',
-                views: {
-                    "viewA": questionnaireState
-                }
-            });
+            url: '/questionnaire',
+            views: {
+                "viewA": questionnaireState
+            }
+        });
 
-        $urlRouterProvider.otherwise('/questionnaire');
+        $urlRouterProvider.otherwise('/therapeuticareas');
     }]).filter('reverse', function () {
     return function (items) {
         return items.slice().reverse();
     };
     // Debugging for the UI router
-}).run(function ($rootScope) {
-    $rootScope.$on("$stateChangeError", console.log.bind(console));
 });
