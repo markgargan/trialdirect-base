@@ -1,8 +1,8 @@
 <div class="col-xs-offset-1">
-    <form class="form-horizontal" role="form" ng-submit="addUser(newUser)">
+    <form class="form-horizontal" role="form">
 
         <div class="page-header">
-            <h1>{{user.title}}</h1>
+            <h1>{{user.pseudonym}}</h1>
         </div>
 
         <div class="form-group" ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
@@ -16,7 +16,7 @@
 
                     <div class="checkbox col-xs-9">
                         <label>
-                            <input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)" ng-checked="answer.isAcceptable" ng-model="answer.isAcceptable"/> {{answer.answerText}}
+                            <input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)" ng-checked="answer.isSelected" ng-model="answer.isSelected"/> {{answer.answerText}}
                         </label>
                     </div>
                 </div>

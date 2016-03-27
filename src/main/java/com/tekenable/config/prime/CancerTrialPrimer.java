@@ -33,6 +33,8 @@ public class CancerTrialPrimer {
     @Autowired
     private UserSelectorQuestionnaireEntryRepository userSelectorQuestionEntryRepository;
 
+    @Autowired
+    private UserRepository userRepository;
 
     // This primer is for questions for the Cancer TherapeuticArea.
     protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer");
@@ -76,9 +78,15 @@ public class CancerTrialPrimer {
 
     protected final TrialSelectorQuestionnaireEntry ts12 = new TrialSelectorQuestionnaireEntry(q3, a32, cancerTrial);
 
-    protected final UserSelectorQuestionnaireEntry us11 = new UserSelectorQuestionnaireEntry(1000L, q2, a23, therapeuticAreaCancer);
+    protected final User robert = new User("Robert", therapeuticAreaCancer);
 
-    protected final UserSelectorQuestionnaireEntry us12 = new UserSelectorQuestionnaireEntry(1001L, q3, a32, therapeuticAreaCancer);
+//    protected final User kate = new User("Kate", therapeuticAreaCancer);
+//
+//    protected final User dave = new User("Dave", therapeuticAreaCancer);
+
+    protected final UserSelectorQuestionnaireEntry us_robert_q2_a23_cancer = new UserSelectorQuestionnaireEntry(robert, q2, a23, therapeuticAreaCancer);
+
+    protected final UserSelectorQuestionnaireEntry us_robert_q3_a32_cancer = new UserSelectorQuestionnaireEntry(robert, q3, a32, therapeuticAreaCancer);
 
 
     public void initDB() {
@@ -104,10 +112,11 @@ public class CancerTrialPrimer {
 
         trialRepository.save(cancerTrial);
 
-        userSelectorQuestionEntryRepository.save(new HashSet<UserSelectorQuestionnaireEntry>(){{
-            add(us11);
-            add(us12);
-        }});
+        userRepository.save(robert);
 
+        userSelectorQuestionEntryRepository.save(new HashSet<UserSelectorQuestionnaireEntry>(){{
+            add(us_robert_q2_a23_cancer);
+            add(us_robert_q3_a32_cancer);
+        }});
     }
 }

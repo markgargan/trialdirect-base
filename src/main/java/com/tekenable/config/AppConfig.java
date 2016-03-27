@@ -49,7 +49,7 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
             config.exposeIdsFor(TherapeuticArea.class);
             config.exposeIdsFor(TrialSelectorQuestionnaireEntry.class);
             config.exposeIdsFor(UserSelectorQuestionnaireEntry.class);
-
+            config.exposeIdsFor(User.class);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }

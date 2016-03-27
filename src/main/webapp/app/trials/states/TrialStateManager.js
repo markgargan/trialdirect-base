@@ -53,7 +53,7 @@ angular.module('uiRouterSample.trial', [
                           QuestionnaireEntryResourceService.initialize();
 
                           // Load all the questions for the particular Trial
-                          return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTrial($stateParams.trialId);
+                          return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink('trials', $stateParams.trialId);
                       }
                       ,
                       trialSelectorQuestionnaireEntries : function ($stateParams, TrialSelectorQuestionnaireEntryResourceService, Question, Answer) {

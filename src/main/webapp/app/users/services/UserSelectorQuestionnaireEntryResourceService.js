@@ -18,7 +18,7 @@ angular.module('trialdirect').factory('UserSelectorQuestionnaireEntryResourceSer
 
             // Load the specific User drilling for the userSelectorQuestionnaireEntries, the questions and answers
             UserSelectorQuestionnaireEntryResourceService.loadUserSelectorQuestionnaireEntriesForUser = function (userId) {
-                var deferred = $http.get(THERAPEUTIC_AREA_PARENT_URL_PREFIX + '/' + userId + '/userselectorquestionnaireentries');
+                var deferred = $http.get('/api/users/' + userId +'/userselectorquestionnaireentries');
 
                 return SpringDataRestAdapter.process(deferred, ['question', 'answer']).then(function (data) {
 

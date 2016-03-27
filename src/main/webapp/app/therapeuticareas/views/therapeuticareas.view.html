@@ -14,13 +14,15 @@
         </li>
       </ul>
       <hr>
-      <input type="text" class="form-control" ng-model="newTherapeuticArea" placeholder="e.g. Cardiovascular"/>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="addTherapeuticArea(newTherapeuticArea)"
-                ng-disabled="!newTherapeuticArea" title="Add">
-          <span class="glyphicon glyphicon-plus"></span>
-        </button>
-      </span>
+      <form name="CreateTherapeuticArea" role="form" ng-submit="addTherapeuticArea(newTherapeuticArea)">
+        <input type="text" class="form-control" ng-model="newTherapeuticArea" placeholder="e.g. Cardiovascular"/>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button"
+                  ng-disabled="!newTherapeuticArea" title="Add">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </span>
+      </form>
 
       <hr>
 

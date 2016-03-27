@@ -15,24 +15,29 @@
             </ul>
             <hr>
 
-            <div class="row" ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
-                <div class="checkbox">
-                    <label>
-                        <input type="radio" ng-model="color.name" ng-click="chooseTherapeuticArea(therapeuticArea, $event)"/> {{therapeuticArea.title}}
-                    </label>
+            <form class="form-horizontal" role="form" ng-submit="addUser(newUser)">
+
+                <div ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
+                    <div class="radio">
+                        <label><input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
+                                      ng-click="chooseTherapeuticArea(therapeuticArea, $event)"/>
+                            {{therapeuticArea.title}}</label>
+                    </div>
                 </div>
-            </div>
 
-            <input type="text" class="form-control" ng-disabled="!newTrial.therapeuticArea" ng-model="newTrial.title" placeholder="e.g. Cardiovascular"/>
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" ng-click="addTrial(newTrial)"
-                        ng-disabled="!newTrial.therapeuticArea" title="Add">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </button>
-              </span>
+                <div class="input-group add-new-group">
+                    <input type="text" class="form-control" ng-disabled="!newTrial.therapeuticArea"
+                           ng-model="newTrial.pseudonym" placeholder="e.g. Acme Cancer Trial"/>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"
+                            ng-disabled="!newTrial.therapeuticArea" title="Add">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </span>
+                </div>
 
+            </form>
             <hr>
-
             <!-- Another named view -->
             <div ui-view="menuTip" class="slide"></div>
         </div>

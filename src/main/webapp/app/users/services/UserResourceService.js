@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('UserResourceService',
-    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService ) {
+    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService', 'TherapeuticAreaResourceService',
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TherapeuticAreaResourceService ) {
 
             var RESOURCE_URL = './api/users';
 
@@ -13,6 +13,16 @@ angular.module('trialdirect').factory('UserResourceService',
                 return SpringDataRestAdapter.process(deferred).then(function (data) {
 
                     return new UserResourceService(data);
+                });
+            };
+
+            // Load the specific User drilling for the questionnaire and the nested questions and answers
+            UserResourceService.loadTherapeuticAreaForUser = function (userId) {
+                var deferred = $http.get(RESOURCE_URL + '/' + userId + '/therapeuticArea');
+
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
+
+                    return new TherapeuticAreaResourceService(data);
                 });
             };
 

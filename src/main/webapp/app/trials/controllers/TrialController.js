@@ -6,11 +6,18 @@ angular.module('trialdirect').controller('TrialController',
 
             $scope.therapeuticAreas = therapeuticAreas;
 
-            $scope.newTrial={};
 
-            $scope.color = {
-                name: 'blue'
+            $scope.reset = function() {
+
+                // Reset the radio buttons
+                angular.forEach($scope.therapeuticAreas, function(therapeuticArea) {
+                    therapeuticArea.checked=false;
+                });
             };
+
+            $scope.reset();
+
+            $scope.newTrial={};
 
             $scope.addTrial = function (newTrial) {
                 new TrialResourceService({
@@ -22,16 +29,13 @@ angular.module('trialdirect').controller('TrialController',
                     $state.go("trials.detail", { 'trialId': newTrial.id});
                 });
 
+
                 $scope.newTrial= {};
-                $scope.newTrial.checked = false;
+                $scope.reset();
             };
 
             $scope.chooseTherapeuticArea = function(therapeuticArea, $event) {
                 $scope.newTrial.therapeuticArea = therapeuticArea;
-
-                //if ($scope.newTrial.checked == event.target.value)
-                //    $scope.newTrial.checked = true;
-
             }
         }
     ]);

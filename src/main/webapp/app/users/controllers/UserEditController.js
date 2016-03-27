@@ -1,17 +1,21 @@
-angular.module('traildirect').controller('UserEditController',
+angular.module('trialdirect').controller('UserEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'UserResourceService',
-        'user', 'questionnaireEntries', 'userSelectorQuestionnaireEntries', 'UserSelectorQuestionnaireEntryResourceService',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, UserResourceService, user,
-                  questionnaireEntries, userSelectorQuestionnaireEntries, UserSelectorQuestionnaireEntryResourceService) {
+        'user', 'therapeuticArea', 'questionnaireEntries', 'userSelectorQuestionnaireEntries',
+        'UserSelectorQuestionnaireEntryResourceService',
+        function ($scope, Question, Answer, QuestionnaireEntryResourceService, UserResourceService,
+                  user, therapeuticArea, questionnaireEntries, userSelectorQuestionnaireEntries,
+                  UserSelectorQuestionnaireEntryResourceService) {
 
             $scope.user = user;
+
+            $scope.therapeuticArea = therapeuticArea;
 
             $scope.questionnaireEntries = questionnaireEntries;
 
             $scope.userSelectorQuestionnaireEntries = userSelectorQuestionnaireEntries;
 
             // Iterate over the userSelectors setting
-            // 'answer.isAcceptable=true' on the answers that correspond
+            // 'answer.isSelected=true' on the answers that correspond
 
             // Find the corresponding question
             angular.forEach($scope.questionnaireEntries, function (questionnaireEntry) {
@@ -20,7 +24,7 @@ angular.module('traildirect').controller('UserEditController',
                 // Set each question in the user to be an unacceptable answer
                 // i.e. all unchecked
                 angular.forEach(questionnaireEntry.answers._embeddedItems, function (answer) {
-                    answer.isAcceptable = true;
+                    answer.isSelected = false;
                 });
 
                 // Then iterate over the
@@ -29,7 +33,7 @@ angular.module('traildirect').controller('UserEditController',
                     if (userSelectorEntry.question.id == questionnaireEntry.question.id) {
                         angular.forEach(questionnaireEntry.answers._embeddedItems, function (answer) {
                             if (answer.id == userSelectorEntry.answer.id) {
-                                answer.isAcceptable = false;
+                                answer.isSelected = true;
                             }
                         });
                     }
@@ -44,12 +48,13 @@ angular.module('traildirect').controller('UserEditController',
 
                 // Is it to be considered an unacceptable Answer
                 // i.e. requires a new UserSelectorQuestionnaireEntry
-                if (!answer.isAcceptable) {
+                if (answer.isSelected) {
                     // Then create the userSelectorQuestionnaireEntry in the database
                     new UserSelectorQuestionnaireEntryResourceService({
                         question: questionnaireEntry.question.getHrefLink(),
                         answer: answer.getHrefLink(),
-                        user: user.getHrefLink()
+                        user: user.getHrefLink(),
+                        therapeuticArea:therapeuticArea.getHrefLink()
                     }).save(function (savedUserSelectorQuestionnaireEntry) {
                         // Upon successful persistence
                         // push into the userSelectors

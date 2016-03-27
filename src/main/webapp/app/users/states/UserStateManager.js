@@ -46,6 +46,9 @@ angular.module('uiRouterSample.user', [
                       user : function($stateParams, UserResourceService) {
                           return UserResourceService.loadUser($stateParams.userId);
                       },
+                      therapeuticArea: function($stateParams, UserResourceService) {
+                          return UserResourceService.loadTherapeuticAreaForUser($stateParams.userId);
+                      },
                       questionnaireEntries : function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                           //Initialise the answer api
                           Question.query();
@@ -53,7 +56,7 @@ angular.module('uiRouterSample.user', [
                           QuestionnaireEntryResourceService.initialize();
 
                           // Load all the questions for the particular User
-                          return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForUser($stateParams.userId);
+                          return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink('users', $stateParams.userId);
                       }
                       ,
                       userSelectorQuestionnaireEntries : function ($stateParams, UserSelectorQuestionnaireEntryResourceService, Question, Answer) {

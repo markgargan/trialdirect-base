@@ -10,27 +10,33 @@
                 <li ng-repeat="user in users " ui-sref-active="active">
 
                     <!-- Here's a ui-sref that is also providing necessary parameters -->
-                    <a ui-sref="users.detail({userId:user.id})">{{user.title}}</a>
+                    <a ui-sref="users.detail({userId:user.id})">{{user.pseudonym}}</a>
                 </li>
             </ul>
             <hr>
 
-            <div class="row" ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
-                <div class="checkbox">
-                    <label>
-                        <input type="radio" ng-model="color.name" ng-click="chooseTherapeuticArea(therapeuticArea, $event)"/> {{therapeuticArea.title}}
-                    </label>
+            <form class="form-horizontal" role="form" ng-submit="addUser(newUser)">
+
+                <div ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
+                    <div class="radio">
+                        <label><input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
+                                      ng-click="chooseTherapeuticArea(therapeuticArea, $event)"/>
+                            {{therapeuticArea.title}}</label>
+                    </div>
                 </div>
-            </div>
 
-            <input type="text" class="form-control" ng-disabled="!newUser.therapeuticArea" ng-model="newUser.title" placeholder="e.g. Cardiovascular"/>
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button" ng-click="addUser(newUser)"
-                        ng-disabled="!newUser.therapeuticArea" title="Add">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </button>
-              </span>
+                <div class="input-group add-new-group">
+                    <input type="text" class="form-control" ng-disabled="!newUser.therapeuticArea"
+                           ng-model="newUser.pseudonym" placeholder="e.g. Kate's assessment"/>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"
+                            ng-disabled="!newUser.therapeuticArea" title="Add">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </span>
+                </div>
 
+            </form>
             <hr>
 
             <!-- Another named view -->

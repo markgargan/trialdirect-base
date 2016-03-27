@@ -40,9 +40,9 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
             };
 
             // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
-            QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTrial = function (trialId) {
+            QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink= function (linkname, linkId) {
 
-                var deferred1 = $http.get(TRIAL_PARENT_URL_PREFIX + '/' + trialId + '/therapeuticArea');
+                var deferred1 = $http.get('api/' + linkname + '/' + linkId + '/therapeuticArea');
 
                 return SpringDataRestAdapter.process(deferred1).then(function (therapeuticArea) {
 
