@@ -51,8 +51,8 @@ angular.module('uiRouterSample.user', [
                       },
                       questionnaireEntries : function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                           //Initialise the answer api
-                          Question.query();
-                          Answer.query();
+                          Question.initialize();
+                          Answer.initialize();
                           QuestionnaireEntryResourceService.initialize();
 
                           // Load all the questions for the particular User

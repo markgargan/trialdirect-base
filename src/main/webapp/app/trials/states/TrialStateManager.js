@@ -48,8 +48,8 @@ angular.module('uiRouterSample.trial', [
                       },
                       questionnaireEntries : function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                           //Initialise the answer api
-                          Question.query();
-                          Answer.query();
+                          Question.initialize();
+                          Answer.initialize();
                           QuestionnaireEntryResourceService.initialize();
 
                           // Load all the questions for the particular Trial
@@ -58,8 +58,8 @@ angular.module('uiRouterSample.trial', [
                       ,
                       trialSelectorQuestionnaireEntries : function ($stateParams, TrialSelectorQuestionnaireEntryResourceService, Question, Answer) {
                           //Initialise the answer api
-                          Question.query();
-                          Answer.query();
+                          Question.initialize();
+                          Answer.initialize();
                           TrialSelectorQuestionnaireEntryResourceService.initialize();
 
                           // Load all the questions for the particular Trial

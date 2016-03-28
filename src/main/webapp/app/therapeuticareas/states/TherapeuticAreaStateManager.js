@@ -43,24 +43,13 @@ angular.module('uiRouterSample.therapeuticarea', [
                       },
                       questionnaireEntries : function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                           //Initialise the answer api
-                          Question.query();
-                          Answer.query();
+                          Question.initialize();
+                          Answer.initialize();
                           QuestionnaireEntryResourceService.initialize();
 
                           // Load all the questions for the particular TherapeuticArea
                           return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticArea($stateParams.therapeuticAreaId);
                       }
-
-                      //specificTherapeuticArea: function ($stateParams, TherapeuticAreaResourceService, QuestionnaireEntryResourceService, Question, Answer) {
-                      //    //Initialise the answer api
-                      //    Question.query();
-                      //    Answer.query();
-                      //    QuestionnaireEntryResourceService.initialize();
-                      //    TherapeuticAreaResourceService.initialize();
-                      //
-                      //    // Load all the questions for the particular TherapeuticArea
-                      //    return TherapeuticAreaResourceService.loadTherapeuticArea($stateParams.therapeuticAreaId);
-                      //}
                   }
               },
             'hint@': {

@@ -5,7 +5,9 @@
       <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
     </layout>
   </appender>
- 
+
+  <logger name="org.hibernate.type" level="ALL" />
+
   <root level="info">
     <appender-ref ref="STDOUT" />
   </root>

@@ -6,9 +6,13 @@ angular.module('trialdirect').controller('TrialEditController',
 
             $scope.trial = trial;
 
+            $scope.trial.checked = true;
+
             $scope.questionnaireEntries = questionnaireEntries;
 
             $scope.trialSelectorQuestionnaireEntries = trialSelectorQuestionnaireEntries;
+
+            $scope.hidelist=false;
 
             // Iterate over the trialSelectors setting
             // 'answer.isAcceptable=true' on the answers that correspond
@@ -35,11 +39,6 @@ angular.module('trialdirect').controller('TrialEditController',
                     }
                 });
             });
-
-            $scope.chooseTherapeuticArea = function(therapeuticArea) {
-                newTrial.therapeuticArea = therapeuticArea;
-                //therapeuticArea.isSelected=true;
-            };
 
             $scope.updateTrialSelectorQuestionnaireEntry = function (questionnaireEntry, answer) {
 
@@ -72,4 +71,5 @@ angular.module('trialdirect').controller('TrialEditController',
                 }
             };
         }
-    ]);
+    ])
+;

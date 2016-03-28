@@ -1,6 +1,29 @@
-<h2>All Trials</h2>
-<ul>
-  <li ng-repeat="trial in trials">
-    <a ui-sref="trials.detail({trialId:trial.id})">{{trial.title}}</a>
-  </li>
-</ul>    
+<div>
+    <h2>Create Trial</h2>
+</div>
+
+<form name="CreateTrialArea" class="form-horizontal col-xs-7" role="form" ng-submit="addTrial(newTrial)">
+
+        <div class="list-answers answers">
+            <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                <input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
+                       ng-click="chooseTherapeuticArea(therapeuticArea)">
+                <span ng-bind="therapeuticArea.title"></span>
+            </label>
+        </div>
+
+        <div class="list-text input-group">
+            <input id="newTrialInput" type="text" class="form-control"
+                   data-ng-disabled="!newTrial.therapeuticArea"
+                   ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit"
+                        ng-disabled="!newTrial.title" title="Add">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+
+        <div class="clear"></div>
+
+</form>

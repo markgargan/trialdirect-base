@@ -1,26 +1,59 @@
-<div class="col-xs-offset-1">
-    <form class="form-horizontal" role="form" ng-submit="addTrial(newTrial)">
-
-        <div class="page-header">
-            <h1>{{trial.title}}</h1>
-        </div>
-
-        <div class="form-group" ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
-            <div class="col-xs-9">
-                <label>
-                    {{questionnaireEntry.question.questionText}}
-                </label>
-            </div>
-            <div class="col-xs-offset-1">
-                <div class="row" ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-
-                    <div class="checkbox col-xs-9">
-                        <label>
-                            <input type="checkbox" ng-click="updateTrialSelectorQuestionnaireEntry(questionnaireEntry, answer)" ng-checked="answer.isAcceptable" ng-model="answer.isAcceptable"/> {{answer.answerText}}
-                        </label>
+        <!-- ngView:  -->
+            <div data-ng-view="" data-autoscroll="true" class="view-frame">
+                <form class="wide"
+                      data-ng-controller="TrialSearchController as search">
+                    <div class="trialRight" style="margin:0" data-ng-hide="showList"><h3 class="trialCountH">Trials</h3>
+                        <div class="trialCount"><p>Trials Available</p>
+                            <h1 class="ng-binding">13</h1></div>
                     </div>
-                </div>
+                    <div class="trialSearch">
+                        <div class="answers trialTitle" style="float:right">
+                            <label >
+                                <input type="radio" data-ng-checked="trial.checked">
+                                <span class="ng-binding">{{trial.therapeuticArea.title}}</span>
+                            </label>
+                        </div><div class="trialTitle" ng-bind="trial.title"></div>
+
+                        <div>
+                            <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
+                                <div class="question">
+                                    <p ng-bind="questionnaireEntry.question.questionText"></p>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="answers">
+                                    <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                                        <input type="checkbox" ng-click="updateTrialSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+                                               ng-checked="answer.isAcceptable" ng-model="answer.isAcceptable">
+                                        <span ng-bind="answer.answerText"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trialResults ng-hide" data-ng-show="showList"><h3 class="countHead" id="results">Trial
+                        Results</h3>
+                        <div class="trialList">
+                            <div class="trialIntro ng-hide" data-ng-show="trial2"><h4>Thomas Haak, MD</h4>
+                                <p><span class="doc1"></span>This trial evaluates a cognitive-behavioural intervention
+                                    for diabetes patients with suboptimal glycaemic control and comorbid depressive
+                                    symptoms and/or diabetes distress.</p>
+                                <p class="distance"><i class="fa fa-map-marker"></i> 72 Miles Away</p>
+                                <p class="link"><a href="#/trial-info2/" class="more">Learn More</a></p>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="trialIntro" data-ng-show="trial1"><h4>Stacy Moulder, MD</h4>
+                                <p><span class="doc3"></span>The goal of this research study is find out if researchers
+                                    can use genetic testing on tumor samples to predict if tumors will respond to breast
+                                    cancer treatments.</p>
+                                <p class="distance"><i class="fa fa-map-marker"></i> 125 Miles Away</p>
+                                <p class="link"><a href="#/trial-info1/" class="more">Learn More</a></p>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </form>
+                <div class="clear ng-scope"></div>
             </div>
         </div>
-    </form>
-</div>

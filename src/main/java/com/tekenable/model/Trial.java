@@ -38,7 +38,7 @@ public class Trial extends BaseEntity{
     }
 
     @ManyToOne
-    @JoinColumn(name = "therapeutic_area_id")
+    @JoinColumn(nullable = true, name = "therapeutic_area_id")
     public TherapeuticArea getTherapeuticArea() {
         return therapeuticArea;
     }
