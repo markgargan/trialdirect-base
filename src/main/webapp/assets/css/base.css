@@ -2,6 +2,13 @@
  Integration start
 **/
 
+main.trial-direct {
+    background: #fafafa;
+}
+
+div.pa-sidebar {
+    background-color: #E6E6E6;
+}
 div.list-text {
     width: 31em;
 }
@@ -37,9 +44,14 @@ div.list-answers {
     background-color: #00857f;
 }
 
-.nav li > a:hover {
+
+.nav > .limiter >a {
+    color:#fff;
+} 
+
+.headerPanel .nav > a:hover {
     outline: 0;
-    color: #00857f;
+    color: #00857f; /** green **/
     text-decoration: none;
 }
 
@@ -234,10 +246,8 @@ form.small label {
 .answers label input:checked + span .fa {
     display: inline
 }
-
-.limiter, main {
-    display: block
-}
+ 
+.limiter, main {/* background: #fafafa; */display: block;}
 
 main {
     min-height: 50em
@@ -449,7 +459,7 @@ td, th {
 .trialSearch {
     display: block;
     float: left;
-    width: 50%;
+    width: 54%;
 }
 
 .trialLocation, .trialResults, .trialRight {
@@ -491,12 +501,12 @@ td, th {
 }
 
 .trialIntro span.doc2 {
-    background: url(../images/doc2.jpg);
+    /*background: url(../images/doc2.jpg);*/
     background-size: cover
 }
 
 .trialIntro span.doc3 {
-    background: url(../images/doc3.jpg);
+    /*background: url(../images/doc3.jpg);*/
     background-size: cover
 }
 
@@ -610,6 +620,9 @@ a:active.more, a:hover.more {
         margin-bottom: 2em
     }
 
+    .pa-sidebar, .answers.trialTitle {
+        display:none;
+    }
     .trialCountH {
         display: none
     }

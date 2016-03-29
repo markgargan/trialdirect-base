@@ -1,5 +1,4 @@
 <div class="row">
-    <!--<div  ng-hide="$state.includes('trials.detail') && hideList">-->
     <div class="col-xs-3">
         <div class="pa-sidebar well well-small">
             <ul class="nav nav-list">
@@ -16,7 +15,8 @@
             </ul>
             <hr>
 
-            <form ng-hide="$state.includes('trials.list')" class="form-horizontal" role="form" ng-submit="addTrial(newTrial)">
+            <form ng-hide="$state.includes('trials.list')" class="form-horizontal" role="form"
+                  ng-submit="addTrial(newTrial)">
 
                 <label for="newTrialInput" class="nav-header new-group-label">Create Therapeutic Trial</label>
 
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="input-group add-new-group">
-                    <input id="newTrialInput" type="text" class="form-control"
+                    <input id="newTrialInput" type="text" ng-disabled="newTrial.therapeuticArea" class="form-control"
                            ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="submit"
@@ -41,8 +41,6 @@
 
             </form>
             <hr>
-            <!-- Another named view -->
-            <div ui-view="menuTip"></div>
         </div>
     </div>
 
