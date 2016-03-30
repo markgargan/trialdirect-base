@@ -496,7 +496,7 @@ td, th {
 }
 
 .trialIntro span.doc1 {
-    background: url(../images/doc1.png);
+    /*background: url(../images/doc1.png);*/
     background-size: cover
 }
 

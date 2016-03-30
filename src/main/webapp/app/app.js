@@ -2,8 +2,6 @@ angular.module('trialdirect', [
         'uiRouterSample.therapeuticarea',
         'uiRouterSample.trial',
         'uiRouterSample.user',
-        'uiRouterSample.contacts.service',
-        'uiRouterSample.utils.service',
         'ngResource',
         'spring-data-rest',
         'ui.router'
