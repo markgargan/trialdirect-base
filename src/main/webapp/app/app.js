@@ -74,7 +74,7 @@ angular.module('trialdirect', [
 
                 questionnaireEntries: function (QuestionnaireEntryResourceService, Answer) {
                     //Initialise the answer api
-                    Answer.query();
+                    Answer.initialize();
 
                     // Initialise the query api and return all available questions
                     return QuestionnaireEntryResourceService.load();
@@ -120,52 +120,9 @@ angular.module('trialdirect', [
     return function (items) {
         return items.slice().reverse();
     };
-}).controller("MyPatientsController", function($scope, $http) {
-        $http.get("assets/json/myPatients.json").success(function(data) {
-            $scope.d = data
-        })
-    })
-    .controller("NavController", function($scope) {
+}).controller("NavController", function($scope) {
         $scope.IsHidden = !1,
             $scope.ShowHide = function() {
                 $scope.IsHidden = !$scope.IsHidden
             }
-    }).controller("TrialSearchController", function($scope, $http) {
-        $http.get("assets/json/area.json").success(function(data) {
-            $scope.d = data
-        }),
-            $scope.countVal = "32",
-            $scope.areaVal = null ,
-            $scope.setAreaVal = function(newVal) {
-                if ($scope.areaVal = newVal,
-                    "Cancer" == newVal) {
-                    var load = "cancer";
-                    $scope.trial1 = !0,
-                        $scope.trial2 = !1,
-                        $scope.countVal = "13"
-                }
-                if ("Diabetes" == newVal) {
-                    var load = "diabetes";
-                    $scope.trial2 = !0,
-                        $scope.trial1 = !1,
-                        $scope.countVal = "19"
-                }
-                $scope.showList = !1,
-                    $http.get("assets/json/" + load + ".json").success(function(data) {
-                        $scope.q = data
-                    })
-            }
-            ,
-            $scope.setCount = function() {
-                var rand = Math.floor(15 * Math.random() + 1);
-                $scope.countVal = $scope.countVal - rand,
-                $scope.countVal <= 4 && ($scope.countVal = "2")
-            }
-            ,
-            $scope.myFunction = function() {
-                $scope.showList = !0,
-                    $("html, body").animate({
-                        scrollTop: $("#results").offset().top
-                    }, 400)
-            }
-    }).directive("navMenu", function() {});
+    });

@@ -2,4 +2,4 @@
 target
 *.log
 vendor
-trialdirect.iml
+*.iml
