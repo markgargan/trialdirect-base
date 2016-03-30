@@ -3,7 +3,6 @@ package com.tekenable.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @NamedQueries({
@@ -37,6 +36,8 @@ public class Trial extends BaseEntity {
 
     private TherapeuticArea therapeuticArea;
 
+    private Set<TrialInfo> trialInfos;
+
     public Trial() {
     }
 
@@ -63,8 +64,6 @@ public class Trial extends BaseEntity {
         this.trialselectorquestionnaireentries = trialselectorquestionnaireentries;
     }
 
-
-//    @JsonIgnore
     @ManyToOne
     @JoinColumn(nullable = true, name = "therapeutic_area_id")
     public TherapeuticArea getTherapeuticArea() {
@@ -73,5 +72,14 @@ public class Trial extends BaseEntity {
 
     public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
         this.therapeuticArea = therapeuticArea;
+    }
+
+    @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL)
+    public Set<TrialInfo> getTrialInfos() {
+        return trialInfos;
+    }
+
+    public void setTrialInfos(Set<TrialInfo> trialInfos) {
+        this.trialInfos = trialInfos;
     }
 }
