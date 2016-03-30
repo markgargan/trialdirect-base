@@ -2,7 +2,6 @@ angular.module('trialdirect', [
         'uiRouterSample.therapeuticarea',
         'uiRouterSample.trial',
         'uiRouterSample.user',
-        'uiRouterSample.contacts',
         'uiRouterSample.contacts.service',
         'uiRouterSample.utils.service',
         'ngResource',
