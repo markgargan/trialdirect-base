@@ -10,18 +10,7 @@ import java.util.Set;
 
 
         @NamedQuery(name = "Trial.getAllTrialsForUserId",
-                query = "select t from Trial t where id=:userId"),
-
-//        @NamedQuery(name = "Trial.getAvailableTrials",
-//                query = "select t2 from Trial t2 where t2.id not in ( " +
-//                        "select t from Trial t " +
-//                        "inner join TherapeuticArea ta " +
-//                        "inner join User u on t.therapeutic_area_id = u.therapeutic_area_id " +
-//                        "inner join UserSelectorQuestionnaireEntry usqe " +
-//                        "inner join TrialSelectorQuestionnaireEntry tsqe " +
-//                        "  on usqe.question_id=tsqe.question_id " +
-//                        "    and usqe.answer_id=tsqe.answer_id " +
-//                        "      where u.id=:userId and usqe.therapeuticArea.id=:therapeuticArea)")
+                query = "select t from Trial t where id=:userId")
 })
 
 @NamedNativeQueries({

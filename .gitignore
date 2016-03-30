@@ -3,3 +3,4 @@ target
 *.log
 vendor
 *.iml
+/trialdirect.iml
