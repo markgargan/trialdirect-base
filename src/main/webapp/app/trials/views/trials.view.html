@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="input-group add-new-group">
-                    <input id="newTrialInput" type="text" ng-disabled="newTrial.therapeuticArea" class="form-control"
+                    <input id="newTrialInput" type="text" ng-disabled="!newTrial.therapeuticArea" class="form-control"
                            ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="submit"
