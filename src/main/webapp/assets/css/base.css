@@ -98,6 +98,7 @@ div.trialSubmission label input:disabled + span,
 div.trialSubmission label input:disabled:hover + span {
     background: #ddd;
     color: #fff;
+    cursor:not-allowed;
 }
 
 div.trialSubmission label input:hover + span {
