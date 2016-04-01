@@ -9,15 +9,12 @@ public class TrialDirectPrimer {
     @Autowired
     CancerTrialPrimer cancerTrialPrimer;
 
-    @Autowired
-    DiabetesTrialPrimer diabetesTrialPrimer;
 
     @PostConstruct
     public void initDB() {
 
         try {
             cancerTrialPrimer.initDB();
-            diabetesTrialPrimer.initDB();
 
         }catch (NullPointerException pae) {
             pae.printStackTrace();

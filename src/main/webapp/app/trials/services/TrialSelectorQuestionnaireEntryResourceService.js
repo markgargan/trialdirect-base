@@ -145,8 +145,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                         var trialSelectorQuestionnaireEntry = trialSelectorQuestionnaireEntries[i];
                         // Delete each TrialSelectorQuestionnaireEntry.
                         promises.push ( new TrialSelectorQuestionnaireEntryResourceService(trialSelectorQuestionnaireEntry).remove());
-                    };
-
+                    }
                     $q.all(promises);
 
                     callback && callback();

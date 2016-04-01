@@ -40,11 +40,11 @@ public class CancerTrialPrimer {
     protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer");
     // main question (no wrong answers here, it determines the initial path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
-    protected final Question q1 = new Question("What kind of disease you've got?");
-    protected final Answer a11 = new Answer("Astma");
-    protected final Answer a12 = new Answer("Cancer");
-    protected final Answer a13 = new Answer("Alergy");
-    protected final Answer a14 = new Answer("Diabetes");
+    protected final Question q1 = new Question("What is the type of your cancer?");
+    protected final Answer a11 = new Answer("Stomach");
+    protected final Answer a12 = new Answer("Skin");
+    protected final Answer a13 = new Answer("Lungs");
+    protected final Answer a14 = new Answer("Larynx");
     protected Set answers1 = new HashSet() {{add(a11); add(a12); add(a13); add(a14);}};
     protected final QuestionnaireEntry entry1 = new QuestionnaireEntry(q1, answers1, therapeuticAreaCancer);
 
@@ -52,11 +52,11 @@ public class CancerTrialPrimer {
     // however there is no way to do that yet
     // all below questions belong to CANCER therapeutic area so all further questions has TS attached
 
-    protected final Question q2 = new Question("What is the type of your cancer?");
-    protected final Answer a21 = new Answer("Stomach");
-    protected final Answer a22 = new Answer("Skin");
-    protected final Answer a23 = new Answer("Lungs");
-    protected final Answer a24 = new Answer("Larynx");
+    protected final Question q2 = new Question("How long do you suffer from cancer (in year)?");
+    protected final Answer a21 = new Answer("0-3");
+    protected final Answer a22 = new Answer("3-5");
+    protected final Answer a23 = new Answer("5-10");
+    protected final Answer a24 = new Answer("10 or more");
     protected final Set answers2 = new HashSet() {{add(a21); add(a22); add(a23); add(a24);}};
     protected final QuestionnaireEntry entry2 = new QuestionnaireEntry(q2, answers2, therapeuticAreaCancer);
 
