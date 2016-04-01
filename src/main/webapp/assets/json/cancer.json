@@ -1,0 +1,28 @@
+[
+  {
+    "id":"2",
+    "question":"Patient's Cancer Type?",
+    "answers":[
+      "Breast",
+      "Lung"
+    ]
+  },
+  {
+    "id":"3",
+    "question":"Patient's Gender?",
+    "answers":[
+      "Male",
+      "Female"
+    ]
+  },
+  {
+    "id":"4",
+    "question":"Patient's Age Group?",
+    "answers":[
+      "0 - 18",
+      "19 - 34",
+      "35 - 69",
+      "70+"
+    ]
+  }
+]

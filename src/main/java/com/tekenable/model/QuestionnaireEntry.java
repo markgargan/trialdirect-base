@@ -1,12 +1,20 @@
 package com.tekenable.model;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
  * Created by smoczyna on 17/03/16.
+ *
+ * Create a new QuestionnaireEntry via Data Rest
+ * curl -v -X PUT -H "Content-Type: text/uri-list" \
+ -d "http://localhost:7070/study-spring-data/teacher/1" \
+ http://localhost:7070/study-spring-data/course/123/teacher
+ *
+ *
  */
 @Entity
 public class QuestionnaireEntry extends BaseEntity {
@@ -14,50 +22,30 @@ public class QuestionnaireEntry extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
 
-    private String title;
-    private Question question;
-    private Set<Answer> answers;
-    private Questionnaire questionnaire;
+    protected Question question;
+    protected Set<Answer> answers;
+    protected TherapeuticArea therapeuticArea;
 
     public QuestionnaireEntry() {
     }
 
-    public QuestionnaireEntry(String title, String question, String answer) {
-        this.title= title;
+    public QuestionnaireEntry(String question, String answer) {
         this.question = new Question(question);
         this.answers = new LinkedHashSet();
         this.answers.add(new Answer(answer));
     }
 
-    public QuestionnaireEntry(String title, Question question, Answer answer, Questionnaire questionnaire) {
-        this.title = title;
+    public QuestionnaireEntry(Question question, Answer answer, TherapeuticArea therapeuticArea) {
         this.question = question;
         this.answers = new LinkedHashSet();
         this.answers.add(answer);
-        this.questionnaire = questionnaire;
+        this.therapeuticArea = therapeuticArea;
     }
 
-    public QuestionnaireEntry(String title, Question question, Set<Answer> answers, Questionnaire questionnaire) {
-        this.title = title;
+    public QuestionnaireEntry(Question question, Set<Answer> answers, TherapeuticArea therapeuticArea) {
         this.question = question;
         this.answers = answers;
-        this.questionnaire = questionnaire;
-    }
-
-    public QuestionnaireEntry(String title, Question question, Answer answer) {
-        this.title = title;
-        this.question = question;
-        this.answers = new LinkedHashSet();
-        this.answers.add(answer);
-    }
-
-    @Column(name= "title")
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        this.therapeuticArea = therapeuticArea;
     }
 
     @ManyToOne
@@ -70,7 +58,7 @@ public class QuestionnaireEntry extends BaseEntity {
         this.question = question;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(name = "questionnaireEntry_answer",
             joinColumns=@JoinColumn(name="questionnaire_entry_id", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="answer_id", referencedColumnName="id"))
@@ -83,13 +71,13 @@ public class QuestionnaireEntry extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "questionnaire_id")
-    public Questionnaire getQuestionnaire() {
-        return questionnaire;
+    @JoinColumn(name = "therapeutic_area_id")
+    public TherapeuticArea getTherapeuticArea() {
+        return therapeuticArea;
     }
 
-    public void setQuestionnaire(Questionnaire questionnaire) {
-        this.questionnaire = questionnaire;
+    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
+        this.therapeuticArea = therapeuticArea;
     }
 
 }

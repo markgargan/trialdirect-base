@@ -1,0 +1,29 @@
+<div>
+  <h2>Create User</h2>
+</div>
+
+<form name="CreateUserArea" class="form-horizontal col-xs-7" role="form" ng-submit="addUser(newUser)">
+
+  <div class="list-answers answers">
+    <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+      <input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
+             ng-click="chooseTherapeuticArea(therapeuticArea)">
+      <span ng-bind="therapeuticArea.title"></span>
+    </label>
+  </div>
+
+  <div class="list-text input-group">
+    <input id="newUserInput" type="text" class="form-control"
+           data-ng-disabled="!newUser.therapeuticArea"
+           ng-model="newUser.pseudonym" placeholder="e.g. Acme User"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit"
+                        ng-disabled="!newUser.pseudonym" title="Add">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+  </div>
+
+  <div class="clear"></div>
+
+</form>

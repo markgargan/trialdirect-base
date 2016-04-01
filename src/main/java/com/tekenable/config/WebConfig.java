@@ -42,6 +42,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     registry.addResourceHandler("/views/**").addResourceLocations("/views/");
     registry.addResourceHandler("/app/**").addResourceLocations("/app/");
     registry.addResourceHandler("/css/**").addResourceLocations("/css/");
+    registry.addResourceHandler("/demo/**").addResourceLocations("/demo/");
   }
 
   @Override

@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-xs-3">
+        <div class="pa-sidebar well well-small">
+            <ul class="nav nav-list">
+                <li ng-class="{ active: $state.includes('users.list') }"><a ui-sref="users.list">All Users</a></li>
+                <li class="nav-header">Clinical Users</li>
+
+                <!-- This <li> will only add the 'active' class if 'users.detail' or its descendants are active
+                     AND if it is the link for the active contact (aka contactId) -->
+                <li ng-repeat="user in users " ui-sref-active="active">
+
+                    <!-- Here's a ui-sref that is also providing necessary parameters -->
+                    <a ui-sref="users.detail({userId:user.id})">{{user.pseudonym}}</a>
+                </li>
+            </ul>
+            <hr>
+
+            <form ng-hide="$state.includes('users.list')" class="form-horizontal" role="form"
+                  ng-submit="addUser(newUser)">
+
+                <label for="newUserInput" class="nav-header new-group-label">Begin User Assessment</label>
+
+                <div ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
+                    <div class="radio">
+                        <label><input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
+                                      ng-click="chooseTherapeuticArea(therapeuticArea, $event)"/>
+                            {{therapeuticArea.title}}</label>
+                    </div>
+                </div>
+
+                <div class="input-group add-new-group">
+                    <input id="newUserInput" type="text" class="form-control" ng-disabled="!newUser.therapeuticArea"
+                           ng-model="newUser.pseudonym" placeholder="e.g. Kate's assessment"/>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"
+                            ng-disabled="!newUser.pseudonym" title="Add">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </span>
+                </div>
+
+            </form>
+            <hr>
+        </div>
+    </div>
+
+    <!-- Our unnamed main ui-view for this template -->
+    <div ui-view></div>
+</div>

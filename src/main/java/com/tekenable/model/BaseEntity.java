@@ -5,15 +5,15 @@ import javax.persistence.*;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
-  protected int id;
+  protected Integer id;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 }
