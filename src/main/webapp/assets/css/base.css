@@ -2,6 +2,11 @@
  Integration start
 **/
 
+.selectionsSaved + p {
+    font-style:italic;
+    color:lightgray;
+}
+
 .right {
     float:right;
 }

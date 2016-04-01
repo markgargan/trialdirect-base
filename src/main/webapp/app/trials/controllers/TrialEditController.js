@@ -13,6 +13,7 @@ angular.module('trialdirect').controller('TrialEditController',
             $scope.questionnaireEntries = questionnaireEntries;
 
             $scope.isEditing = false;
+            $scope.wasSaved = false;
 
             // Selections loaded upon hitting the page
             $scope.trialSelectorQuestionnaireEntries = trialSelectorQuestionnaireEntries;
@@ -60,7 +61,7 @@ angular.module('trialdirect').controller('TrialEditController',
 
                         // Turn off editing
                         $scope.setEditing(false);
-
+                        $scope.wasSaved = true;
                     });
                 }
             };
@@ -157,6 +158,7 @@ angular.module('trialdirect').controller('TrialEditController',
 
             $scope.updateQuestionnaireEntrySet = function(questionnaireEntry) {
                 $scope.setEditing(true);
+                $scope.wasSaved = false;
                 questionnaireEntry.selectAll=false;
                 questionnaireEntry.errors = null;
             };
