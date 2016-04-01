@@ -2,7 +2,7 @@
  Integration start
 **/
 
-.selectionsSaved + p {
+label.selectionsSaved > p {
     font-style:italic;
     color:lightgray;
 }
