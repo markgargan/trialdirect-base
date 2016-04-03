@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="span3">
+    <div class="col-xs-3">
         <div class="pa-sidebar well well-small">
             <ul class="nav nav-list">
                 <li ng-class="{ active: $state.includes('users.list') }"><a ui-sref="users.list">All Users</a></li>
@@ -15,9 +15,10 @@
             </ul>
             <hr>
 
-            <form class="form-horizontal" role="form" ng-submit="addUser(newUser)">
+            <form ng-hide="$state.includes('users.list')" class="form-horizontal" role="form"
+                  ng-submit="addUser(newUser)">
 
-                <label for="newUserInput" class="nav-header new-group-label">Begin User Assessment </label>
+                <label for="newUserInput" class="nav-header new-group-label">Begin User Assessment</label>
 
                 <div ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
                     <div class="radio">
@@ -40,12 +41,9 @@
 
             </form>
             <hr>
-
-            <!-- Another named view -->
-            <div ui-view="menuTip" class="slide"></div>
         </div>
     </div>
 
     <!-- Our unnamed main ui-view for this template -->
-    <div ui-view class="span9 slide"></div>
+    <div ui-view></div>
 </div>

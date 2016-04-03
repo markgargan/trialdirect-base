@@ -8,16 +8,6 @@ angular.module('trialdirect').controller('UserController',
 
             $scope.newUser={};
 
-            $scope.reset = function() {
-
-                // Reset the radio buttons
-                angular.forEach($scope.therapeuticAreas, function(therapeuticArea) {
-                    therapeuticArea.checked=false;
-                });
-            };
-
-            $scope.reset();
-
             $scope.addUser = function (newUser) {
                 new UserResourceService({
                     pseudonym: newUser.pseudonym,
@@ -28,9 +18,20 @@ angular.module('trialdirect').controller('UserController',
                     $state.go("users.detail", { 'userId': newUser.id});
                 });
 
-                $scope.reset();
                 $scope.newUser= {};
+
+                $scope.reset();
             };
+
+            $scope.reset = function() {
+
+                // Reset the radio buttons
+                angular.forEach($scope.therapeuticAreas, function(therapeuticArea) {
+                    therapeuticArea.checked=false;
+                });
+            };
+
+            $scope.reset();
 
             $scope.chooseTherapeuticArea = function(therapeuticArea) {
                 $scope.newUser.therapeuticArea = therapeuticArea;

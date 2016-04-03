@@ -1,5 +1,6 @@
+/trialdirect.iml
 .idea
 target
 *.log
 vendor
-trialdirect.iml
+*.iml

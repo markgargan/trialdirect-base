@@ -40,7 +40,7 @@ angular.module('trialdirect').factory('Answer', ['$http', 'SpringDataRestAdapter
                 return answer;
             }
 
-            Answer.query = function () {
+            Answer.initialize = function () {
                 var deferred = $http.get(ANSWER_URL);
                 return SpringDataRestAdapter.process(deferred ).then(function (data) {
                     Answer.resources = data._resources("self");

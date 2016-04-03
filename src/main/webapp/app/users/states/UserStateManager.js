@@ -46,13 +46,10 @@ angular.module('uiRouterSample.user', [
                       user : function($stateParams, UserResourceService) {
                           return UserResourceService.loadUser($stateParams.userId);
                       },
-                      therapeuticArea: function($stateParams, UserResourceService) {
-                          return UserResourceService.loadTherapeuticAreaForUser($stateParams.userId);
-                      },
                       questionnaireEntries : function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                           //Initialise the answer api
-                          Question.query();
-                          Answer.query();
+                          Question.initialize();
+                          Answer.initialize();
                           QuestionnaireEntryResourceService.initialize();
 
                           // Load all the questions for the particular User
@@ -61,8 +58,8 @@ angular.module('uiRouterSample.user', [
                       ,
                       userSelectorQuestionnaireEntries : function ($stateParams, UserSelectorQuestionnaireEntryResourceService, Question, Answer) {
                           //Initialise the answer api
-                          Question.query();
-                          Answer.query();
+                          Question.initialize();
+                          Answer.initialize();
                           UserSelectorQuestionnaireEntryResourceService.initialize();
 
                           // Load all the questions for the particular User

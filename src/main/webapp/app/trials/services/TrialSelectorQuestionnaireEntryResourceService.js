@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceService',
-    ['$http', 'SpringDataRestAdapter', 'Question', 'Answer',
-        function ($http, SpringDataRestAdapter, Question, Answer) {
+    ['$http', 'SpringDataRestAdapter', 'Question', 'Answer', '$q',
+        function ($http, SpringDataRestAdapter, Question, Answer, $q) {
 
             var TRIAL_PARENT_URL_PREFIX = './api/trials';
             var RESOURCE_URL = './api/trialselectorquestionnaireentries';
@@ -131,6 +131,28 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
 
                 return trialSelectorQuestionnaireEntry;
             }
+
+            TrialSelectorQuestionnaireEntryResourceService.deleteAllTrialsSelectors = function (trial, callback) {
+
+                // Retrieve all the trialSelectorQuestionnaireEntries
+                var deferred = $http.get(TRIAL_PARENT_URL_PREFIX + '/' + trial.id + '/trialselectorquestionnaireentries');
+
+                return SpringDataRestAdapter.process(deferred).then(function (trialSelectorQuestionnaireEntries) {
+
+                    var promises = [];
+
+                    for (var i=0; i<trialSelectorQuestionnaireEntries.length; i++) {
+                        var trialSelectorQuestionnaireEntry = trialSelectorQuestionnaireEntries[i];
+                        // Delete each TrialSelectorQuestionnaireEntry.
+                        promises.push ( new TrialSelectorQuestionnaireEntryResourceService(trialSelectorQuestionnaireEntry).remove());
+                    };
+
+                    $q.all(promises);
+
+                    callback && callback();
+                });
+            };
+
 
             return TrialSelectorQuestionnaireEntryResourceService;
         }

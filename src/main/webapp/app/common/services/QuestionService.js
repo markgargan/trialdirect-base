@@ -40,7 +40,7 @@ angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapt
                 return question;
             }
 
-            Question.query = function () {
+            Question.initialize = function () {
                 var deferred = $http.get(HATEOAS_URL);
                 return SpringDataRestAdapter.process( deferred ).then(function (data) {
                     Question.resources = data._resources("self");

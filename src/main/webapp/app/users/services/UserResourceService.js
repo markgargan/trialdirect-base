@@ -10,7 +10,10 @@ angular.module('trialdirect').factory('UserResourceService',
             UserResourceService.loadUser = function (userId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + userId);
 
-                return SpringDataRestAdapter.process(deferred).then(function (data) {
+                return SpringDataRestAdapter.process(deferred, ['therapeuticArea']).then(function (data) {
+
+                    // Inflate the therapeuticArea
+                    data.therapeuticArea = new TherapeuticAreaResourceService(data.therapeuticArea);
 
                     return new UserResourceService(data);
                 });
