@@ -1,6 +1,6 @@
-/trialdirect.iml
 .idea
 target
 *.log
 vendor
-*.iml
+/*.iml
+/src/main/webapp/bower_components
