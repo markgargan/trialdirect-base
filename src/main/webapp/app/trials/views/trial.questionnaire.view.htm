@@ -5,25 +5,46 @@
             <div class="answers trialTitle" style="float:right">
                 <label>
                     <input type="radio" data-ng-checked="trial.checked">
-                    <span class="ng-binding">{{trial.therapeuticArea.title}}</span>
+                    <span>{{trial.therapeuticArea.title}}
+                    </span>
                 </label>
             </div>
 
-            <div class="trialTitle" ng-bind="trial.title"></div>
+            <div class="trialTitle" ng-class="{isEditing: isEditing}" ng-bind="trialTitle"></div>
 
             <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
                 <div class="question">
                     <p ng-bind="questionnaireEntry.question.questionText"></p>
                     <div class="clear"></div>
                 </div>
-                <div class="answers">
-                    <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-                        <input type="checkbox"
-                               ng-click="updateTrialSelectorQuestionnaireEntry(questionnaireEntry, answer)"
-                               ng-checked="answer.isAcceptable" ng-model="answer.isAcceptable">
-                        <span ng-bind="answer.answerText"></span>
-                    </label>
+                <div>
+                    <div class="answers">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                            <input type="checkbox"
+                                   ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
+                                   ng-checked="answer.isAcceptable" ng-model="answer.isAcceptable">
+                            <span ng-bind="answer.answerText"></span>
+                        </label>
+                        <label class="select-all">
+                            <input name="selectAll" type="checkbox" ng-model="questionnaireEntry.selectAll"
+                                   ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
+                        </label>
+                    </div>
+                    <div class="right trialSelectionError" ng-hide="!questionnaireEntry.errors">
+                        <label ng-bind="questionnaireEntry.errors"></label>
+                    </div>
                 </div>
+            </div>
+
+            <div class="right trialSubmission answers">
+                <label><input type="checkbox" ng-disabled="!isEditing"
+                       ng-click="submitTrialSelections()"/>
+                <span>Save Selections</span>
+                </label>
+                <label class="selectionsSaved" ng-hide="!wasSaved">
+                    <p>Selections saved...</p>
+                </label>
+
             </div>
         </div>
 

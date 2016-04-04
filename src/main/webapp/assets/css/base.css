@@ -2,6 +2,21 @@
  Integration start
 **/
 
+label.selectionsSaved > p {
+    font-style:italic;
+    color:lightgray;
+}
+
+.right {
+    float:right;
+}
+
+.trialSelectionError {
+    color: #FD7C7C;
+    margin-right:1em;
+}
+
+
 main.trial-direct {
     background: #fafafa;
 }
@@ -23,6 +38,11 @@ div.list-answers {
     font-weight:500;
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.trialTitle.isEditing {
+    font-style:italic;
+    color:grey;
 }
 
 .trialdirect > a {
@@ -59,6 +79,36 @@ div.list-answers {
     outline: 0;
     color: #00857f;
     text-decoration: none;
+}
+
+.answers label.select-all input {
+    position: relative;
+    left: 5px;
+    bottom :10px;
+    display: inline-block;
+}
+
+div.trialSubmission {
+    width:100%;
+    
+}
+
+div.trialSubmission label input + span {
+    background: #00857f;
+    color: #fff;
+}
+
+/** When disabled the trialSelector submit button shouldn't respond to :hover **/
+div.trialSubmission label input:disabled + span,
+div.trialSubmission label input:disabled:hover + span {
+    background: #ddd;
+    color: #fff;
+    cursor:not-allowed;
+}
+
+div.trialSubmission label input:hover + span {
+    background: #027570;
+    color: #fff;
 }
 
 /**
@@ -206,7 +256,7 @@ form.small label {
 }
 
 .answers label {
-    display: inline
+    display: inline;
 }
 
 .answers label span {
@@ -222,7 +272,7 @@ form.small label {
     user-select: none;
     -webkit-border-radius: .2em;
     -moz-border-radius: .2em;
-    border-radius: .2em
+    border-radius: .2em;
 }
 
 .answers label span:active, .answers label span:hover {
@@ -231,7 +281,7 @@ form.small label {
 
 .answers label input {
     position: fixed;
-    left: -9999em
+    left: -9999em;
 }
 
 .answers label input:checked + span {
@@ -496,7 +546,7 @@ td, th {
 }
 
 .trialIntro span.doc1 {
-    background: url(../images/doc1.png);
+    /*background: url(../images/doc1.png);*/
     background-size: cover
 }
 

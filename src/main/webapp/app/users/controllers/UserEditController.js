@@ -99,6 +99,8 @@ angular.module('trialdirect').controller('UserEditController',
                                     $scope.userSelectorQuestionnaireEntries.indexOf(questionnaireEntry.userSelection), 1);
 
                                 // unclick the previously selected answer
+                                // not performed with angular.forEach as break; currently
+                                // doesn't work correctly.
                                 for (var i = 0, len = questionnaireEntry.answers._embeddedItems.length; i < len; i++) {
                                     var previouslySelectedAnswer = questionnaireEntry.answers._embeddedItems[i];
                                     if (questionnaireEntry.userSelection.answer.id == previouslySelectedAnswer.id) {
