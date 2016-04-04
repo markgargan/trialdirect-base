@@ -1,5 +1,5 @@
 <header>
-    <div class="header" data-ng-controller="NavController">
+    <div class="header" data-ng-controller="NavigationController">
         <div class="limiter">
             <div class="headerPanel">
                 <div class="limiter inline">
@@ -43,6 +43,7 @@
                         <li ng-class="{active: $state.includes('users')}"><a ui-sref="users.list">Trial Search</a></li>
                         <li><a href="#/about-clinical-trials">About Clinical Trials</a></li>
                         <li><a href="#/help">Help</a></li>
+                        <li ng-class="{active: $state.includes('logout')}"><a ui-sref="logout">Logout</a></li>
                     </ul>
                 </div>
             </nav>

@@ -375,7 +375,7 @@ main {
 }
 
 .admin, .admin a, .admin a:active, .admin a:hover {
-    color: #fff
+    color: #fff;
 }
 
 a[href="#top"] {
