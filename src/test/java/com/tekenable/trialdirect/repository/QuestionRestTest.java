@@ -90,22 +90,6 @@ public class QuestionRestTest extends RestTestResourceTemplate {
 
     @Test
     public void addQuestionTest() throws Exception {
-        /*JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-        log.info("*** START TEST ***");
-        final Integer countBefore = jdbc.queryForObject("select count(*) from Question", Integer.class);
-        log.info("Overall Questions before operation: "+String.valueOf(countBefore));
-*/
-        /*Question question = new Question("Just another test question");
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-        String jsonRequest = ow.writeValueAsString(question);*/
-
-        /*String question = "{\"questionText\" : \"New test question\"}";
-        RequestBuilder rb = post("/questions").contentType(MediaType.APPLICATION_JSON).header("host", "localhost").content(question);
-        ResultActions result = mockMvc.perform(rb);
-        result.andExpect(status().is2xxSuccessful());*/
-
         RestTemplate restTemplate = new RestTemplate();
         MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
 
@@ -117,9 +101,5 @@ public class QuestionRestTest extends RestTestResourceTemplate {
 
         ResponseEntity<String> response = restTemplate.postForEntity("/questions", params, String.class);
         mockServer.verify();
-
-       /* Integer countAfter = jdbc.queryForObject("select count(*) from Question", Integer.class);
-        log.info("Overall Questions after operation: "+String.valueOf(countAfter));
-        assertTrue(countBefore==countAfter-1);*/
     }
 }
