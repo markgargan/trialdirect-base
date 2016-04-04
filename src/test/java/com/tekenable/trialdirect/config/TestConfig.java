@@ -31,16 +31,14 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
  * @author smoczyna
  */
 @Configuration
-//@EnableJpaRepositories(basePackages = {"com.tekenable.repository"})
-@ComponentScan(basePackages = "com.tekenable.controller")
 public class TestConfig extends RepositoryRestMvcConfiguration {
 
     @Bean(name = "dataSource")
     public DataSource dataSource() throws SQLException {
         final SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
         dataSource.setDriver(new Driver());
-        dataSource.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"); // this is causing full install goal issue
-        dataSource.setUsername("trialdirect");                                          // PK duplicates when multiple tests are run together
+        dataSource.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE");
+        dataSource.setUsername("trialdirect");
         dataSource.setPassword("trialdirect");
         return dataSource;
     }

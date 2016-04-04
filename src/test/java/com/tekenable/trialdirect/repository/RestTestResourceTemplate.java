@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tekenable.trialdirect.rest.resource;
+package com.tekenable.trialdirect.repository;
 
 import com.tekenable.config.WebConfig;
 import com.tekenable.trialdirect.config.TestConfig;
 import com.tekenable.trialdirect.config.TestRepoConfig;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
@@ -17,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.test.context.ContextConfiguration;
@@ -39,10 +36,10 @@ import javax.sql.DataSource;
 public abstract class RestTestResourceTemplate {
 
     @Value("classpath:sql/trial-direct-test-data.sql")
-    private Resource testData;
+    private Resource createTestData;
 
     @Value("classpath:sql/clear-test-data.sql")
-    private Resource clearData;
+    private Resource clearTestData;
 
     protected static final Logger log = LoggerFactory.getLogger(RestTestResourceTemplate.class);
     protected MockMvc mockMvc;
@@ -60,9 +57,9 @@ public abstract class RestTestResourceTemplate {
 
     public void initDB() {
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(clearData);
+        populator.addScript(clearTestData);
         DatabasePopulatorUtils.execute(populator, dataSource);
-        populator.addScript(testData);
+        populator.addScript(createTestData);
         DatabasePopulatorUtils.execute(populator, dataSource);
 
     }
