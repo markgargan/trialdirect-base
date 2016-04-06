@@ -139,9 +139,8 @@
                 invoking mvn. -->
             <!-- Use this profile for any OpenShift specific customization your app
                 will need. -->
-            <!-- By default that is to put the resulting archive into the 'webapps'
-                folder. -->
-            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+            <!-- By default that is to put the resulting archive into the 'webapps' folder. -->
+            <!-- THE OUTPUT FOLDER CHANGE TO TARGET -->
             <id>openshift</id>
             <build>
                 <finalName>trialdirect</finalName>
@@ -150,7 +149,7 @@
                         <artifactId>maven-war-plugin</artifactId>
                         <version>2.1.1</version>
                         <configuration>
-                            <outputDirectory>webapps</outputDirectory>
+                            <outputDirectory>target</outputDirectory>
                             <warName>ROOT</warName>
                         </configuration>
                     </plugin>
