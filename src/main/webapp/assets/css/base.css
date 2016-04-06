@@ -265,6 +265,7 @@ form.small label {
     background: #eee;
     padding: .5em 1em;
     margin-left: .25em;
+    martin-bottom: .5em;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
