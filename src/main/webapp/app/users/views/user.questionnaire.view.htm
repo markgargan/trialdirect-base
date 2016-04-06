@@ -2,17 +2,24 @@
 <div data-autoscroll="true" class="view-frame">
     <form class="wide">
         <div class="trialRight" data-ng-hide="showList">
-            <h3 class="trialCountH">Trials</h3>
+            <!-- <h3 class="trialCountH">Trials</h3> -->
             <div class="trialCount"><p>Trials Available</p>
                 <h1 ng-bind="availableTrialIds.length"></h1></div>
         </div>
         <div class="trialSearch">
+
+            <div class="setArea">
+                <p>Trial Therapeutic Area: <strong>{{user.therapeuticArea.title}}</strong></p>
+            </div>
+
+            <!--
             <div class="answers trialTitle" style="float:right">
                 <label>
                     <input type="radio" data-ng-checked="user">
                     <span ng-bind="user.therapeuticArea.title"></span>
                 </label>
             </div>
+            -->
 
             <div class="trialTitle" ng-bind="user.pseudonym"></div>
 
