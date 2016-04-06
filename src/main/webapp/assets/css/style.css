@@ -1,6 +1,12 @@
 .btn-remove {
-    color: #08c;
+    /* color: #08c; */
+    /* background:#eee; */
+    margin-left: .25em;
 }
+.btn-remove:hover, .btn-remove:active {
+    /* background:#ddd; */
+}
+
 
 .slide.ng-leave {
     position: relative;
@@ -32,7 +38,7 @@ input[type="text"] {
 }
 
 .add-new-group {
-    margin-top:1em;
+    /* margin-top:1em; */
 }
 
 .new-group-label {

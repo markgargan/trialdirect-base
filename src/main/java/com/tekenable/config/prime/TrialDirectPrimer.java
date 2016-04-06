@@ -13,6 +13,7 @@ public class TrialDirectPrimer {
     @Autowired
     TrialPrimer trialPrimer;
 
+
     @PostConstruct
     public void initDB() {
 

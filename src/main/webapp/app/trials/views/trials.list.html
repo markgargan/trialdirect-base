@@ -1,0 +1,45 @@
+<div>
+    <h1>Create Clinical Trial</h1>
+</div>
+
+<form name="CreateTrialArea" class="form-horizontal col-xs-9" role="form" data-ng-submit="addTrial(newTrial)">
+
+    <div class="qa">
+        <div class="question">
+    <p>Select main Therapeutic Area</p>
+    <div class="clear"></div>
+            </div>
+
+
+        <div class="answers">
+            <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                <input name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                       data-ng-click="chooseTherapeuticArea(therapeuticArea)">
+                <span data-ng-bind="therapeuticArea.title"></span>
+            </label>
+        </div>
+    <div class="clear"></div>
+        </div>
+
+    <div class="qa">
+        <div class="question">
+    <p>Provide a Trial Name</p>
+    <div class="clear"></div>
+            </div>
+        <div class="answers">
+        <div class="input-group">
+
+            <input id="newTrialInput" type="text" class="form-control"
+                   data-ng-disabled="!newTrial.therapeuticArea"
+                   data-ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit"
+                        data-ng-disabled="!newTrial.title" title="Add">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </span>
+        </div>
+
+        <div class="clear"></div>
+</div></div>
+</form>
