@@ -9,7 +9,7 @@
   <!-- Allows us to see what is being bound -->
   <logger name="org.hibernate.type" level="ALL" />
   <!--<logger name="org.hibernate" level="ALL" />-->
-  <logger name="org.springframework" level="ALL" />
+  <!--<logger name="org.springframework" level="ALL" />-->
 
 
   <root level="info">

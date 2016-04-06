@@ -113,12 +113,12 @@ input,
 optgroup,
 select,
 textarea {
-  margin: 0;
-  font: inherit;
-  color: inherit;
+  /* margin: 0; */
+  /* font: inherit; */
+  /* color: inherit; */
 }
 button {
-  overflow: visible;
+  /* overflow: visible; */
 }
 button,
 select {
@@ -881,13 +881,13 @@ th {
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 *:before,
 *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 html {
   font-size: 10px;
@@ -895,11 +895,11 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333;
-  background-color: #fff;
+  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  /* font-size: 14px; */
+  /* line-height: 1.42857143; */
+  /* color: #333; */
+  /* background-color: #fff; */
 }
 input,
 button,
@@ -2326,7 +2326,7 @@ input[type="checkbox"] {
   line-height: normal;
 }
 input[type="file"] {
-  display: block;
+  /* display: block; */
 }
 input[type="range"] {
   display: block;

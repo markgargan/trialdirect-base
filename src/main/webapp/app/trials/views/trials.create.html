@@ -1,0 +1,83 @@
+<div>
+    <h2>Create Trial</h2>
+</div>
+
+<form name="CreateTrialArea" class="form-horizontal" role="form" ng-submit="addTrial(newTrial)">
+
+    <div class="list-answers answers">
+        <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+            <input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
+                   ng-click="chooseTherapeuticArea(therapeuticArea)">
+            <span ng-bind="therapeuticArea.title"></span>
+        </label>
+    </div>
+
+    <div class="list-text input-group">
+        <input id="newTrialInput" type="text" class="form-control"
+               data-ng-disabled="!newTrial.therapeuticArea"
+               ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"
+                    ng-disabled="!newTrial.title" title="Add">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </span>
+    </div>
+</form>
+
+
+<form name="mForm" ng-hide="!newTrial.id">
+    <fieldset>
+        <div class="trial-info-description">
+            <img ng-show="myForm.file.$valid" ngf-thumbnail="trialLogoPic" class="thumb right">
+            <label for="trialInfo-description">Trial Description</label>
+            <input id="trialInfo-description" type="text" name="trialInfo-description"
+                   ng-model="newTrial.trialInfo.description" size="31" required>
+        </div>
+
+        <div class="trial-info-logo">
+            <label for="trialLogo">Trial Logo</label>
+            <input id="trialLogo" type="file" ngf-select ng-model="trialLogoPic" name="file"
+                   accept="image/*" ngf-max-size="2MB" required
+                   ngf-model-invalid="errorFile">
+            <i ng-show="myForm.file.$error.required">*required</i><br>
+            <i ng-show="myForm.file.$error.maxSize">File too large
+                {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+        </div>
+
+
+        <div class="trial-info-create-buttons">
+            <button ng-click="trialLogoPic = null" ng-show="trialLogoPic">Remove Logo</button>
+            <button ng-click="initializeTrialSite()">Add Site</button>
+            <div class="clearfix"></div>
+        </div>
+
+        <br>
+        <div class="trial-site" ng-repeat="trialSite in newTrial.trialInfo.trialSites">
+            <div class="trial-site-description">
+                <label for="trial-site-description{{$index}}">Trial Site Description</label>
+                <input id="trial-site-description{{$index}}" type="text" name="trial-site-description"
+                       ng-model="trialSite.description" size="31" required>
+            </div>
+
+            <div class="trial-site-logo">
+                <label for="trial-site-logo{{$index}}">Trial Site Pic</label>
+                <input id="trial-site-logo{{$index}}" type="file" ngf-select ng-model="trialSite.sitePic" name="siteFile"
+                       accept="image/*" ngf-max-size="2MB" required
+                       ngf-model-invalid="errorFile">
+                <i ng-show="trialSite.sitePic.$error.required">*required</i><br>
+                <i ng-show="myForm.file.$error.maxSize">File too large
+                    {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                <div>
+                    <img ng-show="myForm.siteFile.$valid" ngf-thumbnail="trialSite.sitePic" class="thumb">
+                </div>
+            </div>
+        </div>
+        <div class="trial-site-create-buttons">
+            <button ng-disabled="!myForm.$valid"
+                    ng-click="uploadPic(trialLogoPic, newTrial)">Submit
+            </button>
+        </div>
+
+    </fieldset>
+</form>

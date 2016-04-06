@@ -1,6 +1,7 @@
 package com.tekenable.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tekenable.model.trial.TrialInfo;
 
 import javax.persistence.*;
 import java.util.Set;

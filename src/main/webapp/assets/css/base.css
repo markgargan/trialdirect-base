@@ -1,6 +1,32 @@
 /**
  Integration start
 **/
+.trial-create-buttons > button {
+    float:left;
+}
+.trial-info-form {
+    /* display:inline-block; */
+}
+
+.trial-site {
+    overflow:auto;
+    border: 1px lightgray solid;
+}
+
+.pure-control-group > img {
+    float:left;
+}
+.pure-controls > button {
+    float:left;
+}
+
+.file-upload-group{
+    background:red;
+    display:block;
+    line-height:10px;
+    width:50%;
+    margin:auto 0;
+}
 
 label.selectionsSaved > p {
     font-style:italic;
@@ -206,7 +232,7 @@ button, input, label, textarea {
 button {
     float: right;
     margin: 1em 0;
-    padding: .25em 1em
+    padding: .25em 1em;
 }
 
 form.small, form.wide {

@@ -3,6 +3,7 @@ package com.tekenable.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -11,6 +12,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @ComponentScan(basePackages = "com.tekenable.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
+
+  @Bean(name="multipartResolver")
+  public StandardServletMultipartResolver resolver(){
+    return new StandardServletMultipartResolver();
+  }
 
   @Bean
   public InternalResourceViewResolver getInternalResourceViewResolver() {
