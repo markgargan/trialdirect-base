@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by smoczyna on 04/04/16.
  */
-public class TherapeuticAreaRestTest extends RestTestResourceTemplate {
+public class TherapeuticAreaRestTest extends RestTestMockTemplate {
 
     @Autowired
     public TherapeuticAreaRepository therapeuticAreaRepositoryMock;
@@ -47,7 +47,7 @@ public class TherapeuticAreaRestTest extends RestTestResourceTemplate {
         log.info("*** START TEST ***");
         log.info("Reading the first therapeutic area");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/therapeuticareas/1")).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/therapeuticareas/{id}", 1)).andExpect(status().is2xxSuccessful());
         assertNotNull(result);
         result.andExpect(jsonPath("$.title").value("Cancer"));
         result.andDo(MockMvcResultHandlers.print());

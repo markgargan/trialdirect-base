@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  * @author smoczyna
  */
-public class QuestionRestTest extends RestTestResourceTemplate {
+public class QuestionRestTest extends RestTestMockTemplate {
 
     @Autowired
     private QuestionRepository questionRepositoryMock;
@@ -81,13 +81,19 @@ public class QuestionRestTest extends RestTestResourceTemplate {
         log.info("*** START TEST ***");
         log.info("Reading the first question");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/questions/1")).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/questions/{id}", 1)).andExpect(status().is2xxSuccessful());
         assertNotNull(result);
         result.andExpect(jsonPath("$.questionText").value("What is the type of your cancer?"));
         result.andDo(MockMvcResultHandlers.print());
         log.info("*** END OF TEST ***");
     }
 
+    /**
+     * I couldn't make mockMvc to call POST service properly so I used REstTemplate instead
+     * this might be unified somewhow later to use the same technology across all the tests
+     *
+     * @throws Exception
+     */
     @Test
     public void addQuestionTest() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
@@ -103,3 +109,40 @@ public class QuestionRestTest extends RestTestResourceTemplate {
         mockServer.verify();
     }
 }
+
+/*
+@Test
+    public void getPublicBlogPost_ShouldReturnHttpStatusCode404ForUnpublishedBlog() throws Exception {
+        BlogPost blog = getTestSinglePublishedBlogPost();
+        blog.unpublish();
+
+        when(blogPostRepositoryMock.findOne(BLOG_ID)).thenReturn(blog);
+
+        mockMvc.perform(get("/public/blogs/{blogId}", BLOG_ID))
+                .andExpect(status().isNotFound())
+                ;
+
+        verify(blogPostRepositoryMock, times(1)).findOne(BLOG_ID);
+        verifyNoMoreInteractions(blogPostRepositoryMock);
+    }
+ */
+
+/*
+SomeClass found = new SomeClass()
+                .id(1L)
+                .description("Lorem ipsum")
+                .title("Foo")
+                .build();
+
+        when(todoServiceMock.findById(1L)).thenReturn(found);
+
+        mockMvc.perform(get("/api/someclass/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.description", is("Lorem ipsum")))
+                .andExpect(jsonPath("$.title", is("Foo")));
+
+        verify(todoServiceMock, times(1)).findById(1L);
+        verifyNoMoreInteractions(todoServiceMock);
+ */

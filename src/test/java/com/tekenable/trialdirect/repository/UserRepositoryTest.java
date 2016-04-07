@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by smoczyna on 04/04/16.
  */
-public class UserRepositoryTest extends RestTestResourceTemplate {
+public class UserRepositoryTest extends RestTestMockTemplate {
 
     @Autowired
     public UserRepository userRepositoryMock;
@@ -47,7 +47,7 @@ public class UserRepositoryTest extends RestTestResourceTemplate {
         log.info("*** START TEST ***");
         log.info("Reading the first user");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/users/1")).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/users/{id}", 1)).andExpect(status().is2xxSuccessful());
         assertNotNull(result);
         result.andExpect(jsonPath("$.pseudonym").value("Robert"));
         result.andDo(MockMvcResultHandlers.print());

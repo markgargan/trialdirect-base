@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by smoczyna on 04/04/16.
  */
-public class QuestinnaireEntryTest extends RestTestResourceTemplate {
+public class QuestinnaireEntryTest extends RestTestMockTemplate {
 
     @Autowired
     public QuestionnaireEntryRepository qaEntryRepositoryMock;
@@ -47,7 +47,7 @@ public class QuestinnaireEntryTest extends RestTestResourceTemplate {
         log.info("*** START TEST ***");
         log.info("Reading the first entry");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/questionnaireentries/1")).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/questionnaireentries/{id}", 1)).andExpect(status().is2xxSuccessful());
         assertNotNull(result);
         //result.andExpect(jsonPath("$.question").value("?")); what can I verify here ?
         result.andDo(MockMvcResultHandlers.print());
