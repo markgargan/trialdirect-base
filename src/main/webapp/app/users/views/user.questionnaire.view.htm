@@ -28,13 +28,24 @@
                     <p ng-bind="questionnaireEntry.question.questionText"></p>
                     <div class="clear"></div>
                 </div>
-                <div class="answers">
+                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
                     <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
                         <input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
                                ng-model="answer.isSelected"/>
                         <span ng-bind="answer.answerText"></span>
                     </label>
                 </div>
+
+                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                    <div class="option-list">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                            <input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+                                   ng-model="answer.isSelected"/>
+                            <span ng-bind="answer.answerText"></span>
+                        </label>
+                    </div>
+                </div>
+
             </div>
         </div>
 

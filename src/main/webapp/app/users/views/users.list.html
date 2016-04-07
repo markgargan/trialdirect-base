@@ -8,6 +8,7 @@
         <div class="question">
             <p>Select main Therapeutic Area</p>
         </div>
+    <!--
       <div class="answers">
         <label data-ng-repeat="therapeuticArea in therapeuticAreas">
           <input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
@@ -15,6 +16,27 @@
           <span ng-bind="therapeuticArea.title"></span>
         </label>
       </div>
+    -->
+        <div class="answers" ng-if="therapeuticAreas.length<=4">
+            <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                <input name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                       data-ng-click="chooseTherapeuticArea(therapeuticArea)">
+                <span data-ng-bind="therapeuticArea.title"></span>
+            </label>
+        </div>
+
+        <div class="answers" ng-if="therapeuticAreas.length>=5">
+            <div class="option-list">
+                <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                    <input name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                           data-ng-click="chooseTherapeuticArea(therapeuticArea)">
+                    <span data-ng-bind="therapeuticArea.title"></span>
+                </label>
+            </div>
+        </div>
+
+
+
         <div class="clear"></div>
     </div>
 

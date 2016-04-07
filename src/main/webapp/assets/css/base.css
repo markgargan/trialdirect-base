@@ -95,8 +95,10 @@ div.trialSubmission {
 }
 
 div.trialSubmission label input + span {
-    background: #555;
+    background: #369;
     color: #fff;
+    font-size: 1.25em;
+    margin-top: 1em;
 }
 
 /** When disabled the trialSelector submit button shouldn't respond to :hover **/
@@ -108,7 +110,7 @@ div.trialSubmission label input:disabled:hover + span {
 }
 
 div.trialSubmission label input:hover + span {
-    background: #444;
+    background: #555;
     color: #fff;
 }
 
@@ -265,7 +267,7 @@ form.small label {
     background: #eee;
     padding: .5em 1em;
     margin-left: .25em;
-    martin-bottom: .5em;
+    margin-bottom: .5em;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -276,6 +278,23 @@ form.small label {
     -moz-border-radius: .2em;
     border-radius: .2em;
 }
+
+.alert {margin-bottom: 1em;}
+
+.option-list{height: 15em;overflow-y: auto;overflow-x: hidden;}
+.option-list.slim {width: 97.5%;}
+.option-list label span{text-decoration:none;display:block;clear:both;padding:.6em;cursor:pointer;text-align:left;outline:0;color:#333;background:#eee;border-radius:.2em;margin:0 auto .25em;width: 98%;}
+.option-list label span:hover{background: #ddd;}
+.option-list label span .fa {float: right;color:#999;display: block;}
+.option-list input{position:absolute;left:-999em}
+
+.option-list button{text-decoration:none;display:block;clear:both;padding: 0.5em .6em;cursor:pointer;text-align:left;outline:0;color:#333;/*background:#eee;*/border-radius:.2em;margin: 0 0 .25em;width: 99%;box-sizing: border-box;}
+/*.option-list button:hover{background: #ddd;}*/
+.option-list button .glyphicon {float: right;display: block;}
+.answers label.select-all.option-list-all input {
+    bottom: 15.5em;
+}
+
 .noTopPad {padding-top: 0 !important;}
 .setArea {
     display: block;
@@ -543,7 +562,9 @@ td, th {
     -moz-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box;
-    /* padding-right: 1em; */
+}
+.question {
+    padding-right: 1em;
 }
 
 .questionEdit {

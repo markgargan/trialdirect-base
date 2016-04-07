@@ -891,7 +891,6 @@ th {
 }
 html {
   font-size: 10px;
-
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
@@ -4609,7 +4608,7 @@ a.thumbnail.active {
 }
 .alert {
   /* padding: 15px; */
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
   border: 1px solid transparent;
   border-radius: 4px;
 }
