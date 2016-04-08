@@ -5,6 +5,7 @@
  */
 package com.tekenable.trialdirect.rest;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
@@ -79,6 +80,6 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         // all trial selectors have been created automatically behind the scene
         // verifying that they are there
         String selectors = this.getAllItems("trials/"+2+"/trialselectorquestionnaireentries");
-
+        assertNotNull(selectors);
     }
 }
