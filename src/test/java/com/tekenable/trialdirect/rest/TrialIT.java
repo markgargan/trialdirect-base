@@ -18,27 +18,27 @@ public class TrialIT extends RestTestResourceTemplate {
     public void testGetAllTrials() {
         String output = this.getAllItems("trials");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetSingleTrial() {
         String output = this.getSingleItemById("trials", 1);
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetTrialTherapeuticAreas() {
         String output = this.getAllItems("trials/"+1+"/therapeuticArea");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetTrialSelectorQuestionnaireEntries() {
         String output = this.getAllItems("trials/"+1+"/trialselectorquestionnaireentries");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 }

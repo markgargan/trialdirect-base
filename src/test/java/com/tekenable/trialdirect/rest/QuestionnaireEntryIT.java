@@ -19,35 +19,35 @@ public class QuestionnaireEntryIT extends RestTestResourceTemplate {
     public void testGetAllEntries() {
         String output = this.getAllItems("questionnaireentries");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetSingleEntry() {
         String output = this.getSingleItemById("questionnaireentries", 1);
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetEntryQuestion() {
         String output = this.getAllItems("questionnaireentries/" + 1 + "/question");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetEntryAnswers() {
         String output = this.getAllItems("questionnaireentries/" + 1 + "/answers");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetEntryTherapeuticArea() {
         String output = this.getAllItems("questionnaireentries/" + 1 + "/therapeuticArea");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 }
 

@@ -13,14 +13,14 @@ public class AnswerIT extends RestTestResourceTemplate {
     public void testGetAllAnswers() throws Exception {
         String output = this.getAllItems("answers");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetSingleAnswer() {
         String output = this.getSingleItemById("answers", 1);
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
@@ -28,18 +28,18 @@ public class AnswerIT extends RestTestResourceTemplate {
         String uri = "answers/" + 1 + "/questionnaireentries";
         String output = this.getAllItems(uri);
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testAddAndUpdateAswer() {
         String output = this.createTextItem("answers", "answerText", "Brain");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
         /*output = this.updateItemText("answers", 13, "answerText", "Breast");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());*/
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());*/
     }
 
 }

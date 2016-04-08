@@ -19,42 +19,42 @@ public class UserSelectorQuestionnaireEntriesIT extends RestTestResourceTemplate
     public void testGetAllEntries() {
         String output = this.getAllItems("userselectorquestionnaireentries");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetSingleEntry() {
         String output = this.getSingleItemById("userselectorquestionnaireentries", 1);
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetEntryUser() {
         String output = this.getAllItems("userselectorquestionnaireentries/"+1+"/user");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetEntryQuestion() {
         String output = this.getAllItems("userselectorquestionnaireentries/"+1+"/question");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetEntryAnswer() {
         String output = this.getAllItems("userselectorquestionnaireentries/"+1+"/answer");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetEntryTherapeuticArea() {
         String output = this.getAllItems("userselectorquestionnaireentries/"+1+"/therapeuticArea");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 }
 
