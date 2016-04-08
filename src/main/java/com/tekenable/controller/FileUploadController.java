@@ -4,9 +4,12 @@ import com.tekenable.controller.util.FileValidator;
 import com.tekenable.controller.util.MultiFileValidator;
 import com.tekenable.model.Trial;
 import com.tekenable.model.dto.FileBucket;
+import com.tekenable.model.dto.TrialInfoBucket;
 import com.tekenable.model.dto.MultiFileBucket;
+import com.tekenable.model.dto.TrialSiteBucket;
 import com.tekenable.model.trial.TrialDirectImage;
 import com.tekenable.model.trial.TrialInfo;
+import com.tekenable.model.trial.TrialSite;
 import com.tekenable.repository.TrialInfoRepository;
 import com.tekenable.repository.TrialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +28,9 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class FileUploadController {
@@ -66,13 +71,13 @@ public class FileUploadController {
 
     @RequestMapping(value = "/singleUpload", method = RequestMethod.GET)
     public String getSingleUploadPage(ModelMap model) {
-        FileBucket fileModel = new FileBucket();
+        TrialInfoBucket fileModel = new TrialInfoBucket();
         model.addAttribute("fileBucket", fileModel);
         return "singleFileUploader";
     }
 
-    @RequestMapping(value = "/uploadTrialLogo", method = RequestMethod.POST)
-    public @ResponseBody Integer singleFileUpload(@Valid FileBucket fileBucket,
+    @RequestMapping(value = "/uploadTrialInfo", method = RequestMethod.POST)
+    public @ResponseBody Integer uploadTrialInfo(@Valid TrialInfoBucket trialInfoBucket,
                             BindingResult result, HttpServletResponse response) throws IOException {
 
         if (result.hasErrors()) {
@@ -80,18 +85,44 @@ public class FileUploadController {
             throw new RuntimeException(result.getAllErrors().toString());
         } else {
 
-            Trial trial = trialRepository.findOne(fileBucket.getTrialId());
+            // Retrieve the appropriate Trial
+            Trial trial = trialRepository.findOne(trialInfoBucket.getTrialId());
 
+            // Create the TrialDirectImage that houses the Trial Icon
             TrialDirectImage trialLogo = new TrialDirectImage(
-                    fileBucket.getFile().getOriginalFilename(),
-                    fileBucket.getFile().getContentType(),
-                    fileBucket.getFile().getBytes());
+                    trialInfoBucket.getFile().getOriginalFilename(),
+                    trialInfoBucket.getFile().getContentType(),
+                    trialInfoBucket.getFile().getBytes());
 
-            TrialInfo trialInfo = new TrialInfo(trial, fileBucket.getDescription());
+            TrialInfo trialInfo = new TrialInfo(trial, trialInfoBucket.getDescription());
 
             trialInfo.setTrialLogo(trialLogo);
 
             trialInfo.setTrial(trial);
+
+            Set<TrialSite> trialSites = new HashSet<TrialSite>();
+
+            if (trialInfoBucket.getTrialSites() !=null) {
+                for (TrialSiteBucket trialSiteBucket : trialInfoBucket.getTrialSites()) {
+                    TrialSite trialSite = new TrialSite(trialInfo,
+                            trialSiteBucket.getSiteDirector(),
+                            trialSiteBucket.getSiteDirector(),
+                            trialSiteBucket.getSiteSummary(),
+                            trialSiteBucket.getSiteMap()
+                    );
+
+                    TrialDirectImage trialSiteImage = new TrialDirectImage(
+                            trialSiteBucket.getTrialSiteFile().getOriginalFilename(),
+                            trialSiteBucket.getTrialSiteFile().getContentType(),
+                            trialSiteBucket.getTrialSiteFile().getBytes());
+
+                    trialSite.setTrialSiteImage(trialSiteImage);
+
+                    trialSites.add(trialSite);
+                }
+            }
+
+            trialInfo.setTrialSites(trialSites);
 
             trialInfoRepository.save(trialInfo);
 

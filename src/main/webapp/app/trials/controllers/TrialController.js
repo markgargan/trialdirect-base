@@ -43,7 +43,10 @@ angular.module('trialdirect').controller('TrialController',
                     trialInfo.trialSites = [];
                 }
 
-                var newTrialSite = {};
+                var newTrialSite = {
+                    isEditing : true
+                };
+
                 trialInfo.trialSites.unshift(newTrialSite);
             };
 

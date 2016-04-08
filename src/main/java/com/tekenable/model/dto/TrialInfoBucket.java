@@ -2,13 +2,17 @@ package com.tekenable.model.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FileBucket {
+import java.util.List;
+
+public class TrialInfoBucket {
 
     String description;
 
     Integer trialId;
 
     MultipartFile file;
+
+    List<TrialSiteBucket> trialSites;
 
     public MultipartFile getFile() {
         return file;
@@ -32,5 +36,13 @@ public class FileBucket {
 
     public void setTrialId(Integer trialId) {
         this.trialId = trialId;
+    }
+
+    public List<TrialSiteBucket> getTrialSites() {
+        return trialSites;
+    }
+
+    public void setTrialSites(List<TrialSiteBucket> trialSites) {
+        this.trialSites = trialSites;
     }
 }

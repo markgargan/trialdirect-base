@@ -14,19 +14,25 @@ public class TrialSite extends BaseEntity {
 
     private TrialInfo trialInfo;
 
-    private String trialSiteSummary;
+    private String siteDirector;
 
-    private String googleMapURL;
+    private String siteSummary;
+
+    private String siteDescription;
+
+    private String siteMap;
 
     private TrialDirectImage trialSiteImage;
 
     public TrialSite() {
     }
 
-    public TrialSite(TrialInfo trialInfo, String trialSiteSummary, String googleMapURL) {
+    public TrialSite(TrialInfo trialInfo, String siteDirector, String siteSummary, String siteDescription, String siteMap) {
         this.trialInfo = trialInfo;
-        this.trialSiteSummary = trialSiteSummary;
-        this.googleMapURL = googleMapURL;
+        this.siteDirector = siteDirector;
+        this.siteSummary = siteSummary;
+        this.siteDescription = siteDescription;
+        this.siteMap = siteMap;
     }
 
     @ManyToOne
@@ -38,22 +44,6 @@ public class TrialSite extends BaseEntity {
         this.trialInfo = trialInfo;
     }
 
-    public String getTrialSiteSummary() {
-        return trialSiteSummary;
-    }
-
-    public void setTrialSiteSummary(String trialSiteSummary) {
-        this.trialSiteSummary = trialSiteSummary;
-    }
-
-    public String getGoogleMapURL() {
-        return googleMapURL;
-    }
-
-    public void setGoogleMapURL(String googleMapURL) {
-        this.googleMapURL = googleMapURL;
-    }
-
     @Embedded
     public TrialDirectImage getTrialSiteImage() {
         return trialSiteImage;
@@ -61,5 +51,37 @@ public class TrialSite extends BaseEntity {
 
     public void setTrialSiteImage(TrialDirectImage trialSiteImage) {
         this.trialSiteImage = trialSiteImage;
+    }
+
+    public String getSiteDirector() {
+        return siteDirector;
+    }
+
+    public void setSiteDirector(String siteDirector) {
+        this.siteDirector = siteDirector;
+    }
+
+    public String getSiteSummary() {
+        return siteSummary;
+    }
+
+    public void setSiteSummary(String siteSummary) {
+        this.siteSummary = siteSummary;
+    }
+
+    public String getSiteDescription() {
+        return siteDescription;
+    }
+
+    public void setSiteDescription(String siteDescription) {
+        this.siteDescription = siteDescription;
+    }
+
+    public String getSiteMap() {
+        return siteMap;
+    }
+
+    public void setSiteMap(String siteMap) {
+        this.siteMap = siteMap;
     }
 }

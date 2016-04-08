@@ -17,6 +17,8 @@ public class TrialDirectPrimer {
     @PostConstruct
     public void initDB() {
 
+
+
         try {
 //            cancerTrialPrimer.initDB();
             trialPrimer.initDB();

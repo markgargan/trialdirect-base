@@ -1,0 +1,214 @@
+{
+    "LANGUAGE_NAME": "English",
+    "FC": {
+        "COMMONS": {
+            "OK_BUTTON": "OK",
+            "CANCEL_BUTTON": "Cancel",
+            "LEARN_MORE":"More Info",
+            "MORE_VIDEOS":"More Videos",
+            "STUDY_ON_HOLD_TITLE":"Study Recruitment on Hold",
+            "STUDY_ON_HOLD_Message":"This study is not currently looking for further candidates. However, if you are interested in participating in future clinical trials and would like to be contacted, please click the button below and you will be re-directed to the ICON Clinical website where you will be able to register your interest. ",
+            "STUDY_ON_HOLD_Message2":"However, if you are interested in participating in future clinical trials and would like to be contacted, please click the button below and you will be re-directed to the ICON Clinical website where you will be able to register your interest. ",
+            "COUNTRY_SELECT_WELCOME":"Welcome",
+            "COUNTRY_SELECT_MSG1":"This trial only operates in the following countries",
+            "COUNTRY_SELECT_MSG2":"Please select your country from the list below: "
+        },
+        "HEADER": {
+            "TITLE_BAR": "Select Your Country:",
+            "COUNTRY_CHANGE_POPUP": "The information here is country and language specific, if you change country or language the page will be refreshed and you will have to begin again."
+        },
+        "FOOTER": {
+            "TERMS_CONDITIONS": "Terms & Conditions"
+        },
+        "HOME":{
+            "CAROUSEL_WELCOME":"About the Beacon Study",
+            "CAROUSEL_WELCOME_MESSAGE_P1":"The Beacon Study is a clinical research study for adults 50-85 years old who are in general good health and have been diagnosed with Alzheimer's disease.This study is researching the safety and effectiveness of a new drug, Ph001.",
+            "CAROUSEL_WELCOME_MESSAGE_P2":"This website is designed to provide you with information about the Beacon Study as well as general information about clinical research studies. If you think that you or a close relative would like to take part, there are some links to get in touch with a participating doctor.",
+            "CAROUSEL_WELCOME_MESSAGE_P3":""
+        },
+        "QUESTIONNAIRE":{
+            "QUESTIONNAIRE_TITLE":"Can I take part?",
+            "QUESTIONNAIRE_DESC":"The short questionnaire below will help us know if you might be suitable for this study. Please remember that we can only be absolutely certain once you have met with the study doctor in person but the questions below are a good guide.",
+            "QUESTIONNAIRE_DESC2":"We are committed to protecting the privacy and confidential information of our users. All information given will be securely stored and will only be used to check your suitability for this study. No medical details will be retained and we will only contact study locations at your request.",
+            "LOCATION_CHANGE_POPUP":"Are you sure you want to leave this page? You have not completed the questionnaire. If you leave this page you will have to begin again and lose all current answers.",
+            "SELECT_CATEGORY":"Please select who would participate in the Study:",
+            "ALL_ANSWERS_REQUIRED":"All questions are mandatory",
+            "SEE_IF_ELIGIBLE_BUTTON":"Go To Next Step",
+            "UNSUCCESSFUL_TITLE":"Unfortunately this study is not right for you",
+            "UNSUCCESSFUL_DESC_P1":"Thank you for your interest in the Beacon study but based on the answers which you provided, this study will not be suitable for you.",
+            "UNSUCCESSFUL_DESC_P2":"We appreciate your interest in this study.  While you do not qualify as this time, similar studies are always being added. If you would like to be notified when information on this study becomes available please provide your contact details below.",
+            "UNSUCCESSFUL_NO_THANKS":"No Thanks",
+            "UNSUCCESSFUL_REGISTER_BUTTON_TEXT1":"Register Your Interest",
+            "UNSUCCESSFUL_REGISTER_BUTTON_TEXT2":"in Other Clinical Trials",
+            "SUCCESSFUL_TITLE":"Good news!",
+            "SUCCESSFUL_DESC":"You have qualified and have identified a Study location near you.",
+            "SUCCESSFUL_DESC2":"You're now ready to make an appointment to meet with a physician. Please provide your name and your email address or telephone number and the Study location will contact you.",
+            "SUCCESSFUL_FULL_NAME":"*Name",
+            "SUCCESSFUL_TELEPHONE_NUMBER":"Phone No.",
+            "SUCCESSFUL_MOBILE_NUMBER":"Mobile",
+            "SUCCESSFUL_EMAIL":"Email",
+            "SUCCESSFUL_PREFERRED_METHOD":"Preferred method of contact",
+            "SUCCESSFUL_SUBMIT_BUTTON":"Request Call Back",
+            "RETURN_TO_HOME_BUTTON":"RETURN TO HOME",
+            "SURVEY_INACTIVE":"This survey is not active for this country.",
+            "FAIR_PROCESSING_TITLE":"Do you accept the ",
+            "FAIR_PROCESSING_CHECKBOX":"Fair Processing Note?",
+            "ELIGIBLE_TITLE":"Good news!",
+            "ELIGIBLE_MESSAGE":"It seems that you might be suitable for this study please select a research centre!",
+            "ELIGIBLE_NEXT_STEP":"Please complete the form below and a staff member from the research center will contact you to arrange a suitable date and time.",
+            "FIND_LOCATION_TITLE":"Find a Location Near You",
+            "REQUIRED_TITLE":"Required",
+            "TELEPHONE_VALID_TITLE":"Telephone must be valid.",
+            "TELEPHONE_REQUIRED_TITLE":"Telephone number required",
+            "EMAIL_REQUIRED_TITLE":"Email required",
+            "EMAIL_VALID_TITLE":"Email must be valid.",
+            "ADDITIONAL_COMMENTS":"Additional Comment:",
+            "SUCCESSFUL_SUBMIT_TITLE":"THANK YOU",
+            "SUCCESSFUL_SUBMIT_MESSAGE":"Your information has been passed to the research center you selected and somebody from that team will be in touch with you shortly.",
+            "SUCCESSFUL_SUBMIT_OTHERS_MESSAGE":"If you would like to participate in other clinical trials, please click the button below and you will be re-directed to the ICON Clinical website where you will be able to register your interest.",
+            "SUCCESSFUL_SUBMIT_OTHERS_REGISTER_DECLINE_BUTTON":"No thank you",
+            "SUCCESSFUL_SUBMIT_OTHERS_REGISTER_BUTTON":"Register Your Interest in Other Clinical Trials",
+            "PRIVACY_TITLE":"We are committed to protecting the privacy and confidential information of our users. All information given will be securely stored and will only be used for the purposes outlined above.",
+            "PRIVACY_SUB_TITLE":"To acknowledge that you have read this statement and that the information provided above is accurate, please tick on check box on right",
+            "DEFAULT_SELECT" : "Please Select....",
+            "PREFERRED_CONTACT_EMAIL":"Email",
+            "PREFERRED_CONTACT_MOBILE":"Mobile",
+            "PREFERRED_CONTACT_OTHER_PHONE":"Other Phone",
+            "NO_OF_CANDIDATE_COMMENTS":"5",
+            "CANDIDATE_COMMENT_1" : "Available all day",
+            "CANDIDATE_COMMENT_2" : "Available in the morning",
+            "CANDIDATE_COMMENT_3" : "Available at lunch",
+            "CANDIDATE_COMMENT_4" : "Available in the afternoon",
+            "CANDIDATE_COMMENT_5" : "Available in the evening"
+
+        },
+        "LOCATIONS": {
+            "TITLE" : "Study Locations",
+            "SEARCH_INSTRUCTIONS" : "Enter your address details to search for the study location closest to you.",
+            "SEARCH_COUNTRY_LABEL" : "Select Your Country:",
+            "SEARCH_POSTCODE_LABEL" : "Enter Address or ZIP/Postcode:",
+            "SEARCH":"Search",
+            "VIEW_CLINIC_LOCATION":"Select this Location",
+            "SELECT_AND_PROCEED":"Select Site & Proceed",
+            "DISTANCE_TO_SITE" : "Distance to site:",
+            "MAP_ERROR" : "Maps Failed to load, you can still select a site from the list below"
+        },
+        "COOKIEBAR":{
+            "TITLE":"Our Cookie Policy",
+            "MESSAGE":"By using our website you are consenting to our use of cookies in accordance with our",
+            "ACCEPT_TEXT":"I Understand",
+            "POLICY_TEXT":"Cookie Policy",
+            "POLICY_URL":"/privacy-policy/"
+        },
+        "ABOUT":{
+            "STUDY":{
+                "SECTION1":{
+                    "TITLE":"Who Can take Part?",
+                    "PARAGRAPH1":"You may be eligible to participate if you are:",
+                    "PARAGRAPH2":"The list above are the main criteria for this study but there are a few other requirements you need to meet in order to take part. We can only be absolutely certain that you will be suitable for the study once you have met with a study doctor but, in the meanwhile, you can click on the button below and answer a few questions which will help us know if you might be suitable. You might also want to look and see if there is a participating research center near your work or home. Just click the button below to do a search.",
+                    "REGISTER_BUTTON":"Can I take part?",
+                    "LOCATION_BUTTON":"Find a Doctor near me",
+                    "LIST1_ITEM1":"You are an adult aged 50 to 85 years old",
+                    "LIST1_ITEM2":"You have mild Alzheimer's disease",
+                    "LIST1_ITEM3":"You do not have depression"
+                },
+                "SECTION2":{
+                    "TITLE":"What will I be asked to do?",
+                    "PARAGRAPH1":"If you are interested in volunteering for the Beacon Study you will meet with a member of the study team at a local research center convenient to you. The team member will explain the purpose of the study, possible risks and benefits and what will be expected of you as a participant. If you agree, you will be asked to sign a form agreeing to participate. This is called an Informed Consent Form (or ICF) saying that you understand the study and agree to participate. It is your decision if you want to participate. No procedures will begin until you have had all your questions answered and have signed this form. Participating in the Beacon Study will last about one year. During this time, participants will be asked to attend the study visit once a month. All of the study visits will occur at the research center.",
+                    "PARAGRAPH2":"During participation the study staff will monitor your health. They will perform physical examinations and collect blood and urine samples for laboratory testing. They will also ask questions about how you are feeling, what medications you are taking and if you are experiencing any changes in your health. You can choose to withdraw from the study at any time. There is no charge for joining this clinical research study.",
+                    "REGISTER_BUTTON":"Can I take part?",
+                    "LOCATION_BUTTON":"Find a Doctor near me"
+                },
+                "SECTION3":{
+                    "TITLE":"Study Videos"
+                }
+            },
+            "CLINICAL_TRIALS":{
+                "SECTION1":{
+                    "TITLE":"About Clinical Trials",
+                    "PARAGRAPH1":"A clinical research study, sometimes called a clinical trial, is conducted to determine whether an investigational study drug is safe and effective in treating a particular condition.",
+                    "PARAGRAPH2":"Clinical research studies are conducted with the help of volunteers. During clinical research studies, information is collected on the effects of the study drug. Once a clinical research study is completed, government agencies (like the FDA in the United States) carefully review the information and decide whether the study drug should be available for public use.",
+                    "PARAGRAPH3":"There are guidelines and regulations that must be followed while conducting clinical research studies. These guidelines protect individual’s rights while they are participating in clinical research studies and help make sure that a study is conducted ethically and within approved medical standards.",
+                    "PARAGRAPH4":"A clinical research study, sometimes called a clinical trial, is conducted to determine whether an investigational study drug is safe and effective in treating a particular condition.",
+                    "PARAGRAPH5":"Clinical research studies are conducted with the help of volunteers. During clinical research studies, information is collected on the effects of the study drug. Once a clinical research study is completed, government agencies (like the FDA in the United States) carefully review the information and decide whether the study drug should be available for public use.",
+                    "PARAGRAPH6":"There are guidelines and regulations that must be followed while conducting clinical research studies. These guidelines protect individual’s rights while they are participating in clinical research studies and help make sure that a study is conducted ethically and within approved medical standards.",
+                    "REGISTER_BUTTON":"Register Your Interest in Upcoming Clinical Trials"
+                },
+                "SECTION2":{
+                    "TITLE":"",
+                    "HEADER1":"Phase I",
+                    "HEADER2":"Phase II",
+                    "HEADER3":"Phase III",
+                    "HEADER4":"Phase IV",
+                    "PARAGRAPH1":"The study drug is given to a small group of healthy participants. Researchers determine how much study drug it is safe to take and how the human body reacts when it receives the drug.",
+                    "PARAGRAPH2":"The study drug is given to a small group of people with the condition or illness the study drug is intended to treat. Researchers look at which dose works best, safety and begin to look at the effectiveness of the drug.",
+                    "PARAGRAPH3":" At this stage, doctors again look to see if the study drug is safe and effective in treating a disease or illness but over a longer period of time and with a much larger group of participants. Sometimes the study drug is compared to other drugs that are used to treat the same condition.",
+                    "PARAGRAPH4":"At this point the drug has already been approved for use. Phase IV research is used to examine the long-term effects of drug over an extended time period on a larger group of people. Phase IV studies are done to learn more about drug once they are being used by the general population.",
+                    "REGISTER_BUTTON":"Register Your Interest in Upcoming Clinical Trials"
+                },
+                "SECTION3":{
+                    "TITLE":"Videos about Clinical Trials"
+                }
+            }
+        },
+        "LOGIN":{
+            "TITLE":"Login",
+            "DESC":"Please enter your Email and Password below and click the “Login” button.",
+            "USERNAME":"Email:",
+            "USERNAME_REQUIRED_TITLE":"Email Required",
+            "PASSWORD":"Password:",
+            "PASSWORD_REQUIRED_TITLE":"Password Required",
+            "FORGOT_PASSWORD_LABEL":"Forgot Your Password?",
+            "LOGIN_BUTTON":"Login",
+            "ERROR_TITLE":"ERROR",
+            "ERROR_MAIN":"- Invalid Email/Password",
+            "FORGOT_PASSWORD":{
+                "TITLE":"Forgot Password",
+                "DESC":"Enter your Email address below and we’ll send you password reset instructions.",
+                "EMAIL_LABEL":"Enter your Email address:",
+                "USERNAME_REQUIRED_TITLE":"Email Required",
+                "USERNAME_INVALID_TITLE":"Not a Valid Email",
+                "SUBMIT_BUTTON":"Send Reset Instructions",
+                "CANCEL_BUTTON":"Cancel",
+                "REQUEST_SENT_TITLE":"DONE",
+                "REQUEST_SENT_MAIN":"- Password reset request sent. Please check your mail for further instructions."
+            },
+            "RESET_PASSWORD":{
+                "TITLE":"Reset Password",
+                "TITLE_TOKEN":"Complete account setup",
+                "DESC":"Enter the required password details below and click “Save” to return to your account details.",
+                "PASSWORD":"Current Password",
+                "PASSWORD_REQUIRED_TITLE":"Current Password Required",
+                "NEW_PASSWORD":"New Password:",
+                "NEW_PASSWORD_REQUIRED_TITLE":"New Password Required",
+                "NEW_PASSWORD_INVALID_TITLE":"Invalid Password",
+                "CONFIRM_NEW_PASSWORD":"Confirm Password:",
+                "CONFIRM_NEW_PASSWORD_REQUIRED_TITLE":"Confirm Password Required",
+            "CONFIRM_NEW_PASSWORD_MATCH_TITLE":"New password and confirm password must match",
+                "SUBMIT_BUTTON":"Save",
+                "CANCEL_BUTTON":"Cancel",
+                "LOGIN_TITLE":"Login Now",
+                "RESET_AGAIN_TITLE":"Forgot Password",
+                "SUCCESS":"password changed successfully. Click below to login.",
+                "ERROR":"password not changed.",
+                "PASSWORD_MUST":"Your new Password must ...",
+                "PASSWORD_LENGTH": "Be at least 8 character's long",
+                "LOWERCASE_CHECK": "Contain at least one lowercase letter",
+                "UPPERCASE_CHECK": "Contain at least one uppercase letter",
+                "SPECIALCASE_CHECK": "Contain at least one special character   ! ”#$'()*‚-./: ;>=<?@^_`",
+                "NUMBER_CHECK": "Contain at least 1 number"
+            }
+        },
+        "RETENTION":{
+            "TERMS_AND_CONDITIONS":{
+                "MESSAGE": {
+                    "WELCOME":"Welcome",
+                    "MAIN":"Please Read and Accept the DATA Privacy and Fair Processing Note",
+                    "NO_PDF_PLUGIN":"Your web browser doesn't have a PDF plugin. Instead you can",
+                    "DOWNLOAD":"Click here to download FairProcessingNote.pdf file."
+                },
+                "ACCEPT_BTN_TITLE":"I accept"
+            }
+        }
+    }
+}
