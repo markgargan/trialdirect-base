@@ -1,40 +1,41 @@
 <div class="row">
     <div class="col-xs-3">
-        <div class="pa-sidebar well well-small">
-            <ul class="nav nav-list">
-                <li ng-class="{ active: $state.includes('therapeuticAreas.list') }"><a ui-sref="therapeuticAreas.list">All
-                    Therapeutic Areas</a></li>
-                <li class="nav-header">Therapeutic Areas</li>
 
-                <!-- This <li> will only add the 'active' class if 'therapeuticAreas.detail' or its descendants are active
-                     AND if it is the link for the active contact (aka contactId) -->
-                <li ng-repeat="therapeuticArea in therapeuticAreas " ui-sref-active="active">
+        <div class="side-panel">
 
-                    <!-- Here's a ui-sref that is also providing necessary parameters -->
-                    <a ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})">{{therapeuticArea.title}}</a>
-                </li>
-            </ul>
-            <hr>
-            <form name="CreateTherapeuticArea" role="form" ng-submit="addTherapeuticArea(newTherapeuticArea)">
+            <form name="CreateTherapeuticArea" role="form" data-ng-submit="addTherapeuticArea(newTherapeuticArea)">
 
-                <label for="newThereapeuticAreaInput" class="nav-header new-group-label">Create Therapeutic Area</label>
+                <label for="newThereapeuticAreaInput" class="nav-header new-group-label">Add new Therapeutic Area</label>
                 <div class="input-group add-new-group">
-                    <input id="newThereapeuticAreaInput" type="text" class="form-control" ng-model="newTherapeuticArea"
+                    <input id="newThereapeuticAreaInput" type="text" class="form-control" data-ng-model="newTherapeuticArea"
                            placeholder="e.g. Cardiovascular"/>
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="submit"
-                              ng-disabled="!newTherapeuticArea" title="Add">
+                              data-ng-disabled="!newTherapeuticArea" title="Add">
                           <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     </span>
                 </div>
             </form>
-            <hr>
-            <!-- Another named view -->
-            <div ui-view="menuTip" class="slide"></div>
+
         </div>
+
+        <div class="side-panel">
+            <ul class="nav nav-list">
+                <li class="nav-header">Therapeutic Area: Questionnaires</li>
+
+                <!-- This <li> will only add the 'active' class if 'therapeuticAreas.detail' or its descendants are active
+                     AND if it is the link for the active contact (aka contactId) -->
+                <li data-ng-repeat="therapeuticArea in therapeuticAreas " ui-sref-active="active">
+
+                    <!-- Here's a ui-sref that is also providing necessary parameters -->
+                    <a ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})">{{therapeuticArea.title}}</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 
     <!-- Our unnamed main ui-view for this template -->
-    <div ui-view class="col-xs-6"></div>
+    <div ui-view class=""></div>
 </div>

@@ -25,7 +25,7 @@ div.pa-sidebar {
     background-color: #E6E6E6;
 }
 div.list-text {
-    width: 31em;
+    /* width: 31em; */
 }
 
 div.list-answers {
@@ -64,6 +64,7 @@ div.list-answers {
     background-color: #00857f;
 }
 
+.nav-list {padding:0}
 
 .nav > .limiter >a {
     color:#fff;
@@ -94,8 +95,10 @@ div.trialSubmission {
 }
 
 div.trialSubmission label input + span {
-    background: #00857f;
+    background: #369;
     color: #fff;
+    font-size: 1.25em;
+    margin-top: 1em;
 }
 
 /** When disabled the trialSelector submit button shouldn't respond to :hover **/
@@ -107,7 +110,7 @@ div.trialSubmission label input:disabled:hover + span {
 }
 
 div.trialSubmission label input:hover + span {
-    background: #027570;
+    background: #555;
     color: #fff;
 }
 
@@ -155,8 +158,8 @@ body.trialDirect {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-    padding: 12px 0;
-    margin: 0
+    padding: 12px 0 0;
+    margin: 0;
 }
 
 h1 {
@@ -204,9 +207,9 @@ button, input, label, textarea {
 }
 
 button {
-    float: right;
-    margin: 1em 0;
-    padding: .25em 1em
+    /* float: right; */
+    /* margin: 1em 0; */
+    /* padding: .25em 1em; */
 }
 
 form.small, form.wide {
@@ -228,7 +231,7 @@ input {
     padding: .5em
 }
 
-.answers label span, p.distance {
+.btn.answers, .answers label span, p.distance {
     -ms-border-radius: .2em;
     -o-border-radius: .2em
 }
@@ -259,11 +262,12 @@ form.small label {
     display: inline;
 }
 
-.answers label span {
+.btn.answers, .answers label span {
     display: inline-block;
     background: #eee;
     padding: .5em 1em;
     margin-left: .25em;
+    margin-bottom: .5em;
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -275,6 +279,39 @@ form.small label {
     border-radius: .2em;
 }
 
+.alert {margin-bottom: 1em;}
+
+.option-list{height: 15em;overflow-y: auto;overflow-x: hidden;}
+.option-list.slim {width: 97.5%;}
+.option-list label span{text-decoration:none;display:block;clear:both;padding:.6em;cursor:pointer;text-align:left;outline:0;color:#333;background:#eee;border-radius:.2em;margin:0 auto .25em;width: 98%;}
+.option-list label span:hover{background: #ddd;}
+.option-list label span .fa {float: right;color:#999;display: block;}
+.option-list input{position:absolute;left:-999em}
+
+.option-list button{text-decoration:none;display:block;clear:both;padding: 0.5em .6em;cursor:pointer;text-align:left;outline:0;color:#333;/*background:#eee;*/border-radius:.2em;margin: 0 0 .25em;width: 99%;box-sizing: border-box;}
+/*.option-list button:hover{background: #ddd;}*/
+.option-list button .glyphicon {float: right;display: block;}
+.answers label.select-all.option-list-all input {
+    bottom: 15.5em;
+}
+
+.noTopPad {padding-top: 0 !important;}
+.setArea {
+    display: block;
+    background: #eee;
+    padding: 1em;
+    border-radius: .4em;
+    float: right;
+    border: 1px solid #00857f;
+    margin: 1.1em 0 2em;
+    color: #00857f;
+}
+.setArea p {
+    padding:0;
+}
+
+
+.btn.answers:active, .btn.answers:hover,
 .answers label span:active, .answers label span:hover {
     background: #ddd
 }
@@ -407,9 +444,6 @@ a[href="#top"] span {
     text-indent: -999em
 }
 
-.nav { /* background:#ddd; */
-    padding: .5em 0;
-}
 
 .logo {
     width: 30%
@@ -475,10 +509,52 @@ td, th {
 .qa {
     width:100%;
     display: inline-block;
-    border-bottom: 1px solid #eee;
+    /* border-bottom: 1px solid #eee; */
     padding: 1em 0;
+    position: relative;
 }
 
+.btn-remove-question {
+    position: absolute;
+    top: -18px;
+    right: -17px;
+    color: #a00 !important;
+    font-size: 18px !important;
+    padding: 6px 7px 2px 8px !important;
+    box-shadow: none !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 .25em #ddd !important;
+    background: #fff;
+}
+
+.side-panel {
+    display: block;
+    background: #fff;
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: .4em;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+}
+
+.side-panel .nav-header {
+    display: block;
+    padding: 0 0 1em;
+    margin:0;
+    font-weight: bold;
+}
+
+.form-group .qa {
+    padding: 1em;
+    border: 1px solid #eee;
+    border-radius: .4em;
+    position: relative;
+    margin-top: 2em;
+    background: #fff;
+}
 .answers, .question {
     display: block;
     float: left;
@@ -487,9 +563,27 @@ td, th {
     -o-box-sizing: border-box;
     box-sizing: border-box;
 }
+.question {
+    padding-right: 1em;
+}
+
+.questionEdit {
+    display: block;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    border-bottom: 1px dotted #DDD;
+    margin-bottom: 1em;
+    padding-bottom: .5em;
+}
 
 .question p {
-    padding: .5em 0
+    padding: .5em 0;}
+
+.questionEdit
+    p {
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .trialInfo, .trialIntro {
@@ -498,8 +592,7 @@ td, th {
     -ms-box-sizing: border-box;
     -o-box-sizing: border-box;
     padding: .5em 1em;
-    border: 1px solid #ddd
-}
+    border: 1px solid #ddd;}
 
 .answers {
     width: 66.6666%;
@@ -520,8 +613,7 @@ td, th {
 }
 
 .trialResults {
-    margin-bottom: 40em !important
-}
+    margin-bottom: 40em !important;}
 
 .trialIntro {
     display: block;
@@ -532,38 +624,36 @@ td, th {
     -moz-border-radius: .3em;
     -ms-border-radius: .3em;
     -o-border-radius: .3em;
-    border-radius: .3em
-}
+    border-radius: .3em;}
 
-.trialIntro span {
+.trialIntro
+    span {
     display: block;
     float: left;
     height: 7em;
     width: 7em;
     border: 1px solid #ccc;
     margin: .25em 1em 1em 0;
-    transition: all .2s ease
-}
+    transition: all .2s ease;}
 
-.trialIntro span.doc1 {
-    /*background: url(../images/doc1.png);*/
-    background-size: cover
-}
+.trialIntro
+    span.doc1 {;
+    background: url(../images/doc1.png);
+    background-size: cover;}
 
-.trialIntro span.doc2 {
-    /*background: url(../images/doc2.jpg);*/
-    background-size: cover
-}
+.trialIntro
+    span.doc2 {;
+    background: url(../images/doc2.jpg);
+    background-size: cover;}
 
-.trialIntro span.doc3 {
-    /*background: url(../images/doc3.jpg);*/
-    background-size: cover
-}
+.trialIntro
+    span.doc3 {;
+    background: url(../images/doc3.jpg);
+    background-size: cover;}
 
 .trialCount, .trialInfo {
     display: block;
-    background: #fff
-}
+    background: #fff;}
 
 .trialInfo {
     float: left;
@@ -575,8 +665,7 @@ td, th {
     -moz-border-radius: .3em;
     -ms-border-radius: .3em;
     -o-border-radius: .3em;
-    border-radius: .3em
-}
+    border-radius: .3em;}
 
 .trialCount {
     -webkit-box-sizing: border-box;
@@ -598,23 +687,20 @@ td, th {
     -moz-transition: all .2s ease;
     -ms-transition: all .2s ease;
     -o-transition: all .2s ease;
-    transition: all .2s ease
-}
+    transition: all .2s ease;}
 
-.trialApply, p.link {
+.trialApply,
+    p.link {
     display: block;
-    text-align: right
-}
+    text-align: right;}
 
-.trialCount h1, .trialCount p {
-    padding: 0
-}
+.trialCount
+    h1, .trialCount p {
+    padding: 0;}
 
 .trialApply {
-    padding: 1em 0 .5em
-}
-
-p.distance {
+    padding: 1em 0 .5em;}
+    p.distance {
     display: block;
     float: left;
     padding: .5em 1em;
@@ -622,15 +708,11 @@ p.distance {
     color: #00857f;
     -webkit-border-radius: .2em;
     -moz-border-radius: .2em;
-    border-radius: .2em
-}
-
-p.link {
+    border-radius: .2em;}
+    p.link {
     float: right;
-    padding: 0 0 12px
-}
-
-a.more {
+    padding: 0 0 12px;}
+    a.more {
     background: #00857f;
     color: #fff;
     display: inline-block;
@@ -644,142 +726,121 @@ a.more {
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
-    user-select: none
-}
+    user-select: none;}
+    a:active.more, a:hover.more {
+    text-decoration: none;}
 
-a:active.more, a:hover.more {
-    text-decoration: none
-}
-
-@media screen and (max-width: 1200px) {
+@media screen and (
+    max-width: 1200px) {
     .trialIntro span {
         height: 5em;
-        width: 5em
-    }
+    width: 5em;}
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (
+    max-width: 900px) {
     body {
-        font-size: .9em
-    }
+        font-size: .9em;}
 
     .trialInfo, .trialIntro, .trialLocation, .trialResults, .trialRight, .trialSearch {
-        float: none;
-        width: auto;
-        text-align: left;
-        margin-bottom: 2em
-    }
+    float: none;
+    width: auto;
+    text-align: left;
+    margin-bottom: 2em;}
 
     .pa-sidebar, .answers.trialTitle {
-        display:none;
+    display:none;
     }
     .trialCountH {
-        display: none
-    }
+    display: none;}
 
     .trialCount {
-        display: block;
-        float: right;
-        padding: .1em 1em
-    }
+    display: block;
+    float: right;
+    padding: .1em 1em;}
 
     .trialCount h1, .trialCount p {
-        display: inline
-    }
+    display: inline;}
 
     .trialCount p {
-        position: relative;
-        top: -4px;
-        padding-right: .5em
-    }
+    position: relative;
+    top: -4px;
+    padding-right: .5em;}
 
     .trialIntro span {
-        height: 4em;
-        width: 4em
-    }
+    height: 4em;
+    width: 4em;}
 
     form.small {
-        width: 90%
-    }
+    width: 90%;}
 
     .nav a {
-        padding: .25em
-    }
+    padding: .25em;}
 
     .topNav1 {
-        display: none
-    }
+    display: none;}
 
     .topNav {
-        padding: .8em 0;
-        width: auto;
-        display: block;
-        clear: both;
-        float: none
-    }
+    padding: .8em 0;
+    width: auto;
+    display: block;
+    clear: both;
+    float: none;}
 
     .topNav a {
-        display: block;
-        background: #f2f2f2;
-        margin-bottom: .5em;
-        padding: 1em
-    }
+    display: block;
+    background: #f2f2f2;
+    margin-bottom: .5em;
+    padding: 1em;}
 
     .topNav a:active, .topNav a:hover {
-        text-decoration: none;
-        background: #00857f;
-        color: #fff
-    }
+    text-decoration: none;
+    background: #00857f;
+    color: #fff;}
 
     .admin {
-        display: none
-    }
+    display: none;}
 
     .headerPanel, .menu, .mobileOnly {
-        display: block
-    }
+    display: block;}
 
     .header > .limiter {
-        width: 100%
-    }
+    width: 100%;}
 
     .header {
-        padding: 0 0 .5em
-    }
+    padding: 0 0 .5em;}
 
     .header img {
-        max-width: 6.5em
-    }
+    max-width: 6.5em;}
 
     .limiter.inline {
-        display: block;
-        margin: auto;
-        width: 92.5%;
-        max-width: 100em;
-        min-width: 16em
-    }
+    display: block;
+    margin: auto;
+    width: 92.5%;
+    max-width: 100em;
+    min-width: 16em;}
 
     .headerPanel {
-        padding: 10px 0 0;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        -ms-box-sizing: border-box;
-        -o-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-transition: all .2s ease;
-        -moz-transition: all .2s ease;
-        -ms-transition: all .2s ease;
-        -o-transition: all .2s ease;
-        transition: all .2s ease;
-        width: 100%;
-        border-top: 3px solid #00857f
-    }
+    padding: 10px 0 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    width: 100%;
+    border-top: 3px solid #00857f;}
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (
+    max-width: 600px) {
     .answers, .question {
         float: none;
-        text-align: center;
-        width: auto
-    }
+    text-align: center;
+    width: auto;}
 }
+ 

@@ -1,57 +1,90 @@
 <!-- ngView:  -->
-<div data-autoscroll="true" class="view-frame">
+<div data-autoscroll="true" class="view-frame col-xs-9">
     <form class="wide">
-        <div class="trialSearch">
-            <div class="answers trialTitle" style="float:right">
-                <label>
-                    <input type="radio" data-ng-checked="trial.checked">
-                    <span>{{trial.therapeuticArea.title}}
-                    </span>
-                </label>
-            </div>
 
-            <div class="trialTitle" ng-class="{isEditing: isEditing}" ng-bind="trialTitle"></div>
+        <div class="setArea">
+            <p>Trial Therapeutic Area: <strong>{{trial.therapeuticArea.title}}</strong></p>
+        </div>
+
+        <h1>Criteria options for <strong>"<span data-ng-class="{isEditing: isEditing}" data-ng-bind="trialTitle"></span>"</strong></h1>
+        <p class="noTopPad">For each question below, select all options that are acceptable to your trial criteria.</p>
 
             <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
                 <div class="question">
-                    <p ng-bind="questionnaireEntry.question.questionText"></p>
+                    <p data-ng-bind="questionnaireEntry.question.questionText"></p>
                     <div class="clear"></div>
                 </div>
                 <div>
+
+
+
+                    <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                            <input type="checkbox"
+                                   data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
+                                   data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
+                            <span data-ng-bind="answer.answerText"></span>
+                        </label>
+                        <label class="select-all">
+                            <input name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
+                                   data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
+                        </label>
+                    </div>
+
+
+                    <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                        <div class="option-list slim">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                            <input type="checkbox"
+                                   data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
+                                   data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
+                            <span data-ng-bind="answer.answerText"></span>
+                        </label>
+                        </div>
+                        <label class="select-all option-list-all">
+                            <input name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
+                                   data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
+                        </label>
+                    </div>
+
+
+                    <!--
                     <div class="answers">
                         <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
                             <input type="checkbox"
-                                   ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
-                                   ng-checked="answer.isAcceptable" ng-model="answer.isAcceptable">
-                            <span ng-bind="answer.answerText"></span>
+                                   data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
+                                   data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
+                            <span data-ng-bind="answer.answerText"></span>
                         </label>
                         <label class="select-all">
-                            <input name="selectAll" type="checkbox" ng-model="questionnaireEntry.selectAll"
-                                   ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
+                            <input name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
+                                   data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
                         </label>
                     </div>
-                    <div class="right trialSelectionError" ng-hide="!questionnaireEntry.errors">
-                        <label ng-bind="questionnaireEntry.errors"></label>
+                    -->
+
+
+                    <div class="right trialSelectionError" data-ng-hide="!questionnaireEntry.errors">
+                        <label data-ng-bind="questionnaireEntry.errors"></label>
                     </div>
                 </div>
             </div>
 
             <div class="right trialSubmission answers">
-                <label><input type="checkbox" ng-disabled="!isEditing"
-                       ng-click="submitTrialSelections()"/>
+                <label><input type="checkbox" data-ng-disabled="!isEditing"
+                       data-ng-click="submitTrialSelections()"/>
                 <span>Save Selections</span>
                 </label>
-                <label class="selectionsSaved" ng-hide="!wasSaved">
+                <label class="selectionsSaved" data-ng-hide="!wasSaved">
                     <p>Selections saved...</p>
                 </label>
 
             </div>
-        </div>
 
-        <div class="trialResults ng-hide" data-ng-show="showList">
+        <div class="trialResults data-ng-hide" data-ng-show="showList">
             <h3 class="countHead" id="results">Trial Results</h3>
             <div class="trialList">
-                <div class="trialIntro ng-hide" data-ng-show="trial2"><h4>Thomas Haak, MD</h4>
+                <div class="trialIntro data-ng-hide" data-ng-show="trial2"><h4>Thomas Haak, MD</h4>
                     <p><span class="doc1"></span>This trial evaluates a cognitive-behavioural intervention
                         for diabetes patients with suboptimal glycaemic control and comorbid depressive
                         symptoms and/or diabetes distress.</p>
@@ -71,5 +104,5 @@
             </div>
         </div>
     </form>
-    <div class="clear ng-scope"></div>
+    <div class="clear data-ng-scope"></div>
 </div>
