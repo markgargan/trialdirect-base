@@ -80,6 +80,8 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         // all trial selectors have been created automatically behind the scene
         // verifying that they are there
         String selectors = this.getAllItems("trials/"+2+"/trialselectorquestionnaireentries");
+        // this check could be more precise than that
         assertNotNull(selectors);
+
     }
 }
