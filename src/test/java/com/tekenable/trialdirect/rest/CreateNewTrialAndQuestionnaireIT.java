@@ -20,9 +20,12 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
      * the issue here is to find out the IDS of created records ?
      * it would be nice to have them returned as an effect of creation
      */
-    
-    @Test
-    public void testCreateNewQuestionaire() {
+
+    //@Test
+    public void testCreateNewTrialStructure() {
+
+        // *** first step - create new questionnaire ***
+
         // new Therapeutic Area
         System.out.println(this.createTextItem("therapeuticareas", "title", "Diabetes"));
         assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
@@ -44,7 +47,7 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         this.assingAnswersToEntry(4, new int[]{13, 14});
         assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         
-        // second question with answers
+        // second question with 4 answers
         System.out.println(this.createTextItem("questions", "questionText", "How long do you have diabetes problem (in years)?"));
         assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
@@ -68,5 +71,14 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         
         // at this stage there should be a new questionnaire for Diabetes 
         // with 2 questons and assigned set of aswers
+
+        // second step - create new trial
+        System.out.println(this.createTextItem("trials", "title", "Diabetes Trial"));
+        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
+        // all trial selectors have been created automatically behind the scene
+        // verifying that they are there
+        String selectors = this.getAllItems("trials/"+2+"/trialselectorquestionnaireentries");
+
     }
 }

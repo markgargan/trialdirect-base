@@ -13,40 +13,40 @@ import static org.junit.Assert.assertTrue;
  *
  * @author smoczyna
  */
-public class UsersIT extends BaseRestResource {
+public class UsersIT extends RestTestResourceTemplate {
 
     @Test
     public void testGetAllUsers() {        
         String output = this.getAllItems("users");
         System.out.println(output);
-        assertEquals(BaseRestResource.REST_TEST_DESC, this.getResponseCode(), 200);
+        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetSigleUser() {
         String output = this.getSingleItemById("users", 1);
         System.out.println(output);
-        assertEquals(BaseRestResource.REST_TEST_DESC, this.getResponseCode(), 200);
+        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testGetUserTherapeuticAreas() {
         String output = this.getAllItems("users/"+1+"/therapeuticArea");
         System.out.println(output);
-        assertEquals(BaseRestResource.REST_TEST_DESC, this.getResponseCode(), 200);
+        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
     public void testCreateUser() {
         String output = this.createTextItem("users", "pseudonym", "Jaja");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getResponseCode()>=200);
+        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     //@Test
     public void testUpdateUser() {
         String output = this.updateItemText("users", 2, "pseudonym", "Jaroslaw");
         System.out.println(output);
-        assertTrue(BaseRestResource.REST_TEST_DESC, this.getResponseCode()>=200);
+        assertTrue(BaseRestResource.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 }

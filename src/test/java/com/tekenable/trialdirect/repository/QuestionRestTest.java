@@ -89,13 +89,14 @@ public class QuestionRestTest extends RestTestMockTemplate {
     }
 
     /**
-     * I couldn't make mockMvc to call POST service properly so I used REstTemplate instead
+     * I couldn't make mockMvc to call POST service properly so I used RestTemplate instead
      * this might be unified somewhow later to use the same technology across all the tests
      *
      * @throws Exception
      */
     @Test
     public void addQuestionTest() throws Exception {
+        log.info("*** START TEST ***");
         RestTemplate restTemplate = new RestTemplate();
         MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
 
@@ -107,6 +108,9 @@ public class QuestionRestTest extends RestTestMockTemplate {
 
         ResponseEntity<String> response = restTemplate.postForEntity("/questions", params, String.class);
         mockServer.verify();
+        assertTrue(response.getStatusCode().is2xxSuccessful());
+        log.info("*** END OF TEST ***");
+        //assertThat(response.getStatusCode()., allOf(containsString("SUCCESS"), containsString("resultSuccess")));
     }
 }
 

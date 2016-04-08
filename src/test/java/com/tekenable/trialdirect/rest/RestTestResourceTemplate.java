@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class RestTestResourceTemplate {
 
     public static final String REST_TEST_DESC = "HTTP response should be equal 20x";
-    public final static String BASE_URL = "http://localhost:8080/api/";
+    public final static String BASE_URL = "http://localhost:8080/trialdirect/api/";
 
     private HttpStatus status;
 
@@ -65,8 +65,8 @@ public class RestTestResourceTemplate {
     }
 
     public String createQuestionnaireEntry(int taId, int questionId) {
-        String payload = "{\"question\": \"http://localhost:8080/api/questions/#QID#{?projection}\",\n" +
-                " \"therapeuticArea\": \"http://localhost:8080/api/therapeuticareas/#TAID#\"\n" +
+        String payload = "{\"question\": \""+BASE_URL+"/questions/#QID#{?projection}\",\n" +
+                " \"therapeuticArea\": \""+BASE_URL+"/therapeuticareas/#TAID#\"\n" +
                 "}";
         payload = payload.replace("#QID#", String.valueOf(questionId));
         payload = payload.replace("#TAID#", String.valueOf(taId));
@@ -86,7 +86,7 @@ public class RestTestResourceTemplate {
      * but it is added here as a workaround for testing purposes
      */
     public void assingAnswersToEntry(int entryId, int[] answerIds) {
-        String answer = "\"answer\" : \"http://localhost:8080/api/answers/#ANS#\"";
+        String answer = "\"answer\" : \""+BASE_URL+"/answers/#ANS#\"";
         String allAnswers = null;
         for (Integer i : answerIds) {
             if (allAnswers==null)

@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
+//import javax.ws.rs.container.ContainerRequestContext
 /**
  *
  * @author smoczyna
@@ -119,7 +120,8 @@ public class BaseRestResource {
     
     protected String makeRestGetCall(String servicePath) {
         String result = null;       
-        target = client.target(BASE_URL).path("/".concat(servicePath));        
+        target = client.target(BASE_URL).path("/".concat(servicePath));
+
         Builder builder = target.request(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
         Response response = builder.get();  
         this.responseCode = response.getStatus();
