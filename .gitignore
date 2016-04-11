@@ -3,12 +3,5 @@ target
 *.log
 vendor
 /*.iml
-/src/main/webapp/bower_components
-<<<<<<< HEAD
 **/.DS_Store
 .DS_Store
-
-=======
-.DS_Store
-**/.DS_Store
->>>>>>> master
