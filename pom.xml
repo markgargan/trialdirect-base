@@ -184,7 +184,7 @@
                 <version>2.7</version>
                 <executions>
                     <execution>
-                        <id>copy-tomcat-context</id>
+                        <id>copy-tomcat-config</id>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
