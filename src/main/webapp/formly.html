@@ -1,0 +1,60 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translator</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://rawgit.com/awendland/angular-json-tree/master/build/angular-json-tree.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/translate.css"/>
+
+    <link rel="stylesheet" type="text/css" href="formly-app/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/translate.css">
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap-css-only/css/bootstrap.css">
+</head>
+<body ng-app="formlyApp">
+
+<div ng-controller="DemoCtrl">
+    <section id="input-controls">
+    <span class="json-url" ng-class="{'error': json.badUrl}">
+        <input ng-model="json.url" type="url" ng-focus="json.badUrl = false" placeholder="url" autocomplete="on">
+        <button ng-click="loadUrl()" ng-show="json.url">Load URL</button>
+    </span>
+    <span class="json-file">
+        <label class="button" for="json-file-choose">Load File</label>
+        <input type="file" id="json-file-choose" fileread="json.string">
+    </span>
+
+    </section>
+    <section id="output">
+        <json-tree object="json.object" start-expanded="true"></json-tree>
+    </section>
+</div>
+
+<section id="input">
+    <div ng-controller="JsonTranslateController as vm">
+
+        <form novalidate class="form-horizontal">
+            <formly-form model="model" fields="flattenedJsonMap" form="form">
+                <button type="submit" class="btn btn-primary" ng-disabled="vm.form.$invalid">Submit</button>
+            </formly-form>
+        </form>
+
+    </div>
+</section>
+</body>
+
+<!-- Application Dependencies -->
+<script src="./bower_components/api-check/dist/api-check.js"></script>
+<script src="./bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="app/translator/angular-json-tree.js"></script>
+<script src="./bower_components/angular-formly/dist/formly.js"></script>
+<script src="./bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
+
+<!-- Application Scripts -->
+<script src="app/translator/formly-app.js"></script>
+<script src="app/translator/MainController.js"></script>
+
+<script type="text/javascript" src="app/translator/main.js"></script>
+<script type="text/javascript" src="app/translator/json.translate.service.js"></script>
+<script type="text/javascript" src="app/translator/json.translate.controller.js"></script>
+</html>
