@@ -32,14 +32,20 @@ public class AnswerIT extends RestTestResourceTemplate {
     }
 
     @Test
-    public void testAddAndUpdateAswer() {
+    public void testAddUpdateDeleteAswer() {
         String output = this.createTextItem("answers", "answerText", "Brain");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
-        /*output = this.updateItemText("answers", 13, "answerText", "Breast");
-        System.out.println(output);
-        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());*/
-    }
+        int newID = this.getNewItemId();
+        if (newID>0) {
+            output = this.updateItemText("answers", 13, "answerText", "Breast");
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
+            output = this.deleteItem("answers", 13);
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        }
+    }
 }

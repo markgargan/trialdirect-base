@@ -43,5 +43,22 @@ public class TherapauticAreaIT extends RestTestResourceTemplate {
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
-    
+
+    @Test
+    public void testAddUpdateDeleteTherapeuticArea() {
+        String output = this.createTextItem("answers", "title", "Diabetes");
+        System.out.println(output);
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
+        int newID = this.getNewItemId();
+        if (newID>0) {
+            output = this.updateItemText("therapeuticareas", newID, "answerText", "Astma");
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
+            output = this.deleteItem("therapeuticareas", newID);
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        }
+    }
 }

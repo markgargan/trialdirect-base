@@ -41,4 +41,22 @@ public class TrialIT extends RestTestResourceTemplate {
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
+
+    public void testAddUpdateDeleteTrial() {
+        String output = this.createTextItem("trials", "title", "Diabetes Trial");
+        System.out.println(output);
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
+        int newID = this.getNewItemId();
+        if (newID>0) {
+            output = this.updateItemText("trials", newID, "answerText", "Astma Trial");
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
+            output = this.deleteItem("trials", newID);
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        }
+
+    }
 }

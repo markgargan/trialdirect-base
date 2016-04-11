@@ -5,8 +5,9 @@
  */
 package com.tekenable.trialdirect.rest;
 
-import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -72,6 +73,8 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         // at this stage there should be a new questionnaire for Diabetes 
         // with 2 questons and assigned set of aswers
 
+        // this part of the test fails with 409 conflict error ???
+
         // second step - create new trial
         //System.out.println(this.createTextItem("trials", "title", "Diabetes Trial"));
         //assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
@@ -81,6 +84,5 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         //String selectors = this.getAllItems("trials/"+2+"/trialselectorquestionnaireentries");
         // this check could be more precise than that
         //assertNotNull(selectors);
-
     }
 }
