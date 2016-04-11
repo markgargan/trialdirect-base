@@ -46,7 +46,7 @@ public class TrialInfo extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "trialInfo", cascade = CascadeType.ALL,
-            orphanRemoval = true,fetch = FetchType.LAZY)
+            orphanRemoval = true,fetch = FetchType.EAGER)
     public Set<TrialSite> getTrialSites() {
         return trialSites;
     }

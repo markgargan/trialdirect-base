@@ -75,7 +75,7 @@ public class Trial extends BaseEntity {
         this.therapeuticArea = therapeuticArea;
     }
 
-    @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public Set<TrialInfo> getTrialInfos() {
         return trialInfos;
     }

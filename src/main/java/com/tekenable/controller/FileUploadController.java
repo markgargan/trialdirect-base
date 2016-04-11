@@ -12,21 +12,20 @@ import com.tekenable.model.trial.TrialInfo;
 import com.tekenable.model.trial.TrialSite;
 import com.tekenable.repository.TrialInfoRepository;
 import com.tekenable.repository.TrialRepository;
+import com.tekenable.repository.TrialSiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -35,13 +34,16 @@ import java.util.Set;
 @Controller
 public class FileUploadController {
 
-    private static String UPLOAD_LOCATION="C:/mytemp/";
+    private static String UPLOAD_LOCATION = "C:/mytemp/";
 
     @Autowired
     TrialRepository trialRepository;
 
     @Autowired
     TrialInfoRepository trialInfoRepository;
+
+    @Autowired
+    TrialSiteRepository trialSiteRepository;
 
     @Autowired
     FileValidator fileValidator;
@@ -64,7 +66,7 @@ public class FileUploadController {
         binder.setValidator(multiFileValidator);
     }
 
-    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String getHomePage(ModelMap model) {
         return "welcome";
     }
@@ -77,8 +79,10 @@ public class FileUploadController {
     }
 
     @RequestMapping(value = "/uploadTrialInfo", method = RequestMethod.POST)
-    public @ResponseBody Integer uploadTrialInfo(@Valid TrialInfoBucket trialInfoBucket,
-                            BindingResult result, HttpServletResponse response) throws IOException {
+    public
+    @ResponseBody
+    Integer uploadTrialInfo(@Valid TrialInfoBucket trialInfoBucket,
+                            BindingResult result) throws IOException {
 
         if (result.hasErrors()) {
 
@@ -102,7 +106,7 @@ public class FileUploadController {
 
             Set<TrialSite> trialSites = new HashSet<TrialSite>();
 
-            if (trialInfoBucket.getTrialSites() !=null) {
+            if (trialInfoBucket.getTrialSites() != null) {
                 for (TrialSiteBucket trialSiteBucket : trialInfoBucket.getTrialSites()) {
                     TrialSite trialSite = new TrialSite(trialInfo,
                             trialSiteBucket.getSiteDirector(),
@@ -129,6 +133,39 @@ public class FileUploadController {
             return trialInfo.getId();
         }
     }
+
+    @RequestMapping(value = "/trialInfoImage/{trialInfoId}", method = RequestMethod.GET)
+    public void trialInfoImage(@PathVariable("trialInfoId") Integer trialInfoId, HttpServletResponse response) throws IOException {
+
+        // Retrieve the appropriate Trial
+        TrialInfo trialInfo = trialInfoRepository.findOne(trialInfoId);
+
+        response.setContentType(trialInfo.getTrialLogo().getType());
+
+        try {
+            ByteArrayInputStream b_in = new ByteArrayInputStream(trialInfo.getTrialLogo().getContent());
+            FileCopyUtils.copy(b_in, response.getOutputStream());
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/trialSiteImage/{trialSiteId}", method = RequestMethod.GET)
+    public void trialSiteImage(@PathVariable("trialSiteId") Integer trialSiteId, HttpServletResponse response) throws IOException {
+
+        // Retrieve the appropriate Trial
+        TrialSite trialSite = trialSiteRepository.findOne(trialSiteId);
+
+        response.setContentType(trialSite.getTrialSiteImage().getType());
+
+        try {
+            ByteArrayInputStream b_in = new ByteArrayInputStream(trialSite.getTrialSiteImage().getContent());
+            FileCopyUtils.copy(b_in, response.getOutputStream());
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
 
     @RequestMapping(value = "/multiUpload", method = RequestMethod.GET)
     public String getMultiUploadPage(ModelMap model) {
