@@ -33,7 +33,7 @@ import javax.sql.DataSource;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestConfig.class, WebConfig.class, TestRepoConfig.class})
 @WebAppConfiguration
-public abstract class RestTestResourceTemplate {
+public abstract class RestTestMockTemplate {
 
     @Value("classpath:sql/trial-direct-test-data.sql")
     private Resource createTestData;
@@ -41,7 +41,7 @@ public abstract class RestTestResourceTemplate {
     @Value("classpath:sql/clear-test-data.sql")
     private Resource clearTestData;
 
-    protected static final Logger log = LoggerFactory.getLogger(RestTestResourceTemplate.class);
+    protected static final Logger log = LoggerFactory.getLogger(RestTestMockTemplate.class);
     protected MockMvc mockMvc;
 
     @Autowired

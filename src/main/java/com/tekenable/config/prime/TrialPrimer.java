@@ -83,6 +83,8 @@ public class TrialPrimer extends CancerTrialPrimer implements ApplicationContext
                 "Pfizer siteDescription",
                 pfizerGoogleMap);
 
+        trialSite1.setTrialSiteImage(doc1Image);
+
         pfizerTrialInfo.setTrialSites(new HashSet<TrialSite>() {{
                                           add(trialSite1);
         }});
@@ -111,6 +113,8 @@ public class TrialPrimer extends CancerTrialPrimer implements ApplicationContext
         lundbeckTrialInfo.setTrialSites(new HashSet<TrialSite>() {{
             add(trialSite1);
         }});
+
+        trialSite1.setTrialSiteImage(doc2Image);
 
         trialRepository.save(lundbeckTrial);
     }

@@ -44,11 +44,20 @@
                     </div>
                 </div>
 
-                <div class="answers">
+                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
                     <button class="left btn btn-remove" type="button" title="Delete"
                                 data-ng-click="deleteAnswer(questionnaireEntry, answer)"  data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
                         {{answer.answerText}}    <span class="glyphicon glyphicon-remove"></span>
                     </button>
+                </div>
+
+                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                    <div class="option-list">
+                        <button class="left btn btn-remove" type="button" title="Delete"
+                                data-ng-click="deleteAnswer(questionnaireEntry, answer)"  data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                            {{answer.answerText}}    <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
                 </div>
                 <div class="clear"></div>
 
