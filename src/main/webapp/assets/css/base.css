@@ -2,6 +2,44 @@
  Integration start
 **/
 
+#myForm {
+    width: 54%;
+}
+
+#myForm label {
+  display: inline-block;
+  text-align: right;
+}
+
+#myForm input {
+    /* line-height:1em; */
+    float: right;
+}
+
+#myForm img{
+    /* float: right; */
+}
+.trial-site {
+    overflow:auto;
+    border: 1px lightgray solid;
+}
+
+.pure-control-group > img {
+    float:left;
+}
+.pure-controls > button {
+    float:left;
+}
+
+
+.file-upload-group{
+    background:red;
+    display:block;
+    line-height:10px;
+    width:50%;
+    margin: auto 0;
+}
+
 label.selectionsSaved > p {
     font-style:italic;
     color:lightgray;
@@ -25,7 +63,7 @@ div.pa-sidebar {
     background-color: #E6E6E6;
 }
 div.list-text {
-    /* width: 31em; */
+    width: 31em;
 }
 
 div.list-answers {

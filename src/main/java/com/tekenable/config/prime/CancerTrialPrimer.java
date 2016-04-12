@@ -2,7 +2,10 @@ package com.tekenable.config.prime;
 
 import com.tekenable.model.*;
 import com.tekenable.repository.*;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,7 +13,7 @@ import java.util.Set;
 /**
  * Created by smoczyna on 17/03/16.
  */
-public class CancerTrialPrimer {
+public abstract class CancerTrialPrimer {
 
     @Autowired
     private TherapeuticAreaRepository therapeuticAreaRepository;
@@ -22,7 +25,7 @@ public class CancerTrialPrimer {
     private AnswerRepository answerRepository;
 
     @Autowired
-    private TrialRepository trialRepository;
+    protected TrialRepository trialRepository;
 
     @Autowired
     private QuestionnaireEntryRepository questionEntryRepository;

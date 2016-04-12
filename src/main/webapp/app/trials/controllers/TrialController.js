@@ -1,7 +1,7 @@
 angular.module('trialdirect').controller('TrialController',
-    ['$scope', '$state', 'TrialResourceService', 'trials',
+    ['$scope', '$state', 'TrialResourceService', 'TrialInfo', 'trials',
         'therapeuticAreas',
-        function ($scope, $state, TrialResourceService, trials, therapeuticAreas ) {
+        function ($scope, $state, TrialResourceService, TrialInfo, trials, therapeuticAreas ) {
 
             $scope.trials = trials;
 
@@ -9,18 +9,45 @@ angular.module('trialdirect').controller('TrialController',
 
             $scope.therapeuticAreas = therapeuticAreas;
 
+            $scope.wasSaved = false;
+
             $scope.addTrial = function (newTrial) {
                 new TrialResourceService({
                     title: newTrial.title,
                     therapeuticArea: newTrial.therapeuticArea.getHrefLink()
-                }).save(function (newTrial) {
+                }).save(function (savedTrial) {
                     // Goto the new instance on the far side
-                    $scope.trials.unshift(newTrial);
-                    $state.go("trials.detail", { 'trialId': newTrial.id});
+                    $scope.trials.unshift(savedTrial);
+                    $scope.newTrial = savedTrial;
+
+                    //new TrialInfo({
+                    //    trial: $scope.newTrial.getHrefLink()
+                    //}).save(function(savedTrialInfo) {
+                    //    console.log("Saved Trial Info " + savedTrialInfo.id);
+                    //
+                    //    savedTrialInfo.picFile={};
+                    //    $scope.newTrial.trialInfo = new TrialInfo(savedTrialInfo);
+                    //});
+
+                    $scope.wasSaved = true;
                 });
 
-                $scope.newTrial= {};
                 $scope.reset();
+            };
+
+            $scope.initializeTrialSite = function() {
+
+                var trialInfo = $scope.newTrial.trialInfo;
+
+                if (!trialInfo.trialSites) {
+                    trialInfo.trialSites = [];
+                }
+
+                var newTrialSite = {
+                    isEditing : true
+                };
+
+                trialInfo.trialSites.unshift(newTrialSite);
             };
 
             $scope.reset = function() {
@@ -29,6 +56,8 @@ angular.module('trialdirect').controller('TrialController',
                 angular.forEach($scope.therapeuticAreas, function(therapeuticArea) {
                     therapeuticArea.checked=false;
                 });
+
+                $scope.wasSaved = false;
             };
 
             $scope.reset();

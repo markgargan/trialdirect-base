@@ -6,16 +6,22 @@ import javax.annotation.PostConstruct;
 
 public class TrialDirectPrimer {
 
+//    @Autowired
+//    CancerTrialPrimer cancerTrialPrimer;
+
+
     @Autowired
-    CancerTrialPrimer cancerTrialPrimer;
+    TrialPrimer trialPrimer;
 
 
     @PostConstruct
     public void initDB() {
 
-        try {
-            cancerTrialPrimer.initDB();
 
+
+        try {
+//            cancerTrialPrimer.initDB();
+            trialPrimer.initDB();
         }catch (NullPointerException pae) {
             pae.printStackTrace();
         }

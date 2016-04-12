@@ -1,0 +1,153 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+/* Page Styling */
+body {
+    background: #fbead8;
+    font-family: monospace;
+    font-size: 15px;
+}
+section {
+    position: absolute;
+}
+input[type='text'],
+input[type='url'],
+button,
+.button,
+input[type='button'],
+a {
+    display: inline-block;
+    height: 1.75em;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.7);
+    border-style: solid;
+    border-width: 0;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all .1s;
+    padding: .2em;
+}
+input[type='text'],
+input[type='url'] {
+    padding: .25em;
+    border-bottom-width: 2px;
+}
+input[type='text']:focus,
+input[type='url']:focus {
+    border-color: white;
+    color: white;
+}
+input[type='text']::-webkit-input-placeholder,
+input[type='url']::-webkit-input-placeholder {
+    color: white;
+}
+button,
+.button,
+input[type='button'],
+a {
+    border-width: 2px;
+    padding: .2em .4em;
+    color: rgba(255, 255, 255, 0.7);
+}
+button:hover,
+.button:hover,
+input[type='button']:hover,
+a:hover,
+button:active,
+.button:active,
+input[type='button']:active,
+a:active {
+    color: white;
+}
+button:active,
+.button:active,
+input[type='button']:active,
+a:active {
+    border-color: white;
+}
+#input-controls {
+    background: #66ADAF;
+    box-shadow: 0px 0.33em 0 rgba(102, 173, 175, 0.5);
+    padding: 0.5em;
+    top: 1em;
+    left: 2%;
+    right: 2%;
+}
+#input-controls .json-url input {
+    width: 30%;
+}
+#input-controls .json-url.error input,
+#input-controls .json-url input.ng-invalid-url {
+    color: red;
+}
+#input-controls .json-file input[type='file'] {
+    visibility: hidden;
+    width: 0;
+}
+#input-controls .github {
+    float: right;
+    text-decoration: none;
+}
+#input,
+#output {
+    top: 5.08em;
+    bottom: 2%;
+}
+#input {
+    left: 2%;
+    right: 52%;
+    background: #e05069;
+    box-shadow: 0.33em 0.33em 0 rgba(224, 80, 105, 0.5);
+}
+#input textarea {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    resize: none;
+    border: none;
+    padding: 1em;
+    color: white;
+    background: transparent;
+}
+#input.error textarea {
+    box-shadow: inset 0 0 0 4px red;
+}
+#input .error-modal {
+    position: absolute;
+    top: 4em;
+    left: 10%;
+    right: 10%;
+    padding: 1.5em;
+    background: #cb4e7f;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+#output {
+    left: 52%;
+    right: 2%;
+    overflow-y: scroll;
+    padding: 1em;
+    background: #ffa562;
+    box-shadow: -0.33em 0.33em 0 rgba(255, 165, 98, 0.5);
+}
+/* Json Tree Looks */
+json-tree ul {
+    margin: 0;
+    background: rgba(255, 255, 255, 0.1);
+}
+json-tree .key {
+    color: #cb4e7f;
+}
+json-tree .branch-preview {
+    max-width: 60%;
+}
+json-tree .branch-preview::after {
+    content: '...';
+}

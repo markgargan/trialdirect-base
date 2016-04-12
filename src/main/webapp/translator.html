@@ -1,0 +1,40 @@
+<html>
+<head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://rawgit.com/awendland/angular-json-tree/master/build/angular-json-tree.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/translate.css"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.5/less.min.js" type="text/psajs" orig_index="0"></script>
+
+</head>
+
+<body ng-app="jsonTreeDemo" ng-controller="DemoCtrl"><noscript><meta HTTP-EQUIV="refresh" content="0;url='https://blog.alexwendland.com/angular-json-tree/?PageSpeed=noscript'" /><style><!--table,div,span,font,p{display:none} --></style><div style="display:block">Please click <a href="https://blog.alexwendland.com/angular-json-tree/?PageSpeed=noscript">here</a> if you are not redirected within a few seconds.</div></noscript>
+<section id="input-controls">
+<span class="json-url" ng-class="{'error': json.badUrl}">
+<input ng-model="json.url" type="url" ng-focus="json.badUrl = false" placeholder="url" autocomplete="on">
+<button ng-click="loadUrl()" ng-show="json.url">Load URL</button>
+</span>
+<span class="json-file">
+<label class="button" for="json-file-choose">Load File</label>
+<input type="file" id="json-file-choose" fileread="json.string">
+</span>
+    <a class="github" href="http://github.com/awendland/angular-json-tree" target="_blank">GitHub</a>
+</section>
+<section id="input" ng-class="{'error': error}">
+    <div class="error-modal" ng-show="error.show"><p class="info">{{error.message}}</p><button class="close" ng-click="error.show = false">Close</button></div>
+    <textarea ng-model="json.string"></textarea>
+</section>
+<section id="output">
+    <json-tree object="json.object" start-expanded="true"></json-tree>
+</section>
+<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+<script src="https://rawgit.com/awendland/angular-json-tree/master/build/angular-json-tree.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="app/translator/main.js"></script>
+<div id="google_translate_element"></div><script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

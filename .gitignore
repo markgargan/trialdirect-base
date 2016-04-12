@@ -1,6 +1,7 @@
-/trialdirect.iml
 .idea
 target
 *.log
 vendor
-*.iml
+/*.iml
+**/.DS_Store
+.DS_Store
