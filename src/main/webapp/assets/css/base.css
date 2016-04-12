@@ -337,7 +337,7 @@ form.small label {
 .limiter, main {/* background: #fafafa; */display: block;}
 
 main {
-    min-height: 50em
+    min-height: 50em;
 }
 
 .limiter {
@@ -458,6 +458,11 @@ a[href="#top"] span {
     border: 0;
     text-align: right;
     transition: all .2s ease
+}
+
+
+.topNav1 .active a {
+    font-weight: bold
 }
 
 .nav a, .trialIntro span {
