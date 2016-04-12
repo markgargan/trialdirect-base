@@ -3,7 +3,11 @@ package com.tekenable.config;
 
 import com.tekenable.config.prime.CancerTrialPrimer;
 import com.tekenable.config.prime.TrialDirectPrimer;
+import com.tekenable.config.prime.TrialPrimer;
 import com.tekenable.model.*;
+import com.tekenable.model.trial.TrialDirectImage;
+import com.tekenable.model.trial.TrialInfo;
+import com.tekenable.model.trial.TrialSite;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -45,11 +49,15 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
             config.exposeIdsFor(Answer.class);
             config.exposeIdsFor(Question.class);
             config.exposeIdsFor(QuestionnaireEntry.class);
-            config.exposeIdsFor(Trial.class);
             config.exposeIdsFor(TherapeuticArea.class);
             config.exposeIdsFor(TrialSelectorQuestionnaireEntry.class);
             config.exposeIdsFor(UserSelectorQuestionnaireEntry.class);
             config.exposeIdsFor(User.class);
+
+            config.exposeIdsFor(Trial.class);
+            config.exposeIdsFor(TrialInfo.class);
+            config.exposeIdsFor(TrialSite.class);
+            config.exposeIdsFor(TrialDirectImage.class);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -106,8 +114,11 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
         return properties;
     }
 
+//    @Bean
+//    public CancerTrialPrimer cancerTrialPrimer() { return new CancerTrialPrimer(); }
+
     @Bean
-    public CancerTrialPrimer cancerTrialPrimer() { return new CancerTrialPrimer(); }
+    public TrialPrimer trialPrimer() { return new TrialPrimer(); }
 
     @Bean
     public TrialDirectPrimer trialDirectPrimer() {

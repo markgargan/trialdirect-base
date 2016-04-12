@@ -5,9 +5,10 @@
  */
 package com.tekenable.trialdirect.rest;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 /**
  *
@@ -30,58 +31,72 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         // new Therapeutic Area
         System.out.println(this.createTextItem("therapeuticareas", "title", "Diabetes"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-        
+        int taID = this.getNewItemId();
+
         // first question of new questionnaire
         System.out.println(this.createTextItem("questions", "questionText", "What is your diabetes type?"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-        
-        System.out.println(this.createQuestionnaireEntry(2, 4)); // how to find out those ids programmatically ?
+        int qID = this.getNewItemId();
+
+        System.out.println(this.createQuestionnaireEntry(taID, qID));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-                
+        int qeID = this.getNewItemId();
+
         // 2 answers corresponding with the first question
         System.out.println(this.createTextItem("answers", "answerText", "Type 1"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        int aID1 = this.getNewItemId();
 
         System.out.println(this.createTextItem("answers", "answerText", "Type 2"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        int aID2 = this.getNewItemId();
 
-        this.assingAnswersToEntry(4, new int[]{13, 14});
+        this.assingAnswersToEntry(qeID, new int[]{aID1, aID2});
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         
         // second question with 4 answers
         System.out.println(this.createTextItem("questions", "questionText", "How long do you have diabetes problem (in years)?"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        qID = this.getNewItemId();
 
-        System.out.println(this.createQuestionnaireEntry(2, 5));
+        System.out.println(this.createQuestionnaireEntry(taID, qID));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        qeID = this.getNewItemId();
 
         System.out.println(this.createTextItem("answers", "answerText", "0-3"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        aID1 = this.getNewItemId();
 
         System.out.println(this.createTextItem("answers", "answerText", "3-5"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        aID2 = this.getNewItemId();
 
         System.out.println(this.createTextItem("answers", "answerText", "5-10"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        int aID3 = this.getNewItemId();
 
         System.out.println(this.createTextItem("answers", "answerText", "10 and more"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        int aID4 = this.getNewItemId();
 
-        this.assingAnswersToEntry(5, new int[]{15, 16, 17, 18});
+        this.assingAnswersToEntry(qeID, new int[]{aID1, aID2, aID3, aID4});
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         
         // at this stage there should be a new questionnaire for Diabetes 
         // with 2 questons and assigned set of aswers
 
+
+        // this part of the test fails with 409 conflict error ???
+
         // second step - create new trial
         //System.out.println(this.createTextItem("trials", "title", "Diabetes Trial"));
         //assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        //int trID = this.getNewItemId();
 
         // all trial selectors have been created automatically behind the scene
         // verifying that they are there
-        //String selectors = this.getAllItems("trials/"+2+"/trialselectorquestionnaireentries");
+        //String selectors = this.getAllItems("trials/"+trID+"/trialselectorquestionnaireentries");
         // this check could be more precise than that
         //assertNotNull(selectors);
-
     }
 }

@@ -37,16 +37,20 @@ public class UsersIT extends RestTestResourceTemplate {
     }
 
     @Test
-    public void testCreateUser() {
+    public void testCreateUpdateDeleteUser() {
         String output = this.createTextItem("users", "pseudonym", "Jaja");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-    }
 
-    //@Test
-    public void testUpdateUser() {
-        String output = this.updateItemText("users", 2, "pseudonym", "Jaroslaw");
-        System.out.println(output);
-        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        int newID = this.getNewItemId();
+        if (newID>0) {
+            output = this.updateItemText("users", newID, "pseudonym", "Jaroslaw");
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
+            output = this.deleteItem("users", newID);
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        }
     }
 }

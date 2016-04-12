@@ -33,8 +33,17 @@ public class QuestionIT extends RestTestResourceTemplate {
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
-        /*output = this.updateItemText("questions", 4, "questionText", "Do you take any medication regularly?");
-        System.out.println(output);
-        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());*/
+        int newID = this.getNewItemId();
+        if (newID>0) {
+            // for some reason question updates do not work ???
+
+            /*output = this.updateItemText("questions", newID, "questionText", "Do you take any medication regularly?");
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());*/
+
+            output = this.deleteItem("questions", newID);
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        }
     }
 }

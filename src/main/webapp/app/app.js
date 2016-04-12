@@ -4,7 +4,9 @@ angular.module('trialdirect', [
         'uiRouterSample.user',
         'ngResource',
         'spring-data-rest',
-        'ui.router'
+        'ui.router',
+        'fileUpload'
+
     ])
     .run(
         ['$rootScope', '$state', '$stateParams',

@@ -3,6 +3,9 @@ package com.tekenable.trialdirect.rest;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 /**
  * Created by smoczyna on 05/04/16.
  */
@@ -10,11 +13,30 @@ public class RestTestResourceTemplate {
 
     public static final String REST_TEST_DESC = "HTTP response should be equal 20x";
     public final static String BASE_URL = "http://localhost:8080/trialdirect/api/";
+    //public final static String BASE_URL = "http://localhost:8080/api/";
 
     private HttpStatus status;
+    private HttpHeaders responseHeaders;
 
     public HttpStatus getStatus() {
         return status;
+    }
+
+    public HttpHeaders getResponseHeaders() {
+        return responseHeaders;
+    }
+
+    protected int getNewItemId() {
+        URI uri;
+        try {
+            uri = new URI(this.getResponseHeaders().get("location").get(0));
+        } catch (URISyntaxException ex) {
+            System.out.println(ex.getMessage());
+            return -1;
+        }
+        String[] segments = uri.getPath().split("/");
+        String idStr = segments[segments.length-1];
+        return Integer.parseInt(idStr);
     }
 
     /**
@@ -49,6 +71,10 @@ public class RestTestResourceTemplate {
     public String createTextItem(String restPath, String itemName, String itemText) {
         String payload = "{\"#NAME#\" : \"#VAL#\"}".replace("#NAME#", itemName).replace("#VAL#", itemText);
         return this.makeRestCall("POST", BASE_URL.concat(restPath), payload);
+    }
+
+    public String deleteItem(String restPath, int id) {
+        return this.makeRestCall("DELETE", BASE_URL.concat(restPath)+"/"+id, null);
     }
 
     /**
@@ -111,6 +137,7 @@ public class RestTestResourceTemplate {
 
         ResponseEntity<String> response = restTemplate.exchange(restPath, HttpMethod.valueOf(method), entity, String.class);
         this.status = response.getStatusCode();
+        this.responseHeaders = response.getHeaders();
         return response.toString();
     }
 
