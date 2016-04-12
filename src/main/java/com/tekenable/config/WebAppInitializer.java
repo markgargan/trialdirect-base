@@ -1,14 +1,23 @@
 package com.tekenable.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.Filter;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 import java.nio.charset.StandardCharsets;
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException{
+        super.onStartup(servletContext);
+        ServletRegistration.Dynamic trialLogoUpload
+                = servletContext.addServlet("trialLogoUpload", new com.tekenable.servlet.TrialLogoUploadServlet());
+        trialLogoUpload.setLoadOnStartup(1);
+        trialLogoUpload.addMapping("/uploadTrialInfo/*");
+    }
 
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {

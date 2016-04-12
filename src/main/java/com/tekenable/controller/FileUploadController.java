@@ -78,61 +78,61 @@ public class FileUploadController {
         return "singleFileUploader";
     }
 
-    @RequestMapping(value = "/uploadTrialInfo", method = RequestMethod.POST)
-    public
-    @ResponseBody
-    Integer uploadTrialInfo(@Valid TrialInfoBucket trialInfoBucket,
-                            BindingResult result) throws IOException {
-
-        if (result.hasErrors()) {
-
-            throw new RuntimeException(result.getAllErrors().toString());
-        } else {
-
-            // Retrieve the appropriate Trial
-            Trial trial = trialRepository.findOne(trialInfoBucket.getTrialId());
-
-            // Create the TrialDirectImage that houses the Trial Icon
-            TrialDirectImage trialLogo = new TrialDirectImage(
-                    trialInfoBucket.getFile().getOriginalFilename(),
-                    trialInfoBucket.getFile().getContentType(),
-                    trialInfoBucket.getFile().getBytes());
-
-            TrialInfo trialInfo = new TrialInfo(trial, trialInfoBucket.getDescription());
-
-            trialInfo.setTrialLogo(trialLogo);
-
-            trialInfo.setTrial(trial);
-
-            Set<TrialSite> trialSites = new HashSet<TrialSite>();
-
-            if (trialInfoBucket.getTrialSites() != null) {
-                for (TrialSiteBucket trialSiteBucket : trialInfoBucket.getTrialSites()) {
-                    TrialSite trialSite = new TrialSite(trialInfo,
-                            trialSiteBucket.getSiteDirector(),
-                            trialSiteBucket.getSiteDirector(),
-                            trialSiteBucket.getSiteSummary(),
-                            trialSiteBucket.getSiteMap()
-                    );
-
-                    TrialDirectImage trialSiteImage = new TrialDirectImage(
-                            trialSiteBucket.getTrialSiteFile().getOriginalFilename(),
-                            trialSiteBucket.getTrialSiteFile().getContentType(),
-                            trialSiteBucket.getTrialSiteFile().getBytes());
-
-                    trialSite.setTrialSiteImage(trialSiteImage);
-
-                    trialSites.add(trialSite);
-                }
-            }
-
-            trialInfo.setTrialSites(trialSites);
-
-            trialInfoRepository.save(trialInfo);
-
-            return trialInfo.getId();
-        }
-    }
+//    @RequestMapping(value = "/uploadTrialInfos", method = RequestMethod.POST)
+//    public
+//    @ResponseBody
+//    Integer uploadTrialInfo(@Valid TrialInfoBucket trialInfoBucket,
+//                            BindingResult result) throws IOException {
+//
+//        if (result.hasErrors()) {
+//
+//            throw new RuntimeException(result.getAllErrors().toString());
+//        } else {
+//
+//            // Retrieve the appropriate Trial
+//            Trial trial = trialRepository.findOne(trialInfoBucket.getTrialId());
+//
+//            // Create the TrialDirectImage that houses the Trial Icon
+//            TrialDirectImage trialLogo = new TrialDirectImage(
+//                    trialInfoBucket.getFile().getOriginalFilename(),
+//                    trialInfoBucket.getFile().getContentType(),
+//                    trialInfoBucket.getFile().getBytes());
+//
+//            TrialInfo trialInfo = new TrialInfo(trial, trialInfoBucket.getDescription());
+//
+//            trialInfo.setTrialLogo(trialLogo);
+//
+//            trialInfo.setTrial(trial);
+//
+//            Set<TrialSite> trialSites = new HashSet<TrialSite>();
+//
+//            if (trialInfoBucket.getTrialSites() != null) {
+//                for (TrialSiteBucket trialSiteBucket : trialInfoBucket.getTrialSites()) {
+//                    TrialSite trialSite = new TrialSite(trialInfo,
+//                            trialSiteBucket.getSiteDirector(),
+//                            trialSiteBucket.getSiteDirector(),
+//                            trialSiteBucket.getSiteSummary(),
+//                            trialSiteBucket.getSiteMap()
+//                    );
+//
+//                    TrialDirectImage trialSiteImage = new TrialDirectImage(
+//                            trialSiteBucket.getTrialSiteFile().getOriginalFilename(),
+//                            trialSiteBucket.getTrialSiteFile().getContentType(),
+//                            trialSiteBucket.getTrialSiteFile().getBytes());
+//
+//                    trialSite.setTrialSiteImage(trialSiteImage);
+//
+//                    trialSites.add(trialSite);
+//                }
+//            }
+//
+//            trialInfo.setTrialSites(trialSites);
+//
+//            trialInfoRepository.save(trialInfo);
+//
+//            return trialInfo.getId();
+//        }
+//    }
 
     @RequestMapping(value = "/trialInfoImage/{trialInfoId}", method = RequestMethod.GET)
     public void trialInfoImage(@PathVariable("trialInfoId") Integer trialInfoId, HttpServletResponse response) throws IOException {
