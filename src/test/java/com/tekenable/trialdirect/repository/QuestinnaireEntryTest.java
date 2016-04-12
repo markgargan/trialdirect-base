@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -36,7 +37,7 @@ public class QuestinnaireEntryTest extends RestTestMockTemplate {
         log.info("Overall Entries found: "+String.valueOf(count));
 
         ResultActions result = mockMvc.perform(get("/questionnaireentries")).andExpect(status().is2xxSuccessful());
-        assertNotNull(result);
+        result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
 

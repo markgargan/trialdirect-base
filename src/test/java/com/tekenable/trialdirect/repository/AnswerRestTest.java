@@ -37,7 +37,7 @@ public class AnswerRestTest extends RestTestMockTemplate {
         log.info("Overall Answers found: "+String.valueOf(count));
 
         ResultActions result = mockMvc.perform(get("/answers")).andExpect(status().is2xxSuccessful());
-        assertNotNull(result);
+        result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
 

@@ -37,7 +37,7 @@ public class TherapeuticAreaRestTest extends RestTestMockTemplate {
         log.info("Overall Therapeutic Areas found: "+String.valueOf(count));
 
         ResultActions result = mockMvc.perform(get("/therapeuticareas")).andExpect(status().is2xxSuccessful());
-        assertNotNull(result);
+        result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
 

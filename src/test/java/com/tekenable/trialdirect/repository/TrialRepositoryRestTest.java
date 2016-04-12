@@ -37,7 +37,7 @@ public class TrialRepositoryRestTest extends RestTestMockTemplate {
         log.info("Overall Trials found: "+String.valueOf(count));
 
         ResultActions result = mockMvc.perform(get("/trials")).andExpect(status().is2xxSuccessful());
-        assertNotNull(result);
+        result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
 

@@ -6,6 +6,8 @@
 package com.tekenable.trialdirect.repository;
 
 import com.tekenable.repository.QuestionRepository;
+import org.hamcrest.BaseMatcher;
+import org.json.simple.JSONObject;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -52,26 +54,9 @@ public class QuestionRestTest extends RestTestMockTemplate {
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
         final Integer count = jdbc.queryForObject("select count(*) from Question", Integer.class);
         log.info("Overall Questions found: "+String.valueOf(count));
-        //assertTrue("Pre populated questions are there", count==3);
-
-        //MvcResult result = mockMvc.perform(get("/questions")).andExpect(status().is2xxSuccessful()).andReturn();
-        //allQuestions.getResponse().
-        //assertEquals(count, ((net.minidev.json.JSONArray) result.read("$")).size());
 
         ResultActions result = mockMvc.perform(get("/questions")).andExpect(status().is2xxSuccessful());
-        assertNotNull(result);
-        /*result.andExpect(jsonPath("$.questions.*").value(new BaseMatcher() {
-            @Override
-            public void describeTo(org.hamcrest.Description description) {
-                // not for now
-            }
-
-            @Override
-            public boolean matches(Object obj) {
-                return obj instanceof JSONObject && ((JSONObject) obj).length() == count;
-            }
-        }));*/
-        //result.andExpect(jsonPath("$", hasSize(count)));
+        result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
 
@@ -113,40 +98,3 @@ public class QuestionRestTest extends RestTestMockTemplate {
         //assertThat(response.getStatusCode()., allOf(containsString("SUCCESS"), containsString("resultSuccess")));
     }
 }
-
-/*
-@Test
-    public void getPublicBlogPost_ShouldReturnHttpStatusCode404ForUnpublishedBlog() throws Exception {
-        BlogPost blog = getTestSinglePublishedBlogPost();
-        blog.unpublish();
-
-        when(blogPostRepositoryMock.findOne(BLOG_ID)).thenReturn(blog);
-
-        mockMvc.perform(get("/public/blogs/{blogId}", BLOG_ID))
-                .andExpect(status().isNotFound())
-                ;
-
-        verify(blogPostRepositoryMock, times(1)).findOne(BLOG_ID);
-        verifyNoMoreInteractions(blogPostRepositoryMock);
-    }
- */
-
-/*
-SomeClass found = new SomeClass()
-                .id(1L)
-                .description("Lorem ipsum")
-                .title("Foo")
-                .build();
-
-        when(todoServiceMock.findById(1L)).thenReturn(found);
-
-        mockMvc.perform(get("/api/someclass/{id}", 1L))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.description", is("Lorem ipsum")))
-                .andExpect(jsonPath("$.title", is("Foo")));
-
-        verify(todoServiceMock, times(1)).findById(1L);
-        verifyNoMoreInteractions(todoServiceMock);
- */

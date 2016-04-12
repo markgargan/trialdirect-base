@@ -33,11 +33,11 @@ public class UserRepositoryTest extends RestTestMockTemplate {
         if (!this.isMockInitialized) this.init();
         log.info("*** START TEST ***");
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-        Integer count = jdbc.queryForObject("select count(*) from Answer", Integer.class);
+        Integer count = jdbc.queryForObject("select count(*) from User", Integer.class);
         log.info("Overall Users found: "+String.valueOf(count));
 
         ResultActions result = mockMvc.perform(get("/users")).andExpect(status().is2xxSuccessful());
-        assertNotNull(result);
+        result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
 
