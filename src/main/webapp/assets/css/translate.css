@@ -1,4 +1,14 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
+
+section[id=input] {
+    overflow-y:scroll;
+    height:40em;
+}
+
+form[name='translate-form'] input {
+    width:100%;
+}
+
 html {
     box-sizing: border-box;
 }

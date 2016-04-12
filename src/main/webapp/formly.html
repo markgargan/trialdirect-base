@@ -3,13 +3,12 @@
 <html>
 <head>
     <title>Translator</title>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
-    <link rel="stylesheet" href="https://rawgit.com/awendland/angular-json-tree/master/build/angular-json-tree.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/translate.css"/>
+    <link rel="stylesheet" href="assets/css/normalize.min.css">
+    <link rel="stylesheet" href="assets/css/angular-json-tree.css"/>
 
     <link rel="stylesheet" type="text/css" href="formly-app/css/styles.css">
     <link rel="stylesheet" type="text/css" href="assets/css/translate.css">
-    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap-css-only/css/bootstrap.css">
+    <!--<link rel="stylesheet" type="text/css" href="./bower_components/bootstrap-css-only/css/bootstrap.css">-->
 </head>
 <body ng-app="formlyApp">
 
@@ -30,16 +29,17 @@
     </section>
 </div>
 
-<section id="input">
-    <div ng-controller="JsonTranslateController as vm">
+<section id="input" ng-controller="JsonTranslateController as vm">
 
-        <form novalidate class="form-horizontal">
-            <formly-form model="model" fields="flattenedJsonMap" form="form">
-                <button type="submit" class="btn btn-primary" ng-disabled="vm.form.$invalid">Submit</button>
-            </formly-form>
-        </form>
+    <form name="translate-form" novalidate class="form-horizontal">
+        <!--<formly-form model="model" fields="flattenedJsonMap" form="form">-->
+            <!--<button type="submit" class="btn btn-primary" ng-disabled="vm.form.$invalid">Submit</button>-->
+        <!--</formly-form>-->
+        <div class="form-group" ng-repeat="(key, value) in flattenedJsonMap">
+            <input id="{{key}}" placeholder="{{value}}" value="{{value}}">
+        </div>
+    </form>
 
-    </div>
 </section>
 </body>
 
@@ -57,4 +57,5 @@
 <script type="text/javascript" src="app/translator/main.js"></script>
 <script type="text/javascript" src="app/translator/json.translate.service.js"></script>
 <script type="text/javascript" src="app/translator/json.translate.controller.js"></script>
+<script type="text/javascript" src="app/translator/json.node.factory.js"></script>
 </html>

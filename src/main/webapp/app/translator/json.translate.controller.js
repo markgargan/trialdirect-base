@@ -20,12 +20,14 @@ angular.module('formlyApp')
             }];
 
             $scope.$watch(function(){
-                return JsonTranslateService.getJsonObject();
+                return JsonTranslateService.isUpdated();
             }, function (newVal, oldVal) {
                 if (newVal !== oldVal) {
                     try {
+                        var newJsonObject = JsonTranslateService.getJsonObject();
+
                         $scope.error = null;
-                        $scope.flattenedJsonMap = $scope.flattenJson(newVal, '', []);
+                        $scope.flattenedJsonMap = $scope.flattenJson(newJsonObject, '', []);
 
                         angular.forEach($scope.flattenedJsonMap, function(value, key) {
                             console.log(key +' : '+ value);
@@ -52,16 +54,17 @@ angular.module('formlyApp')
                     }
                     // is a string
                     else if (angular.isString(value)){
-                        this.push({
-                            key: currentKey,
-                            type: 'input',
-                            templateOptions: {
-                                type: 'text',
-                                //label: currentKey,
-                                placeholder: currentKey,
-                                required: true
-                            }
-                        });
+                        //this.push({
+                        //    key: currentKey,
+                        //    type: 'input',
+                        //    templateOptions: {
+                        //        type: 'text',
+                        //        //label: currentKey,
+                        //        placeholder: currentKey,
+                        //        required: true
+                        //    }
+                        //});
+                        this[currentKey]=value;
                     }
                 }, flattenedMap);
 
