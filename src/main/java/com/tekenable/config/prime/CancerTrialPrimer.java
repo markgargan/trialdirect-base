@@ -55,7 +55,7 @@ public abstract class CancerTrialPrimer {
     // however there is no way to do that yet
     // all below questions belong to CANCER therapeutic area so all further questions has TS attached
 
-    protected final Question q2 = new Question("How long do you suffer from cancer (in year)?");
+    protected final Question q2 = new Question("How long do you suffer from cancer (in years)?");
     protected final Answer a21 = new Answer("0-3");
     protected final Answer a22 = new Answer("3-5");
     protected final Answer a23 = new Answer("5-10");
