@@ -48,4 +48,11 @@ public class TestRepoConfig {
     public UserRepository userRepositoryMock() {
         return Mockito.mock(UserRepository.class);
     }
+
+    @Bean
+    public TrialInfoRepository trialInfoRepositoryMock() { return Mockito.mock(TrialInfoRepository.class); }
+
+    @Bean
+    public TrialSiteRepository trialSiteRepositoryMock() { return Mockito.mock(TrialSiteRepository.class); }
+
 }
