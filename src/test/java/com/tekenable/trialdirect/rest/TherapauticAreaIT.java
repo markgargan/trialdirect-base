@@ -46,7 +46,7 @@ public class TherapauticAreaIT extends RestTestResourceTemplate {
 
     @Test
     public void testAddUpdateDeleteTherapeuticArea() {
-        String output = this.createTextItem("answers", "title", "Diabetes");
+        String output = this.createTextItem("therapeuticareas", "title", "Diabetes");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
