@@ -5,7 +5,7 @@ angular.module('trialdirect', [
         'ngResource',
         'spring-data-rest',
         'ui.router',
-        'fileUpload'
+        'ngFileUpload'
 
     ])
     .run(

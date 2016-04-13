@@ -4,22 +4,25 @@
     <meta charset="utf-8">
     <title>Trial Direct</title>
 
-    <!--
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    -->
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="language" content="en">
     <meta name="viewport" content="initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
 
+    <!--[if IE 8]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.0.5/es5-shim.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <style>
+            .ng-hide {
+                display: none !important;
+            }
+        </style>
+    <![endif]-->
+
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800">
     <link rel="stylesheet" type="text/css" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/base.css">
     <link rel="stylesheet" type="text/css" href="assets/css/file-upload.css">
-    <!--<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">-->
     <link rel="stylesheet" href="./assets/css/bootstrap.2.3.1.min.css">
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.css"/>
     <link rel="stylesheet" href="./assets/css/style.css"/>
@@ -43,28 +46,24 @@
 
 </head>
 
-
-<!-- ngInclude: 'assets/partials/navAdmin.html' -->
 <div data-ng-include="'assets/partials/navAdmin.html'"></div>
 
 <div data-ng-include="'assets/partials/header.html'"></div>
 
 <body data-pinterest-extension-installed="cr1.39.1">
 
-<a href="#top" style="display: none;"><i class="fa fa-angle-double-up fa-2x"></i><span>Back To Top</span></a>
-
 <main class="trial-direct">
     <div class="limiter">
         <div class="view-container">
 
-        <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-12"
-             ui-view="viewA"></div>
+            <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-12"
+                 ui-view="viewA"></div>
 
-        <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewA"></div>
-        <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewB"></div>
+            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewA"></div>
+            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewB"></div>
 
         </div>
-        <!--<div class="clear"></div>-->
+    </div>
 </main>
 
 <!--                                                      -->
@@ -85,7 +84,8 @@
 <!-- ngInclude: 'assets/partials/footer.html' -->
 <div data-ng-include="'assets/partials/footer.html'"/>
 
-<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="./bower_components/angularjs-ie8-build/dist/angular.js"></script>
+
 <script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
 <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
 <script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -127,9 +127,9 @@
 <!-- Users end -->
 
 <!-- File start -->
-<script type="text/javascript" src="app/common/controllers/FileController.js"></script>
-<script type="text/javascript" src="app/common/directives/FileModel.js"></script>
-<script type="text/javascript" src="app/common/services/FileService.js"></script>
+<!--<script type="text/javascript" src="app/common/controllers/FileController.js"></script>-->
+<!--<script type="text/javascript" src="app/common/directives/FileModel.js"></script>-->
+<!--<script type="text/javascript" src="app/common/services/FileService.js"></script>-->
 
 <script type="text/javascript" src="./bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
 <script type="text/javascript" src="./bower_components/ng-file-upload/ng-file-upload.js"></script>
