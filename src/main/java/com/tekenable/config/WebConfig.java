@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.tekenable.controller")
+@ComponentScan(basePackages = "com.tekenable.controller, com.tekenable.servlet")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
   @Bean(name="multipartResolver")
