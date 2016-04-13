@@ -1,4 +1,4 @@
-angular.module('formlyApp')
+angular.module('translatrix')
     .controller('JsonTranslateController', ['$scope', '$http', 'JsonTranslateService',
         function ($scope, $http, JsonTranslateService) {
 

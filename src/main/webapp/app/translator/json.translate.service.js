@@ -1,4 +1,4 @@
-angular.module('formlyApp').service('JsonTranslateService', [ function(){
+angular.module('translatrix').service('JsonTranslateService', [ function(){
 
     var _jsonObject = {};
     var updated = true;

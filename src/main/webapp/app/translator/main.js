@@ -1,4 +1,4 @@
-angular.module('formlyApp')
+angular.module('translatrix')
     .controller('DemoCtrl', ['$scope', '$http', 'JsonTranslateService','JsonNode',
         function ($scope, $http, JsonTranslateService, JsonNode) {
             $scope.json = {};
@@ -15,7 +15,7 @@ angular.module('formlyApp')
                         var rootNode = new JsonNode('', $scope.json.object, []);
                         rootNode.isRoot = true;
 
-                        rootNode.toString();
+                        console.log(rootNode.toString());
 
                     } catch (e) {
                         console.log(e);

@@ -1,5 +1,5 @@
 angular
-    .module('formlyApp')
+    .module('translatrix')
     .controller('MainController', MainController);
 
 function MainController() {

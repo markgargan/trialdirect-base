@@ -1,1 +1,1 @@
-angular.module('formlyApp', ['formly', 'formlyBootstrap', 'angular-json-tree']);
+angular.module('translatrix', ['angular-json-tree']);
