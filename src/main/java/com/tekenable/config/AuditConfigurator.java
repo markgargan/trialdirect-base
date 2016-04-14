@@ -25,71 +25,67 @@ public class AuditConfigurator {
         operations.put("_AI", "INSERT");
         operations.put("_UI", "UPDATE");
 
-        System.out.println("*** Trigger Creation START ***");
+        System.out.println("*** Audit Configurator START ***");
 
         for (String table : tables) {
 
-            String tabColumnsSQL = "select concat(column_name, ' ', column_type) \n" +
-                                   "from information_schema.columns\n" +
-                                   "where table_name = 'Answer'\n" +
-                                   "order by ordinal_position";
-
-            List<String> columns = jdbc.queryForList(tabColumnsSQL, String.class);
+            String tabColumnsDefSQL = "select concat(column_name, ' ', column_type) from information_schema.columns\n" +
+                                      "where table_name = '#TAB#' order by ordinal_position";
+            tabColumnsDefSQL = tabColumnsDefSQL.replace("#TAB#", table);
+            List<String> columnsDef = jdbc.queryForList(tabColumnsDefSQL, String.class);
             String auditTableName = table.concat("_audit");
+
+            String tabColumnsSQL = "select column_name from information_schema.columns \n" +
+                                   "where table_name = '#TAB#' order by ordinal_position";
+            tabColumnsSQL = tabColumnsSQL.replace("#TAB#", table);
+            List<String> columnNames = jdbc.queryForList(tabColumnsSQL, String.class);
 
             int result = jdbc.update("drop table if exists ".concat(auditTableName).concat(";"));
             System.out.println(String.format("drop table %1$s executed with result: %2$d", auditTableName, result));
 
             StringBuilder asb = new StringBuilder();
             asb.append("create table ").append(auditTableName).append("(");
-            for (String column : columns) {
+            for (String column : columnsDef) {
                 asb.append(column).append(", ");
             }
             asb.append("createdBy varchar(255),");
             asb.append("createdTs timestamp,");
             asb.append("lastUpdatedBy varchar(255),");
             asb.append("lastUpdatedTs timestamp);");
-
-            //System.out.println(asb.toString());
-            //System.out.println(" ");
-
             result = jdbc.update(asb.toString());
             System.out.println(String.format("create table %1$s executed with result: %2$d", auditTableName, result));
-            /*if (result==0) {
+            if (result==0) {
                 //for (Map.Entry<String, String> operation : operations.entrySet()) {
-                    StringBuilder sb = new StringBuilder();
+                    StringBuilder tsb = new StringBuilder();
 
                 //params.put("triggername", table.concat(operation.getKey()));
                 //params.put("operation", operation.getValue());
 
-                    sb.append("create trigger ").append(table).append("_AI ");
-                    sb.append("after insert on ").append(table).append(" for each row ");
-                    sb.append("begin insert into ").append(auditTableName).append("(");
+                    tsb.append("create trigger ").append(table).append("_AI ");
+                    tsb.append("after insert on ").append(table).append(" for each row ");
+                    tsb.append("begin insert into ").append(auditTableName);
 
-                    String tabColumns = "select column_name from information_schema.columns \n" +
-                                        "where table_name = '#TAB#' order by ordinal_position";
-                    tabColumns.replace("#TAB#", auditTableName);
-                    columns = jdbc.queryForList(tabColumnsSQL, String.class);
-                    String values = ") values(";
-                    for (int i=0; i<columns.size(); i++) {
-                        if (i>0) {
-                            sb.append(",");
-                            values.concat(",");
-                        }
-                        sb.append(columns.get(i));
-                        values.concat(":new.").concat(columns.get(i));
+                    StringBuilder csb = new StringBuilder();
+                    csb.append("(");
+                    StringBuilder vsb = new StringBuilder();
+                    vsb.append(" values(");
+                    for (String column : columnNames) {
+                        csb.append(column).append(", ");
+                        vsb.append("new.").append(column).append(", ");
                     }
-                    sb.append(values);
-                    sb.append("'System', CURRENT_TIMESTAMP(), null, null); end;");
+                    csb.append("createdBy, createdTs)");
+                    vsb.append("'System', CURRENT_TIMESTAMP()); end;");
 
-                    System.out.println(asb.toString());
-                    System.out.println(" ");
+                    tsb.append(csb.toString());
+                    tsb.append(vsb.toString());
 
-                    result = jdbc.update(sb.toString());
+                    System.out.println(tsb.toString());
 
+                    result = jdbc.update(tsb.toString());
+                    System.out.println(String.format("create audit trigger for %1$s executed with result: %2$d", table, result));
                 //}
-            }*/
+            }
         }
-        System.out.println("*** Trigger Creation END ***");
+        System.out.println("*** Audit Configurator END ***");
     }
 }
