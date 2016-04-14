@@ -62,12 +62,14 @@ angular.module('trialdirect').controller('UserEditController',
                             });
                         });
                     }
+
                     console.log($scope.trialInfos);
                 });
             };
 
             // Initialise the trial count
             $scope.updateAvailableTrials();
+
 
             $scope.updateUserSelectorQuestionnaireEntry = function (questionnaireEntry, answer) {
 

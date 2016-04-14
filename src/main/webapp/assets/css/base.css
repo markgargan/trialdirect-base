@@ -1,3 +1,8 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    background: #fafafa
+}
+
 /**
  Integration start
 **/
@@ -177,8 +182,9 @@ hr, span.br {
 }
 
 .footer, .header, input {
+    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -o-box-sizing: border-box
+    box-sizing: border-box;
 }
 
 .clear, form a, hr, p.distance {
@@ -190,7 +196,7 @@ hr, span.br {
 }
 
 body.trialDirect {
-    font-family: Open Sans, sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-size: 100%;
     background: #fafafa
 }
@@ -263,20 +269,18 @@ input {
     display: block;
     border: 1px solid #ccc;
     -webkit-box-sizing: border-box;
-    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
     padding: .5em
 }
 
 .btn.answers, .answers label span, p.distance {
-    -ms-border-radius: .2em;
-    -o-border-radius: .2em
+    border-radius: .2em
 }
 
 .answers, .footer, .header, .question {
     -webkit-box-sizing: border-box;
-    -ms-box-sizing: border-box
 }
 
 input[type=checkbox], input[type=radio] {
@@ -309,8 +313,6 @@ form.small label {
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
     user-select: none;
     -webkit-border-radius: .2em;
     -moz-border-radius: .2em;
@@ -399,7 +401,6 @@ main {
     box-sizing: border-box;
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
     background: #fff
@@ -408,7 +409,6 @@ main {
 .header img, .topNav, .topNav1 {
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
     -o-transition: all .2s ease
 }
 
@@ -506,7 +506,6 @@ a[href="#top"] span {
 .nav a, .trialIntro span {
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
     -o-transition: all .2s ease
 }
 
@@ -564,7 +563,6 @@ td, th {
     color: #a00 !important;
     font-size: 18px !important;
     padding: 6px 7px 2px 8px !important;
-    box-shadow: none !important;
     border-radius: 50% !important;
     box-shadow: 0 0 .25em #ddd !important;
     background: #fff;
@@ -578,7 +576,6 @@ td, th {
     border-radius: .4em;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
     box-sizing: border-box;
     border: 1px solid #eee;
 }
@@ -602,8 +599,8 @@ td, th {
     display: block;
     float: left;
     width: 33.3333%;
+    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
     box-sizing: border-box;
 }
 .question {
@@ -612,8 +609,8 @@ td, th {
 
 .questionEdit {
     display: block;
+    -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -o-box-sizing: border-box;
     box-sizing: border-box;
     border-bottom: 1px dotted #DDD;
     margin-bottom: 1em;
@@ -632,8 +629,7 @@ td, th {
 .trialInfo, .trialIntro {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
+    box-sizing: border-box;
     padding: .5em 1em;
     border: 1px solid #ddd;}
 
@@ -654,29 +650,61 @@ td, th {
     width: 20%;
     display: block;
 }
-
 .trialResults {
-    margin-bottom: 40em !important;}
+/*    margin-bottom: 40em !important;*/
+    margin-top: 1em !important;
+}
 
 .trialIntro {
     display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
+    padding:1em;
     background: #fff;
     margin: .5em 0 1em;
     -webkit-border-radius: .3em;
     -moz-border-radius: .3em;
-    -ms-border-radius: .3em;
-    -o-border-radius: .3em;
-    border-radius: .3em;}
+    border-radius: .3em;
+    text-align: left;
+}
+.trailIntro ul, .trialIntro li {
+    display:inline;
+    margin:0;
+    padding:0;
+}
+.trialIntro .trialImage {
+    display: block;
+    float: left;
+    width: 33.3333%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-right: .6em;
+}
+.trialIntro .trialBrief {
+    display: block;
+    float: left;
+    width: 66.6667%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1.25;
+    padding-bottom: 1em;
+}
+.trialIntro .trialLink {
+    display: block;
+    text-align: right;
+}
+
+
 
 .trialIntro
     span {
     display: block;
     float: left;
-    height: 7em;
-    width: 7em;
-    border: 1px solid #ccc;
-    margin: .25em 1em 1em 0;
+    width: 5em;
+/*    margin: .25em 1em 1em 0;*/
     transition: all .2s ease;}
 
 .trialIntro
@@ -700,21 +728,17 @@ td, th {
 
 .trialInfo {
     float: left;
-    width: 66%;
+    width: 78%;
     text-align: justify;
     box-sizing: border-box;
     margin: .5em 0 1em;
     -webkit-border-radius: .3em;
     -moz-border-radius: .3em;
-    -ms-border-radius: .3em;
-    -o-border-radius: .3em;
     border-radius: .3em;}
 
 .trialCount {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
     box-sizing: border-box;
     padding: .5em;
     text-align: center;
@@ -723,12 +747,9 @@ td, th {
     border: 1px solid #ddd;
     -webkit-border-radius: .3em;
     -moz-border-radius: .3em;
-    -ms-border-radius: .3em;
-    -o-border-radius: .3em;
     border-radius: .3em;
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;}
 
@@ -754,21 +775,17 @@ td, th {
     border-radius: .2em;}
     p.link {
     float: right;
-    padding: 0 0 12px;}
+    padding: 12px 0;}
     a.more {
     background: #00857f;
     color: #fff;
     display: inline-block;
-    padding: .5em 1em;
+    padding: .25em 1em;
     -webkit-border-radius: .2em;
     -moz-border-radius: .2em;
-    -ms-border-radius: .2em;
-    -o-border-radius: .2em;
     border-radius: .2em;
     -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
     user-select: none;}
     a:active.more, a:hover.more {
     text-decoration: none;}
@@ -867,12 +884,9 @@ td, th {
     padding: 10px 0 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-transition: all .2s ease;
     -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
     width: 100%;
