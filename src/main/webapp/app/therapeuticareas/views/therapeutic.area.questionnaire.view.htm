@@ -1,0 +1,68 @@
+<div>
+    <form class="form-horizontal col-xs-9" role="form">
+
+        <div class="page-header">
+            <h1>Questionnaire for <strong>"{{therapeuticArea.title}}"</strong> Trials</h1>
+            <p class="noTopPad">Use this page to add/amend Questions &amp; Answers for all "{{therapeuticArea.title}}" Trials.</p>
+        </div>
+
+        <div class="alert alert-info" role="alert" data-ng-hide="questionnaireEntries && questionnaireEntries.length > 0">
+            There are no questions yet.
+        </div>
+
+        <div class="input-group">
+              <input type="text" class="form-control" data-ng-model="newQuestion" placeholder="Enter the question..."/>
+              <span class="input-group-btn">
+                <button class="btn btn-default" data-ng-click="addQuestion(newQuestion)" data-ng-disabled="!newQuestion" title="Add">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+        </div>
+
+        <div class="form-group" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
+
+            <div class="qa">
+
+                <div class="questionEdit">
+                    <button class="left btn btn-remove btn-remove-question" type="button" title="Delete"
+                            data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <p><strong>{{questionnaireEntry.question.questionText}}</strong></p>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="question">
+                    <div class="input-group">
+                        <input type="text" class="form-control" data-ng-model="newAnswer" placeholder="Enter a new answer..."/>
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" data-ng-click="addAnswer(questionnaireEntry, newAnswer)"
+                                    data-ng-disabled="!newAnswer" title="Add">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                          </span>
+                    </div>
+                </div>
+
+                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+                    <button class="left btn btn-remove" type="button" title="Delete"
+                                data-ng-click="deleteAnswer(questionnaireEntry, answer)"  data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                        {{answer.answerText}}    <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+
+                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                    <div class="option-list">
+                        <button class="left btn btn-remove" type="button" title="Delete"
+                                data-ng-click="deleteAnswer(questionnaireEntry, answer)"  data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                            {{answer.answerText}}    <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+            </div>
+
+        </div>
+    </form>
+</div>

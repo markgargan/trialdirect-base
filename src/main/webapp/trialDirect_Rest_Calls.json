@@ -1,0 +1,155 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "trialdirect",
+      "created": 1458899545612
+    }
+  ],
+  "requests": [
+    {
+      "id": -1,
+      "encoding": "",
+      "headers": "Content-Type: text/uri-list",
+      "method": "PUT",
+      "name": "QuestionnaireEntry->Answer association creation",
+      "payload": "http://localhost:8080/api/questionnaireentrys/1/answers",
+      "project": 1,
+      "time": 1458646727960,
+      "url": "http://localhost:8080/api/answers/1",
+      "driveId": ""
+    },
+    {
+      "id": 85,
+      "encoding": "",
+      "headers": "Content-Type: text/uri-list",
+      "method": "PUT",
+      "name": "QuestionnaireEntry->Answer all associations creation",
+      "payload": "http://localhost:8080/api/answers/10",
+      "project": 1,
+      "time": 1458651912580,
+      "url": "http://localhost:8080/api/questionnaireentrys/2/answers",
+      "driveId": ""
+    },
+    {
+      "id": 89,
+      "encoding": "",
+      "headers": "Content-Type: text/uri-list",
+      "method": "PATCH",
+      "name": "QuestionnaireEntry->Answer single association creation",
+      "payload": "http://localhost:8080/api/answers/10",
+      "project": 1,
+      "time": 1458751271375,
+      "url": "http://localhost:8080/api/questionnaireentries/2/answers",
+      "driveId": ""
+    },
+    {
+      "id": 93,
+      "encoding": "",
+      "headers": "Content-Type: text/uri-list",
+      "method": "PUT",
+      "name": "QuestionnaireEntry->Answer all associations creation",
+      "payload": "http://localhost:8080/api/answers/9\nhttp://localhost:8080/api/answers/10",
+      "project": 1,
+      "time": 1458751259568,
+      "url": "http://localhost:8080/api/questionnaireentries/2/answers",
+      "driveId": ""
+    },
+    {
+      "id": 96,
+      "encoding": "",
+      "headers": "Content-Type: null",
+      "method": "DELETE",
+      "name": "QuestionnaireEntry->Question association deletion",
+      "payload": "",
+      "project": 1,
+      "time": 1458751578467,
+      "url": "http://localhost:8080/api/questionnaireentries/2/question",
+      "driveId": ""
+    },
+    {
+      "id": 103,
+      "encoding": "",
+      "headers": "Content-Type: application/json",
+      "method": "DELETE",
+      "name": "QuestionnaireEntry->Answer association deletion",
+      "payload": "",
+      "project": 1,
+      "time": 1458751435716,
+      "url": "http://localhost:8080/api/questionnaireentries/3/answers/9",
+      "driveId": ""
+    },
+    {
+      "id": 114,
+      "encoding": "",
+      "headers": "Content-Type: text/uri-list",
+      "method": "PUT",
+      "name": "QuestionnaireEntry->Answer delete all associations",
+      "payload": "",
+      "project": 1,
+      "time": 1458752772770,
+      "url": "http://localhost:8080/api/questionnaireentries/3/answers",
+      "driveId": ""
+    },
+    {
+      "id": 120,
+      "encoding": "",
+      "headers": "Content-Type: application/json",
+      "method": "DELETE",
+      "name": "QuestionnaireEntry->Answer delete one association",
+      "payload": "",
+      "project": 1,
+      "time": 1458752844932,
+      "url": "http://localhost:8080/api/questionnaireentries/3/answers/10",
+      "driveId": ""
+    },
+    {
+      "id": 125,
+      "encoding": "",
+      "headers": "Content-Type: application/json",
+      "method": "DELETE",
+      "name": "QuestionnaireEntry->Question delete one association",
+      "payload": "",
+      "project": 1,
+      "time": 1458753763030,
+      "url": "http://localhost:8080/api/questionnaireentries/2/question/2",
+      "driveId": ""
+    },
+    {
+      "id": 127,
+      "encoding": "",
+      "headers": "Content-Type: application/json",
+      "method": "DELETE",
+      "name": "QuestionnaireEntry->TherapeuticArea delete one association",
+      "payload": "",
+      "project": 1,
+      "time": 1458753836227,
+      "url": "http://localhost:8080/api/questionnaireentries/2/therapeuticArea/1",
+      "driveId": ""
+    },
+    {
+      "id": 128,
+      "encoding": "",
+      "headers": "Content-Type: application/json",
+      "method": "DELETE",
+      "name": "QuestionnaireEntry delete entity",
+      "payload": "",
+      "project": 1,
+      "time": 1458754316859,
+      "url": "http://localhost:8080/api/questionnaireentries/2",
+      "driveId": ""
+    },
+    {
+      "id": 137,
+      "encoding": "",
+      "headers": "Content-Type: application/x-www-form-urlencoded",
+      "method": "DELETE",
+      "name": "TrialSelectorQuestionnaireEntry->Question delete association",
+      "payload": "",
+      "project": 1,
+      "time": 1458899443936,
+      "url": "http://localhost:8080/api/trialselectorquestionnaireentries/1/question",
+      "driveId": ""
+    }
+  ]
+}
