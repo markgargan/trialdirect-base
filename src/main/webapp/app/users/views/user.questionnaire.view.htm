@@ -4,10 +4,13 @@
         <div class="trialRight" data-ng-hide="showList">
             <!-- <h3 class="trialCountH">Trials</h3> -->
             <div class="trialCount"><p>Trials Available</p>
-                <h1 ng-bind="availableTrialIds.length"></h1></div>
-        </div>
-        <div class="trialSearch">
+                <h1 ng-bind="availableTrialIds.length"></h1>
+            </div>
 
+        </div>
+
+
+        <div class="trialSearch">
             <div class="setArea">
                 <p>Trial Therapeutic Area: <strong>{{user.therapeuticArea.title}}</strong></p>
             </div>
@@ -49,28 +52,82 @@
             </div>
         </div>
 
-        <div class="trialResults" data-ng-show="showList">
-            <h3 class="countHead" id="results">Trial Results</h3>
+
+
+
+
+        <div class="trialResults">
             <div class="trialList">
-                <div class="trialIntro" data-ng-show="trial2"><h4>Thomas Haak, MD</h4>
-                    <p><span class="doc1"></span>This trial evaluates a cognitive-behavioural intervention
-                        for diabetes patients with suboptimal glycaemic control and comorbid depressive
-                        symptoms and/or diabetes distress.</p>
-                    <p class="distance"><i class="fa fa-map-marker"></i> 72 Miles Away</p>
-                    <p class="link"><a href="#/trial-info2/" class="more">Learn More</a></p>
-                    <div class="clear"></div>
-                </div>
-                <div class="trialIntro" data-ng-show="trial1"><h4>Stacy Moulder, MD</h4>
-                    <p><span class="doc3"></span>The goal of this research study is find out if researchers
-                        can use genetic testing on tumor samples to predict if tumors will respond to breast
-                        cancer treatments.</p>
-                    <p class="distance"><i class="fa fa-map-marker"></i> 125 Miles Away</p>
-                    <p class="link"><a href="#/trial-info1/" class="more">Learn More</a></p>
-                    <div class="clear"></div>
+
+                <div class="trialIntro" ng-repeat="trial in trialInfos">
+
+                    <ul>
+                        <li class="trialImage"><img ng-src="/trialInfoImage/{{trial.id}}"></li>
+                        <li class="trialBrief">{{trial.description}}</li>
+                        <li class="trialLink"><a href="" class="more">View Trial Info</a></li>
+                    </ul>
+
                 </div>
                 <div class="clear"></div>
             </div>
         </div>
+
+
+
+        <!--
+                <div class="trialDetails" ng-repeat="trial in trialInfos">
+
+                    <div class="clear"></div>
+
+                    <div class="trialInfo">
+                        <h3>{{trial.title}} About The Trial ({{trial.id}})</h3>
+                        <p><strong>{{trial.description}}</strong></p>
+                        <p>This study will involve performing a test on a sample of tumor...</p>
+                    </div>
+
+
+                    <div class="trialRight">
+                        <div ng-repeat="siteOption in trial.trialSites._embeddedItems">
+
+                        <div class="trialIntro" >
+                            <h3>{{siteOption.siteDirector}} ({{siteOption.id}})</h3>
+                            <p><span class=""> <img ng-src="/trialSiteImage/{{siteOption.id}}"> </span>
+                                {{siteOption.siteDescription}}</p>
+                            <div class="clear"></div>
+                        </div>
+                            -->
+
+                <!-- <div class="trialIntro">
+                    <h3>Trial Location</h3>
+                    <p><strong>Address Details</p> -->
+                    <!-- {{siteOption.siteMap}} -->
+                    <!-- <iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=53.324624,-6.4396619&zoom=10"> -->
+                    <!-- <iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"> -->
+                <!-- </div> -->
+
+<!--
+                </div>
+
+            </div>
+
+
+            <div class="clear"></div>
+        </div>
+-->
+
+            
+            
+            
+            
+            
+            
+            
+            
+                <div class="clear"></div>
+        </div>
+
+
+
     </form>
     <div class="clear"></div>
 </div>

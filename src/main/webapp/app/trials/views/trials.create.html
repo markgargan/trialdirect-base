@@ -2,7 +2,7 @@
     <h2>Create Trial</h2>
 </div>
 
-<form name="CreateTrialArea" class="form-horizontal" role="form" ng-submit="addTrial(newTrial)">
+<form name="CreateTrialArea" class="form-horizontal" role="form">
 
     <div class="list-answers answers">
         <label data-ng-repeat="therapeuticArea in therapeuticAreas">
@@ -17,8 +17,8 @@
                data-ng-disabled="!newTrial.therapeuticArea"
                ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
         <span id="create-trial-span" class="input-group-btn">
-            <button id="add-trial-button" class="btn btn-default" type="submit"
-                    ng-disabled="!newTrial.title" title="Add">
+            <button id="add-trial-button" class="btn btn-default" type="button"
+                    ng-disabled="!newTrial.title" title="Add" ng-click="newTrial.editing=true">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
         </span>
@@ -26,7 +26,7 @@
 </form>
 
 
-<form id="myForm" name="myForm" ng-hide="!newTrial.id" ng-controller="FileController">
+<form id="myForm" name="myForm" ng-hide="!newTrial.editing">
     <fieldset>
         <!-- ----------------- -->
         <!-- Trial Info Start  -->
