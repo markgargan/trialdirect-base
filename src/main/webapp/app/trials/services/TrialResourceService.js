@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('TrialResourceService',
-    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService ) {
+    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService','TrialInfo',
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TrialInfo ) {
 
             var RESOURCE_URL = './api/trials';
 
@@ -16,6 +16,19 @@ angular.module('trialdirect').factory('TrialResourceService',
                 });
             };
 
+            TrialResourceService.loadTrialInfo = function (trialId) {
+                var deferred = $http.get(RESOURCE_URL + '/' + trialId + '/trialInfos');
+
+                return SpringDataRestAdapter.process(deferred, 'trialSites').then(function (data) {
+
+                    if (angular.isDefined(data._embeddedItems[0])){
+                        return new TrialInfo(data._embeddedItems[0]);
+                    } else {
+                        return {};
+                    }
+                });
+            };
+            
             // Just load the trials themselves, don't eagerly pull back their questionnaires.
             TrialResourceService.load = function () {
                 var deferred = $http.get(RESOURCE_URL);

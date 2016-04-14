@@ -16,11 +16,10 @@ angular.module('trialdirect').factory('TrialInfo',
                 });
             };
 
-            // Load the specific Trial drilling for the questionnaire and the nested questions and answers
-            TrialInfo.loadTrialinfo = function (trialInfoId) {
+            TrialInfo.loadTrialInfo = function (trialInfoId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialInfoId);
 
-                return SpringDataRestAdapter.process(deferred, 'therapeuticArea').then(function (data) {
+                return SpringDataRestAdapter.process(deferred, 'trialSites').then(function (data) {
 
                     return new TrialInfo(data);
                 });

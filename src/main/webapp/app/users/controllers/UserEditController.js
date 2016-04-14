@@ -1,16 +1,18 @@
 angular.module('trialdirect').controller('UserEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'UserResourceService',
         'user', 'questionnaireEntries', 'userSelectorQuestionnaireEntries',
-        'UserSelectorQuestionnaireEntryResourceService', 'TrialService',
+        'UserSelectorQuestionnaireEntryResourceService', 'TrialService','TrialResourceService','TrialInfo',
         function ($scope, Question, Answer, QuestionnaireEntryResourceService, UserResourceService,
                   user, questionnaireEntries, userSelectorQuestionnaireEntries,
-                  UserSelectorQuestionnaireEntryResourceService, TrialService) {
+                  UserSelectorQuestionnaireEntryResourceService, TrialService, TrialResourceService, TrialInfo) {
 
             $scope.user = user;
 
             $scope.questionnaireEntries = questionnaireEntries;
 
             $scope.userSelectorQuestionnaireEntries = userSelectorQuestionnaireEntries;
+
+            $scope.trialInfos = [];
 
             // Iterate over the userSelectors setting
             // 'answer.isSelected=true' on the answers that correspond
@@ -47,6 +49,20 @@ angular.module('trialdirect').controller('UserEditController',
             $scope.updateAvailableTrials = function() {
                 TrialService.getAvailableTrialsCount($scope.user.id, $scope.user.therapeuticArea.id, function (availableTrialIds) {
                     $scope.availableTrialIds = availableTrialIds;
+
+                    $scope.trialInfos= [];
+
+                    if (availableTrialIds.length < 5) {
+                        angular.forEach(availableTrialIds, function(availableTrialId) {
+                            TrialResourceService.loadTrialInfo(availableTrialId).then(function(trialInfos){
+                                if(!angular.isUndefined(trialInfos))
+                                {
+                                    $scope.trialInfos.push(trialInfos);
+                                }
+                            });
+                        });
+                    }
+                    console.log($scope.trialInfos);
                 });
             };
 
