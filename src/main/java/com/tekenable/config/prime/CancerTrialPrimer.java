@@ -10,9 +10,7 @@ import org.springframework.context.ApplicationContextAware;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by smoczyna on 17/03/16.
- */
+
 public abstract class CancerTrialPrimer {
 
     @Autowired

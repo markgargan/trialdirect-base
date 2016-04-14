@@ -1,7 +1,6 @@
 package com.tekenable.config;
 
 
-import com.tekenable.config.prime.CancerTrialPrimer;
 import com.tekenable.config.prime.TrialDirectPrimer;
 import com.tekenable.config.prime.TrialPrimer;
 import com.tekenable.model.*;
@@ -114,9 +113,6 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
         return properties;
     }
 
-//    @Bean
-//    public CancerTrialPrimer cancerTrialPrimer() { return new CancerTrialPrimer(); }
-
     @Bean
     public TrialPrimer trialPrimer() { return new TrialPrimer(); }
 
@@ -125,4 +121,6 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
         return new TrialDirectPrimer();
     }
 
+    @Bean
+    public AuditConfigurator auditConfigurator() { return new AuditConfigurator(); }
 }

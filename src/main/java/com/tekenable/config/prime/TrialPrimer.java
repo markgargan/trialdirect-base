@@ -1,23 +1,21 @@
 package com.tekenable.config.prime;
 
-import com.tekenable.config.AppConfig;
+import com.tekenable.config.AuditConfigurator;
 import com.tekenable.model.Trial;
 import com.tekenable.model.trial.TrialDirectImage;
 import com.tekenable.model.trial.TrialInfo;
 import com.tekenable.model.trial.TrialSite;
 import com.tekenable.repository.TrialInfoRepository;
-import com.tekenable.repository.TrialRepository;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 
 /**
@@ -29,6 +27,9 @@ public class TrialPrimer extends CancerTrialPrimer implements ApplicationContext
 
     @Autowired
     private TrialInfoRepository trialInfoRepository;
+
+    @Autowired
+    private AuditConfigurator auditConfigurator;
 
     private static final String pfizerGoogleMap =
             "https://www.google.ie/maps/place/Pfizer+Ireland+Pharmaceuticals/@53.324624,-6.4396619,17z/data=!3m1!4b1!4m2!3m1!1s0x486773bd46855f9f:0xc3be27201e4dfca6?hl=en";
@@ -63,6 +64,7 @@ public class TrialPrimer extends CancerTrialPrimer implements ApplicationContext
 
         createLundbeckTrial();
 
+        auditConfigurator.addAuditStuff();
     }
 
     private void createPfizerTrial() {
@@ -139,4 +141,5 @@ public class TrialPrimer extends CancerTrialPrimer implements ApplicationContext
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.ctx = applicationContext;
     }
+
 }
