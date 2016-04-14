@@ -23,12 +23,12 @@ public class AuditConfigurator {
 
         Map<String, String> operations = new HashMap();
         operations.put("_AI", "INSERT");
-        operations.put("_UI", "UPDATE");
+        operations.put("_AU", "UPDATE");
+        operations.put("_AD", "DELETE");
 
         System.out.println("*** Audit Configurator START ***");
 
         for (String table : tables) {
-
             String tabColumnsDefSQL = "select concat(column_name, ' ', column_type) from information_schema.columns\n" +
                                       "where table_name = '#TAB#' order by ordinal_position";
             tabColumnsDefSQL = tabColumnsDefSQL.replace("#TAB#", table);
@@ -48,21 +48,19 @@ public class AuditConfigurator {
             for (String column : columnsDef) {
                 asb.append(column).append(", ");
             }
-            asb.append("createdBy varchar(255),");
-            asb.append("createdTs timestamp,");
-            asb.append("lastUpdatedBy varchar(255),");
-            asb.append("lastUpdatedTs timestamp);");
+            asb.append("action varchar(10),");
+            asb.append("dbUser varchar(255), ");
+            asb.append("appUser varchar(255), ");
+            asb.append("createdTs timestamp)");
             result = jdbc.update(asb.toString());
             System.out.println(String.format("create table %1$s executed with result: %2$d", auditTableName, result));
             if (result==0) {
-                //for (Map.Entry<String, String> operation : operations.entrySet()) {
+                for (Map.Entry<String, String> operation : operations.entrySet()) {
                     StringBuilder tsb = new StringBuilder();
-
-                //params.put("triggername", table.concat(operation.getKey()));
-                //params.put("operation", operation.getValue());
-
-                    tsb.append("create trigger ").append(table).append("_AI ");
-                    tsb.append("after insert on ").append(table).append(" for each row ");
+                    tsb.append("create trigger ").append(table).append(operation.getKey()).append(" ");
+                    //tsb.append(operation.getValue().equals("DELETE") ? "before " : "after ").append(operation.getValue());
+                    tsb.append("after ").append(operation.getValue());
+                    tsb.append(" on ").append(table).append(" for each row ");
                     tsb.append("begin insert into ").append(auditTableName);
 
                     StringBuilder csb = new StringBuilder();
@@ -71,10 +69,11 @@ public class AuditConfigurator {
                     vsb.append(" values(");
                     for (String column : columnNames) {
                         csb.append(column).append(", ");
-                        vsb.append("new.").append(column).append(", ");
+                        vsb.append(operation.getValue().equals("DELETE") ? "old." : "new.");
+                        vsb.append(column).append(", ");
                     }
-                    csb.append("createdBy, createdTs)");
-                    vsb.append("'System', CURRENT_TIMESTAMP()); end;");
+                    csb.append("action, dbUser, appUser, createdTs)");
+                    vsb.append("'").append(operation.getValue()).append("', 'trialdirect', 'Unknown', CURRENT_TIMESTAMP()); end;");
 
                     tsb.append(csb.toString());
                     tsb.append(vsb.toString());
@@ -83,7 +82,7 @@ public class AuditConfigurator {
 
                     result = jdbc.update(tsb.toString());
                     System.out.println(String.format("create audit trigger for %1$s executed with result: %2$d", table, result));
-                //}
+                }
             }
         }
         System.out.println("*** Audit Configurator END ***");
