@@ -6,6 +6,8 @@
     <packaging>war</packaging>
     <version>1.0</version>
     <name>trialdirect</name>
+
+    
     <repositories>
         <repository>
             <id>eap</id>
