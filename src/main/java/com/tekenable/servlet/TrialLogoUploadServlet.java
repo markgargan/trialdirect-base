@@ -1,7 +1,6 @@
 package com.tekenable.servlet;
 
 import com.tekenable.model.Trial;
-import com.tekenable.model.dto.TrialSiteBucket;
 import com.tekenable.model.trial.TrialDirectImage;
 import com.tekenable.model.trial.TrialInfo;
 import com.tekenable.model.trial.TrialSite;
@@ -15,31 +14,20 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.util.ReflectionUtils;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.util.*;
 
 /**
  * Created by mark on 12/04/2016.
  */
-@WebServlet(name = "TrialLogoUploadServlet")
 public class TrialLogoUploadServlet extends HttpServlet {
 
     private final static String DESCRIPTION = "description";
