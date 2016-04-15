@@ -202,7 +202,7 @@ body.trialDirect {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-    padding: 12px 0 0;
+    padding: 0 0 1em;
     margin: 0;
 }
 
@@ -626,12 +626,13 @@ td, th {
     padding-top: 0;
 }
 
-.trialInfo, .trialIntro {
+.trialInfo, .trialIntro, .simplePanel {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: .5em 1em;
-    border: 1px solid #ddd;}
+    border: 1px solid #eee;
+}
 
 .answers {
     width: 66.6666%;
@@ -667,6 +668,7 @@ td, th {
     -moz-border-radius: .3em;
     border-radius: .3em;
     text-align: left;
+    cursor: pointer;
 }
 .trailIntro ul, .trialIntro li {
     display:inline;
@@ -698,14 +700,56 @@ td, th {
 }
 
 
-
+.trialSiteImage,
 .trialIntro
     span {
     display: block;
     float: left;
-    width: 5em;
+    width: 5em;    
 /*    margin: .25em 1em 1em 0;*/
     transition: all .2s ease;}
+
+.trialSiteList {
+    display: block;
+    float: left;
+    width: 48%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: left;
+    margin-left: 2%;
+    max-height: 400px;
+    overflow-x: auto;
+    padding-right: .5em;
+}
+.trialBio {
+    font-size: .9em;
+    line-height: 1.2;
+    margin-bottom: 1em;
+}
+
+.trialSiteLocation {
+    display: block;
+    float: left;
+    width: 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.trialSiteOptions {
+    display: block;
+    background: #fafafa;
+    border-top:1px solid #fff;
+    border-bottom: 1px solid #eee;
+    padding: 1em 1em .5em;
+    cursor: pointer;
+}
+.trialSiteOptions:hover, .trialSiteOptions:active {
+    background: #fff;
+}
+.trialSiteOptions p {padding: 0}
 
 .trialIntro
     span.doc1 {;
@@ -722,19 +766,40 @@ td, th {
     background: url(../images/doc3.jpg);
     background-size: cover;}
 
+
+.trialDataInfo {
+    display: block;
+    float: left;
+    width: 54%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.simplePanel {
+    display: block;
+    background: #fff;
+    margin: 1em 0;
+    padding: 1em; 
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    border-radius: .3em;
+}
+
 .trialCount, .trialInfo {
     display: block;
     background: #fff;}
 
 .trialInfo {
     float: left;
-    width: 78%;
+    width: 54%;
     text-align: justify;
     box-sizing: border-box;
-    margin: .5em 0 1em;
+    margin: 1em 0;
     -webkit-border-radius: .3em;
     -moz-border-radius: .3em;
-    border-radius: .3em;}
+    border-radius: .3em;
+}
 
 .trialCount {
     -webkit-box-sizing: border-box;
@@ -743,8 +808,8 @@ td, th {
     padding: .5em;
     text-align: center;
     color: #00857f;
-    margin-top: .5em;
-    border: 1px solid #ddd;
+    margin-top: 1em;
+    border: 1px solid #eee;
     -webkit-border-radius: .3em;
     -moz-border-radius: .3em;
     border-radius: .3em;

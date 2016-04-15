@@ -39,13 +39,13 @@ public class AuditConfigurator {
 
         for (String table : tables) {
             String tabColumnsDefSQL = "select concat(column_name, ' ', column_type) from information_schema.columns\n" +
-                                      "where table_name = '#TAB#' order by ordinal_position";
+                                      "where table_schema = 'trialdirect' and table_name = '#TAB#' order by ordinal_position";
             tabColumnsDefSQL = tabColumnsDefSQL.replace("#TAB#", table);
             List<String> columnsDef = jdbc.queryForList(tabColumnsDefSQL, String.class);
             String auditTableName = table.concat("_audit");
 
             String tabColumnsSQL = "select column_name from information_schema.columns \n" +
-                                   "where table_name = '#TAB#' order by ordinal_position";
+                                   "where table_schema = 'trialdirect' and table_name = '#TAB#' order by ordinal_position";
             tabColumnsSQL = tabColumnsSQL.replace("#TAB#", table);
             List<String> columnNames = jdbc.queryForList(tabColumnsSQL, String.class);
 

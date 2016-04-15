@@ -71,6 +71,21 @@ angular.module('trialdirect').controller('UserEditController',
             $scope.updateAvailableTrials();
 
 
+            $scope.chooseTrialData = function (trialData) {
+                $scope.trialData = trialData;
+
+                //function(trialId) {
+                    /*TrialResourceService.loadTrialInfo(trialId).then(function(trialData){
+                        if(!angular.isUndefined(trialData))
+                        {
+                            $scope.trialData.push(trialData);
+                        }
+                    });*/
+                //}
+
+            };
+
+
             $scope.updateUserSelectorQuestionnaireEntry = function (questionnaireEntry, answer) {
 
                 // User clicks a button
