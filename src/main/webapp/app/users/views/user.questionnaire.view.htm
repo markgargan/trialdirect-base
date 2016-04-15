@@ -1,135 +1,151 @@
 <!-- ngView:  -->
 <div data-autoscroll="true" class="view-frame">
-    <form class="wide">
-        <div class="trialRight" data-ng-hide="showList">
-            <!-- <h3 class="trialCountH">Trials</h3> -->
-            <div class="trialCount"><p>Trials Available</p>
-                <h1 ng-bind="availableTrialIds.length"></h1>
-            </div>
+	<form class="wide">
+		<div class="trialRight" data-ng-hide="showList">
+			<!-- <h3 class="trialCountH">Trials</h3> -->
+			<div class="trialCount"><p>Trials Available</p>
+				<h1 ng-bind="availableTrialIds.length"></h1>
+			</div>
 
-        </div>
-
-
-        <div class="trialSearch">
-            <div class="setArea">
-                <p>Trial Therapeutic Area: <strong>{{user.therapeuticArea.title}}</strong></p>
-            </div>
-
-            <!--
-            <div class="answers trialTitle" style="float:right">
-                <label>
-                    <input type="radio" data-ng-checked="user">
-                    <span ng-bind="user.therapeuticArea.title"></span>
-                </label>
-            </div>
-            -->
-
-            <div class="trialTitle" ng-bind="user.pseudonym"></div>
-
-            <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
-                <div class="question">
-                    <p ng-bind="questionnaireEntry.question.questionText"></p>
-                    <div class="clear"></div>
-                </div>
-                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
-                    <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-                        <input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
-                               ng-model="answer.isSelected"/>
-                        <span ng-bind="answer.answerText"></span>
-                    </label>
-                </div>
-
-                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
-                    <div class="option-list">
-                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-                            <input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
-                                   ng-model="answer.isSelected"/>
-                            <span ng-bind="answer.answerText"></span>
-                        </label>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+		</div>
 
 
+		<div class="trialSearch" ng-hide="trialData">
+			<div class="setArea">
+				<p>Trial Therapeutic Area: <strong>{{user.therapeuticArea.title}}</strong></p>
+			</div>
+
+			<!--
+			<div class="answers trialTitle" style="float:right">
+				<label>
+					<input type="radio" data-ng-checked="user">
+					<span ng-bind="user.therapeuticArea.title"></span>
+				</label>
+			</div>
+			-->
+
+			<div class="trialTitle" ng-bind="user.pseudonym"></div>
+
+			<div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
+				<div class="question">
+					<p ng-bind="questionnaireEntry.question.questionText"></p>
+					<div class="clear"></div>
+				</div>
+				<div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+					<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+						<input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+							   ng-model="answer.isSelected"/>
+						<span ng-bind="answer.answerText"></span>
+					</label>
+				</div>
+
+				<div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+					<div class="option-list">
+						<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+							<input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+								   ng-model="answer.isSelected"/>
+							<span ng-bind="answer.answerText"></span>
+						</label>
+					</div>
+				</div>
+
+			</div>
+		</div>
 
 
+		<div class="trialDataInfo" ng-show="trialData">
 
-        <div class="trialResults">
-            <div class="trialList">
+			<h3>About The Trial</h3>
 
-                <div class="trialIntro" ng-repeat="trial in trialInfos">
+			<div class="simplePanel">				
+				<p><strong>{{trialData.description}}</strong></p>
 
-                    <ul>
-                        <li class="trialImage"><img ng-src="/trialInfoImage/{{trial.id}}"></li>
-                        <li class="trialBrief">{{trial.description}}</li>
-                        <li class="trialLink"><a href="" class="more">View Trial Info</a></li>
-                    </ul>
-
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
+				<p>This study will involve performing a test on a sample of tumor. If you agree to take part in this study, you will have a tumor biopsy before you receive any drugs to treat breast cancer. The sample of the tumor will be will be taken at one of the following times: At the time of a planned biopsy to learn if you have breast cancer.</p>
+				<p>At the time of planned surgery to remove a known breast cancer.If the breast cancer has been previously biopsied and your doctor plans to give you breast cancer treatments before surgery, you will have a biopsy before starting these drugs.</p>
+			</div>
 
 
-
-        <!--
-                <div class="trialDetails" ng-repeat="trial in trialInfos">
-
-                    <div class="clear"></div>
-
-                    <div class="trialInfo">
-                        <h3>{{trial.title}} About The Trial ({{trial.id}})</h3>
-                        <p><strong>{{trial.description}}</strong></p>
-                        <p>This study will involve performing a test on a sample of tumor...</p>
-                    </div>
-
-
-                    <div class="trialRight">
-                        <div ng-repeat="siteOption in trial.trialSites._embeddedItems">
-
-                        <div class="trialIntro" >
-                            <h3>{{siteOption.siteDirector}} ({{siteOption.id}})</h3>
-                            <p><span class=""> <img ng-src="/trialSiteImage/{{siteOption.id}}"> </span>
-                                {{siteOption.siteDescription}}</p>
-                            <div class="clear"></div>
-                        </div>
-                            -->
-
-                <!-- <div class="trialIntro">
-                    <h3>Trial Location</h3>
-                    <p><strong>Address Details</p> -->
-                    <!-- {{siteOption.siteMap}} -->
-                    <!-- <iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=53.324624,-6.4396619&zoom=10"> -->
-                    <!-- <iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"> -->
-                <!-- </div> -->
-
-<!--
-                </div>
-
-            </div>
-
-
-            <div class="clear"></div>
-        </div>
--->
-
-            
-            
-            
-            
-            
-            
-            
-            
-                <div class="clear"></div>
-        </div>
+			<div class="trialSiteList">
+				<h3>Available Locations</h3>
+				<div class="simplePanel">
+					<div class="trialDirectorList">
+						<div class="trialSiteOptions" ng-repeat="site in trialData.trialSites._embeddedItems">
+							<p><span class="trialSiteImage"><img ng-src="/trialSiteImage/{{site.id}}"></span>
+								<strong>{{site.siteDirector}}</strong></p>
+							<p>New York, approx 42 miles away</p> 
+							<!-- <p class="trialBio">{{site.siteSummary}}</p>-->
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 
-    </form>
-    <div class="clear"></div>
+	
+			<div class="trialSiteLocation">
+				<h3>Trial Location Details</h3>
+				<div class="simplePanel">
+					<p>
+						<strong>Memorial Sloan Kettering Center</strong><br>
+						New York, New York, United States, 10065<br>
+						Contact: Kenneth Offit, MD 646-888-4067<br>
+						Principal Investigator: Thomas Haak, MD
+					</p>
+
+					<!-- {{site.siteMap}} -->
+					<iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
+
+					<div class="clear"></div>
+				</div>
+			</div>
+
+
+				
+
+
+
+				<div class="clear"></div>
+			
+		</div>
+
+
+		<div class="trialResults trialRight">
+			<div class="trialList">
+
+				<div class="trialIntro" ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
+					<ul>
+						<li class="trialImage"><img ng-src="/trialInfoImage/{{trial.id}}"></li>
+						<li class="trialBrief">{{trial.description}}</li>
+						<li class="trialLink"><a href=""class="more">View Trial Info</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+
+			</div>
+		</div>
+
+		
+		
+		
+		
+
+
+			
+			
+			
+			
+			
+			
+			
+			
+				<div class="clear"></div>
+		</div>
+
+
+
+	</form>
+	<div class="clear"></div>
 </div>
 
 
