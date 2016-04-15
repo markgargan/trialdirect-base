@@ -62,8 +62,6 @@ angular.module('trialdirect').controller('UserEditController',
                             });
                         });
                     }
-
-                    console.log($scope.trialInfos);
                 });
             };
 
@@ -147,6 +145,21 @@ angular.module('trialdirect').controller('UserEditController',
                             //console.log("Unselecting old selection");
                             questionnaireEntry.userSelection = null;
                             $scope.updateAvailableTrials();
+                        }
+                    });
+                }
+            };
+
+            $scope.toggleBio= function(site, trialData) {
+                var bioIsShowing = site.showBio;
+
+                if (bioIsShowing) {
+                    site.showBio = !site.showBio;
+                } else {
+                    site.showBio = true;
+                    angular.forEach(trialData.trialSites._embeddedItems, function(otherSite){
+                        if (otherSite.id != site.id) {
+                            otherSite.showBio =false;
                         }
                     });
                 }

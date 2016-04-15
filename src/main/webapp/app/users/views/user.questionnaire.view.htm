@@ -69,20 +69,16 @@
 				<h3>Available Locations</h3>
 				<div class="simplePanel">
 					<div class="trialDirectorList">
-						<div class="trialSiteOptions" ng-repeat="site in trialData.trialSites._embeddedItems">
+						<div class="trialSiteOptions" ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)">
 							<p><span class="trialSiteImage"><img ng-src="/trialSiteImage/{{site.id}}"></span>
 								<strong>{{site.siteDirector}}</strong></p>
-							<p>New York, approx 42 miles away</p> 
-							<!-- <p class="trialBio">{{site.siteSummary}}</p>-->
+							<p ng-show="site.showBio" ng-bind="site.siteDirectorBio"></p>
 							<div class="clear"></div>
 						</div>
 					</div>
 				</div>
 			</div>
 
-
-
-	
 			<div class="trialSiteLocation">
 				<h3>Trial Location Details</h3>
 				<div class="simplePanel">
@@ -99,14 +95,7 @@
 					<div class="clear"></div>
 				</div>
 			</div>
-
-
-				
-
-
-
-				<div class="clear"></div>
-			
+			<div class="clear"></div>
 		</div>
 
 

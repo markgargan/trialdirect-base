@@ -12,6 +12,10 @@ import java.io.IOException;
 
 public class TrialDirectPrimer {
 
+
+    @Autowired
+    CancerQuestionnairePrimer cancerQuestionnairePrimer;
+
     @Autowired
     GlaxoCancerPrimer glaxoPrimer;
 
@@ -29,6 +33,7 @@ public class TrialDirectPrimer {
     public void initDB() throws IOException {
 
         try {
+            cancerQuestionnairePrimer.initDB();
             glaxoPrimer.initDB();
             lundbeckPrimer.initDB();
             pfizerPrimer.initDB();

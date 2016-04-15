@@ -3,10 +3,7 @@ package com.tekenable.model.trial;
 import com.tekenable.model.BaseEntity;
 import com.tekenable.model.common.TrialDirectAddress;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by mark on 30/03/2016.
@@ -66,6 +63,7 @@ public class TrialSite extends BaseEntity {
         this.siteDirector = siteDirector;
     }
 
+    @Column(length=500)
     public String getSiteDirectorBio() {
         return siteDirectorBio;
     }

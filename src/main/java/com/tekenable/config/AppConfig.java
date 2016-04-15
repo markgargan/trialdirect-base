@@ -1,6 +1,7 @@
 package com.tekenable.config;
 
 
+import com.tekenable.config.prime.CancerQuestionnairePrimer;
 import com.tekenable.config.prime.TrialDirectPrimer;
 import com.tekenable.config.prime.trial.cancer.TrialPrimer;
 import com.tekenable.config.prime.trial.cancer.glaxo.GlaxoCancerPrimer;
@@ -14,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
@@ -115,6 +118,18 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
         properties.put(HBM2DDL_AUTO, "create-drop");
         return properties;
     }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
+        c.setLocations(new ClassPathResource("lundbeck/lundbeck.properties"),
+                new ClassPathResource("glaxosmithklein/glaxo.properties"),
+                new ClassPathResource("pfizer/pfizer.properties"));
+        return c;
+    }
+
+    @Bean
+    public CancerQuestionnairePrimer cancerQuestionnairePrimer() { return new CancerQuestionnairePrimer(); }
 
     @Bean
     public GlaxoCancerPrimer glaxoCancerPrimer() { return new GlaxoCancerPrimer(); }

@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public abstract class CancerTrialPrimer {
+public class CancerQuestionnairePrimer {
 
     @Autowired
     private TherapeuticAreaRepository therapeuticAreaRepository;
@@ -27,7 +27,7 @@ public abstract class CancerTrialPrimer {
     protected TrialRepository trialRepository;
 
     @Autowired
-    private QuestionnaireEntryRepository questionEntryRepository;
+    private QuestionnaireEntryRepository questionEnhtryRepository;
 
     @Autowired
     private TrialSelectorQuestionnaireEntryRepository trialSelectorQuestionEntryRepository;
@@ -112,7 +112,7 @@ public abstract class CancerTrialPrimer {
 
         therapeuticAreaRepository.save(therapeuticAreaCancer);
 
-        trialRepository.save(cancerTrial);
+//        trialRepository.save(cancerTrial);
 
         userRepository.save(robert);
 
