@@ -1,10 +1,12 @@
 package com.tekenable.model.trial;
 
 import com.tekenable.model.BaseEntity;
+import com.tekenable.model.common.TrialDirectAddress;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  * Created by mark on 30/03/2016.
@@ -16,22 +18,25 @@ public class TrialSite extends BaseEntity {
 
     private String siteDirector;
 
-    private String siteSummary;
-
-    private String siteDescription;
+    private String siteDirectorBio;
 
     private String siteMap;
+
+    private TrialDirectAddress trialDirectAddress;
 
     private TrialDirectImage trialSiteImage;
 
     public TrialSite() {
     }
 
-    public TrialSite(TrialInfo trialInfo, String siteDirector, String siteSummary, String siteDescription, String siteMap) {
+    public TrialSite(TrialInfo trialInfo, String siteDirector, String siteDirectorBio,
+                     String address1, String address2,String address3,String address4,
+                     String address5,String country, String siteMap) {
         this.trialInfo = trialInfo;
         this.siteDirector = siteDirector;
-        this.siteSummary = siteSummary;
-        this.siteDescription = siteDescription;
+        this.siteDirectorBio = siteDirectorBio;
+
+        trialDirectAddress = new TrialDirectAddress(address1, address2, address3, address4, address5, country);
         this.siteMap = siteMap;
     }
 
@@ -61,20 +66,12 @@ public class TrialSite extends BaseEntity {
         this.siteDirector = siteDirector;
     }
 
-    public String getSiteSummary() {
-        return siteSummary;
+    public String getSiteDirectorBio() {
+        return siteDirectorBio;
     }
 
-    public void setSiteSummary(String siteSummary) {
-        this.siteSummary = siteSummary;
-    }
-
-    public String getSiteDescription() {
-        return siteDescription;
-    }
-
-    public void setSiteDescription(String siteDescription) {
-        this.siteDescription = siteDescription;
+    public void setSiteDirectorBio(String siteDirectorBio) {
+        this.siteDirectorBio = siteDirectorBio;
     }
 
     public String getSiteMap() {
@@ -83,5 +80,14 @@ public class TrialSite extends BaseEntity {
 
     public void setSiteMap(String siteMap) {
         this.siteMap = siteMap;
+    }
+
+    @Embedded
+    public TrialDirectAddress getTrialDirectAddress() {
+        return trialDirectAddress;
+    }
+
+    public void setTrialDirectAddress(TrialDirectAddress trialDirectAddress) {
+        this.trialDirectAddress = trialDirectAddress;
     }
 }

@@ -1,7 +1,9 @@
 package com.tekenable.servlet;
 
 import com.tekenable.model.Trial;
+import com.tekenable.model.common.TrialDirectAddress;
 import com.tekenable.model.trial.TrialDirectImage;
+import com.tekenable.model.trial.TrialFullDescription;
 import com.tekenable.model.trial.TrialInfo;
 import com.tekenable.model.trial.TrialSite;
 import com.tekenable.repository.TrialInfoRepository;
@@ -33,11 +35,19 @@ public class TrialLogoUploadServlet extends HttpServlet {
     private final static String DESCRIPTION = "description";
     private final static String TRIAL_ID = "trialId";
     private static final String TRIAL_SITE_FILE = "trialSiteFile";
+    private static final String TRIAL_FULL_DESCRIPTION = "fullDescription";
+
     private static final String TRIAL_INFO_LOGO = "trialInfoLogo";
-    private static final String SITE_DESCRIPTION= "siteDescription";
+    private static final String SITE_DIRECTOR_BIO= "siteDescription";
     private static final String SITE_DIRECTOR   = "siteDirector";
     private static final String SITE_MAP        = "siteMap";
-    private static final String SITE_SUMMARY        = "siteSummary";
+
+    private static final String SITE_ADDRESS1        = "siteAddress1";
+    private static final String SITE_ADDRESS2        = "siteAddress2";
+    private static final String SITE_ADDRESS3        = "siteAddress3";
+    private static final String SITE_ADDRESS4        = "siteAddress4";
+    private static final String SITE_ADDRESS5        = "siteAddress5";
+    private static final String SITE_COUNTRY        = "siteCountry";
 
     @Autowired
     TrialRepository trialRepository;
@@ -107,9 +117,12 @@ public class TrialLogoUploadServlet extends HttpServlet {
                     if (!fieldName.startsWith("trialSites[")) {
                         // It's a trialInfo field
                         if (fieldName.equals(DESCRIPTION)) {
-                            trialInfo.setDescription(fieldValue);
+                            trialInfo.setSummary(fieldValue);
                         } else if (fieldName.equals(TRIAL_ID)) {
                             trial = trialRepository.findOne(Integer.valueOf(fieldValue));
+                        } else if (fieldName.equals(TRIAL_FULL_DESCRIPTION)) {
+                            trialInfo.setTrialFullDescription(new TrialFullDescription(fieldValue));
+
                         }
                     } else {
                         handleTrialSiteField(fieldName, fieldValue, trialSites);
@@ -150,14 +163,28 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
         TrialSite trialSite = getTrialSite(fieldName, trialSites);
 
-        if (fieldName.contains(SITE_DESCRIPTION)) {
-            trialSite.setSiteDescription(fieldValue);
+        TrialDirectAddress trialDirectAddress = trialSite.getTrialDirectAddress()==null ? new TrialDirectAddress() : trialSite.getTrialDirectAddress();
+
+        if (fieldName.contains(SITE_DIRECTOR_BIO)) {
+            trialSite.setSiteDirectorBio(fieldValue);
         } else if (fieldName.contains(SITE_DIRECTOR)) {
             trialSite.setSiteDirector(fieldValue);
-        }  else if (fieldName.contains(SITE_MAP)) {
+        } else if (fieldName.contains(SITE_ADDRESS1)) {
+            trialDirectAddress.setAddress1(fieldValue);
+        } else if (fieldName.contains(SITE_ADDRESS2)) {
+            trialDirectAddress.setAddress2(fieldValue);
+        } else if (fieldName.contains(SITE_ADDRESS3)) {
+            trialDirectAddress.setAddress3(fieldValue);
+        } else if (fieldName.contains(SITE_ADDRESS4)) {
+            trialDirectAddress.setAddress4(fieldValue);
+        } else if (fieldName.contains(SITE_ADDRESS5)) {
+            trialDirectAddress.setAddress5(fieldValue);
+        } else if (fieldName.contains(SITE_COUNTRY)) {
+            trialDirectAddress.setCountry(fieldValue);
+        }
+
+        else if (fieldName.contains(SITE_MAP)) {
             trialSite.setSiteMap(fieldValue);
-        } else if (fieldName.contains(SITE_SUMMARY)) {
-            trialSite.setSiteSummary(fieldValue);
         }
     }
 

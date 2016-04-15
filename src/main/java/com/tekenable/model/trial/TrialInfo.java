@@ -14,17 +14,19 @@ public class TrialInfo extends BaseEntity {
 
     private Trial trial;
 
-    private String description;
+    private String summary;
 
     private Set<TrialSite> trialSites;
 
     private TrialDirectImage trialLogo;
 
+    private TrialFullDescription trialFullDescription;
+
     public TrialInfo(){}
 
-    public TrialInfo(Trial trial, String description) {
+    public TrialInfo(Trial trial, String summary) {
         this.trial = trial;
-        this.description = description;
+        this.summary = summary;
     }
 
     @ManyToOne
@@ -37,12 +39,12 @@ public class TrialInfo extends BaseEntity {
         this.trial = trial;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     @OneToMany(mappedBy = "trialInfo", cascade = CascadeType.ALL,
@@ -62,5 +64,14 @@ public class TrialInfo extends BaseEntity {
 
     public void setTrialLogo(TrialDirectImage trialLogo) {
         this.trialLogo = trialLogo;
+    }
+
+    @OneToOne
+    public TrialFullDescription getTrialFullDescription() {
+        return trialFullDescription;
+    }
+
+    public void setTrialFullDescription(TrialFullDescription trialFullDescription) {
+        this.trialFullDescription = trialFullDescription;
     }
 }

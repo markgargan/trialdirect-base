@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -90,7 +91,7 @@ public abstract class CancerTrialPrimer {
     protected final UserSelectorQuestionnaireEntry us_robert_q3_a32_cancer = new UserSelectorQuestionnaireEntry(robert, q3, a32, therapeuticAreaCancer);
 
 
-    public void initDB() {
+    public void initDB() throws IOException {
 
         // Associate the QuestionnaireEntries with the Cancer TherapeuticArea
         therapeuticAreaCancer.setQuestionnaireentries(new HashSet<QuestionnaireEntry>(){{

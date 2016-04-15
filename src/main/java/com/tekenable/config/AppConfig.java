@@ -2,7 +2,10 @@ package com.tekenable.config;
 
 
 import com.tekenable.config.prime.TrialDirectPrimer;
-import com.tekenable.config.prime.TrialPrimer;
+import com.tekenable.config.prime.trial.cancer.TrialPrimer;
+import com.tekenable.config.prime.trial.cancer.glaxo.GlaxoCancerPrimer;
+import com.tekenable.config.prime.trial.cancer.lundbeck.LundbeckCancerPrimer;
+import com.tekenable.config.prime.trial.cancer.pfizer.PfizerCancerPrimer;
 import com.tekenable.model.*;
 import com.tekenable.model.trial.TrialDirectImage;
 import com.tekenable.model.trial.TrialInfo;
@@ -114,7 +117,13 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
     }
 
     @Bean
-    public TrialPrimer trialPrimer() { return new TrialPrimer(); }
+    public GlaxoCancerPrimer glaxoCancerPrimer() { return new GlaxoCancerPrimer(); }
+
+    @Bean
+    public LundbeckCancerPrimer lundbeckCancerPrimer() { return new LundbeckCancerPrimer(); }
+
+    @Bean
+    public PfizerCancerPrimer pfizerCancerPrimer() { return new PfizerCancerPrimer(); }
 
     @Bean
     public TrialDirectPrimer trialDirectPrimer() {
