@@ -703,25 +703,35 @@ td, th {
 .trialSiteImage,
 .trialIntro
     span {
+
     display: block;
     float: left;
-    width: 5em;    
-/*    margin: .25em 1em 1em 0;*/
-    transition: all .2s ease;}
+    width: 5em;
+    margin: .25em 0 .5em;
+    transition: all .2s ease;
+    max-height: 4em;
+    overflow: hidden;
+
+
+}
 
 .trialSiteList {
     display: block;
     float: left;
-    width: 48%;
+    width: 49%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     text-align: left;
+}
+
+.trialDirectorList {
     margin-left: 2%;
-    max-height: 400px;
+    max-height: 350px;
     overflow-x: auto;
     padding-right: .5em;
 }
+
 .trialBio {
     font-size: .9em;
     line-height: 1.2;
@@ -730,8 +740,8 @@ td, th {
 
 .trialSiteLocation {
     display: block;
-    float: left;
-    width: 50%;
+    float: right;
+    width: 49%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -774,12 +784,13 @@ td, th {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    padding-top: 1em;
 }
 
 .simplePanel {
     display: block;
     background: #fff;
-    margin: 1em 0;
+    margin-bottom: 1em;
     padding: 1em; 
     -webkit-border-radius: .3em;
     -moz-border-radius: .3em;

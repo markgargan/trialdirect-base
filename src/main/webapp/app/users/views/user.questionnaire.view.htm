@@ -55,23 +55,37 @@
 
 		<div class="trialDataInfo" ng-show="trialData">
 
-			<div class="simplePanel">
+			<h3>About The Trial</h3>
 
-				<h3>About The Trial</h3>
+			<div class="simplePanel">				
 				<p><strong>{{trialData.description}}</strong></p>
 
 				<p>This study will involve performing a test on a sample of tumor. If you agree to take part in this study, you will have a tumor biopsy before you receive any drugs to treat breast cancer. The sample of the tumor will be will be taken at one of the following times: At the time of a planned biopsy to learn if you have breast cancer.</p>
 				<p>At the time of planned surgery to remove a known breast cancer.If the breast cancer has been previously biopsied and your doctor plans to give you breast cancer treatments before surgery, you will have a biopsy before starting these drugs.</p>
-
 			</div>
 
-			<div class="simplePanel">
 
-				<h3>Trial Locations</h3>
+			<div class="trialSiteList">
+				<h3>Available Locations</h3>
+				<div class="simplePanel">
+					<div class="trialDirectorList">
+						<div class="trialSiteOptions" ng-repeat="site in trialData.trialSites._embeddedItems">
+							<p><span class="trialSiteImage"><img ng-src="/trialSiteImage/{{site.id}}"></span>
+								<strong>{{site.siteDirector}}</strong></p>
+							<p>New York, approx 42 miles away</p> 
+							<!-- <p class="trialBio">{{site.siteSummary}}</p>-->
+							<div class="clear"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
-				<div class="trialSiteLocation">
 
+	
+			<div class="trialSiteLocation">
+				<h3>Trial Location Details</h3>
+				<div class="simplePanel">
 					<p>
 						<strong>Memorial Sloan Kettering Center</strong><br>
 						New York, New York, United States, 10065<br>
@@ -84,22 +98,15 @@
 
 					<div class="clear"></div>
 				</div>
+			</div>
 
 
-				<div class="trialSiteList">
-					<div class="trialSiteOptions" ng-repeat="site in trialData.trialSites._embeddedItems">
-						<p><span class="trialSiteImage"><img ng-src="/trialSiteImage/{{site.id}}"></span>
-							<strong>{{site.siteDirector}}</strong></p>
-						<p class="trialBio">{{site.siteSummary}}</p>
-						<div class="clear"></div>
-					</div>
-
-				</div>
+				
 
 
 
 				<div class="clear"></div>
-			</div>
+			
 		</div>
 
 
