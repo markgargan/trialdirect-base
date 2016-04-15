@@ -5,14 +5,16 @@ import org.hibernate.loader.entity.plan.AbstractLoadPlanBasedEntityLoader;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  * Created by mark on 15/04/2016.
  */
-@Entity
-public class TrialFullDescription extends BaseEntity {
+public class TrialFullDescription {
 
     String fullDescription;
+
+    TrialInfo trialInfo;
 
     public TrialFullDescription() {
     }

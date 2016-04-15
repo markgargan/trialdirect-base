@@ -58,10 +58,12 @@
 			<h3>About The Trial</h3>
 
 			<div class="simplePanel">				
-				<p><strong>{{trialData.description}}</strong></p>
+				<p><strong>{{trialData.summary}}</strong></p>
 
-				<p>This study will involve performing a test on a sample of tumor. If you agree to take part in this study, you will have a tumor biopsy before you receive any drugs to treat breast cancer. The sample of the tumor will be will be taken at one of the following times: At the time of a planned biopsy to learn if you have breast cancer.</p>
-				<p>At the time of planned surgery to remove a known breast cancer.If the breast cancer has been previously biopsied and your doctor plans to give you breast cancer treatments before surgery, you will have a biopsy before starting these drugs.</p>
+				<p ng-show="trialData.trialFullDescription.fullDescription"
+				   ng-repeat="value in trialData.trialFullDescription.fullDescription | newlines">
+					<span ng-bind="value"></span>
+				</p>
 			</div>
 
 
@@ -113,26 +115,6 @@
 
 			</div>
 		</div>
-
-		
-		
-		
-		
-
-
-			
-			
-			
-			
-			
-			
-			
-			
-				<div class="clear"></div>
-		</div>
-
-
-
 	</form>
 	<div class="clear"></div>
 </div>

@@ -100,7 +100,7 @@ public class GlaxoCancerPrimer extends TrialPrimer{
 
         Trial trial = new Trial(trialTitle, therapeuticAreaCancer);
 
-        final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary);
+        final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary, trialInfoFullDescription);
 
         trialInfo.setTrialLogo(trialLogo);
 

@@ -165,4 +165,11 @@ angular.module('trialdirect').controller('UserEditController',
                 }
             };
         }
-    ]);
+    ]).filter('newlines', function () {
+        return function(text) {
+            if (!text)
+                return '';
+
+            return text.split('\n');
+        }
+    });

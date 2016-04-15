@@ -24,9 +24,10 @@ public class TrialInfo extends BaseEntity {
 
     public TrialInfo(){}
 
-    public TrialInfo(Trial trial, String summary) {
+    public TrialInfo(Trial trial, String summary, String trialFullDescription) {
         this.trial = trial;
         this.summary = summary;
+        this.trialFullDescription = new TrialFullDescription(trialFullDescription);
     }
 
     @ManyToOne
@@ -66,7 +67,7 @@ public class TrialInfo extends BaseEntity {
         this.trialLogo = trialLogo;
     }
 
-    @OneToOne
+    @Embedded
     public TrialFullDescription getTrialFullDescription() {
         return trialFullDescription;
     }
