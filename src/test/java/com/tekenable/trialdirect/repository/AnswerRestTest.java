@@ -36,7 +36,7 @@ public class AnswerRestTest extends RestTestMockTemplate {
         Integer count = jdbc.queryForObject("select count(*) from Answer", Integer.class);
         log.info("Overall Answers found: "+String.valueOf(count));
 
-        ResultActions result = mockMvc.perform(get("/answers")).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/answers")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
@@ -47,7 +47,7 @@ public class AnswerRestTest extends RestTestMockTemplate {
         log.info("*** START TEST ***");
         log.info("Reading the first answer");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/answers/{id}", 1)).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/answers/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
         result.andExpect(jsonPath("$.answerText").value("Stomach"));
         result.andDo(MockMvcResultHandlers.print());

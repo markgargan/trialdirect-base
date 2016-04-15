@@ -36,7 +36,7 @@ public class UserRepositoryTest extends RestTestMockTemplate {
         Integer count = jdbc.queryForObject("select count(*) from User", Integer.class);
         log.info("Overall Users found: "+String.valueOf(count));
 
-        ResultActions result = mockMvc.perform(get("/users")).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/users")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
@@ -47,7 +47,7 @@ public class UserRepositoryTest extends RestTestMockTemplate {
         log.info("*** START TEST ***");
         log.info("Reading the first user");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/users/{id}", 1)).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/users/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
         result.andExpect(jsonPath("$.pseudonym").value("Robert"));
         result.andDo(MockMvcResultHandlers.print());

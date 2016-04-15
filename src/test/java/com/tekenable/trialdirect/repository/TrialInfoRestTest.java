@@ -36,7 +36,7 @@ public class TrialInfoRestTest extends RestTestMockTemplate {
         Integer count = jdbc.queryForObject("select count(*) from TrialInfo", Integer.class);
         log.info("Overall Trial Information records found: "+String.valueOf(count));
 
-        ResultActions result = mockMvc.perform(get("/trialinfos")).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/trialinfos")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
@@ -46,7 +46,7 @@ public class TrialInfoRestTest extends RestTestMockTemplate {
         log.info("*** START TEST ***");
         log.info("Reading the first record");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/trialinfostrialinfos/{id}", 1)).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/trialinfostrialinfos/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
         result.andExpect(jsonPath("$.description").value("Pfizer Info1"));
         result.andDo(MockMvcResultHandlers.print());

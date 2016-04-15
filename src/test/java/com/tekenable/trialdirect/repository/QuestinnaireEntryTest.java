@@ -36,7 +36,7 @@ public class QuestinnaireEntryTest extends RestTestMockTemplate {
         Integer count = jdbc.queryForObject("select count(*) from QuestionnaireEntry", Integer.class);
         log.info("Overall Entries found: "+String.valueOf(count));
 
-        ResultActions result = mockMvc.perform(get("/questionnaireentries")).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/questionnaireentries")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
         log.info("*** END OF TEST ***");
     }
@@ -47,7 +47,7 @@ public class QuestinnaireEntryTest extends RestTestMockTemplate {
         log.info("*** START TEST ***");
         log.info("Reading the first entry");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/questionnaireentries/{id}", 1)).andExpect(status().is2xxSuccessful());
+        ResultActions result = mockMvc.perform(get("/questionnaireentries/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
         //result.andExpect(jsonPath("$.question").value("?")); what can I verify here ?
         result.andDo(MockMvcResultHandlers.print());
