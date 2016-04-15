@@ -8,8 +8,10 @@ package com.tekenable.trialdirect.repository;
 import com.tekenable.repository.QuestionRepository;
 import org.hamcrest.BaseMatcher;
 import org.json.simple.JSONObject;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,38 +41,29 @@ public class QuestionRestTest extends RestTestMockTemplate {
     @Autowired
     private QuestionRepository questionRepositoryMock;
 
-    private boolean isMockInitialized = false;
-
-    public void init() {
-        initDB();
-        this.mockInit(questionRepositoryMock);
-        this.isMockInitialized = true;
+    @Override
+    public PagingAndSortingRepository getRepository() {
+        return this.questionRepositoryMock;
     }
 
     @Test
     public void getAllQuestionsTest() throws Exception {
-        if (!this.isMockInitialized) this.init();
-        log.info("*** START TEST ***");
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
         final Integer count = jdbc.queryForObject("select count(*) from Question", Integer.class);
         log.info("Overall Questions found: "+String.valueOf(count));
 
         ResultActions result = mockMvc.perform(get("/questions")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
-        log.info("*** END OF TEST ***");
     }
 
     @Test
     public void getSingeQuestionTest() throws Exception {
-        if (!this.isMockInitialized) this.init();
-        log.info("*** START TEST ***");
         log.info("Reading the first question");
         log.info(" ");
         ResultActions result = mockMvc.perform(get("/questions/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
         result.andExpect(jsonPath("$.questionText").value("What is the type of your cancer?"));
         result.andDo(MockMvcResultHandlers.print());
-        log.info("*** END OF TEST ***");
     }
 
     /**
@@ -81,7 +74,6 @@ public class QuestionRestTest extends RestTestMockTemplate {
      */
     @Test
     public void addQuestionTest() throws Exception {
-        log.info("*** START TEST ***");
         RestTemplate restTemplate = new RestTemplate();
         MockRestServiceServer mockServer = MockRestServiceServer.createServer(restTemplate);
 
@@ -94,7 +86,5 @@ public class QuestionRestTest extends RestTestMockTemplate {
         ResponseEntity<String> response = restTemplate.postForEntity("/questions", params, String.class);
         mockServer.verify();
         assertTrue(response.getStatusCode().is2xxSuccessful());
-        log.info("*** END OF TEST ***");
-        //assertThat(response.getStatusCode()., allOf(containsString("SUCCESS"), containsString("resultSuccess")));
     }
 }

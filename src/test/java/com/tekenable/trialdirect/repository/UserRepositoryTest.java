@@ -1,8 +1,10 @@
 package com.tekenable.trialdirect.repository;
 
 import com.tekenable.repository.UserRepository;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -20,37 +22,28 @@ public class UserRepositoryTest extends RestTestMockTemplate {
     @Autowired
     public UserRepository userRepositoryMock;
 
-    private boolean isMockInitialized = false;
-
-    public void init() {
-        initDB();
-        this.mockInit(userRepositoryMock);
-        this.isMockInitialized = true;
+    @Override
+    public PagingAndSortingRepository getRepository() {
+        return this.userRepositoryMock;
     }
 
     @Test
     public void getAllUsersTest() throws Exception {
-        if (!this.isMockInitialized) this.init();
-        log.info("*** START TEST ***");
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
         Integer count = jdbc.queryForObject("select count(*) from User", Integer.class);
         log.info("Overall Users found: "+String.valueOf(count));
 
         ResultActions result = mockMvc.perform(get("/users")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
-        log.info("*** END OF TEST ***");
     }
 
     @Test
     public void getSingleUserTest() throws Exception {
-        if (!this.isMockInitialized) this.init();
-        log.info("*** START TEST ***");
         log.info("Reading the first user");
         log.info(" ");
         ResultActions result = mockMvc.perform(get("/users/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
         result.andExpect(jsonPath("$.pseudonym").value("Robert"));
         result.andDo(MockMvcResultHandlers.print());
-        log.info("*** END OF TEST ***");
     }
 }
