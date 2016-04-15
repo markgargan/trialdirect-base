@@ -1,4 +1,5 @@
-.idea
+/.openshift
+/.idea
 target
 *.log
 vendor
