@@ -35,10 +35,10 @@
     -->
     
     <Resource name="jdbc/MySQLDS"
-        url="jdbc:mysql://localhost:3306/trialdirect"
+        url="jdbc:mysql://${tomcat.test.host}"
         driverClassName="com.mysql.jdbc.Driver"
-        username="trialdirect"
-        password="trialdirect"
+        username="root"
+        password="tr14ld1r3ct"
         auth="Container"
         type="javax.sql.DataSource"
         maxActive="20"

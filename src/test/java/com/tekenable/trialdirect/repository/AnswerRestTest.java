@@ -1,6 +1,8 @@
 package com.tekenable.trialdirect.repository;
 
 import com.tekenable.repository.AnswerRepository;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,11 +24,14 @@ public class AnswerRestTest extends RestTestMockTemplate {
 
     private boolean isMockInitialized = false;
 
+    @BeforeClass
     public void init() {
         initDB();
         this.mockInit(answerRepositoryMock);
         this.isMockInitialized = true;
     }
+
+
 
     @Test
     public void getAllAnswersTest() throws Exception {
