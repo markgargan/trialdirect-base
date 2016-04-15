@@ -63,8 +63,8 @@ public class AuditConfigurator {
             if (result==0) {
                 for (Map.Entry<String, String> operation : operations.entrySet()) {
                     StringBuilder tsb = new StringBuilder();
-                    tsb.append("create trigger ").append(table).append(operation.getKey()).append(" ");
-                    tsb.append("after ").append(operation.getValue());
+                    tsb.append("create trigger ").append(table).append(operation.getKey());
+                    tsb.append(" after ").append(operation.getValue());
                     tsb.append(" on ").append(table).append(" for each row ");
                     tsb.append("begin insert into ").append(auditTableName);
 
