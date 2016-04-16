@@ -38,7 +38,7 @@ public class TrialDirectPrimer {
             lundbeckPrimer.initDB();
             pfizerPrimer.initDB();
 
-            auditConfigurator.addAuditStuff();
+//            auditConfigurator.addAuditStuff();
         } catch (NullPointerException pae) {
             pae.printStackTrace();
         }
