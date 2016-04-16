@@ -34,7 +34,7 @@ public class TrialDirectPrimer {
 
         try {
             cancerQuestionnairePrimer.initDB();
-            glaxoPrimer.initDB();
+//            glaxoPrimer.initDB();
             lundbeckPrimer.initDB();
             pfizerPrimer.initDB();
 
