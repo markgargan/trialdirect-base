@@ -27,7 +27,7 @@ public class PfizerCancerPrimer extends TrialPrimer {
     /**
      * Dr images
      */
-    @Value("classpath:pfizer/images/cox.png") private Resource trialSite1DoctorImage;
+    @Value("classpath:pfizer/images/cox.jpg") private Resource trialSite1DoctorImage;
     @Value("classpath:pfizer/images/kelso.png") private Resource trialSite2DoctorImage;
     @Value("classpath:pfizer/images/elliot.jpg") private Resource trialSite3DoctorImage;
     @Value("classpath:pfizer/images/pfizer.png") private Resource pfizerLogoImage;
@@ -35,7 +35,7 @@ public class PfizerCancerPrimer extends TrialPrimer {
     public void initDB() throws IOException {
         super.initDB();
 
-        trialsite1Image = new TrialDirectImage(trialSite1DoctorImage.getFilename(), MediaType.IMAGE_PNG_VALUE, IOUtils.toByteArray(trialSite1DoctorImage.getInputStream()));
+        trialsite1Image = new TrialDirectImage(trialSite1DoctorImage.getFilename(), MediaType.IMAGE_JPEG_VALUE, IOUtils.toByteArray(trialSite1DoctorImage.getInputStream()));
         trialsite2Image = new TrialDirectImage(trialSite2DoctorImage.getFilename(), MediaType.IMAGE_JPEG_VALUE, IOUtils.toByteArray(trialSite2DoctorImage.getInputStream()));
         trialsite3Image = new TrialDirectImage(trialSite3DoctorImage.getFilename(), MediaType.IMAGE_PNG_VALUE, IOUtils.toByteArray(trialSite3DoctorImage.getInputStream()));
         trialLogo = new TrialDirectImage(pfizerLogoImage.getFilename(), MediaType.IMAGE_PNG_VALUE, IOUtils.toByteArray(pfizerLogoImage.getInputStream()));

@@ -8,6 +8,7 @@ import com.tekenable.config.prime.trial.cancer.pfizer.PfizerCancerPrimer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.io.IOException;
 
 public class TrialDirectPrimer {
@@ -32,15 +33,21 @@ public class TrialDirectPrimer {
     @PostConstruct
     public void initDB() throws IOException {
 
-        try {
-            cancerQuestionnairePrimer.initDB();
-//            glaxoPrimer.initDB();
-            lundbeckPrimer.initDB();
-            pfizerPrimer.initDB();
+        this.configureTriggers();
+        this.runPrimers();
 
-//            auditConfigurator.addAuditStuff();
-        } catch (NullPointerException pae) {
-            pae.printStackTrace();
-        }
+    }
+
+    private void configureTriggers() {
+        auditConfigurator.addAuditStuff();
+    }
+
+    private void runPrimers() throws IOException {
+
+        cancerQuestionnairePrimer.initDB();
+//            glaxoPrimer.initDB();
+        lundbeckPrimer.initDB();
+        pfizerPrimer.initDB();
+
     }
 }
