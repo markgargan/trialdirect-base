@@ -62,13 +62,26 @@ angular.module('trialdirect').controller('UserEditController',
                             });
                         });
                     }
-
-                    console.log($scope.trialInfos);
                 });
             };
 
             // Initialise the trial count
             $scope.updateAvailableTrials();
+
+
+            $scope.chooseTrialData = function (trialData) {
+                $scope.trialData = trialData;
+
+                //function(trialId) {
+                    /*TrialResourceService.loadTrialInfo(trialId).then(function(trialData){
+                        if(!angular.isUndefined(trialData))
+                        {
+                            $scope.trialData.push(trialData);
+                        }
+                    });*/
+                //}
+
+            };
 
 
             $scope.updateUserSelectorQuestionnaireEntry = function (questionnaireEntry, answer) {
@@ -136,5 +149,27 @@ angular.module('trialdirect').controller('UserEditController',
                     });
                 }
             };
+
+            $scope.toggleBio= function(site, trialData) {
+                var bioIsShowing = site.showBio;
+
+                if (bioIsShowing) {
+                    site.showBio = !site.showBio;
+                } else {
+                    site.showBio = true;
+                    angular.forEach(trialData.trialSites._embeddedItems, function(otherSite){
+                        if (otherSite.id != site.id) {
+                            otherSite.showBio =false;
+                        }
+                    });
+                }
+            };
         }
-    ]);
+    ]).filter('newlines', function () {
+        return function(text) {
+            if (!text)
+                return '';
+
+            return text.split('\n');
+        }
+    });

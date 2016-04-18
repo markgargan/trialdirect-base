@@ -1,8 +1,12 @@
 package com.tekenable.config;
 
 
+import com.tekenable.config.prime.CancerQuestionnairePrimer;
 import com.tekenable.config.prime.TrialDirectPrimer;
-import com.tekenable.config.prime.TrialPrimer;
+import com.tekenable.config.prime.trial.cancer.TrialPrimer;
+import com.tekenable.config.prime.trial.cancer.glaxo.GlaxoCancerPrimer;
+import com.tekenable.config.prime.trial.cancer.lundbeck.LundbeckCancerPrimer;
+import com.tekenable.config.prime.trial.cancer.pfizer.PfizerCancerPrimer;
 import com.tekenable.model.*;
 import com.tekenable.model.trial.TrialDirectImage;
 import com.tekenable.model.trial.TrialInfo;
@@ -11,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
@@ -114,7 +120,25 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
     }
 
     @Bean
-    public TrialPrimer trialPrimer() { return new TrialPrimer(); }
+    public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
+        c.setLocations(new ClassPathResource("lundbeck/lundbeck.properties"),
+                new ClassPathResource("glaxosmithklein/glaxo.properties"),
+                new ClassPathResource("pfizer/pfizer.properties"));
+        return c;
+    }
+
+    @Bean
+    public CancerQuestionnairePrimer cancerQuestionnairePrimer() { return new CancerQuestionnairePrimer(); }
+
+    @Bean
+    public GlaxoCancerPrimer glaxoCancerPrimer() { return new GlaxoCancerPrimer(); }
+
+    @Bean
+    public LundbeckCancerPrimer lundbeckCancerPrimer() { return new LundbeckCancerPrimer(); }
+
+    @Bean
+    public PfizerCancerPrimer pfizerCancerPrimer() { return new PfizerCancerPrimer(); }
 
     @Bean
     public TrialDirectPrimer trialDirectPrimer() {

@@ -1,29 +1,53 @@
 package com.tekenable.config.prime;
 
+import com.tekenable.config.AuditConfigurator;
+import com.tekenable.config.prime.trial.cancer.TrialPrimer;
+import com.tekenable.config.prime.trial.cancer.glaxo.GlaxoCancerPrimer;
+import com.tekenable.config.prime.trial.cancer.lundbeck.LundbeckCancerPrimer;
+import com.tekenable.config.prime.trial.cancer.pfizer.PfizerCancerPrimer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
+import java.io.IOException;
 
 public class TrialDirectPrimer {
 
-//    @Autowired
-//    CancerTrialPrimer cancerTrialPrimer;
-
 
     @Autowired
-    TrialPrimer trialPrimer;
+    CancerQuestionnairePrimer cancerQuestionnairePrimer;
+
+    @Autowired
+    GlaxoCancerPrimer glaxoPrimer;
+
+    @Autowired
+    LundbeckCancerPrimer lundbeckPrimer;
+
+    @Autowired
+    PfizerCancerPrimer pfizerPrimer;
+
+    @Autowired
+    private AuditConfigurator auditConfigurator;
 
 
     @PostConstruct
-    public void initDB() {
+    public void initDB() throws IOException {
 
+        this.configureTriggers();
+        this.runPrimers();
 
+    }
 
-        try {
-//            cancerTrialPrimer.initDB();
-            trialPrimer.initDB();
-        }catch (NullPointerException pae) {
-            pae.printStackTrace();
-        }
+    private void configureTriggers() {
+        auditConfigurator.addAuditStuff();
+    }
+
+    private void runPrimers() throws IOException {
+
+        cancerQuestionnairePrimer.initDB();
+//            glaxoPrimer.initDB();
+        lundbeckPrimer.initDB();
+        pfizerPrimer.initDB();
+
     }
 }
