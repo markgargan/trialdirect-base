@@ -6,9 +6,7 @@ import com.tekenable.model.trial.TrialDirectImage;
 import com.tekenable.model.trial.TrialInfo;
 import com.tekenable.model.trial.TrialSite;
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
@@ -21,17 +19,17 @@ import java.util.HashSet;
  * Created by mark on 04/04/2016.
  */
 @Configuration
-@PropertySource("classpath:glaxosmithklein/glaxo.properties")
+@PropertySource("classpath:primer/glaxosmithklein/glaxo.properties")
 public class GlaxoCancerPrimer extends TrialPrimer{
 
 
     /**
      * Dr images
      */
-    @Value("classpath:glaxosmithklein/images/theBunk.jpg") private Resource trialsite1DoctorImage;
-    @Value("classpath:glaxosmithklein/images/bubbles.jpg") private Resource trialsite2DoctorImage;
-    @Value("classpath:glaxosmithklein/images/omar.jpg") private Resource trialSite3DoctorImage;
-    @Value("classpath:glaxosmithklein/images/trialLogo.png") private Resource trialLogoImage;
+    @Value("classpath:primer/glaxosmithklein/images/theBunk.jpg") private Resource trialsite1DoctorImage;
+    @Value("classpath:primer/glaxosmithklein/images/bubbles.jpg") private Resource trialsite2DoctorImage;
+    @Value("classpath:primer/glaxosmithklein/images/omar.jpg") private Resource trialSite3DoctorImage;
+    @Value("classpath:primer/glaxosmithklein/images/trialLogo.png") private Resource trialLogoImage;
 
     public void initDB() throws IOException {
         super.initDB();

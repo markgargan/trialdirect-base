@@ -21,10 +21,10 @@ public class LundbeckCancerPrimer extends TrialPrimer{
     /**
      * Dr images
      */
-    @Value("classpath:lundbeck/images/cuddy.jpg") private Resource trialsite1DoctorImage;
-    @Value("classpath:lundbeck/images/house.jpeg") private Resource trialsite2DoctorImage;
-    @Value("classpath:lundbeck/images/foreman.jpg") private Resource trialSite3DoctorImage;
-    @Value("classpath:lundbeck/images/trialLogo.gif") private Resource trialLogoImage;
+    @Value("classpath:primer/lundbeck/images/cuddy.jpg") private Resource trialsite1DoctorImage;
+    @Value("classpath:primer/lundbeck/images/house.jpeg") private Resource trialsite2DoctorImage;
+    @Value("classpath:primer/lundbeck/images/foreman.jpg") private Resource trialSite3DoctorImage;
+    @Value("classpath:primer/lundbeck/images/trialLogo.gif") private Resource trialLogoImage;
 
     public void initDB() throws IOException {
         super.initDB();

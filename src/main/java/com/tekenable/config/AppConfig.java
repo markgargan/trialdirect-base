@@ -3,7 +3,6 @@ package com.tekenable.config;
 
 import com.tekenable.config.prime.CancerQuestionnairePrimer;
 import com.tekenable.config.prime.TrialDirectPrimer;
-import com.tekenable.config.prime.trial.cancer.TrialPrimer;
 import com.tekenable.config.prime.trial.cancer.glaxo.GlaxoCancerPrimer;
 import com.tekenable.config.prime.trial.cancer.lundbeck.LundbeckCancerPrimer;
 import com.tekenable.config.prime.trial.cancer.pfizer.PfizerCancerPrimer;
@@ -122,9 +121,9 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
     @Bean
     public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
         PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
-        c.setLocations(new ClassPathResource("lundbeck/lundbeck.properties"),
-                new ClassPathResource("glaxosmithklein/glaxo.properties"),
-                new ClassPathResource("pfizer/pfizer.properties"));
+        c.setLocations(new ClassPathResource("primer/lundbeck/lundbeck.properties"),
+                new ClassPathResource("primer/glaxosmithklein/glaxo.properties"),
+                new ClassPathResource("primer/pfizer/pfizer.properties"));
         return c;
     }
 
