@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,16 +18,8 @@ public class AuditConfigurator {
 
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 
-        String databaseName = "";
-        
-        try {
-            databaseName = dataSource.getConnection().getCatalog();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         String auditTablesSQL = "select table_name from information_schema.tables \n" +
-                                "where table_schema = '"+ databaseName +"' \n" +
+                                "where table_schema = 'trialdirect' \n" +
                                 "and table_name like '%_audit'";
         List<String> auditTables = jdbc.queryForList(auditTablesSQL, String.class);
         for (String table : auditTables) {
@@ -37,7 +28,7 @@ public class AuditConfigurator {
         }
 
         String tablesSQL = "select table_name from information_schema.tables \n" +
-                           "where table_schema = '" + databaseName + "'\n" +
+                           "where table_schema = 'trialdirect'\n" +
                            "and table_name not in ('hibernate_sequences')";
         List<String> tables = jdbc.queryForList(tablesSQL, String.class);
 
@@ -48,13 +39,13 @@ public class AuditConfigurator {
 
         for (String table : tables) {
             String tabColumnsDefSQL = "select concat(column_name, ' ', column_type) from information_schema.columns\n" +
-                                      "where table_schema = '" + databaseName + "' and table_name = '#TAB#' order by ordinal_position";
+                                      "where table_schema = 'trialdirect' and table_name = '#TAB#' order by ordinal_position";
             tabColumnsDefSQL = tabColumnsDefSQL.replace("#TAB#", table);
             List<String> columnsDef = jdbc.queryForList(tabColumnsDefSQL, String.class);
             String auditTableName = "_" + table.concat("_audit");
 
             String tabColumnsSQL = "select column_name from information_schema.columns \n" +
-                                   "where table_schema = '" + databaseName + "' and table_name = '#TAB#' order by ordinal_position";
+                                   "where table_schema = 'trialdirect' and table_name = '#TAB#' order by ordinal_position";
             tabColumnsSQL = tabColumnsSQL.replace("#TAB#", table);
             List<String> columnNames = jdbc.queryForList(tabColumnsSQL, String.class);
 
@@ -72,8 +63,8 @@ public class AuditConfigurator {
             if (result==0) {
                 for (Map.Entry<String, String> operation : operations.entrySet()) {
                     StringBuilder tsb = new StringBuilder();
-                    tsb.append("create trigger ").append(table).append(operation.getKey()).append(" ");
-                    tsb.append("after ").append(operation.getValue());
+                    tsb.append("create trigger ").append(table).append(operation.getKey());
+                    tsb.append(" after ").append(operation.getValue());
                     tsb.append(" on ").append(table).append(" for each row ");
                     tsb.append("begin insert into ").append(auditTableName);
 

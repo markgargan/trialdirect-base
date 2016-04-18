@@ -1,8 +1,10 @@
 package com.tekenable.trialdirect.repository;
 
 import com.tekenable.repository.TrialRepository;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
@@ -20,37 +22,28 @@ public class TrialRepositoryRestTest extends RestTestMockTemplate {
     @Autowired
     public TrialRepository trialRepositoryMock;
 
-    private boolean isMockInitialized = false;
-
-    public void init() {
-        initDB();
-        this.mockInit(trialRepositoryMock);
-        this.isMockInitialized = true;
+    @Override
+    public PagingAndSortingRepository getRepository() {
+        return this.trialRepositoryMock;
     }
 
     @Test
     public void getAllTrialsTest() throws Exception {
-        if (!this.isMockInitialized) this.init();
-        log.info("*** START TEST ***");
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
         Integer count = jdbc.queryForObject("select count(*) from Trial", Integer.class);
         log.info("Overall Trials found: "+String.valueOf(count));
 
         ResultActions result = mockMvc.perform(get("/trials")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
-        log.info("*** END OF TEST ***");
     }
 
     @Test
     public void getSingleTrialTest() throws Exception {
-        if (!this.isMockInitialized) this.init();
-        log.info("*** START TEST ***");
         log.info("Reading the first trial");
         log.info(" ");
         ResultActions result = mockMvc.perform(get("/trials/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
         result.andExpect(jsonPath("$.title").value("Cancer Trial"));
         result.andDo(MockMvcResultHandlers.print());
-        log.info("*** END OF TEST ***");
     }
 }

@@ -8,6 +8,8 @@ package com.tekenable.trialdirect.repository;
 import com.tekenable.config.WebConfig;
 import com.tekenable.trialdirect.config.TestConfig;
 import com.tekenable.trialdirect.config.TestRepoConfig;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.slf4j.Logger;
@@ -15,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.test.context.ContextConfiguration;
@@ -41,8 +44,11 @@ public abstract class RestTestMockTemplate {
     @Value("classpath:sql/clear-test-data.sql")
     private Resource clearTestData;
 
+    protected boolean isMockInitialized = false;
     protected static final Logger log = LoggerFactory.getLogger(RestTestMockTemplate.class);
     protected MockMvc mockMvc;
+
+    public abstract PagingAndSortingRepository getRepository();
 
     @Autowired
     protected WebApplicationContext webApplicationContext;
@@ -50,17 +56,35 @@ public abstract class RestTestMockTemplate {
     @Autowired
     protected DataSource dataSource;
 
-    public void mockInit(Object mockedObject) {
+    private void mockInit(Object mockedObject) {
         Mockito.reset(mockedObject);
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-    public void initDB() {
+    private void initDB() {
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(clearTestData);
         DatabasePopulatorUtils.execute(populator, dataSource);
         populator.addScript(createTestData);
         DatabasePopulatorUtils.execute(populator, dataSource);
+    }
 
+    public void init() {
+        if (!this.isMockInitialized) {
+            this.initDB();
+            this.mockInit(this.getRepository());
+            this.isMockInitialized = true;
+        }
+    }
+
+    @Before
+    public void beforeTest() {
+        this.init();
+        log.info("*** START TEST ***");
+    }
+
+    @After
+    public void afterTest() {
+        log.info("*** END OF TEST ***");
     }
 }
