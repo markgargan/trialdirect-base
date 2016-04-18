@@ -179,6 +179,7 @@
         <profile>
             <id>openshift</id>
             <build>
+                <finalName>trialdirect</finalName>
                 <plugins>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
