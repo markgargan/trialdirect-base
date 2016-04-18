@@ -51,7 +51,7 @@ public class AuditConfigurator {
                                       "where table_schema = '" + databaseName + "' and table_name = '#TAB#' order by ordinal_position";
             tabColumnsDefSQL = tabColumnsDefSQL.replace("#TAB#", table);
             List<String> columnsDef = jdbc.queryForList(tabColumnsDefSQL, String.class);
-            String auditTableName = table.concat("_audit");
+            String auditTableName = "_" + table.concat("_audit");
 
             String tabColumnsSQL = "select column_name from information_schema.columns \n" +
                                    "where table_schema = '" + databaseName + "' and table_name = '#TAB#' order by ordinal_position";
