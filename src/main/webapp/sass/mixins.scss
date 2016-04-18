@@ -1,0 +1,11 @@
+@mixin prefix($property, $value, $prefixes: webkit moz ms o) {
+
+	// apply prefix setting
+	@each $p in $prefixes {
+		-#{$p}-#{$property}: $value;
+	}
+
+	// apply original setting
+	#{$property}: $value;
+
+}
