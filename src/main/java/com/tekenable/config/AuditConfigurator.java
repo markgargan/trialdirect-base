@@ -41,74 +41,53 @@ public class AuditConfigurator {
 
         for (String table : tables) {
             String auditTableName = table.concat("_audit");
-
-            /*
-             this query gets all columns of processed audit table
-             */
-            String auditTabColumnsSQL = "select column_name, concat(column_name, ' ', column_type) 'column_type' from information_schema.columns \n" +
-                    "where table_schema = 'trialdirect' and table_name = '#TAB#'\n" +
-                    "and column_name not in ('action', 'dbUser', 'appUser', 'createdTs')\n" +
-                    "order by ordinal_position";
-            auditTabColumnsSQL = auditTabColumnsSQL.replace("#TAB#", auditTableName);
-            List<TrialDirectTableDef> auditColumnsDef = jdbc.query(auditTabColumnsSQL, new TrialDirectColDefMapper());
-
-            /*
-             this query gets all columns of production table
-             */
-            String tabColumnsSQL = "select column_name, concat(column_name, ' ', column_type) 'column_type' from information_schema.columns\n" +
-                    "where table_schema = 'trialdirect' and table_name = '#TAB#' order by ordinal_position";
-            tabColumnsSQL = tabColumnsSQL.replace("#TAB#", table);
-            List<TrialDirectTableDef> actualColumnsDef = jdbc.query(tabColumnsSQL, new TrialDirectColDefMapper());
-
-            /*
-             this functionality assumes that all the changes made to the table are the same kind
-             it will freak out if there were multiple changes of a different kind
-             for instance: 1 column was dropped and 2 extra columns added - such situation is not currently supported
-             */
-
             StringBuilder asb = new StringBuilder();
 
-            if (actualColumnsDef.size()>auditColumnsDef.size()) {
-                actualColumnsDef.removeAll(auditColumnsDef);
-                for (TrialDirectTableDef column : actualColumnsDef) {
-                    log.info("Table modification detected in table:" + table);
-                    asb.append("alter table ").append(auditTableName).append(" add ").append(column.getColumnDef());
-                    int result = jdbc.update(asb.toString());
-                    column.setApplied(result==0 ? true : false);
-                    log.info("Add column: "+table+column.toString());
-                }
+            /*
+             this query gets all columns of production table for inner iteration
+             */
+            String tabColumnsSQL = "select column_name, concat(column_name, ' ', column_type) 'column_type' from information_schema.columns\n" +
+                    "where table_schema = 'trialdirect' and table_name = ? order by ordinal_position";            ;
+            List<TrialDirectTableDef> actualColumnsDef = jdbc.query(tabColumnsSQL, new Object[]{table}, new TrialDirectColDefMapper());
 
-            }
-            else if (actualColumnsDef.size()<auditColumnsDef.size()) {
-                auditColumnsDef.removeAll(actualColumnsDef);
-                for (TrialDirectTableDef column : auditColumnsDef) {
-                    log.info("Table modification detected in table:" + table);
-                    asb.append("alter table ").append(auditTableName).append(" drop ").append(column.getColumnName());
-                    int result = jdbc.update(asb.toString());
-                    column.setApplied(result==0 ? true : false);
-                    log.info("Drop column: "+table+column.toString());
-                }
-            }
-            else {
-                actualColumnsDef.removeAll(auditColumnsDef);
-                for (TrialDirectTableDef column : actualColumnsDef) {
-                    if (actualColumnsDef.size()>0)
-                        log.info("Table modification detected in table:" + table);
+            String auditTabColumnSQL = "select column_name, concat(column_name, ' ', column_type) 'column_type' \n" +
+                    "from information_schema.columns \n" +
+                    "where table_schema = 'trialdirect' \n" +
+                    "and table_name = ? \n" +
+                    "and column_name = ? ";
 
-                    asb.append("alter table ").append(auditTableName).append(" modify ").append(column.getColumnDef());
+            /*
+            field comparison
+             */
+            for (TrialDirectTableDef srcColumn : actualColumnsDef) {
+                Object[] args = new Object[]{auditTableName, srcColumn.getColumnName()};
+                List<TrialDirectTableDef> response = jdbc.query(auditTabColumnSQL, args, new TrialDirectColDefMapper());
+
+                if (response==null || response.isEmpty()) { // column does not exist yet so create it
+                    asb.append("alter table ").append(auditTableName).append(" add ").append(srcColumn.getColumnDef());
                     int result = jdbc.update(asb.toString());
-                    column.setApplied(result==0 ? true : false);
-                    log.info("Modify column: "+table+column.toString());
+                    srcColumn.setApplied((result==0));
+                    log.info("Add column: "+table+srcColumn.toString());
+                }
+                else { // column exist so check its type and modify if different
+                    TrialDirectTableDef resColumn = response.get(0);
+                    if (!resColumn.getColumnDef().equals(srcColumn.getColumnDef())) {
+                        asb.append("alter table ").append(auditTableName).append(" modify ").append(srcColumn.getColumnDef());
+                        int result = jdbc.update(asb.toString());
+                        srcColumn.setApplied((result == 0));
+                        log.info("Modify column: " + table + srcColumn.toString());
+                    }
                 }
             }
 
             /*
-             recreating table triggers
+             recreating table triggers - to make it easy they are just drop and created again
              */
-            log.info("Recreating audit triggers - to make it easy they are just drop and created again");
+            log.info("Recreating audit triggers");
             for (Map.Entry<String, String> operation : operations.entrySet()) {
-                String dropQuery = "drop trigger if exists ".concat(table).concat(operation.getKey());
-                int result = jdbc.update(dropQuery);
+                StringBuilder dsb = new StringBuilder();
+                dsb.append("drop trigger if exists ").append(table).append(operation.getKey());
+                int result = jdbc.update(dsb.toString());
 
                 StringBuilder tsb = new StringBuilder();
                 tsb.append("create trigger ").append(table).append(operation.getKey());

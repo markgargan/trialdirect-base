@@ -10,6 +10,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static junit.framework.TestCase.assertNotNull;
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,4 +47,16 @@ public class TrialRepositoryRestTest extends RestTestMockTemplate {
         result.andExpect(jsonPath("$.title").value("Cancer Trial"));
         result.andDo(MockMvcResultHandlers.print());
     }
+
+    @Test
+    public void getTrialSelectorQuestionnaireEntries() throws Exception {
+        log.info("Reading coresponding trial selector quetionnaire entries");
+        log.info(" ");
+        JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+        Integer count = jdbc.queryForObject("select count(*) from TrialSelectorQuestionnaireEntry", Integer.class);
+        ResultActions result = mockMvc.perform(get("/trials/{id}/trialselectorquestionnaireentries", 1)).andExpect(status().isOk());
+        assertNotNull(result);
+        result.andExpect(jsonPath("$._embedded.trialselectorquestionnaireentries.*", hasSize(12)));
+    }
+
 }

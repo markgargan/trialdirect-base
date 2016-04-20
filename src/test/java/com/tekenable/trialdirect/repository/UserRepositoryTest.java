@@ -46,4 +46,15 @@ public class UserRepositoryTest extends RestTestMockTemplate {
         result.andExpect(jsonPath("$.pseudonym").value("Robert"));
         result.andDo(MockMvcResultHandlers.print());
     }
+
+    @Test
+    public void getyUserSelectorQuestionnaireEntries() throws Exception {
+        log.info("Reading user selectror questionnaire entires");
+        log.info(" ");
+        JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+        Integer count = jdbc.queryForObject("select count(*) from UserSelectorQuestionnaireEntry", Integer.class);
+        ResultActions result = mockMvc.perform(get("/userselectorquestionnaireentries", 1)).andExpect(status().isOk());
+        assertNotNull(result);
+        result.andExpect(jsonPath("$.page.totalElements").value(count));
+    }
 }
