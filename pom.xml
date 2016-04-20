@@ -38,9 +38,42 @@
         <maven.compiler.target>1.6</maven.compiler.target>
         <slf4jVersion>1.7.19</slf4jVersion>
         <spring.version>4.1.1.RELEASE</spring.version>
+        <keywords.class>Selenium2Library</keywords.class>
+        <selenium.version>2.48.2</selenium.version>
+        <selenium.speed>300</selenium.speed>
     </properties>
+
     <dependencies>
         <!-- Start File Upload -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
+            <version>2.53.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.markusbernhardt</groupId>
+            <artifactId>robotframework-selenium2library-java</artifactId>
+            <version>1.4.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.paranamer</groupId>
+            <artifactId>paranamer-parent</artifactId>
+            <version>2.5</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>2.48.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.robotframework</groupId>
+            <artifactId>javalib-core</artifactId>
+            <version>1.2.1</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -197,6 +230,27 @@
             <build>
                 <finalName>trialdirect-DEV</finalName>
                 <plugins>
+                    <plugin>
+                        <groupId>org.robotframework</groupId>
+                        <artifactId>robotframework-maven-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <id>robot</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <configuration>
+                            <escapeWindowsPaths>true</escapeWindowsPaths>
+                        </configuration>
+                    </plugin>
 
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
