@@ -1,0 +1,76 @@
+*** Settings ***
+
+Default Tags  ValidTest
+Force Tags  FunctionalTest
+
+Library    Selenium2Library    15
+
+*** Variables ***
+
+${SERVER} =    http://trialdirectuat-tekenable.rhcloud.com/#/trials
+${BROWSER}        Chrome
+${DELAY}          1
+
+*** Test Cases ***
+
+Create New Trial
+    [Tags]  OpenTrialCreatePage
+    Open Browser To Trial Creation Page
+    Create New Cancer Trial
+
+Select Trial Criteria
+    [Tags]  SelectTrialCriteria
+    Select Trial Criteria
+   [Teardown]  close browser
+
+*** Keywords ***
+
+Open Browser To Trial Creation Page
+    set selenium speed  ${DELAY}
+    set selenium implicit wait  10
+    open browser  ${SERVER}   ${BROWSER}
+    maximize browser window
+
+Create New Cancer Trial
+    wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=html/body/main/div/div/div/div/div[2]/form[1]/div[1]/label/span
+    click element  xpath=html/body/main/div/div/div/div/div[2]/form[1]/div[1]/label/span
+    wait until keyword succeeds    10secs    1sec    page should contain element    xpath=.//*[@id='newTrialInput']
+    input text    xpath=.//*[@id='newTrialInput']    Lungs Cancer Trial
+    wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='add-trial-button']
+    click element    xpath=.//*[@id='add-trial-button']
+    wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trialInfo-description']
+    input text    xpath=.//*[@id='trialInfo-description']    Lorem Ipsum
+    wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trialLogo']
+    choose file    xpath=.//*[@id='trialLogo']    /home/tomas/Pictures/pharma.jpg
+    wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='myForm']/fieldset/div[3]/button
+    click element    xpath=.//*[@id='myForm']/fieldset/div[3]/button
+    wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trial-site-director0']
+    input text    xpath=.//*[@id='trial-site-director0']    dr.House
+    input text    xpath=.//*[@id='trial-site-description0']    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt.
+    input text    xpath=.//*[@id='trial-site-summary0']    Lorem ipsum
+    input text    xpath=.//*[@id='trial-site-map0']    https://www.google.ie/maps/@53.3454842,-6.260181,17z
+    choose file    xpath=.//*[@id='trial-site-logo0']    /home/tomas/Pictures/doctor.jpg
+    click element    xpath=.//*[@id='myForm']/fieldset/div[5]/button
+    capture page screenshot    filename=Screen1.png
+
+Select Trial Criteria
+    click link  Lungs Cancer Trial
+
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[2]/div[1]/label[2]/span
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[2]/div[1]/label[3]/span
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[2]/div[1]/label[4]/span
+
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[2]/div[1]/label[2]/span
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[2]/div[1]/label[3]/span
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[2]/div[1]/label[4]/span
+
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div[2]/div[1]/label[1]/span
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div[2]/div[1]/label[2]/span
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div[2]/div[1]/label[3]/span
+
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[5]/label[1]/span
+
+    capture page screenshot    filename=Screen2.png
+
+
+
