@@ -21,8 +21,9 @@ angular.module('trialdirect', [
 
                 $rootScope.$on("$stateChangeError", console.log.bind(console));
 
+                // The line above mimics an inadvertant deletion to highlight how removed lines are illustrated in Github
                 console.log('This console log mimics a debug log statement left over after implementation');
-                // Mimicking an inadvertant line deletion to highlight how removed lines are illustrated in Github
+
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
