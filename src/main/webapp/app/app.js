@@ -23,7 +23,6 @@ angular.module('trialdirect', [
 
                 // The line above mimics an inadvertant deletion to highlight how removed lines are illustrated in Github
                 console.log('This console log mimics a debug log statement left over after implementation');
-
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
