@@ -21,6 +21,7 @@ angular.module('trialdirect', [
 
                 $rootScope.$on("$stateChangeError", console.log.bind(console));
 
+                console.log('This console log mimics a debug log statement left over after implementation');
             }
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
