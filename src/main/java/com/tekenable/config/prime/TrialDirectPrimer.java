@@ -32,10 +32,8 @@ public class TrialDirectPrimer {
 
     @PostConstruct
     public void initDB() throws IOException {
-
         this.configureTriggers();
         this.runPrimers();
-
     }
 
     private void configureTriggers() {
