@@ -20,6 +20,8 @@ angular.module('trialdirect', [
                 $rootScope.$stateParams = $stateParams;
 
                 $rootScope.$on("$stateChangeError", console.log.bind(console));
+                console.log('This line was added on the develop branch');
+
             }
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
