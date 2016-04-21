@@ -1,10 +1,12 @@
 angular.module('trialdirect').controller('TrialEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'TrialResourceService',
-        'trial', 'questionnaireEntries', 'trialSelectorQuestionnaireEntries', 'TrialSelectorQuestionnaireEntryResourceService',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, TrialResourceService, trial,
+        'trial', 'trialInfo', 'questionnaireEntries', 'trialSelectorQuestionnaireEntries', 'TrialSelectorQuestionnaireEntryResourceService',
+        function ($scope, Question, Answer, QuestionnaireEntryResourceService, TrialResourceService, trial, trialInfo,
                   questionnaireEntries, trialSelectorQuestionnaireEntries, TrialSelectorQuestionnaireEntryResourceService) {
 
             $scope.trial = trial;
+
+            $scope.trialInfo = trialInfo;
 
             $scope.trialTitle = trial.title;
 
