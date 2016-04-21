@@ -20,7 +20,6 @@ angular.module('trialdirect', [
                 $rootScope.$stateParams = $stateParams;
 
                 $rootScope.$on("$stateChangeError", console.log.bind(console));
-
             }
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
