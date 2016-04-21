@@ -21,7 +21,6 @@ angular.module('trialdirect', [
 
                 $rootScope.$on("$stateChangeError", console.log.bind(console));
 
-                console.log('This line was deleted on the develop branch');
             }
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
