@@ -53,6 +53,12 @@ angular.module('trialdirect').controller('TrialEditController',
                 $scope.isEditing = isEditing;
             };
 
+
+            $scope.showSiteForm = function (trialSiteId) {
+                $scope.trialSiteId = trialSiteId;
+            };
+
+
             $scope.submitTrialSelections = function () {
                 var valid = $scope.validateQuestionnaireEntriesAnswered();
 

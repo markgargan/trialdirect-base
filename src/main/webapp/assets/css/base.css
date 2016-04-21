@@ -27,7 +27,8 @@ textarea {
     width: 100%;
     border: 1px solid #ccc;
     overflow-y: auto;
-    height: 10em;
+    height: 8em;
+    margin: 0;
 }
 
 #myForm img{
@@ -259,9 +260,10 @@ button, input, label, textarea {
 }
 
 button {
-    /* float: right; */
-    /* margin: 1em 0; */
+    /*float: right;*/
+    /*margin: 0 0 2em 0;*/
     /* padding: .25em 1em; */
+    /*clear: both;*/
 }
 
 form.small, form.wide {
@@ -668,6 +670,14 @@ td, th {
     width: 20%;
     display: block;
 }
+.trialLogoImage {
+    display: block;
+    width: 50%;
+    min-width:10em;
+    margin: 0 auto 1em;
+    text-align: center;
+}
+.trialLogoImage .btn-remove {margin-left:0;}
 .trialResults {
 /*    margin-bottom: 40em !important;*/
     margin-top: 1em !important;
@@ -774,7 +784,6 @@ td, th {
     background-color: #eee;
     background-size: cover;
     background-position: center top;
-
 }
 .trialLeaderBio .trialLeaderImage {
     float: right;
@@ -783,10 +792,35 @@ td, th {
     height: 9em;
     border-radius: 0;
 }
+
+.trialLeaderSelect {
+    padding-bottom:1em;
+    cursor: pointer;
+}
+.trialLeaderName {
+    padding: 1.25em 0;
+}
+
+.trialLeaderSelect .trialLeaderImage {
+    float: right;
+    margin-left: .75em;
+    width: 9em;
+    height: 9em;
+    border-radius: 0;
+}
+
+.trialLeaderImage.small{
+    width: 5em;
+    height:5em;
+}
 .trialLeaderBio {
     display: block;
     float: left;
     width:49%;
+}
+.col-xs-3 .trialLeaderBio {
+    float: none;
+    width: auto;
 }
 
 
