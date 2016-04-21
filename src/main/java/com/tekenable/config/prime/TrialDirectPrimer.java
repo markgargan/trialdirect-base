@@ -37,7 +37,7 @@ public class TrialDirectPrimer {
     }
 
     private void configureTriggers() {
-        auditConfigurator.addAuditStuff();
+        auditConfigurator.checkAuditConfiguration();
     }
 
     private void runPrimers() throws IOException {

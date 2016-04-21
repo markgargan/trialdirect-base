@@ -19,8 +19,8 @@ public class AuditConfigurator {
     @Autowired
     protected DataSource dataSource;
 
-    public void addAuditStuff() {
-        System.out.println("*** Audit Configuration health check ***");
+    public void checkAuditConfiguration() {
+        log.info("*** Audit Configuration health check ***");
 
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
 
@@ -41,45 +41,67 @@ public class AuditConfigurator {
 
         for (String table : tables) {
             String auditTableName = table.concat("_audit");
-            StringBuilder asb = new StringBuilder();
 
             /*
              this query gets all columns of production table for inner iteration
              */
             String tabColumnsSQL = "select column_name, concat(column_name, ' ', column_type) 'column_type' from information_schema.columns\n" +
-                    "where table_schema = 'trialdirect' and table_name = ? order by ordinal_position";            ;
+                                   "where table_schema = 'trialdirect' and table_name = ? order by ordinal_position";            ;
             List<TrialDirectTableDef> actualColumnsDef = jdbc.query(tabColumnsSQL, new Object[]{table}, new TrialDirectColDefMapper());
 
+            String auditTablesSQL = "select count(*) from information_schema.tables \n" +
+                                    "where table_schema = 'trialdirect'\n" +
+                                    "and table_name = ?";
+
             String auditTabColumnSQL = "select column_name, concat(column_name, ' ', column_type) 'column_type' \n" +
-                    "from information_schema.columns \n" +
-                    "where table_schema = 'trialdirect' \n" +
-                    "and table_name = ? \n" +
-                    "and column_name = ? ";
+                                       "from information_schema.columns \n" +
+                                       "where table_schema = 'trialdirect' \n" +
+                                       "and table_name = ? \n" +
+                                       "and column_name = ? ";
 
             /*
-            field comparison
+            checking if audit table exists in the first place
              */
-            for (TrialDirectTableDef srcColumn : actualColumnsDef) {
-                Object[] args = new Object[]{auditTableName, srcColumn.getColumnName()};
-                List<TrialDirectTableDef> response = jdbc.query(auditTabColumnSQL, args, new TrialDirectColDefMapper());
-
-                if (response==null || response.isEmpty()) { // column does not exist yet so create it
-                    asb.append("alter table ").append(auditTableName).append(" add ").append(srcColumn.getColumnDef());
-                    int result = jdbc.update(asb.toString());
-                    srcColumn.setApplied((result==0));
-                    log.info("Add column: "+table+srcColumn.toString());
+            Integer tabExists = jdbc.queryForObject(auditTablesSQL, new Object[]{auditTableName}, Integer.class);
+            if (tabExists==0) { //audit table does not exist so create it
+                StringBuilder asb = new StringBuilder();
+                asb.append("create table ").append(auditTableName).append("(");
+                for (TrialDirectTableDef srcColumn : actualColumnsDef) {
+                    asb.append(srcColumn.getColumnDef()).append(", ");
                 }
-                else { // column exist so check its type and modify if different
-                    TrialDirectTableDef resColumn = response.get(0);
-                    if (!resColumn.getColumnDef().equals(srcColumn.getColumnDef())) {
-                        asb.append("alter table ").append(auditTableName).append(" modify ").append(srcColumn.getColumnDef());
+                asb.append("action varchar(10),");
+                asb.append("dbUser varchar(255), ");
+                asb.append("appUser varchar(255), ");
+                asb.append("createdTs timestamp)");
+                int result = jdbc.update(asb.toString());
+                log.info(String.format("create audit table %1$s executed with result: %2$d", auditTableName, result));
+            }
+            else {
+                /*
+                field comparison is executed only for existing tables only
+                 */
+                for (TrialDirectTableDef srcColumn : actualColumnsDef) {
+                    StringBuilder asb = new StringBuilder();
+
+                    Object[] args = new Object[]{auditTableName, srcColumn.getColumnName()};
+                    List<TrialDirectTableDef> response = jdbc.query(auditTabColumnSQL, args, new TrialDirectColDefMapper());
+
+                    if (response == null || response.isEmpty()) { // column does not exist yet so create it
+                        asb.append("alter table ").append(auditTableName).append(" add ").append(srcColumn.getColumnDef());
                         int result = jdbc.update(asb.toString());
                         srcColumn.setApplied((result == 0));
-                        log.info("Modify column: " + table + srcColumn.toString());
+                        log.info("Add column: " + table + srcColumn.toString());
+                    } else { // column exist so check its type and modify if different
+                        TrialDirectTableDef resColumn = response.get(0);
+                        if (!resColumn.getColumnDef().equals(srcColumn.getColumnDef())) {
+                            asb.append("alter table ").append(auditTableName).append(" modify ").append(srcColumn.getColumnDef());
+                            int result = jdbc.update(asb.toString());
+                            srcColumn.setApplied((result == 0));
+                            log.info("Modify column: " + table + srcColumn.toString());
+                        }
                     }
                 }
             }
-
             /*
              recreating table triggers - to make it easy they are just drop and created again
              */
