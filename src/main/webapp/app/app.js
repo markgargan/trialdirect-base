@@ -21,7 +21,7 @@ angular.module('trialdirect', [
 
                 $rootScope.$on("$stateChangeError", console.log.bind(console));
 
-                console.log('This line was created on the develop branch');
+                console.log('This line was updated on the fix/UserSearchBug branch');
             }
         ]
     ).config(['$stateProvider', '$urlRouterProvider',
