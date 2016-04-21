@@ -107,6 +107,10 @@ angular.module('uiRouterSample.trial', [
                                 controller: 'TrialEditController',
                                 resolve: {
 
+                                    trialInfo: function ($stateParams, TrialResourceService) {
+                                        return TrialResourceService.loadTrialInfo($stateParams.trialId);
+                                    },
+
                                     trial: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrial($stateParams.trialId);
                                     },
