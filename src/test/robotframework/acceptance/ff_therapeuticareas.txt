@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation
 ...
-#Default Tags  ValidTest
-#Force Tags  AcceptanceTest
-Library    Selenium2Library    15
+Default Tags  ValidTest
+Force Tags  AcceptanceTest
+Library  Selenium2Library    15
 
 *** Variables ***
 ${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/therapeuticareas
@@ -54,7 +54,7 @@ Open Browser To Therapeutic Area Page
     Maximize Browser Window
 
 Open Browser to Trial Selection Page
-    wait until keyword succeeds  10secs    1sec    Page Should Contain Element    xpath=html/body/div[2]/header/div/div/nav/div/ul/li[2]/a
+    Wait Until Keyword Succeeds  10secs    1sec    Page Should Contain Element    xpath=html/body/div[2]/header/div/div/nav/div/ul/li[2]/a
     Click Element    xpath=html/body/div[2]/header/div/div/nav/div/ul/li[2]/a
 
 Open Browser to Trial Search Page
@@ -140,7 +140,6 @@ Search For Trial
     Click Element    xpath=html/body/main/div/div/div/div/div[2]/div/form/div[2]/div[3]/div[2]/label[4]/span
     Click Element    xpath=html/body/main/div/div/div/div/div[2]/div/form/div[2]/div[4]/div[2]/label[4]/span
     Click Element    xpath=html/body/main/div/div/div/div/div[2]/div/form/div[2]/div[5]/div[2]/label[4]/span
-    #Element Should Contain    xpath=html/body/main/div/div/div/div/div[2]/div/form/div[1]/div/h1    1
     Capture Page Screenshot    filename=TrialSearch.png
 I select the Therapeutic Areas
     wait until keyword succeeds  10secs    1sec    Page Should Contain Element    xpath=html/body/main/div[1]/div/div/div/div[1]/div[2]/ul/li[2]/a
