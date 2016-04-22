@@ -1,8 +1,7 @@
 *** Settings ***
 
 Default Tags  ValidTest
-Force Tags  FunctionalTest
-
+Force Tags  AcceptanceTest
 Library    Selenium2Library    15
 
 *** Variables ***
@@ -14,12 +13,11 @@ ${DELAY}          1
 *** Test Cases ***
 
 Create New Trial
-    [Tags]  OpenTrialCreatePage
+    [Tags]  001
     Open Browser To Trial Creation Page
     Create New Cancer Trial
 
 Select Trial Criteria
-    [Tags]  SelectTrialCriteria
     Select Trial Criteria
    [Teardown]  close browser
 
@@ -41,7 +39,7 @@ Create New Cancer Trial
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trialInfo-description']
     input text    xpath=.//*[@id='trialInfo-description']    Lorem Ipsum
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trialLogo']
-    choose file    xpath=.//*[@id='trialLogo']    /home/tomas/Pictures/pharma.jpg
+    choose file    xpath=.//*[@id='trialLogo']    ${CURDIR}${/}pharma.jpg
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='myForm']/fieldset/div[3]/button
     click element    xpath=.//*[@id='myForm']/fieldset/div[3]/button
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trial-site-director0']
@@ -49,7 +47,7 @@ Create New Cancer Trial
     input text    xpath=.//*[@id='trial-site-description0']    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt.
     input text    xpath=.//*[@id='trial-site-summary0']    Lorem ipsum
     input text    xpath=.//*[@id='trial-site-map0']    https://www.google.ie/maps/@53.3454842,-6.260181,17z
-    choose file    xpath=.//*[@id='trial-site-logo0']    /home/tomas/Pictures/doctor.jpg
+    choose file    xpath=.//*[@id='trial-site-logo0']    ${CURDIR}${/}doctor.jpg
     click element    xpath=.//*[@id='myForm']/fieldset/div[5]/button
     capture page screenshot    filename=Screen1.png
 

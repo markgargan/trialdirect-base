@@ -7,7 +7,6 @@
     <packaging>war</packaging>
     <version>1.0</version>
     <name>trialdirect</name>
-
     <repositories>
         <repository>
             <id>eap</id>
@@ -46,6 +45,12 @@
     <dependencies>
         <!-- Start File Upload -->
         <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
             <version>2.53.0</version>
@@ -56,6 +61,12 @@
             <artifactId>robotframework-selenium2library-java</artifactId>
             <version>1.4.0.8</version>
         </dependency>
+        <dependency>
+            <groupId>org.robotframework</groupId>
+            <artifactId>robotframework-maven-plugin</artifactId>
+            <version>1.4.6</version>
+        </dependency>
+
         <dependency>
             <groupId>com.thoughtworks.paranamer</groupId>
             <artifactId>paranamer-parent</artifactId>
@@ -231,28 +242,6 @@
                 <finalName>trialdirect-DEV</finalName>
                 <plugins>
                     <plugin>
-                        <groupId>org.robotframework</groupId>
-                        <artifactId>robotframework-maven-plugin</artifactId>
-                        <version>1.2</version>
-                        <executions>
-                            <execution>
-                                <id>robot</id>
-                                <phase>integration-test</phase>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <configuration>
-                            <escapeWindowsPaths>true</escapeWindowsPaths>
-                        </configuration>
-                    </plugin>
-
-                    <plugin>
                         <artifactId>maven-war-plugin</artifactId>
                         <version>2.1.1</version>
                         <configuration>
@@ -367,6 +356,37 @@
                         </executions>
                     </plugin>
                 </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>uat</id>
+            <build>
+                <finalName>trialdirect-UAT</finalName>
+            <plugins>
+                <plugin>
+                    <groupId>org.robotframework</groupId>
+                    <artifactId>robotframework-maven-plugin</artifactId>
+                    <version>1.2</version>
+                    <executions>
+                        <execution>
+                            <id>robot</id>
+                            <phase>integration-test</phase>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <configuration>
+                        <escapeWindowsPaths>true</escapeWindowsPaths>
+                    </configuration>
+                </plugin>
+
+            </plugins>
             </build>
         </profile>
     </profiles>

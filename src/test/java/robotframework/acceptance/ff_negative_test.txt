@@ -31,12 +31,12 @@ Create New Cancer Trial Without Entering Data Into Two Text Boxes
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trialInfo-description']
     input text    xpath=.//*[@id='trialInfo-description']    Lorem Ipsum
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trialLogo']
-    choose file    xpath=.//*[@id='trialLogo']    /home/tomas/Pictures/pharma.jpg
+    choose file    xpath=.//*[@id='trialLogo']    ${CURDIR}${/}pharma.jpg
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='myForm']/fieldset/div[3]/button
     click element    xpath=.//*[@id='myForm']/fieldset/div[3]/button
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trial-site-director0']
     input text    xpath=.//*[@id='trial-site-summary0']    Lorem ipsum
     input text    xpath=.//*[@id='trial-site-map0']    https://www.google.ie/maps/@53.3454842,-6.260181,17z
-    choose file    xpath=.//*[@id='trial-site-logo0']    /home/tomas/Pictures/doctor.jpg
+    choose file    xpath=.//*[@id='trial-site-logo0']    ${CURDIR}${/}doctor.jpg
     click element    xpath=.//*[@id='myForm']/fieldset/div[5]/button
     capture page screenshot    filename=Screen3.png
