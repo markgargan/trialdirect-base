@@ -1,4 +1,4 @@
-package com.tekenable.trialdirect.audit;
+package com.tekenable.config;
 
 import com.tekenable.trialdirect.config.AuditConfig;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class AuditConfigVerificationTest {
     @Autowired
     protected DataSource dataSource;
 
-    protected static final Logger log = LoggerFactory.getLogger(AuditConfiguratorTest.class);
+    protected static final Logger log = LoggerFactory.getLogger(AuditConfigVerificationTest.class);
 
     @Test
     public void verifyAuditConfiguration() {

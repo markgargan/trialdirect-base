@@ -9,6 +9,14 @@ public class TrialDirectTableDef {
     private String columnDef;
     private boolean applied;
 
+    public TrialDirectTableDef() {
+    }
+
+    public TrialDirectTableDef(String colName, String colDef) {
+        this.columnName = colName;
+        this.columnDef = colDef;
+    }
+
     public String getColumnName() {
         return columnName;
     }
