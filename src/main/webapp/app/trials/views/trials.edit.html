@@ -61,13 +61,30 @@
             </div>
 
             <div class="simplePanel">
-                <h3>Trial Leaders</h3>
-                <div class="trialLeaderSelect" ng-repeat="trialSite in trialInfo.trialSites._embeddedItems" data-ng-click="showSiteForm(trialSite.id)">
-                    <p class="trialLeaderImage small" style="background-image:url('/trialSiteImage/{{trialSite.id}}')"></p>
-                    <p class="trialLeaderName" >{{trialSite.siteDirector}}</p>
 
-                    <div class="clear"></div>
-                </div>
+                <h3>Trial Sites</h3>
+                <input type="text" ng-model="search" placeholder="Quick Search...">
+
+                <ul class="trialLeaderSelect">
+                   <li  class="trialLeaderName" ng-repeat="trialSite in trialInfo.trialSites._embeddedItems | filter : search" data-ng-click="showSiteForm(trialSite.id)">
+                    <!-- <p class="trialLeaderImage small" style="background-image:url('/trialSiteImage/{{trialSite.id}}')"></p> -->
+
+                       <p>
+                           <small>
+                               <strong>{{trialSite.siteDirector}}</strong><br>
+                               <span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address4}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span>
+                           </small>
+                       </p>
+
+                   </li>
+                </ul>
+
+                <div class="clear"></div>
             </div>
 
             <div class="clear"></div>

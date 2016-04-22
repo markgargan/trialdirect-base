@@ -60,21 +60,32 @@
 		<div class="trialDataInfo" ng-show="trialData">
 
 			<div class="trialLeadersContainer">
-				<h3>Trial Leaders &amp; Locations</h3>
+				<h3>Trial Sites</h3>
 
 				<div class="simplePanel trialLeaderList">
+					<input type="text" ng-model="search" placeholder="Quick Search...">
 
-					<div class="trialLeader" ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)">
+					<div class="trialLeader" ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" ng-click="toggleBio(trialSite, trialData)">
 
+						<!--
 						<p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{site.id}}')">
-							<!--<img ng-src="/trialSiteImage/{{site.id}}">-->
 						</p>
-						<p>{{site.siteDirector}} <br>
-							<small>New York</small></p>
+						-->
+						<p>
+						<small>
+							<strong>{{trialSite.siteDirector}}</strong><br>
+							<span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address4}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span>
+						</small>
+						</p>
 
-						<!-- <p ng-show="site.showBio" ng-bind="site.siteDirectorBio"></p>
-						<div class="clear"></div> -->
+						<div class="clear"></div>
 					</div>
+					<div class="clear"></div>
 
 				</div>
 

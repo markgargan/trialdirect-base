@@ -764,9 +764,22 @@ td, th {
     text-align:center
 }
 .trialLeader {
-    display: inline-block;
+/*    display: inline-block;
     width: 25%;
     cursor: pointer;
+*/
+    display: block;
+    width: 32.825%;
+    cursor: pointer;
+    float: left;
+    padding: 1em;
+    background: #f8f8f8;
+    margin: .25%;
+    min-height:6em;
+}
+.simplePanel.trialLeaderList {
+    max-height: 20em;
+    overflow: auto;
 }
 .trialLeader p {
     padding:0;
@@ -796,9 +809,21 @@ td, th {
 .trialLeaderSelect {
     padding-bottom:1em;
     cursor: pointer;
+    clear:both;
+    margin-top: 1em;
+    display: block;
+    max-height: 25em;
+    overflow: auto;
 }
+.trialLeaderSelect li {
+    line-height: 1.2em;}
 .trialLeaderName {
-    padding: 1.25em 0;
+    /* padding: 1.25em 0; */
+    display: block;
+    padding: .25em .5em;
+    background: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #fff;
 }
 
 .trialLeaderSelect .trialLeaderImage {
