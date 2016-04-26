@@ -60,10 +60,17 @@
 		<div class="trialDataInfo" ng-show="trialData">
 
 			<div class="trialLeadersContainer">
-				<h3>Trial Sites</h3>
+
+
+				<h3 class="float-left">Trial Sites</h3>
+				<div class="float-right">
+					<input style="margin:.5em 0" type="text" ng-model="search" placeholder="Trial Site Search...">
+				</div>
+
+				<div class="clear"></div>
 
 				<div class="simplePanel trialLeaderList">
-					<input type="text" ng-model="search" placeholder="Trial Site Search...">
+
 
 					<div class="trialLeader" ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" ng-click="toggleBio(trialSite, trialData)">
 
@@ -72,8 +79,9 @@
 						</p>
 						-->
 						<p>
-						<small>
+
 							<strong>{{trialSite.siteDirector}}</strong><br>
+						<small>
 							<span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
 							<span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
 							<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
