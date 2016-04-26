@@ -199,7 +199,12 @@ hr, span.br {
 .clear, form a, hr, p.distance {
     clear: both
 }
-
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
 .menu i, a.more {
     cursor: pointer
 }
@@ -760,30 +765,28 @@ td, th {
     padding-right: .5em;
 }*/
 
-.trialLeaderList {
+/*.trialLeaderList {
     text-align:center
-}
+}*/
 .trialLeader {
-/*    display: inline-block;
-    width: 25%;
+    display: inline-block;
     cursor: pointer;
-*/
-    display: block;
     width: 32.825%;
-    cursor: pointer;
-    float: left;
-    padding: 1em;
-    background: #f8f8f8;
+    padding: 0 1em 3em 0;
     margin: .25%;
-    min-height:6em;
+    vertical-align: top;
 }
 .simplePanel.trialLeaderList {
-    max-height: 20em;
+    max-height: 14em;
     overflow: auto;
 }
 .trialLeader p {
     padding:0;
     line-height: 1;
+}
+.highlighted {
+    background: #000;
+    color:#ff0;
 }
 .trialLeaderImage {
     display: block;
@@ -818,10 +821,8 @@ td, th {
 .trialLeaderSelect li {
     line-height: 1.2em;}
 .trialLeaderName {
-    /* padding: 1.25em 0; */
     display: block;
     padding: .25em .5em;
-    background: #f9f9f9;
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #fff;
 }

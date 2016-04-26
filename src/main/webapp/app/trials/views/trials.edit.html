@@ -62,16 +62,16 @@
 
             <div class="simplePanel">
 
-                <h3>Trial Sites</h3>
-                <input type="text" ng-model="search" placeholder="Quick Search...">
+                <h3 class="">Trial Sites</h3>
+                <input type="text" ng-model="search" placeholder="Trial Site Search...">
 
                 <ul class="trialLeaderSelect">
                    <li  class="trialLeaderName" ng-repeat="trialSite in trialInfo.trialSites._embeddedItems | filter : search" data-ng-click="showSiteForm(trialSite.id)">
                     <!-- <p class="trialLeaderImage small" style="background-image:url('/trialSiteImage/{{trialSite.id}}')"></p> -->
 
                        <p>
-                           <small>
                                <strong>{{trialSite.siteDirector}}</strong><br>
+                           <small>
                                <span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
                                <span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
                                <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>

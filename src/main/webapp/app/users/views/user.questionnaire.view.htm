@@ -63,7 +63,7 @@
 				<h3>Trial Sites</h3>
 
 				<div class="simplePanel trialLeaderList">
-					<input type="text" ng-model="search" placeholder="Quick Search...">
+					<input type="text" ng-model="search" placeholder="Trial Site Search...">
 
 					<div class="trialLeader" ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" ng-click="toggleBio(trialSite, trialData)">
 
