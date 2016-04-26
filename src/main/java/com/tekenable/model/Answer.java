@@ -5,18 +5,22 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Answer extends BaseEntity {
+public class Answer extends SortEntity {
 
     private String answerText;
     // lowercased in order to keep the rest api all lower case
     private Set<QuestionnaireEntry> questionnaireentries;
 
     public Answer() {
-
     }
 
     public Answer(String answerText) {
         this.answerText = answerText;
+    }
+
+    public Answer(String answerText, Integer sortOrder) {
+        this.answerText = answerText;
+        this.sortOrder = sortOrder;
     }
 
     public String getAnswerText() {
@@ -35,4 +39,5 @@ public class Answer extends BaseEntity {
     public void setQuestionnaireentries(Set<QuestionnaireEntry> questionnaireentries) {
         this.questionnaireentries = questionnaireentries;
     }
+
 }

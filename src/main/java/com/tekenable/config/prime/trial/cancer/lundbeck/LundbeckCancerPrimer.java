@@ -102,7 +102,7 @@ public class LundbeckCancerPrimer extends TrialPrimer{
             add(trialInfo);
         }});
 
-        final TrialSite trialSite1 = new TrialSite(trialInfo,
+        final TrialSite trialSite1 = new TrialSite(trialInfo, 1,
                 trialSite1_director,
                 trialSite1_bio,
                 trialSite1_address1,
@@ -113,7 +113,7 @@ public class LundbeckCancerPrimer extends TrialPrimer{
                 trialSite1_country,
                 trialSite1_site_map);
 
-        final TrialSite trialSite2 = new TrialSite(trialInfo,
+        final TrialSite trialSite2 = new TrialSite(trialInfo, 2,
                 trialSite2_director,
                 trialSite2_bio,
                 trialSite2_address2,
@@ -124,7 +124,7 @@ public class LundbeckCancerPrimer extends TrialPrimer{
                 trialSite2_country,
                 trialSite2_site_map);
 
-        final TrialSite trialSite3 = new TrialSite(trialInfo,
+        final TrialSite trialSite3 = new TrialSite(trialInfo, 3,
                 trialSite3_director,
                 trialSite3_bio,
                 trialSite3_address1,

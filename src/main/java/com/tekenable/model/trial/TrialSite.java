@@ -1,15 +1,17 @@
 package com.tekenable.model.trial;
 
 import com.tekenable.model.BaseEntity;
+import com.tekenable.model.SortEntity;
 import com.tekenable.model.common.TrialDirectAddress;
 
 import javax.persistence.*;
+import javax.swing.*;
 
 /**
  * Created by mark on 30/03/2016.
  */
 @Entity
-public class TrialSite extends BaseEntity {
+public class TrialSite extends SortEntity {
 
     private TrialInfo trialInfo;
 
@@ -26,10 +28,12 @@ public class TrialSite extends BaseEntity {
     public TrialSite() {
     }
 
-    public TrialSite(TrialInfo trialInfo, String siteDirector, String siteDirectorBio,
+    public TrialSite(TrialInfo trialInfo, Integer sortOrder, String siteDirector, String siteDirectorBio,
                      String address1, String address2,String address3,String address4,
                      String address5,String country, String siteMap) {
+
         this.trialInfo = trialInfo;
+        this.sortOrder = sortOrder;
         this.siteDirector = siteDirector;
         this.siteDirectorBio = siteDirectorBio;
 
