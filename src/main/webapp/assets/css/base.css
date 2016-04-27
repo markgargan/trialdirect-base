@@ -990,6 +990,25 @@ select, input[type="file"] {
     a:active.more, a:hover.more {
     text-decoration: none;}
 
+
+/*
+.as-sortable-item .qa,
+.as-sortable-placeholder {
+    border: 1px solid #f00;
+    cursor: pointer;
+}
+.as-sortable-placeholder .qa {
+    border: 1px solid #00f !important;
+}
+#sortable-container {
+    display: inline-block;
+}
+*/
+
+
+
+
+
 @media screen and (
     max-width: 1200px) {
     .trialIntro span {

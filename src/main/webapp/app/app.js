@@ -5,8 +5,8 @@ angular.module('trialdirect', [
         'ngResource',
         'spring-data-rest',
         'ui.router',
-        'ngFileUpload'
-
+        'ngFileUpload',
+        'as.sortable'
     ])
     .run(
         ['$rootScope', '$state', '$stateParams',

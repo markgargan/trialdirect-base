@@ -36,7 +36,7 @@ angular.module('uiRouterSample.trial', [
                         templateUrl:'app/trials/views/trials.create.html'
                     })
                     /*.state('trials.edit', {
-                        url: '/edit/{trialId:[0-9]{1,4}}',
+                        url: '/edit/{trial  Id:[0-9]{1,4}}',
                         templateUrl:'app/trials/views/trials.edit.html'
                     })*/
 
