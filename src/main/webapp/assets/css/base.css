@@ -990,6 +990,9 @@ select, input[type="file"] {
     a:active.more, a:hover.more {
     text-decoration: none;}
 
+input.ng-dirty.ng-invalid {
+    color: #c00;
+}
 
 /*
 .as-sortable-item .qa,
