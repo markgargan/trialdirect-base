@@ -28,6 +28,7 @@ angular.module('trialdirect').service('TrialService', ['$http', function($http){
     return {
         getAvailableTrials:getAvailableTrials,
         getAvailableTrialsCount:getAvailableTrialsCount
-    }
+    };
+    //Test for new branch
 
 }]);
