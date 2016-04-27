@@ -772,12 +772,12 @@ td, th {
     display: inline-block;
     cursor: pointer;
     width: 32.825%;
-    padding: 0 1em 3em 0;
+    padding: 1em;
     margin: .25%;
     vertical-align: top;
 }
 .simplePanel.trialLeaderList {
-    max-height: 14em;
+    max-height: 13.5em;
     overflow: auto;
 }
 .trialLeader p {
