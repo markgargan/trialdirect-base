@@ -1,0 +1,1 @@
+create trigger Answer_AD after DELETE on Answer for each row begin insert into Answer_audit(id, sortOrder, answerText, action, dbUser, appUser, createdTs) values(old.id, old.sortOrder, old.answerText, 'DELETE', user(), null, CURRENT_TIMESTAMP()); end;
