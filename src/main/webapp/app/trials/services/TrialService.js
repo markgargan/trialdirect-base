@@ -30,4 +30,5 @@ angular.module('trialdirect').service('TrialService', ['$http', function($http){
         getAvailableTrialsCount:getAvailableTrialsCount
     }
 
+    //Test
 }]);
