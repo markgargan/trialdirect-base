@@ -1,0 +1,447 @@
+<div class="col-xs-9">
+<div>
+    <h2>Edit Trial</h2>
+</div>
+<!--
+{{trial.therapeuticArea.title}}<br>
+{{trial.title}}<br>
+
+{{trialInfo.summary}}<br>
+{{trialInfo.trialFullDescription.fullDescription}}<br>
+{{trialInfo.trialLogo.filename}}<br>
+
+<div class="" ng-repeat="site in trialInfo.trialSites._embeddedItems">
+    {{site.siteDirector}}<br>
+    {{site.siteDirectorBio}}<br>
+    {{site.siteMap}}<br>
+
+    {{site.trialSiteImage.filename}}<br>
+
+    {{site.trialDirectAddress.address1}}<br>
+    {{site.trialDirectAddress.address2}}<br>
+    {{site.trialDirectAddress.address3}}<br>
+    {{site.trialDirectAddress.address4}}<br>
+    {{site.trialDirectAddress.address5}}<br>
+    {{site.trialDirectAddress.country}}<br>
+</div>
+-->
+
+
+
+<form name="CreateTrialArea" class="form-horizontal" role="form">
+
+
+    
+    <!-- <div class="list-text input-group"> -->
+
+        <!-- <input id="newTrialInput" type="text" class="form-control" value="{{trial.title}}"> -->
+
+        <!-- data-ng-disabled="!newTrial.therapeuticArea" -->
+        <!--
+        <input id="newTrialInput" type="text" class="form-control" ng-model="newTrial.title" placeholder="e.g. Acme Trial"/ value="{{trial.title}}">
+        <span id="create-trial-span" class="input-group-btn">
+            <button id="add-trial-button" class="btn btn-default" type="button"
+                    ng-disabled="!newTrial.title" title="Add" ng-click="newTrial.editing=true">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </span> -->
+    <!--
+    </div> -->
+</form>
+
+
+<form id="myForm" name="myForm" ngx-hide="!newTrial.editing">
+
+
+        <div class="form-group col-xs-3" style="padding-left:0">
+
+            <div class="simplePanel" data-ng-click="showSiteForm()">
+                <h3>Trial Information</h3>
+                <p>Edit Trial Information</p>
+            </div>
+
+            <div class="simplePanel">
+
+                <h3 class="">Trial Sites</h3>
+                <input type="text" ng-model="search" placeholder="Trial Site Search...">
+
+                <ul class="trialLeaderSelect">
+                   <li  class="trialLeaderName" ng-repeat="trialSite in trialInfo.trialSites._embeddedItems | filter : search" data-ng-click="showSiteForm(trialSite.id)">
+                    <!-- <p class="trialLeaderImage small" style="background-image:url('/trialSiteImage/{{trialSite.id}}')"></p> -->
+
+                       <p>
+                               <strong>{{trialSite.siteDirector}}</strong><br>
+                           <small>
+                               <span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address4}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
+                               <span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span>
+                           </small>
+                       </p>
+
+                   </li>
+                </ul>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="clear"></div>
+
+        </div>
+
+
+
+
+        <!-- ----------------- -->
+        <!-- Trial Info Start  -->
+        <!-- ----------------- -->
+        <div data-td-id="trialInformationEditor" ngx-show="editingTrialInfo" class="simplePanel col-xs-9" data-ng-hide="trialSiteId">
+
+
+
+            <div class="trialLeaderBio">
+
+
+
+                <div class="trial-info-edit">
+                    <div class="form-group">
+                        <label for="trialInfo-description">Trial Name</label>
+                    <span>
+                        <input id="newTrialInput" type="text" class="form-control" value="{{trial.title}}">
+                    </span>
+
+                    </div>
+                </div>
+
+
+                <div class="list-answers answers">
+                    <label>Therapeutic Area</label>
+                    <div class="clear"></div>
+
+                    <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                        <input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
+                               ng-click="chooseTherapeuticArea(therapeuticArea)">
+                        <span ng-bind="therapeuticArea.title"></span>
+                    </label>
+                </div>
+
+                <div class="list-text input-group">
+                </div>
+
+
+
+
+                <!-- ----------------- -->
+                <!-- Trial Logo        -->
+                <!-- ----------------- -->
+                <!--
+                <div class="form-group">
+                    <label for="trialLogo">Trial Logo</label>
+                    <input id="trialLogo" type="file" ngf-select ng-model="newTrial.trialInfo.trialLogoPic" name="file"
+                           accept="image/*" ngf-max-size="2MB" required ng-change="toggleTrialInfoDisplay()"
+                           ngf-model-invalid="errorFile">
+
+                    <i ngx-show="newTrial.trialInfo.trialLogoPic.$error.required">*</i>
+                    <i ngx-show="newTrial.trialInfo.trialLogoPic.$error.maxSize">File too large
+                        {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                </div>
+                -->
+
+
+                <div class="form-group">
+                    <!-- ------------------ -->
+                    <!-- Trial Info Summary -->
+                    <!-- ------------------ -->
+                    <div>
+                    <span ngx-show="!editingTrialInfo">
+                        <h4 class="trialInfoDescription" ng-bind="newTrial.trialInfo.description"></h4>
+                    </span>
+                    </div>
+                <span class="trialLogoImage">
+                    <!--<img ngf-thumbnail="newTrial.trialInfo.trialLogoPic" class="thumb" ng-click="toggleTrialInfoDisplay()">-->
+                    <img ngf-thumbnail="/trialInfoImage/{{trial.id}}" class="thumb" ng-click="toggleTrialInfoDisplay()">
+
+                    <img ng-src="/trialInfoImage/{{trial.id}}">
+
+                <button class="btn btn-remove" ng-click="/trialInfoImage/{{trial.id}} = null; editingTrialInfo=true" ng-show="/trialInfoImage/{{trial.id}}">Remove
+                        Logo
+                    </button>
+                </span>
+
+
+
+
+
+                </div>
+
+
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="trialSiteLocation">
+                <!-- ----------------- -->
+                <!-- Trial Summary -->
+                <!-- ----------------- -->
+                <div class="trial-info-edit">
+                    <div class="form-group">
+                        <label for="trialInfo-summary">Trial Summary</label>
+                    <span>
+                        <textarea id="trialInfo-summary" name="trialInfo-summary"
+                                  ng-model="trialInfo.summary"  required>
+                            </textarea>
+                    </span>
+
+                    </div>
+                </div>
+
+
+                <!-- ----------------- -->
+                <!-- Trial Description -->
+                <!-- ----------------- -->
+                <div class="trial-info-edit">
+                    <div class="form-group">
+                        <label for="trialInfo-description">Full Description</label>
+                    <span>
+                        <textarea id="trialInfo-description" name="trialInfo-description"
+                               ng-model="trialInfo.summary" style="min-height: 25em"  required>
+                            </textarea>
+                    </span>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="clear"></div>
+        </div>
+
+        <!-- ----------------- -->
+        <!-- Trial Info End  -->
+        <!-- ----------------- -->
+   <!--
+        <div>
+            <button ng-click="initializeTrialSite()">Add New Trial Site</button>
+        </div>
+    -->
+
+
+
+
+
+
+
+
+        <!-- --------------------------------------------------- -->
+        <!--                    Trial Site Start                 -->
+        <!-- --------------------------------------------------- -->
+        <div class="form-group simplePanel col-xs-9" ng-repeat="trialSite in trialInfo.trialSites._embeddedItems" ng-show="trialSiteId == trialSite.id">
+
+            <h4>Trial Site Information</h4>
+
+            <!--
+            <div class="xtrialLeaderBio">
+                <h3>Trial Leader</h3>
+                <div class="xsimplePanel">
+                    <p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{trialSite.id}}')"></p>
+                    <p><strong>{{trialSite.siteDirector}}</strong></p>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+            -->
+
+            <div class="clear"></div>
+
+            <div class="trialLeaderBio">
+
+            <div data-td-id="trialSiteEditor{{$index}}" ngx-show="trialSite.isEditing">
+
+                <div class="form-group">
+                    <!-- -------------------- -->
+                    <!-- Trial Site Director  -->
+                    <!-- -------------------- -->
+                    <label for="trial-site-director{{$index}}">Trial Director (Name)</label>
+
+                    <input id="trial-site-director{{$index}}" type="text" name="trial-site-director"
+                           ng-model="trialSite.siteDirector" size="31" required>
+
+                </div>
+
+                <!--
+                <div class="form-group">
+                    <!-- ----------------------- --/>
+                    <!-- Trial Site Description  --/>
+                    <!-- ----------------------- --/>
+                    <label for="trial-site-description{{$index}}">Trial Site Description</label>
+                    <span>
+                        <input id="trial-site-description{{$index}}" type="text" name="trial-site-description"
+                               ng-model="trialSite.siteDescription" size="31" required>
+                    </span>
+
+                </div>
+                -->
+
+                <div class="form-group">
+                    <!-- ------------------- -->
+                    <!-- Trial Site Summary  -->
+                    <!-- ------------------- -->
+                    <label for="trial-site-summary{{$index}}">Trial Director (Bio)</label>
+                    <span>
+                        <textarea id="trial-site-summary{{$index}}" name="trial-site-summary"
+                               ng-model="trialSite.siteDirectorBio" required>
+                        </textarea>
+                    </span>
+                </div>
+
+
+
+
+
+                <div class="trial-site-logo">
+                    <!-- -------------- -->
+                    <!-- Trial Site Pic -->
+                    <!-- -------------- -->
+
+
+                    <p class="trialLeaderImage" style="background-image:url(/trialSiteImage/{{trialSite.id}})"></p>
+                    <!--
+                    <img ng-src="/trialSiteImage/{{trialSite.id}}">
+
+                    <label for="trial-site-logo{{$index}}">Trial Site Pic</label>
+                    <input id="trial-site-logo{{$index}}" type="file" ngf-select ng-model="trialSite.sitePic"
+                           name="siteFile" ng-change="toggleTrialSiteDisplay(trialSite)"
+                           accept="image/*" ngf-max-size="2MB" required
+                           ngf-model-invalid="errorFile">
+                    <i ngx-show="trialSite.sitePic.$error.required">*required</i><br>
+                    <i ngx-show="trialSite.sitePic.$error.maxSize">File too large
+                        {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                    -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <!-- ------------------ -->
+                <!-- Trial Info Summary -->
+                <!-- ------------------ -->
+                <div>
+                <span ngx-show="!trialSite.isEditing">
+                    <h5 class="trialSiteHeading" ng-bind="trialSite.siteDescription"></h5>
+                </span>
+                </div>
+                <span>
+                    <img ngf-thumbnail="trialSite.sitePic" class="thumb" ng-click="toggleTrialSiteDisplay(trialSite)">
+                </span>
+                <button class="btn btn-remove" style="float:right;clear:both" ng-click="trialSite.sitePic = null; trialSite.isEditing=true" ngx-show="trialSite.sitePic">Remove
+                    Logo
+                </button>
+            </div>
+
+            </div>
+
+            <div class="trialSiteLocation">
+
+                <div class="form-group">
+                    <!-- ------------------- -->
+                    <!-- Trial Site Address      -->
+                    <!-- ------------------- -->
+                    <label for="trial-site-address1{{$index}}">Address 1</label>
+                    <span>
+                        <input id="trial-site-address1{{$index}}" type="text" name="trial-site-address1"
+                               ng-model="trialSite.trialDirectAddress.address1" size="31" required>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <!-- ------------------- -->
+                    <!-- Trial Site Address      -->
+                    <!-- ------------------- -->
+                    <label for="trial-site-address2{{$index}}">Address 2</label>
+                    <span>
+                        <input id="trial-site-address2{{$index}}" type="text" name="trial-site-address2"
+                               ng-model="trialSite.trialDirectAddress.address2" size="31">
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <!-- ------------------- -->
+                    <!-- Trial Site Address      -->
+                    <!-- ------------------- -->
+                    <label for="trial-site-address3{{$index}}">Address 3</label>
+                    <span>
+                        <input id="trial-site-address3{{$index}}" type="text" name="trial-site-address3"
+                               ng-model="trialSite.trialDirectAddress.address3" size="31">
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <!-- ------------------- -->
+                    <!-- Trial Site Address      -->
+                    <!-- ------------------- -->
+                    <label for="trial-site-address4{{$index}}">Address 4</label>
+                    <span>
+                        <input id="trial-site-address4{{$index}}" type="text" name="trial-site-address4"
+                               ng-model="trialSite.trialDirectAddress.address4" size="31">
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <!-- ------------------- -->
+                    <!-- Trial Site Address      -->
+                    <!-- ------------------- -->
+                    <label for="trial-site-address5{{$index}}">Zip Code</label>
+                    <span>
+                        <input id="trial-site-address5{{$index}}" type="text" name="trial-site-address5"
+                               ng-model="trialSite.trialDirectAddress.address5" size="31" required>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <!-- ------------------- -->
+                    <!-- Trial Site Address      -->
+                    <!-- ------------------- -->
+                    <label for="trial-site-country{{$index}}">Country</label>
+                    <span>
+                        <input id="trial-site-country{{$index}}" type="text" name="trial-site-country"
+                               ng-model="trialSite.trialDirectAddress.country" size="31" required>
+                    </span>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <!-- ------------------- -->
+                    <!-- Trial Site Map      -->
+                    <!-- ------------------- -->
+                    <label for="trial-site-map{{$index}}">Trial Location (Google Map URL)</label>
+                    <span>
+                        <input id="trial-site-map{{$index}}" type="text" name="trial-site-map"
+                               ng-model="trialSite.siteMap" size="31" required>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="clear"></div>
+
+
+        </div>
+
+        <!-- --------------------------------------------------- -->
+        <!--                    Trial Site End                   -->
+        <!-- --------------------------------------------------- -->
+
+        <!--
+        <div class="form-group">
+            <button ng-click="uploadTrial(newTrial.trialInfo.trialLogoPic, newTrial)">Upload Trial
+            </button>
+        </div>
+        -->
+
+
+</form>
+</div>

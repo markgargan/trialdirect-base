@@ -5,8 +5,8 @@ angular.module('trialdirect', [
         'ngResource',
         'spring-data-rest',
         'ui.router',
-        'ngFileUpload'
-
+        'ngFileUpload',
+        'as.sortable'
     ])
     .run(
         ['$rootScope', '$state', '$stateParams',
@@ -20,6 +20,7 @@ angular.module('trialdirect', [
                 $rootScope.$stateParams = $stateParams;
 
                 $rootScope.$on("$stateChangeError", console.log.bind(console));
+                console.log('This line was added on the develop branch');
 
             }
         ]

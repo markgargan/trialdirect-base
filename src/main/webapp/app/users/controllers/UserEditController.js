@@ -71,16 +71,6 @@ angular.module('trialdirect').controller('UserEditController',
 
             $scope.chooseTrialData = function (trialData) {
                 $scope.trialData = trialData;
-
-                //function(trialId) {
-                    /*TrialResourceService.loadTrialInfo(trialId).then(function(trialData){
-                        if(!angular.isUndefined(trialData))
-                        {
-                            $scope.trialData.push(trialData);
-                        }
-                    });*/
-                //}
-
             };
 
 

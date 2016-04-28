@@ -2,6 +2,38 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'therapeuticArea', 'questionnaireEntries', 'TherapeuticAreaResourceService',
         function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries, TherapeuticAreaResourceService ) {
 
+
+            $scope.items = [{
+                name: 'Element 1'
+            }, {
+                name: 'Element 2'
+            }, {
+                name: 'Element 3'
+            }, {
+                name: 'Element 4'
+            }, {
+                name: 'Element 5'
+            }, {
+                name: 'Element 6'
+            }, {
+                name: 'Element 7'
+            }, {
+                name: 'Element 8'
+            }];
+
+            $scope.$watch('items', function () {
+                console.log(arguments);
+            });
+
+            $scope.sortableOptions = {
+                containment: '#sortable-container'
+            };
+
+
+
+
+
+
             $scope.therapeuticArea = therapeuticArea;
 
             $scope.questionnaireEntries = questionnaireEntries;

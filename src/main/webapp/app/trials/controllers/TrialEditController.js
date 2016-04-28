@@ -1,10 +1,12 @@
 angular.module('trialdirect').controller('TrialEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'TrialResourceService',
-        'trial', 'questionnaireEntries', 'trialSelectorQuestionnaireEntries', 'TrialSelectorQuestionnaireEntryResourceService',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, TrialResourceService, trial,
+        'trial', 'trialInfo', 'questionnaireEntries', 'trialSelectorQuestionnaireEntries', 'TrialSelectorQuestionnaireEntryResourceService',
+        function ($scope, Question, Answer, QuestionnaireEntryResourceService, TrialResourceService, trial, trialInfo,
                   questionnaireEntries, trialSelectorQuestionnaireEntries, TrialSelectorQuestionnaireEntryResourceService) {
 
             $scope.trial = trial;
+
+            $scope.trialInfo = trialInfo;
 
             $scope.trialTitle = trial.title;
 
@@ -50,6 +52,12 @@ angular.module('trialdirect').controller('TrialEditController',
                 $scope.trialTitle = $scope.trial.title + (isEditing?' *':'');
                 $scope.isEditing = isEditing;
             };
+
+
+            $scope.showSiteForm = function (trialSiteId) {
+                $scope.trialSiteId = trialSiteId;
+            };
+
 
             $scope.submitTrialSelections = function () {
                 var valid = $scope.validateQuestionnaireEntriesAnswered();

@@ -53,20 +53,109 @@
 		</div>
 
 
+
+
+
+
 		<div class="trialDataInfo" ng-show="trialData">
 
-			<h3>About The Trial</h3>
+			<div class="trialLeadersContainer">
 
-			<div class="simplePanel">				
-				<p><strong>{{trialData.summary}}</strong></p>
 
-				<p ng-show="trialData.trialFullDescription.fullDescription"
-				   ng-repeat="value in trialData.trialFullDescription.fullDescription | newlines">
-					<span ng-bind="value"></span>
-				</p>
+				<h3 class="float-left">Trial Sites</h3>
+				<div class="float-right">
+					<input style="margin:.5em 0" type="text" ng-model="search" placeholder="Trial Site Search...">
+				</div>
+
+				<div class="clear"></div>
+
+				<div class="simplePanel trialLeaderList">
+
+
+					<div class="trialLeader" ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" ng-click="toggleBio(trialSite, trialData)">
+
+						<!--
+						<p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{site.id}}')">
+						</p>
+						-->
+						<p>
+
+							<strong>{{trialSite.siteDirector}}</strong><br>
+						<small>
+							<span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address4}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
+							<span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span>
+						</small>
+						</p>
+
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+
+				</div>
+
 			</div>
 
 
+			<div class="trialLeadersContainer"  ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)" ng-show="site.showBio">
+
+				<h3>{{site.siteDirector}}</h3>
+
+				<div class="simplePanel">
+
+					<div class="trialLeaderBio">
+						<!-- <h3>Trial Leader</h3> -->
+						<div class="">
+							<!--
+							<p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{site.id}}')"></p>
+							-->
+							<p>
+								<strong>{{site.siteDirector}}</strong><br>
+								{{site.trialDirectAddress.address1}}
+								{{site.trialDirectAddress.address2}}
+								{{site.trialDirectAddress.address3}}
+								{{site.trialDirectAddress.address4}}
+								{{site.trialDirectAddress.address5}}
+							</p>
+
+							<p ng-bind="site.siteDirectorBio"></p>
+							<div class="clear"></div>
+						</div>
+					</div>
+
+					<div class="trialSiteLocation">
+						<!-- <h3>Trial Location</h3> -->
+						<div class="">
+							<!--<p>-->
+								<!--<strong>Memorial Sloan Kettering Center</strong><br>-->
+								<!--{{site.trialDirectAddress.address1}}-->
+								<!--{{site.trialDirectAddress.address2}}-->
+								<!--{{site.trialDirectAddress.address3}}-->
+								<!--{{site.trialDirectAddress.address4}}-->
+								<!--{{site.trialDirectAddress.address5}}-->
+							<!--</p>-->
+
+
+							<iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
+
+							<!-- 							<iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe> -->
+							<div class="clear"></div>
+						</div>
+					</div>
+
+					<div class="clear"></div>
+
+				</div>
+
+			</div>
+
+
+			<div class="clear"></div>
+
+			<!--
 			<div class="trialSiteList">
 				<h3>Available Locations</h3>
 				<div class="simplePanel">
@@ -91,12 +180,28 @@
 						Principal Investigator: Thomas Haak, MD
 					</p>
 
-					<!-- {{site.siteMap}} -->
+
 					<iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
 
 					<div class="clear"></div>
 				</div>
 			</div>
+			-->
+
+
+			<h3>About The Trial</h3>
+
+			<div class="simplePanel">				
+				<p><strong>{{trialData.summary}}</strong></p>
+
+				<p ng-show="trialData.trialFullDescription.fullDescription"
+				   ng-repeat="value in trialData.trialFullDescription.fullDescription | newlines">
+					<span ng-bind="value"></span>
+				</p>
+			</div>
+
+
+
 			<div class="clear"></div>
 		</div>
 
