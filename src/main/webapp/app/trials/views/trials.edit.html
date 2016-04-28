@@ -3,7 +3,7 @@
         <h2>Edit Trial</h2>
     </div>
 
-    <form id="myForm" name="myForm" ngx-hide="!newTrial.editing">
+    <form id="myForm" name="myForm">
 
         <div class="form-group col-xs-3" style="paddidata-ng-left:0">
 
@@ -42,7 +42,7 @@
 
         <!-- Trial Info Start  -->
 
-        <div data-td-id="trialInformationEditor" ngx-show="editingTrialInfo" class="simplePanel col-xs-9"
+        <div data-td-id="trialInformationEditor" class="simplePanel col-xs-9"
              data-ng-hide="trialSiteId">
 
             <!-- Left Column, Trial Site Information -->
@@ -136,7 +136,7 @@
             <!-- Left Column, Trial Facility Summaries -->
             <div class="trialLeaderBio">
 
-                <div data-td-id="trialSiteEditor{{$index}}" ngx-show="trialSite.isEditing">
+                <div data-td-id="trialSiteEditor{{$index}}">
 
                     <!-- Trial Facility Name -->
                     <div class="form-group">
@@ -167,8 +167,7 @@
                             <img ngf-thumbnail="trialSite.sitePic" class="thumb"
                                  data-ng-click="toggleTrialSiteDisplay(trialSite)">
                         </span>
-                        <button type="button" class="btn btn-remove" style="float:right;clear:both"
-                                ngx-show="trialSite.sitePic">
+                        <button type="button" class="btn btn-remove" style="float:right;clear:both">
                             Remove Image
                         </button>
                     </div>
