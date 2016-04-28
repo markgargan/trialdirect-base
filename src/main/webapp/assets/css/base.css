@@ -764,6 +764,26 @@ p {
 
 .trialLogoImage .btn-remove {
     margin-left: 0;
+    background: none;
+    border: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.answer-container .btn-remove {
+    border: 0;
+    box-shadow: none;
+    background: #eee;
+    margin: 0 0 0 1em;
+    padding: .5em .75em;
+}
+
+.answer-container .answerText {
+    line-height: 2.5em;
+}
+
+.questionEdit p {
+    padding:0;
 }
 
 .trialResults {
@@ -911,6 +931,7 @@ span {
 
 .trialLeaderSelect li {
     line-height: 1.2em;
+    padding:.6em 0;
 }
 
 .trialLeaderName {
