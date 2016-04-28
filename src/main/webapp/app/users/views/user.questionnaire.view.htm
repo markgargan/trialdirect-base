@@ -102,16 +102,24 @@
 
 			<div class="trialLeadersContainer"  ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)" ng-show="site.showBio">
 
+				<h3>{{site.siteDirector}}</h3>
 
-				<div class="">
+				<div class="simplePanel">
 
 					<div class="trialLeaderBio">
-						<h3>Trial Leader</h3>
-						<div class="simplePanel">
-							<p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{site.id}}')">
-								<!--<img ng-src="/trialSiteImage/{{site.id}}">-->
+						<!-- <h3>Trial Leader</h3> -->
+						<div class="">
+							<!--
+							<p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{site.id}}')"></p>
+							-->
+							<p>
+								<strong>{{site.siteDirector}}</strong><br>
+								{{site.trialDirectAddress.address1}}
+								{{site.trialDirectAddress.address2}}
+								{{site.trialDirectAddress.address3}}
+								{{site.trialDirectAddress.address4}}
+								{{site.trialDirectAddress.address5}}
 							</p>
-							<p><strong>{{site.siteDirector}}</strong></p>
 
 							<p ng-bind="site.siteDirectorBio"></p>
 							<div class="clear"></div>
@@ -119,16 +127,16 @@
 					</div>
 
 					<div class="trialSiteLocation">
-						<h3>Trial Location</h3>
-						<div class="simplePanel">
-							<p>
-								<strong>Memorial Sloan Kettering Center</strong><br>
-								{{site.trialDirectAddress.address1}}
-								{{site.trialDirectAddress.address2}}
-								{{site.trialDirectAddress.address3}}
-								{{site.trialDirectAddress.address4}}
-								{{site.trialDirectAddress.address5}}
-							</p>
+						<!-- <h3>Trial Location</h3> -->
+						<div class="">
+							<!--<p>-->
+								<!--<strong>Memorial Sloan Kettering Center</strong><br>-->
+								<!--{{site.trialDirectAddress.address1}}-->
+								<!--{{site.trialDirectAddress.address2}}-->
+								<!--{{site.trialDirectAddress.address3}}-->
+								<!--{{site.trialDirectAddress.address4}}-->
+								<!--{{site.trialDirectAddress.address5}}-->
+							<!--</p>-->
 
 
 							<iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
@@ -137,6 +145,8 @@
 							<div class="clear"></div>
 						</div>
 					</div>
+
+					<div class="clear"></div>
 
 				</div>
 
