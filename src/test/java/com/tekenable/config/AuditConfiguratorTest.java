@@ -34,7 +34,7 @@ public class AuditConfiguratorTest {
     private AuditConfigurator auditConfigMock;
     private JdbcTemplate jdbcMock;
 
-    protected static final Logger log = LoggerFactory.getLogger(AuditConfigVerificationTest.class);
+    protected static final Logger log = LoggerFactory.getLogger(AuditConfiguratorTest.class);
 
     @Before
     public void init() {
