@@ -20,12 +20,12 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AuditConfig.class})
-public class AuditConfigVerificationTest {
+public class AuditConfigVerificationIT {
 
     @Autowired
     protected DataSource dataSource;
 
-    protected static final Logger log = LoggerFactory.getLogger(AuditConfigVerificationTest.class);
+    protected static final Logger log = LoggerFactory.getLogger(AuditConfigVerificationIT.class);
 
     @Test
     public void verifyAuditConfiguration() {
