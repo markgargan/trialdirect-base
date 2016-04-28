@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,9 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -32,14 +31,6 @@ import static org.mockito.Mockito.when;
 @ContextConfiguration(classes = {AuditConfig.class})
 public class AuditConfiguratorTest {
 
-    /*@Autowired
-    private DataSource dataSource;*/
-
-    //private JdbcTemplate jdbc;
-
-    /*@Autowired
-    private AuditConfigurator auditConfigurator;*/
-
     private AuditConfigurator auditConfigMock;
     private JdbcTemplate jdbcMock;
 
@@ -48,7 +39,6 @@ public class AuditConfiguratorTest {
     @Before
     public void init() {
         log.info("*** start test ***");
-        //this.auditConfigurator.jdbc = new JdbcTemplate(this.auditConfigurator.dataSource);
         this.auditConfigMock = Mockito.mock(AuditConfigurator.class);
         this.jdbcMock = Mockito.mock(JdbcTemplate.class);
     }
@@ -58,74 +48,6 @@ public class AuditConfiguratorTest {
         log.info("*** end of test ***");
     }
 
-    /**
-     * tested query:
-     *
-     * select table_name from information_schema.tables
-     * where table_schema = 'trialdirect'
-     * and table_name not in ('hibernate_sequences')
-     * and table_name not like '%_audit'
-     *
-     * it should return the list of tables defined below
-     *
-     * @throws Exception
-     */
-    /*@Test
-    public void testGetAuditedTables() throws Exception {
-        log.info("get audit tables test");
-
-        List<String> tables = new ArrayList();
-        tables.add("Answer");
-        tables.add("Question");
-        tables.add("QuestionnaireEntry");
-        tables.add("TherapeuticArea");
-        tables.add("Trial");
-        tables.add("TrialInfo");
-        tables.add("TrialSelectorQuestionnaireEntry");
-        tables.add("TrialSite");
-        tables.add("User");
-        tables.add("UserSelectorQuestionnaireEntry");
-        tables.add("questionnaireEntry_answer");
-
-        List<String> tablesToVerify = this.auditConfigurator.getAuditedTables();
-        assertTrue(tablesToVerify.containsAll(tables));
-        assertTrue(tablesToVerify.removeAll(tables));
-        assertTrue(tablesToVerify.size()==0);
-    }*/
-
-    /**
-     * query to test:
-     *
-     * String query = "select column_name, concat(column_name, ' ', column_type) 'column_type' " +
-     * from information_schema.columns\n" +
-     * where table_schema = 'trialdirect' and table_name = ? order by ordinal_position";
-     *
-     * it should return the list of columns defined below
-     *
-     * @throws Exception
-     */
-    /*@Test
-    public void testGetTableColumns() throws Exception {
-        log.info("get table columns test");
-
-        List<TrialDirectTableDef> columns = new ArrayList();
-        columns.add(new TrialDirectTableDef("id", "id int(11)"));
-        columns.add(new TrialDirectTableDef("sortOrder", "sortOrder int(11)"));
-        columns.add(new TrialDirectTableDef("answerText", "answerText varchar(255)"));
-
-        List<TrialDirectTableDef> columnsToVerify = this.auditConfigurator.getTableColumns("Answer");
-
-        assertTrue(columnsToVerify.containsAll(columns));
-        assertTrue(columnsToVerify.removeAll(columns));
-        assertTrue(columnsToVerify.size()==0);
-    }*/
-
-    /**
-     * the following methods test the correctness of SQL statements generated during audit configuration
-     * it is run against just 1 table but that's all the same for all of them
-     *
-     * @throws Exception
-     */
 
     @Value("classpath:sql/Answer_audit.sql")
     private Resource createAnswerAuditTable;
@@ -139,45 +61,8 @@ public class AuditConfiguratorTest {
         return new String(data, "UTF-8");
     }
 
-    /*@Test
-    public void testCreateAuditTableQuery() throws Exception {
-        log.info("create Answer_audit table query test");
-        List columns = this.auditConfigurator.getTableColumns("Answer");
-        String queryToVerify = this.auditConfigurator.getCreateTableQuery("Answer_audit", columns);
-        String statementFromFile = getStatementFromFile(createAnswerAuditTable);
-        assertEquals(statementFromFile, queryToVerify);
-    }*/
-
     @Autowired
     private ResourceLoader resourceLoader;
-
-    /*@Test
-    public void testRecreateTrigger() throws Exception {
-        log.info("audit triggers for Answer table recreation test");
-
-        ResourcePatternResolver resolver = org.springframework.core.io.support.ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
-        //Resource[] triggerFiles = resolver.getResources("classpath:sql*//*_trigger_Answer_*.sql");
-
-        Map<String, String> operations = new HashMap();
-        operations.put("_AI", "INSERT");
-        operations.put("_AU", "UPDATE");
-        operations.put("_AD", "DELETE");
-
-        for (Map.Entry<String, String> operation : operations.entrySet()) {
-            // drop trigger check
-            Resource dropTriggerResource = resolver.getResource("classpath:sql/drop_trigger_Answer".concat(operation.getKey()).concat(".sql"));
-            String statementFromFile = getStatementFromFile(dropTriggerResource);
-            String sqlToVerify = this.auditConfigurator.getDropTriggerQuery("Answer", operation.getKey());
-            assertEquals(sqlToVerify, statementFromFile);
-
-            // create trigger check
-            List columns = this.auditConfigurator.getTableColumns("Answer");
-            Resource createTriggerResource = resolver.getResource("classpath:sql/create_trigger_Answer".concat(operation.getKey()).concat(".sql"));
-            statementFromFile = getStatementFromFile(createTriggerResource);
-            sqlToVerify = this.auditConfigurator.getCreateTriggerQuery("Answer", "Answer_audit", operation, columns);
-            assertEquals(sqlToVerify, statementFromFile);
-        }
-    }*/
 
     @Test
     public void testCheckAuditConfiguration() {
@@ -185,28 +70,58 @@ public class AuditConfiguratorTest {
 
         List<String> tables = new ArrayList();
         tables.add("Answer");
+        tables.add("User");
         when(this.auditConfigMock.getAuditedTables()).thenReturn(tables);
 
+        List<TrialDirectTableDef> answerColumns = new ArrayList();
+        answerColumns.add(new TrialDirectTableDef("id", "id int(11)"));
+        answerColumns.add(new TrialDirectTableDef("sortOrder", "sortOrder int(11)"));
+        answerColumns.add(new TrialDirectTableDef("answerText", "answerText varchar(255)"));
+        when(this.auditConfigMock.getTableColumns("Answer")).thenReturn(answerColumns);
 
-        List<TrialDirectTableDef> columns = new ArrayList();
-        columns.add(new TrialDirectTableDef("id", "id int(11)"));
-        columns.add(new TrialDirectTableDef("sortOrder", "sortOrder int(11)"));
-        columns.add(new TrialDirectTableDef("answerText", "answerText varchar(255)"));
-        when(this.auditConfigMock.getTableColumns("Answer")).thenReturn(columns);
+        List<TrialDirectTableDef> userColumns = new ArrayList();
+        TrialDirectTableDef idCol = new TrialDirectTableDef("id", "id int(11)");
+        userColumns.add(idCol);
+        TrialDirectTableDef soCol = new TrialDirectTableDef("sortOrder", "sortOrder int(11)");
+        userColumns.add(soCol);
+        userColumns.add(new TrialDirectTableDef("pseudonym", "pseudonym varchar(300)"));
+        userColumns.add(new TrialDirectTableDef("realName", "realName varchar(255)"));
+        TrialDirectTableDef pseudoCol = new TrialDirectTableDef("pseudonym", "pseudonym varchar(255)");
+
+        when(this.auditConfigMock.getTableColumns("User")).thenReturn(userColumns);
 
         when(this.auditConfigMock.setJdbcTemplate(this.jdbcMock)).thenCallRealMethod();
         when(this.auditConfigMock.checkAuditConfiguration()).thenCallRealMethod();
-        when(this.auditConfigMock.getCreateTableQuery("Answer", columns)).thenCallRealMethod();
-        //when(this.auditConfigMock.getDropTriggerQuery(""))
+
+        when(this.auditConfigMock.checkTablePresence("Answer_audit")).thenReturn(0);
+        when(this.auditConfigMock.getCreateTableQuery("Answer_audit", answerColumns)).thenCallRealMethod();
+
+        when(this.auditConfigMock.getDropTriggerQuery("Answer", "_AI")).thenCallRealMethod();
+        when(this.auditConfigMock.getDropTriggerQuery("Answer", "_AU")).thenCallRealMethod();
+        when(this.auditConfigMock.getDropTriggerQuery("Answer", "_AD")).thenCallRealMethod();
+
+        Map<String, String> operations = new HashMap();
+        operations.put("_AI", "INSERT");
+        operations.put("_AU", "UPDATE");
+        operations.put("_AD", "DELETE");
+
+        for (Map.Entry<String, String> operation : operations.entrySet()) {
+            when(this.auditConfigMock.getCreateTriggerQuery("Answer", "Answer_audit", operation, answerColumns)).thenCallRealMethod();
+        }
+
+        when(this.auditConfigMock.checkTablePresence("User_audit")).thenReturn(1);
+        when(this.auditConfigMock.getColumnDefinition("User_audit", "id")).thenReturn(idCol);
+        when(this.auditConfigMock.getColumnDefinition("User_audit", "sortOrder")).thenReturn(soCol);
+        when(this.auditConfigMock.getColumnDefinition("User_audit", "pseudonym")).thenReturn(pseudoCol);
+        when(this.auditConfigMock.getColumnDefinition("User_audit", "realName")).thenReturn(null);
+        when(this.auditConfigMock.getAlterTableQuery("add", "User_audit", "realName varchar(255)")).thenCallRealMethod();
+        when(this.auditConfigMock.getAlterTableQuery("modify", "User_audit", "pseudonym varchar(300)")).thenCallRealMethod();
 
         this.auditConfigMock.setJdbcTemplate(this.jdbcMock);
         Map<String, List<String>> statements = this.auditConfigMock.checkAuditConfiguration();
         assertTrue(statements.size()==3);
 
         List<String> auditedTables = statements.get("AuditedTables");
-        tables.removeAll(auditedTables);
-        //assertTrue(tables.size()==0);
-
         try {
             String statementFromFile = this.getStatementFromFile(createAnswerAuditTable);
             String statementToVerify = auditedTables.get(0);
@@ -216,6 +131,48 @@ public class AuditConfiguratorTest {
             e.printStackTrace();
         }
 
+        ResourcePatternResolver resolver = org.springframework.core.io.support.ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
+
+        List<String> auditedTriggers = statements.get("TriggersRecreated");
+        Iterator<String> it = auditedTriggers.iterator();
+
+        for (Map.Entry<String, String> operation : operations.entrySet()) {
+
+            // drop trigger check
+            Resource dropTriggerResource = resolver.getResource("classpath:sql/drop_trigger_Answer".concat(operation.getKey()).concat(".sql"));
+            String statementFromFile = null;
+            String auditedTrigger = null;
+            try {
+                statementFromFile = getStatementFromFile(dropTriggerResource);
+                auditedTrigger = it.next();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assertEquals(auditedTrigger, statementFromFile);
+
+            // create trigger check
+            Resource createTriggerResource = resolver.getResource("classpath:sql/create_trigger_Answer".concat(operation.getKey()).concat(".sql"));
+            try {
+                statementFromFile = getStatementFromFile(createTriggerResource);
+                auditedTrigger = it.next();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assertEquals(auditedTrigger, statementFromFile);
+        }
+
+        List<String> alteredTables = statements.get("TablesAltered");
+        for (int i=0; i<alteredTables.size(); i++) {
+            String statementToVerify = alteredTables.get(i);
+            Resource alterTableResource = resolver.getResource("classpath:sql/User_audit_alter".concat(String.valueOf(i+1)).concat(".sql"));
+            String statementFromFile = null;
+            try {
+                statementFromFile = getStatementFromFile(alterTableResource);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assertEquals(statementFromFile, statementToVerify);
+        }
     }
 
 }

@@ -34,8 +34,7 @@ public class AuditConfigurator {
      */
     protected boolean setJdbcTemplate(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
-        if (this.jdbc==null) return false;
-        else return true;
+        return this.jdbc != null;
     }
 
     protected int runQuery(String query) {
@@ -91,7 +90,7 @@ public class AuditConfigurator {
         return sb.toString();
     }
 
-    private String getAlterTableQuery(String mode, String tableName, String columnDefinition) {
+    protected String getAlterTableQuery(String mode, String tableName, String columnDefinition) {
         StringBuilder sb = new StringBuilder();
         sb.append("alter table ").append(tableName).append(" ").append(mode).append(" ").append(columnDefinition);
         return sb.toString();
@@ -126,6 +125,14 @@ public class AuditConfigurator {
         return tsb.toString();
     }
 
+    protected int checkTablePresence(String tableName) {
+        String auditCountSQL = "select count(*) from information_schema.tables \n" +
+                "where table_schema = 'trialdirect'\n" +
+                "and table_name = ?";
+
+        return jdbc.queryForObject(auditCountSQL, new Object[]{tableName}, Integer.class);
+    }
+
     public Map checkAuditConfiguration() {
         log.info("*** Audit Configuration health check ***");
         Map<String, List<String>> auditSqlLog = new HashMap();
@@ -147,15 +154,11 @@ public class AuditConfigurator {
 
             List<TrialDirectTableDef> actualColumnsDef = getTableColumns(table);
 
-            String auditCountSQL = "select count(*) from information_schema.tables \n" +
-                                   "where table_schema = 'trialdirect'\n" +
-                                   "and table_name = ?";
-
             /*
             checking if audit table exists in the first place
              */
-            Integer tabExists = jdbc.queryForObject(auditCountSQL, new Object[]{auditTableName}, Integer.class);
-            if (tabExists==null || tabExists==0) { //audit table does not exist so create it
+            Integer tabExists = checkTablePresence(auditTableName);
+            if (tabExists==0) { //audit table does not exist so create it
                 String sql = this.getCreateTableQuery(auditTableName, actualColumnsDef);
                 createTableSQL.add(sql);
                 int result = this.runQuery(sql);
@@ -173,17 +176,16 @@ public class AuditConfigurator {
                         // column does not exist yet so create it
                         String addColumnString = getAlterTableQuery("add", auditTableName, srcColumn.getColumnDef());
                         alterTableSQL.add(addColumnString);
-                        int result = jdbc.update(addColumnString);
-
+                        int result = this.runQuery(addColumnString);
                         srcColumn.setApplied((result == 0));
                         log.info("Add column: " + table + srcColumn.toString());
-                    } else {
+                    }
+                    else {
                         // column exist so check its type and modify if different
                         if (!resColumn.getColumnDef().equals(srcColumn.getColumnDef())) {
                             String modifyColumnSQL = getAlterTableQuery("modify", auditTableName, srcColumn.getColumnDef());
                             alterTableSQL.add(modifyColumnSQL);
-
-                            int result = jdbc.update(modifyColumnSQL);
+                            int result = this.runQuery(modifyColumnSQL);
                             srcColumn.setApplied((result == 0));
                             log.info("Modify column: " + table + srcColumn.toString());
                         }
@@ -194,15 +196,16 @@ public class AuditConfigurator {
              recreating table triggers - to make it easy they are just drop and created again
              */
             log.info("Recreating audit triggers");
+            int result=0;
             for (Map.Entry<String, String> operation : operations.entrySet()) {
 
                 String sql = this.getDropTriggerQuery(table, operation.getKey());
                 recreateTriggerSQL.add(sql);
-                int result = this.runQuery(sql);
+                result = result + this.runQuery(sql);
 
                 sql = this.getCreateTriggerQuery(table, auditTableName, operation, actualColumnsDef);
                 recreateTriggerSQL.add(sql);
-                result = this.runQuery(sql);
+                result = result + this.runQuery(sql);
 
                 log.info(String.format("create audit trigger for %1$s executed with result: %2$d", table, result));
             }
