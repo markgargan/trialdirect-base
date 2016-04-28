@@ -47,22 +47,27 @@
 
 
                     <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+                        <!--
                         <button class="left btn btn-remove" type="button" title="Delete"
                                     data-ng-click="deleteAnswer(questionnaireEntry, answer)"  data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
                             {{answer.answerText}}    <span class="glyphicon glyphicon-remove"></span>
                         </button>
+                        -->
 
 
 
-                        <!--
-                        <div as-sortable="sortableOptions" ng-model="questionnaireEntry.answers._embeddedItems">
+
+                        <div id="horizontal-container" as-sortable="sortableOptionsHorizontal" ng-model="questionnaireEntry.answers._embeddedItems">
                             <div ng-repeat="answer in questionnaireEntry.answers._embeddedItems" as-sortable-item class="as-sortable-item">
                                 <div as-sortable-item-handle>
                                     <span data-ng-bind="answer.answerText"></span>
                                 </div>
+                                <button class="left btn btn-remove" type="button" title="Delete" data-ng-click="deleteAnswer(questionnaireEntry, answer)">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                </button>
                             </div>
                         </div>
-                        -->
+
 
 
                     </div>
