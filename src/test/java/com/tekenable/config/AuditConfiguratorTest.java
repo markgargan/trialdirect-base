@@ -128,7 +128,7 @@ public class AuditConfiguratorTest {
             assertEquals(statementFromFile, statementToVerify);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
 
         ResourcePatternResolver resolver = org.springframework.core.io.support.ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
@@ -146,7 +146,7 @@ public class AuditConfiguratorTest {
                 statementFromFile = getStatementFromFile(dropTriggerResource);
                 auditedTrigger = it.next();
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
             }
             assertEquals(auditedTrigger, statementFromFile);
 
@@ -156,7 +156,7 @@ public class AuditConfiguratorTest {
                 statementFromFile = getStatementFromFile(createTriggerResource);
                 auditedTrigger = it.next();
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
             }
             assertEquals(auditedTrigger, statementFromFile);
         }
@@ -169,7 +169,7 @@ public class AuditConfiguratorTest {
             try {
                 statementFromFile = getStatementFromFile(alterTableResource);
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error(e.getMessage());
             }
             assertEquals(statementFromFile, statementToVerify);
         }
