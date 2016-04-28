@@ -1,0 +1,1 @@
+create table User_audit(id int(11), pseudonym varchar(300), realName varchar(255), therapeutic_area_id int(11), action varchar(10),dbUser varchar(255), appUser varchar(255), createdTs timestamp)
