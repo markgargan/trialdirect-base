@@ -28,17 +28,16 @@ public class TrialSite extends SortEntity {
     public TrialSite() {
     }
 
-    public TrialSite(TrialInfo trialInfo, Integer sortOrder, String siteDirector, String siteDirectorBio,
+    public TrialSite(TrialInfo trialInfo, String siteDirector, String siteDirectorBio,
                      String address1, String address2,String address3,String address4,
-                     String address5,String country, String siteMap) {
+                     String address5, String country, String siteMap, Integer sortOrder) {
 
         this.trialInfo = trialInfo;
-        this.sortOrder = sortOrder;
         this.siteDirector = siteDirector;
         this.siteDirectorBio = siteDirectorBio;
-
-        trialDirectAddress = new TrialDirectAddress(address1, address2, address3, address4, address5, country);
+        this.trialDirectAddress = new TrialDirectAddress(address1, address2, address3, address4, address5, country);
         this.siteMap = siteMap;
+        this.sortOrder = sortOrder;
     }
 
     @ManyToOne

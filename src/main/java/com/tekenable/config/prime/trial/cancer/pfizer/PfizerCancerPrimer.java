@@ -103,7 +103,7 @@ public class PfizerCancerPrimer extends TrialPrimer {
             add(trialInfo);
         }});
 
-        final TrialSite trialSite1 = new TrialSite(trialInfo, 1,
+        final TrialSite trialSite1 = new TrialSite(trialInfo,
                 trialSite1_director,
                 trialSite1_bio,
                 trialSite1_address1,
@@ -112,9 +112,9 @@ public class PfizerCancerPrimer extends TrialPrimer {
                 trialSite1_address4,
                 trialSite1_address5,
                 trialSite1_country,
-                trialSite1_site_map);
+                trialSite1_site_map, 1);
 
-        final TrialSite trialSite2 = new TrialSite(trialInfo, 2,
+        final TrialSite trialSite2 = new TrialSite(trialInfo,
                 trialSite2_director,
                 trialSite2_bio,
                 trialSite2_address2,
@@ -123,9 +123,9 @@ public class PfizerCancerPrimer extends TrialPrimer {
                 trialSite2_address4,
                 trialSite2_address5,
                 trialSite2_country,
-                trialSite2_site_map);
+                trialSite2_site_map, 2);
 
-        final TrialSite trialSite3 = new TrialSite(trialInfo, 3,
+        final TrialSite trialSite3 = new TrialSite(trialInfo,
                 trialSite3_director,
                 trialSite3_bio,
                 trialSite3_address1,
@@ -134,7 +134,7 @@ public class PfizerCancerPrimer extends TrialPrimer {
                 trialSite3_address4,
                 trialSite3_address5,
                 trialSite3_country,
-                trialSite3_site_map);
+                trialSite3_site_map, 3);
 
         trialSite1.setTrialSiteImage(trialsite1Image);
         trialSite2.setTrialSiteImage(trialsite2Image);
