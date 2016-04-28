@@ -1,0 +1,1 @@
+alter table User_audit add realName varchar(255)

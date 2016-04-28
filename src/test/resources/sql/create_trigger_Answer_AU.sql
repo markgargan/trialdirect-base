@@ -1,0 +1,1 @@
+create trigger Answer_AU after UPDATE on Answer for each row begin insert into Answer_audit(id, sortOrder, answerText, action, dbUser, appUser, createdTs) values(new.id, new.sortOrder, new.answerText, 'UPDATE', user(), null, CURRENT_TIMESTAMP()); end;
