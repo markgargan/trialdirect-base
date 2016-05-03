@@ -18,31 +18,31 @@
 
 
 
-                    <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+                    <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
                         <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-                            <input type="checkbox"
+                            <input id="inp_answer{{answer.id}}" type="checkbox"
                                    data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
                                    data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
                             <span data-ng-bind="answer.answerText"></span>
                         </label>
                         <label class="select-all">
-                            <input name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
+                            <input id="inp_selectAll" name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
                                    data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
                         </label>
                     </div>
 
 
-                    <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                    <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
                         <div class="option-list slim">
                         <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-                            <input type="checkbox"
+                            <input id="inp_answer{{answer.id}}" type="checkbox"
                                    data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
                                    data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
                             <span data-ng-bind="answer.answerText"></span>
                         </label>
                         </div>
                         <label class="select-all option-list-all">
-                            <input name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
+                            <input id="inp_selectAll" name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
                                    data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
                         </label>
                     </div>
@@ -51,13 +51,13 @@
                     <!--
                     <div class="answers">
                         <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-                            <input type="checkbox"
+                            <input id="inp_answer{{answer.id}}" type="checkbox"
                                    data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
                                    data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
                             <span data-ng-bind="answer.answerText"></span>
                         </label>
                         <label class="select-all">
-                            <input name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
+                            <input id="inp_selectAll" name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
                                    data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
                         </label>
                     </div>
@@ -71,38 +71,17 @@
             </div>
 
             <div class="right trialSubmission answers">
-                <label><input type="checkbox" data-ng-disabled="!isEditing"
+                <label><input id="inp_saveSelection" type="checkbox" data-ng-disabled="!isEditing"
                        data-ng-click="submitTrialSelections()"/>
                 <span>Save Selections</span>
                 </label>
                 <label class="selectionsSaved" data-ng-hide="!wasSaved">
-                    <p>Selections saved...</p>
+                    Selections saved...
                 </label>
 
             </div>
 
-        <div class="trialResults data-ng-hide" data-ng-show="showList">
-            <h3 class="countHead" id="results">Trial Results</h3>
-            <div class="trialList">
-                <div class="trialIntro data-ng-hide" data-ng-show="trial2"><h4>Thomas Haak, MD</h4>
-                    <p><span class="doc1"></span>This trial evaluates a cognitive-behavioural intervention
-                        for diabetes patients with suboptimal glycaemic control and comorbid depressive
-                        symptoms and/or diabetes distress.</p>
-                    <p class="distance"><i class="fa fa-map-marker"></i> 72 Miles Away</p>
-                    <p class="link"><a href="#/trial-info2/" class="more">Learn More</a></p>
-                    <div class="clear"></div>
-                </div>
-                <div class="trialIntro" data-ng-show="trial1"><h4>Stacy Moulder, MD</h4>
-                    <p><span class="doc3"></span>The goal of this research study is find out if researchers
-                        can use genetic testing on tumor samples to predict if tumors will respond to breast
-                        cancer treatments.</p>
-                    <p class="distance"><i class="fa fa-map-marker"></i> 125 Miles Away</p>
-                    <p class="link"><a href="#/trial-info1/" class="more">Learn More</a></p>
-                    <div class="clear"></div>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
+
     </form>
-    <div class="clear data-ng-scope"></div>
+    <div class="clear"></div>
 </div>

@@ -4,13 +4,13 @@
 		<div class="trialRight" data-ng-hide="showList">
 			<!-- <h3 class="trialCountH">Trials</h3> -->
 			<div class="trialCount"><p>Trials Available</p>
-				<h1 ng-bind="availableTrialIds.length"></h1>
+				<h1 data-ng-bind="availableTrialIds.length"></h1>
 			</div>
 
 		</div>
 
 
-		<div class="trialSearch" ng-hide="trialData">
+		<div class="trialSearch" data-ng-hide="trialData">
 			<div class="setArea">
 				<p>Trial Therapeutic Area: <strong>{{user.therapeuticArea.title}}</strong></p>
 			</div>
@@ -18,33 +18,33 @@
 			<!--
 			<div class="answers trialTitle" style="float:right">
 				<label>
-					<input type="radio" data-ng-checked="user">
-					<span ng-bind="user.therapeuticArea.title"></span>
+					<input id="inp_therapeuticArea{{therapeuticArea.id}}" type="radio" data-ng-checked="user">
+					<span data-ng-bind="user.therapeuticArea.title"></span>
 				</label>
 			</div>
 			-->
 
-			<div class="trialTitle" ng-bind="user.pseudonym"></div>
+			<div class="trialTitle" data-ng-bind="user.pseudonym"></div>
 
 			<div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
 				<div class="question">
-					<p ng-bind="questionnaireEntry.question.questionText"></p>
+					<p data-ng-bind="questionnaireEntry.question.questionText"></p>
 					<div class="clear"></div>
 				</div>
-				<div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
 					<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-						<input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
-							   ng-model="answer.isSelected"/>
-						<span ng-bind="answer.answerText"></span>
+						<input id="inp_answer{{answer.id}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+							   data-ng-model="answer.isSelected"/>
+						<span data-ng-bind="answer.answerText"></span>
 					</label>
 				</div>
 
-				<div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
 					<div class="option-list">
 						<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-							<input type="checkbox" ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
-								   ng-model="answer.isSelected"/>
-							<span ng-bind="answer.answerText"></span>
+							<input id="inp_answer{{answer.id}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+								   data-ng-model="answer.isSelected"/>
+							<span data-ng-bind="answer.answerText"></span>
 						</label>
 					</div>
 				</div>
@@ -57,14 +57,14 @@
 
 
 
-		<div class="trialDataInfo" ng-show="trialData">
+		<div class="trialDataInfo" data-ng-show="trialData">
 
 			<div class="trialLeadersContainer">
 
 
 				<h3 class="float-left">Trial Sites</h3>
 				<div class="float-right">
-					<input style="margin:.5em 0" type="text" ng-model="search" placeholder="Trial Site Search...">
+					<input id="inp_search" style="margin:.5em 0" type="text" data-ng-model="search" placeholder="Trial Site Search...">
 				</div>
 
 				<div class="clear"></div>
@@ -72,7 +72,7 @@
 				<div class="simplePanel trialLeaderList">
 
 
-					<div class="trialLeader" ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" ng-click="toggleBio(trialSite, trialData)">
+					<div class="trialLeader" data-ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" data-ng-click="toggleBio(trialSite, trialData)">
 
 						<!--
 						<p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{site.id}}')">
@@ -100,7 +100,7 @@
 			</div>
 
 
-			<div class="trialLeadersContainer"  ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)" ng-show="site.showBio">
+			<div class="trialLeadersContainer"  data-ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" data-ng-click="toggleBio(site, trialData)" data-ng-show="site.showBio">
 
 				<h3>{{site.siteDirector}}</h3>
 
@@ -121,7 +121,7 @@
 								{{site.trialDirectAddress.address5}}
 							</p>
 
-							<p ng-bind="site.siteDirectorBio"></p>
+							<p data-ng-bind="site.siteDirectorBio"></p>
 							<div class="clear"></div>
 						</div>
 					</div>
@@ -160,10 +160,10 @@
 				<h3>Available Locations</h3>
 				<div class="simplePanel">
 					<div class="trialDirectorList">
-						<div class="trialSiteOptions" ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)">
-							<p><span class="trialSiteImage"><img ng-src="/trialSiteImage/{{site.id}}"></span>
+						<div class="trialSiteOptions" data-ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" data-ng-click="toggleBio(site, trialData)">
+							<p><span class="trialSiteImage"><img data-ng-src="/trialSiteImage/{{site.id}}"></span>
 								<strong>{{site.siteDirector}}</strong></p>
-							<p ng-show="site.showBio" ng-bind="site.siteDirectorBio"></p>
+							<p data-ng-show="site.showBio" data-ng-bind="site.siteDirectorBio"></p>
 							<div class="clear"></div>
 						</div>
 					</div>
@@ -194,9 +194,9 @@
 			<div class="simplePanel">				
 				<p><strong>{{trialData.summary}}</strong></p>
 
-				<p ng-show="trialData.trialFullDescription.fullDescription"
-				   ng-repeat="value in trialData.trialFullDescription.fullDescription | newlines">
-					<span ng-bind="value"></span>
+				<p data-ng-show="trialData.trialFullDescription.fullDescription"
+				   data-ng-repeat="value in trialData.trialFullDescription.fullDescription | newlines">
+					<span data-ng-bind="value"></span>
 				</p>
 			</div>
 
@@ -209,9 +209,9 @@
 		<div class="trialResults trialRight">
 			<div class="trialList">
 
-				<div class="trialIntro" ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
+				<div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
 					<ul>
-						<li class="trialImage"><img ng-src="/trialInfoImage/{{trial.id}}"></li>
+						<li class="trialImage"><img data-ng-src="/trialInfoImage/{{trial.id}}"></li>
 						<li class="trialBrief">{{trial.description}}</li>
 						<li class="trialLink"><a href=""class="more">View Trial Info</a></li>
 					</ul>

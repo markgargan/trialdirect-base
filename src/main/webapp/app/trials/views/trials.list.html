@@ -11,18 +11,18 @@
             </div>
 
 
-        <div class="answers" ng-if="therapeuticAreas.length<=4">
+        <div class="answers" data-ng-if="therapeuticAreas.length<=4">
             <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-                <input name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                <input id="inp_therapeuticAreaSelection{{therapeuticArea.id}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
                        data-ng-click="chooseTherapeuticArea(therapeuticArea)">
                 <span data-ng-bind="therapeuticArea.title"></span>
             </label>
         </div>
 
-        <div class="answers" ng-if="therapeuticAreas.length>=5">
+        <div class="answers" data-ng-if="therapeuticAreas.length>=5">
             <div class="option-list">
                 <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-                    <input name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                    <input id="inp_therapeuticAreaSelection{{therapeuticArea.id}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
                            data-ng-click="chooseTherapeuticArea(therapeuticArea)">
                     <span data-ng-bind="therapeuticArea.title"></span>
                 </label>
@@ -41,11 +41,11 @@
         <div class="answers">
         <div class="input-group">
 
-            <input id="newTrialInput" type="text" class="form-control"
+            <input id="inp_newTrialInput" type="text" class="form-control"
                    data-ng-disabled="!newTrial.therapeuticArea"
                    data-ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
             <span class="input-group-btn">
-                <button class="btn btn-default" type="submit"
+                <button id="btn_saveTrialSearch" class="btn btn-default" type="submit"
                         data-ng-disabled="!newTrial.title" title="Add">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
