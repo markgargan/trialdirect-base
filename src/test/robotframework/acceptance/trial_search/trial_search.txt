@@ -10,14 +10,19 @@ ${DELAY}          1
 
 *** Test Cases ***
 Open Browser To Trial Search Page
+    [Tags]  3.1
     Open Browser To Trial Search Page
 Create New User
+    [Tags]  3.2
     Create New User
 Answer Trial Questions
+    [Tags]  3.3
     Answer Trial Questions
 Select Trial Info
+    [Tags]  3.4
     Select Trial Info
 Open Selected Trial Info Page
+    [Tags]  3.5
     Open Selected Trial Info Page
 
     [Teardown]  close browser

@@ -7,17 +7,18 @@ Library    Selenium2Library    15
 *** Variables ***
 
 ${SERVER} =    http://trialdirectuat-tekenable.rhcloud.com/#/trials
-${BROWSER}        Chrome
+${BROWSER}        Firefox
 ${DELAY}          1
 
 *** Test Cases ***
 
 Create New Trial
-    [Tags]  001
+    [Tags]  2.1
     Open Browser To Trial Creation Page
     Create New Cancer Trial
 
 Select Trial Criteria
+    [Tags]  2.2
     Select Trial Criteria
    [Teardown]  close browser
 
@@ -39,7 +40,7 @@ Create New Cancer Trial
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trialInfo-description']
     input text    xpath=.//*[@id='trialInfo-description']    Lorem Ipsum
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trialLogo']
-    choose file    xpath=.//*[@id='trialLogo']    ${CURDIR}${/}pharma.jpg
+    choose file    xpath=.//*[@id='trialLogo']    ${CURDIR}${/}glaxo.jpg
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='myForm']/fieldset/div[3]/button
     click element    xpath=.//*[@id='myForm']/fieldset/div[3]/button
     wait until keyword succeeds    10secs    1sec    Page Should Contain Element    xpath=.//*[@id='trial-site-director0']
@@ -53,21 +54,16 @@ Create New Cancer Trial
 
 Select Trial Criteria
     click link  Lungs Cancer Trial
-
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[2]/div[1]/label[2]/span
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[2]/div[1]/label[3]/span
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[2]/div[1]/label[4]/span
-
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[2]/div[1]/label[2]/span
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[2]/div[1]/label[3]/span
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[2]/div[1]/label[4]/span
-
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div[2]/div[1]/label[1]/span
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div[2]/div[1]/label[2]/span
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div[2]/div[1]/label[3]/span
-
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[5]/label[1]/span
-
     capture page screenshot    filename=Screen2.png
 
 
