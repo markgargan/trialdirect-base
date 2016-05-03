@@ -5,7 +5,7 @@
 
     <form id="myForm" name="myForm">
 
-        <div class="form-group col-xs-3" style="paddidata-ng-left:0">
+        <div class="form-group col-xs-3" style="padding-left:0">
 
             <!-- Edit Trial Information -->
             <div class="simplePanel" data-ng-click="showSiteForm()">
@@ -50,7 +50,7 @@
 
                 <div class="trial-info-edit">
                     <div class="form-group">
-                        <label for="trialInfo-description">Trial Name</label>
+                        <label for="newTrialInput">Trial Name</label>
                         <span>
                             <input id="newTrialInput" type="text" class="form-control" value="{{trial.title}}">
                         </span>
@@ -62,7 +62,7 @@
                     <div class="clear"></div>
 
                     <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-                        <input name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                        <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
                                data-ng-click="chooseTherapeuticArea(therapeuticArea)">
                         <span data-ng-bind="therapeuticArea.title"></span>
                     </label>
@@ -87,7 +87,7 @@
                         <span class="trialLogoImage">
                             <!-- <img ngf-thumbnail="/trialInfoImage/{{trial.id}}" class="thumb" data-ng-click="toggleTrialInfoDisplay()">-->
                             <img data-ng-src="/trialInfoImage/{{trial.id}}">
-                            <button type="button" class="btn btn-remove">Remove Logo</button>
+                            <button id="btn_removeLogo" type="button" class="btn btn-remove">Remove Logo</button>
                         </span>
                 </div>
 
@@ -164,10 +164,10 @@
                     <!-- Trial Facility Image REMOVE -->
                     <div class="form-group">
                         <span>
-                            <img ngf-thumbnail="trialSite.sitePic" class="thumb"
+                            <img data-ngf-thumbnail="trialSite.sitePic" class="thumb"
                                  data-ng-click="toggleTrialSiteDisplay(trialSite)">
                         </span>
-                        <button type="button" class="btn btn-remove" style="float:right;clear:both">
+                        <button id="btn_removeImage" type="button" class="btn btn-remove" style="float:right;clear:both">
                             Remove Image
                         </button>
                     </div>

@@ -13,7 +13,7 @@
 
         <div class="answers" data-ng-if="therapeuticAreas.length<=4">
             <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-                <input id="inp_therapeuticAreaSelection{{therapeuticArea.id}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
                        data-ng-click="chooseTherapeuticArea(therapeuticArea)">
                 <span data-ng-bind="therapeuticArea.title"></span>
             </label>
@@ -22,7 +22,7 @@
         <div class="answers" data-ng-if="therapeuticAreas.length>=5">
             <div class="option-list">
                 <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-                    <input id="inp_therapeuticAreaSelection{{therapeuticArea.id}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                    <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
                            data-ng-click="chooseTherapeuticArea(therapeuticArea)">
                     <span data-ng-bind="therapeuticArea.title"></span>
                 </label>

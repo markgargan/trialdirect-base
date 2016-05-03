@@ -18,7 +18,7 @@
 			<!--
 			<div class="answers trialTitle" style="float:right">
 				<label>
-					<input id="inp_therapeuticArea{{therapeuticArea.id}}" type="radio" data-ng-checked="user">
+					<input id="inp_therapeuticArea_{{therapeuticArea.sortOrder}}" type="radio" data-ng-checked="user">
 					<span data-ng-bind="user.therapeuticArea.title"></span>
 				</label>
 			</div>
@@ -33,7 +33,7 @@
 				</div>
 				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
 					<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-						<input id="inp_answer{{answer.id}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+						<input id="inp_answer_{{answer.sortOrder}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
 							   data-ng-model="answer.isSelected"/>
 						<span data-ng-bind="answer.answerText"></span>
 					</label>
@@ -42,7 +42,7 @@
 				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
 					<div class="option-list">
 						<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-							<input id="inp_answer{{answer.id}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+							<input id="inp_answer_{{answer.sortOrder}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
 								   data-ng-model="answer.isSelected"/>
 							<span data-ng-bind="answer.answerText"></span>
 						</label>
