@@ -31,10 +31,6 @@ angular.module('uiRouterSample.trial', [
                             }
                         }
                     })
-                    .state('trials.list', {
-                        url: '',
-                        templateUrl:'app/trials/views/trials.create.html'
-                    })
                     .state('trials.edit', {
                         url: '/edit/{trialId:[0-9]{1,4}}',
                         views: {

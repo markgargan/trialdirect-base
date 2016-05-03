@@ -1,4 +1,4 @@
-INSERT INTO `trialsite` (`siteDirector`, `address1`, `address2`, `address3`, `address4`, `address5`, `country`, `trialInfo_id`) VALUES
+INSERT INTO `trialsite` (`facilityName`, `address1`, `address2`, `address3`, `address4`, `address5`, `country`, `trialInfo_id`) VALUES
 ('University of Minnesota', '420 Delaware Street South East', '', '', 'Minneapolis', '55455', 'United States of America', 1),
 ('The Univeristy Of Texas Southwestern Medical Center At Dallas', '6000 Harry Hines Blvd.', '', '', 'Dallas', '75390', 'United States of America', 1),
 ('Sutter Cancer Center', '1020 29th Street', '', '', 'Sacramento', '95816', 'United States of America', 1),

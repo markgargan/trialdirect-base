@@ -23,6 +23,10 @@ body {
     float: right;
 }
 
+span.save-trial {
+    float:right;
+    padding: 10px 0;
+}
 textarea {
     width: 100%;
     border: 1px solid #ccc;

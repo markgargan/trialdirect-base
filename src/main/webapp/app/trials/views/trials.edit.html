@@ -1,11 +1,20 @@
 <div class="col-xs-9">
+
     <div>
-        <h2>Edit Trial</h2>
+        <h2 style="display:inline-block">{{trial.title}}</h2>
+        <span class="save-trial answers">
+            <label for="input_save_trial">
+                <input id="input_save_trial" type="radio" checked=checked data-ng-click="saveTrial(trial)">
+                <span>Save Trial</span>
+            </label>
+        </span>
     </div>
+
+    <div class="clear"></div>
 
     <form id="myForm" name="myForm">
 
-        <div class="form-group col-xs-3" style="paddidata-ng-left:0">
+        <div class="form-group col-xs-3">
 
             <!-- Edit Trial Information -->
             <div class="simplePanel" data-ng-click="showSiteForm()">

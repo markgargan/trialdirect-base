@@ -109,8 +109,8 @@ public class FileUploadController {
 //            if (trialInfoBucket.getTrialSites() != null) {
 //                for (TrialSiteBucket trialSiteBucket : trialInfoBucket.getTrialSites()) {
 //                    TrialSite trialSite = new TrialSite(trialInfo,
-//                            trialSiteBucket.getSiteDirector(),
-//                            trialSiteBucket.getSiteDirector(),
+//                            trialSiteBucket.getFacilityName(),
+//                            trialSiteBucket.getFacilityName(),
 //                            trialSiteBucket.getSiteSummary(),
 //                            trialSiteBucket.getSiteMap()
 //                    );

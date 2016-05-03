@@ -80,7 +80,7 @@
 						-->
 						<p>
 
-							<strong>{{trialSite.siteDirector}}</strong><br>
+							<strong>{{trialSite.facilityName}}</strong><br>
 						<small>
 							<span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
 							<span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
@@ -102,7 +102,7 @@
 
 			<div class="trialLeadersContainer"  ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)" ng-show="site.showBio">
 
-				<h3>{{site.siteDirector}}</h3>
+				<h3>{{site.facilityName}}</h3>
 
 				<div class="simplePanel">
 
@@ -113,7 +113,7 @@
 							<p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{site.id}}')"></p>
 							-->
 							<p>
-								<strong>{{site.siteDirector}}</strong><br>
+								<strong>{{site.facilityName}}</strong><br>
 								{{site.trialDirectAddress.address1}}
 								{{site.trialDirectAddress.address2}}
 								{{site.trialDirectAddress.address3}}
@@ -121,7 +121,7 @@
 								{{site.trialDirectAddress.address5}}
 							</p>
 
-							<p ng-bind="site.siteDirectorBio"></p>
+							<p ng-bind="site.facilityDescription"></p>
 							<div class="clear"></div>
 						</div>
 					</div>
@@ -162,8 +162,8 @@
 					<div class="trialDirectorList">
 						<div class="trialSiteOptions" ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)">
 							<p><span class="trialSiteImage"><img ng-src="/trialSiteImage/{{site.id}}"></span>
-								<strong>{{site.siteDirector}}</strong></p>
-							<p ng-show="site.showBio" ng-bind="site.siteDirectorBio"></p>
+								<strong>{{site.facilityName}}</strong></p>
+							<p ng-show="site.showBio" ng-bind="site.facilityDescription"></p>
 							<div class="clear"></div>
 						</div>
 					</div>

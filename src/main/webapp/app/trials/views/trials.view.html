@@ -5,7 +5,8 @@
             <label class="nav-header new-group-label">Add new Clinical Trial</label>
             <ul class="nav nav-list">
                 <!-- <li class="nav-header">Add new Clinical Trial</li> -->
-                <li data-ng-class="{ active: $state.includes('trials.list') }"><a ui-sref="trials.list">Create Clinical Trial</a></li>
+                <li data-ng-class="{ active: $state.includes('trials.edit') }">
+                    <a ui-sref="trials.edit">Create Clinical Trial</a></li>
             </ul>
         </div>
 
