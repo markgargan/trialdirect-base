@@ -1,0 +1,130 @@
+*** Settings ***
+Documentation
+...
+Test Teardown  Test Teardown
+Force Tags  3.2.16
+Library  Selenium2Library
+
+*** Variables ***
+${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/therapeuticareas
+${BROWSER}        Firefox
+
+
+*** Test Cases ***
+3.2.16.1 As a Content Editor, I want to add a question set for therapeutic area and disease
+    [Documentation]   As a Content Editor, I want to add a question set for therapeutic area and disease
+    [Tags]  3.2.16.1
+    [Setup]  Test setup for Therapeutic Areas
+    #Given I as Content Editor
+    And Therapeutic Area Page Should Be Open
+    Then I want to create a new therapeutic area
+    Then I want to be able to add a set of questions for that therapeutic area
+    And screenshot is taken for 3.2.16.1
+
+3.2.16.5 As a Content Editor, I want to be able to add delete a question
+    [Documentation]  As a Content Editor, I want to be able to add delete a question
+    [Tags]  3.2.16.5
+    [Setup]  Test setup for Therapeutic Areas
+    #Give I as Content Editor
+    And Therapeutic Area Page Should Be Open
+    Then I want to select previously created therapeutic area
+    And Delete existing question
+    And screenshot is taken for 3.2.16.5
+
+3.2.16.6 As a Content Editor, I want to be able to delete an answer option
+    [Documentation]  As a Content Editor, I want to be able to delete an answer option
+    [Tags]  3.2.16.6
+    [Setup]  test setup for therapeutic areas
+    #Give I as Content Editor
+    And Therapeutic Area Page Should Be Open
+    Then I want to select previously created therapeutic area
+    And Delete existing answer
+    And screenshot is taken for 3.2.16.6
+
+
+*** Keywords ***
+Test setup for Therapeutic Areas
+    open browser  ${SERVER}    ${BROWSER}
+    set browser implicit wait  15
+    Set Selenium Implicit Wait    20
+    delete all cookies
+    maximize browser window
+    sleep  5s
+    reload page
+
+Test Teardown
+    sleep  5s
+    close all browsers
+
+
+*** Keywords ***
+I as Content Editor
+#
+Therapeutic Area Page Should Be Open
+    title should be  Trial Direct
+I want to create a new therapeutic area
+    wait until page contains element  //*[@id='inp_newTherapeuticAreaInput']
+    input text  //*[@id='inp_newTherapeuticAreaInput']    Diabetes
+    click element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[1]/form/div/span
+    sleep  2s
+I want to be able to add a set of questions for that therapeutic area
+    wait until page contains element  //*[@id='inp_newQuestion']
+    input text  //*[@id='inp_newQuestion']    Type of diabetes
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[3]/span
+    wait until page contains element  //*[@id='inp_newAnswer_']
+    input text  //*[@id='inp_newAnswer_']    Type 1
+    sleep  1s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div/div/div[2]/div/span
+    wait until page contains element  //*[@id='inp_newAnswer_']
+    input text  //*[@id='inp_newAnswer_']    Type 2
+    sleep  1s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div/div/div[2]/div/span
+    wait until page contains element  //*[@id='inp_newQuestion']
+    input text  //*[@id='inp_newQuestion']    Your age
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[3]/span
+    sleep  1s
+    wait until page contains element  //*[@id='inp_newAnswer_']
+    input text  //*[@id='inp_newAnswer_']    0-18
+    sleep  1s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
+    wait until page contains element  //*[@id='inp_newAnswer_']
+    input text  //*[@id='inp_newAnswer_']    19-35
+    sleep  1s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
+    wait until page contains element  //*[@id='inp_newAnswer_']
+    input text  //*[@id='inp_newAnswer_']    36-69
+    sleep  1s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
+    wait until page contains element  //*[@id='inp_newAnswer_']
+    input text  //*[@id='inp_newAnswer_']    70+
+    sleep  1s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
+screenshot is taken for 3.2.16.1
+    capture page screenshot  file=3.2.16.png
+I want to select previously created therapeutic area
+    wait until page contains element  //*[@id='lnk_therapeuticArea_1']
+    click element  //*[@id='lnk_therapeuticArea_1']
+    sleep  1s
+Delete existing question
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[1]/button
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[1]/button
+    sleep  1s
+screenshot is taken for 3.2.16.5
+    capture page screenshot  file=3.2.16.5.png
+Delete existing answer
+    wait until page contains element  //*[@id='btn_removeAnswer_1']
+    sleep  1s
+    click element  //*[@id='btn_removeAnswer_1']
+    sleep  1s
+screenshot is taken for 3.2.16.6
+    capture page screenshot  file=3.2.16.6.png
+
+
+
+
+
+
+
+
+
+
