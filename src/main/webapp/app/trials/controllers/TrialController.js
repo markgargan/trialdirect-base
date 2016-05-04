@@ -3,15 +3,22 @@ angular.module('trialdirect').controller('TrialController',
         'therapeuticAreas',
         function ($scope, $state, $timeout, Upload, TrialResourceService, TrialInfo, trials, therapeuticAreas ) {
 
-            $scope.trials = trials;
+            // Initialize the model
+            $scope.trial={
+                trialInfo:{
+                    trialSites:[]
+                }
+            };
 
-            $scope.newTrial={};
+            $scope.trials = trials;
 
             $scope.therapeuticAreas = therapeuticAreas;
 
             $scope.wasSaved = false;
 
             $scope.editingTrialInfo = true;
+
+            $scope.editingTrialSite = false;
 
             $scope.addTrial = function (newTrial, callback) {
                 new TrialResourceService({
@@ -22,11 +29,11 @@ angular.module('trialdirect').controller('TrialController',
                     $scope.trials.unshift(savedTrial);
 
                     // Update the savedTrial with the trialInfo to be saved.
-                    savedTrial.trialInfo = $scope.newTrial.trialInfo;
-                    savedTrial.therapeuticArea= $scope.newTrial.therapeuticArea;
-                    $scope.newTrial = savedTrial;
+                    savedTrial.trialInfo = $scope.trial.trialInfo;
+                    savedTrial.therapeuticArea= $scope.trial.therapeuticArea;
+                    $scope.trial = savedTrial;
 
-                    callback && callback($scope.newTrial);
+                    callback && callback($scope.trial);
 
                     $scope.wasSaved = true;
                 });
@@ -36,17 +43,31 @@ angular.module('trialdirect').controller('TrialController',
 
             $scope.initializeTrialSite = function() {
 
-                var trialInfo = $scope.newTrial.trialInfo;
+                if (!$scope.trial.trialInfo) {
+                    $scope.trial.trialInfo={};
+                }
+
+                var trialInfo = $scope.trial.trialInfo;
 
                 if (!trialInfo.trialSites) {
                     trialInfo.trialSites = [];
                 }
 
                 var newTrialSite = {
-                    isEditing : true
+                    // temporaryId solely used for view purposes
+                    // stripped out before persisting to the backend.
+                    id:trialInfo.trialSites.length + 1
                 };
 
+                $scope.editingTrialSite = true;
+
                 trialInfo.trialSites.unshift(newTrialSite);
+
+                $scope.showSiteForm(trialInfo.trialSites.length);
+            };
+
+            $scope.showSiteForm = function (trialSiteId) {
+                $scope.trialSiteId = trialSiteId;
             };
 
             $scope.reset = function() {
@@ -62,7 +83,7 @@ angular.module('trialdirect').controller('TrialController',
             $scope.reset();
 
             $scope.chooseTherapeuticArea = function(therapeuticArea) {
-                $scope.newTrial.therapeuticArea = therapeuticArea;
+                $scope.trial.therapeuticArea = therapeuticArea;
             };
 
             $scope.createTrialInfo = function(trial) {
@@ -132,12 +153,4 @@ angular.module('trialdirect').controller('TrialController',
             };
 
         }
-    ])
-    /*.filter('highlight', function($sce) {
-        return function(text, phrase) {
-            if (phrase) text = text.replace(new RegExp('('+phrase+')', 'gi'),
-                '<span class="highlighted">$1</span>')
-
-            return $sce.trustAsHtml(text)
-        }
-    })*/;
+    ]);

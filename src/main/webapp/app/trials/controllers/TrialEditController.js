@@ -48,12 +48,6 @@ angular.module('trialdirect').controller('TrialEditController',
                 });
             });
 
-            $scope.setEditing = function (isEditing) {
-                $scope.trialTitle = $scope.trial.title + (isEditing?' *':'');
-                $scope.isEditing = isEditing;
-            };
-
-
             $scope.showSiteForm = function (trialSiteId) {
                 $scope.trialSiteId = trialSiteId;
             };
