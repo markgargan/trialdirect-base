@@ -32,7 +32,7 @@
 					<div class="clear"></div>
 				</div>
 				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
-					<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+					<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
 						<input id="inp_answer_{{answer.sortOrder}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
 							   data-ng-model="answer.isSelected"/>
 						<span data-ng-bind="answer.answerText"></span>
@@ -41,7 +41,7 @@
 
 				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
 					<div class="option-list">
-						<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+						<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
 							<input id="inp_answer_{{answer.sortOrder}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
 								   data-ng-model="answer.isSelected"/>
 							<span data-ng-bind="answer.answerText"></span>
@@ -154,39 +154,6 @@
 
 
 			<div class="clear"></div>
-
-			<!--
-			<div class="trialSiteList">
-				<h3>Available Locations</h3>
-				<div class="simplePanel">
-					<div class="trialDirectorList">
-						<div class="trialSiteOptions" data-ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" data-ng-click="toggleBio(site, trialData)">
-							<p><span class="trialSiteImage"><img data-ng-src="/trialSiteImage/{{site.id}}"></span>
-								<strong>{{site.siteDirector}}</strong></p>
-							<p data-ng-show="site.showBio" data-ng-bind="site.siteDirectorBio"></p>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="trialSiteLocation">
-				<h3>Trial Location Details</h3>
-				<div class="simplePanel">
-					<p>
-						<strong>Memorial Sloan Kettering Center</strong><br>
-						New York, New York, United States, 10065<br>
-						Contact: Kenneth Offit, MD 646-888-4067<br>
-						Principal Investigator: Thomas Haak, MD
-					</p>
-
-
-					<iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
-
-					<div class="clear"></div>
-				</div>
-			</div>
-			-->
 
 
 			<h3>About The Trial</h3>

@@ -5,7 +5,7 @@
             <label class="nav-header new-group-label">Add new Clinical Trial</label>
             <ul class="nav nav-list">
                 <!-- <li class="nav-header">Add new Clinical Trial</li> -->
-                <li data-ng-class="{ active: $state.includes('trials.list') }"><a data-ui-sref="trials.list">Create Clinical Trial</a></li>
+                <li data-ng-class="{ active: $state.includes('trials.list') }"><a data-ui-sref="trials.list" id="lnk_addNewTrial">Create Clinical Trial</a></li>
             </ul>
         </div>
 
@@ -16,7 +16,7 @@
                      AND if it is the link for the active contact (aka contactId) -->
                 <li data-ng-repeat="trial in trials " data-ui-sref-active="active">
                     <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                    <a data-ui-sref="trials.detail({trialId:trial.id})">{{trial.title}}</a>
+                    <a data-ui-sref="trials.detail({trialId:trial.id})" id="lnk_trialDetail_{{trial.id}}">{{trial.title}}</a>
                 </li>
             </ul>
         </div>
@@ -29,7 +29,7 @@
                      AND if it is the link for the active contact (aka contactId) -->
                 <li data-ng-repeat="trial in trials " data-ui-sref-active="active">
                     <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                    <a data-ui-sref="trials.edit({trialId:trial.id})">{{trial.title}}</a>
+                    <a data-ui-sref="trials.edit({trialId:trial.id})" id="lnk_trialEdit_{{trial.id}}">{{trial.title}}</a>
                 </li>
             </ul>
         </div>

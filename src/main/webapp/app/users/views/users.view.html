@@ -5,7 +5,7 @@
             <!-- <p><strong>Start New Search</strong></p> -->
             <label class="nav-header new-group-label">New Search</label>
             <ul class="nav nav-list">
-                <li data-ng-class="{ active: $state.includes('users.list') }"><a data-ui-sref="users.list">Start New Search</a></li>
+                <li data-ng-class="{ active: $state.includes('users.list') }"><a data-ui-sref="users.list" id="lnk_startNewSearch">Start New Search</a></li>
             </ul>
         </div>
 
@@ -17,7 +17,7 @@
                      AND if it is the link for the active contact (aka contactId) -->
                 <li data-ng-repeat="user in users " data-ui-sref-active="active">
                     <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                    <a data-ui-sref="users.detail({userId:user.id})">{{user.pseudonym}}</a>
+                    <a data-ui-sref="users.detail({userId:user.id})" id="lnk_savedSearch_{{user.id}}">{{user.pseudonym}}</a>
                 </li>
             </ul>
 

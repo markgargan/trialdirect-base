@@ -29,7 +29,7 @@
                 <li data-ng-repeat="therapeuticArea in therapeuticAreas " data-ui-sref-active="active">
 
                     <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                    <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})">{{therapeuticArea.title}}</a>
+                    <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})" id="lnk_therapeuticArea_{{therapeuticArea.sortOrder}}">{{therapeuticArea.title}}</a>
                 </li>
             </ul>
         </div>

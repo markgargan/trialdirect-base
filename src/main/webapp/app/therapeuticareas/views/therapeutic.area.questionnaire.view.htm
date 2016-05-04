@@ -56,7 +56,7 @@
 
                         <div id="horizontal-container" class="answer-container" data-as-sortable="sortableOptionsHorizontal"
                              data-ng-model="questionnaireEntry.answers._embeddedItems">
-                            <div data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems" data-as-sortable-item
+                            <div data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'" data-as-sortable-item
                                  class="as-sortable-item">
                                 <div data-as-sortable-item-handle>
                                     <span class="answerText" data-ng-bind="answer.answerText"></span>
@@ -75,7 +75,7 @@
                         <div class="option-list">
                             <button id="btn_removeAnswer_{{answer.sortOrder}}"  class="left btn btn-remove" type="button" title="Delete"
                                     data-ng-click="deleteAnswer(questionnaireEntry, answer)"
-                                    data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                                    data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
                                 {{answer.answerText}} <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>

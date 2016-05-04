@@ -9,7 +9,7 @@
         <h1>Criteria options for <strong>"<span data-ng-class="{isEditing: isEditing}" data-ng-bind="trialTitle"></span>"</strong></h1>
         <p class="noTopPad">For each question below, select all options that are acceptable to your trial criteria.</p>
 
-            <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
+            <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'sortOrder'">
                 <div class="question">
                     <p data-ng-bind="questionnaireEntry.question.questionText"></p>
                     <div class="clear"></div>
@@ -19,7 +19,7 @@
 
 
                     <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
-                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
                             <input id="inp_answer_{{answer.sortOrder}}" type="checkbox"
                                    data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
                                    data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
@@ -34,7 +34,7 @@
 
                     <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
                         <div class="option-list slim">
-                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
                             <input id="inp_answer_{{answer.sortOrder}}" type="checkbox"
                                    data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
                                    data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
