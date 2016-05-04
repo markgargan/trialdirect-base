@@ -1,6 +1,6 @@
 body {
     font-family: "Open Sans", sans-serif;
-    background: #fafafa
+/*    background: #fafafa*/
 }
 
 /**
@@ -8,17 +8,27 @@ body {
 **/
 
 #myForm {
-    width: 54%;
+
 }
 
 #myForm label {
   display: inline-block;
   text-align: right;
+  font-size: .9em;
+  font-weight: bold;
 }
 
 #myForm input {
     /* line-height:1em; */
     float: right;
+}
+
+textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+    height: 8em;
+    margin: 0;
 }
 
 #myForm img{
@@ -121,7 +131,6 @@ div.list-answers {
 
 .nav li > a {
     outline: 0;
-    color: #00857f;
     text-decoration: none;
 }
 
@@ -202,7 +211,7 @@ body.trialDirect {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-    padding: 0 0 1em;
+    padding: 12px 0;
     margin: 0;
 }
 
@@ -251,9 +260,10 @@ button, input, label, textarea {
 }
 
 button {
-    /* float: right; */
-    /* margin: 1em 0; */
+    /*float: right;*/
+    /*margin: 0 0 2em 0;*/
     /* padding: .25em 1em; */
+    /*clear: both;*/
 }
 
 form.small, form.wide {
@@ -383,7 +393,7 @@ main {
 .limiter {
     margin: auto;
     width: 92.5%;
-    max-width: 100em;
+    max-width: 125em;
     min-width: 16em
 }
 
@@ -449,9 +459,7 @@ main {
     border-color: #666
 }
 
-.admin, .admin a, .admin a:active, .admin a:hover {
-    color: #fff
-}
+
 
 a[href="#top"] {
     position: fixed;
@@ -499,9 +507,6 @@ a[href="#top"] span {
 }
 
 
-.topNav1 .active a {
-    font-weight: bold
-}
 
 .nav a, .trialIntro span {
     -webkit-transition: all .2s ease;
@@ -518,13 +523,27 @@ a[href="#top"] span {
     transition: all .2s ease
 }
 
+.topNav1 a {
+    padding: .5em 1em;
+    border-bottom: 2px solid #fff;
+}
+.topNav1 .active a {
+    border-bottom-color: #00857f;
+}
+
 .admin {
     text-align: right;
-    background: #00857f
+    background: #00857f;
+    padding:.5em 0;
 }
 
 .admin a {
-    transition: color .2s ease
+    transition: color .2s ease;
+    padding: .25em 1em;
+}
+
+.admin, .admin a, .admin a:active, .admin a:hover {
+    color: #fff
 }
 
 .footer {
@@ -651,6 +670,14 @@ td, th {
     width: 20%;
     display: block;
 }
+.trialLogoImage {
+    display: block;
+    width: 50%;
+    min-width:10em;
+    margin: 0 auto 1em;
+    text-align: center;
+}
+.trialLogoImage .btn-remove {margin-left:0;}
 .trialResults {
 /*    margin-bottom: 40em !important;*/
     margin-top: 1em !important;
@@ -715,6 +742,7 @@ td, th {
 
 }
 
+/*
 .trialSiteList {
     display: block;
     float: left;
@@ -730,6 +758,75 @@ td, th {
     max-height: 350px;
     overflow-x: auto;
     padding-right: .5em;
+}*/
+
+.trialLeaderList {
+    text-align:center
+}
+.trialLeader {
+    display: inline-block;
+    width: 25%;
+    cursor: pointer;
+}
+.trialLeader p {
+    padding:0;
+    line-height: 1;
+}
+.trialLeaderImage {
+    display: block;
+    width: 6em;
+    height: 6em;
+    overflow: hidden;
+    margin:0 auto .5em;
+    border-radius: 50%;
+    box-shadow:0 0 .15em #ccc;
+    border:3px solid #fff;
+    background-color: #eee;
+    background-size: cover;
+    background-position: center top;
+}
+.trialLeaderBio .trialLeaderImage {
+    float: right;
+    margin-left: .75em;
+    width: 9em;
+    height: 9em;
+    border-radius: 0;
+}
+
+.trialLeaderSelect {
+    padding-bottom:1em;
+    cursor: pointer;
+}
+.trialLeaderName {
+    padding: 1.25em 0;
+}
+
+.trialLeaderSelect .trialLeaderImage {
+    float: right;
+    margin-left: .75em;
+    width: 9em;
+    height: 9em;
+    border-radius: 0;
+}
+
+.trialLeaderImage.small{
+    width: 5em;
+    height:5em;
+}
+.trialLeaderBio {
+    display: block;
+    float: left;
+    width:49%;
+}
+.col-xs-3 .trialLeaderBio {
+    float: none;
+    width: auto;
+}
+
+
+select, input[type="file"] {
+    height:auto;
+    line-height: normal;
 }
 
 .trialBio {
@@ -748,6 +845,7 @@ td, th {
     text-align: left;
 }
 
+/*
 .trialSiteOptions {
     display: block;
     background: #fafafa;
@@ -759,7 +857,7 @@ td, th {
 .trialSiteOptions:hover, .trialSiteOptions:active {
     background: #fff;
 }
-.trialSiteOptions p {padding: 0}
+.trialSiteOptions p {padding: 0}*/
 
 .trialIntro
     span.doc1 {;
