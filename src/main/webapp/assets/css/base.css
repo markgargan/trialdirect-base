@@ -798,9 +798,12 @@ p {
 .answer-container .btn-remove {
     border: 0;
     box-shadow: none;
-    background: #eee;
+    background: #ddd;
     margin: 0 0 0 1em;
     padding: .5em .75em;
+}
+.answer-container .btn-remove:hover {
+    background: #ccc;
 }
 
 .answer-container .answerText {
@@ -1202,9 +1205,6 @@ max-width: 1200px) {
 
 @media screen and (
 max-width: 900px) {
-    body {
-        font-size: .9em;
-    }
 
     .trialInfo, .trialIntro, .trialLocation, .trialResults, .trialRight, .trialSearch {
         float: none;
