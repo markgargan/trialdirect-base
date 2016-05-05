@@ -3,6 +3,10 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
         function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries, TherapeuticAreaResourceService ) {
 
 
+            /*
+
+            // used for sortable items demo, but can be dropped
+
             $scope.items = [{
                 name: 'Element 1'
             }, {
@@ -24,10 +28,13 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
             $scope.$watch('items', function () {
                 console.log(arguments);
             });
+            */
 
             $scope.sortableOptions = {
                 containment: '#sortable-container',
+                // restrict movement to within container.
                 accept: function (sourceItemHandleScope, destSortableScope) {
+                    //console.log('Question moved: ' + sourceItemHandleScope.$id +' - '+ destSortableScope.$id);
                     return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
                 }
             };
@@ -35,8 +42,9 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
 
             $scope.sortableOptionsHorizontal = {
                 containment: '#horizontal-container',
-                // restrict move across columns. move only within column.
+                // restrict movement to within container.
                 accept: function (sourceItemHandleScope, destSortableScope) {
+                    //console.log('Answer moved: ' + sourceItemHandleScope.$id +' - '+ destSortableScope.$id);
                     return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
                 }
             };
