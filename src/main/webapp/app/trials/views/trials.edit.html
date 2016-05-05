@@ -4,7 +4,7 @@
         <h2 style="display:inline-block">{{trial.title}}</h2>
         <span class="trial-edit-buttons answers">
             <label for="input_save_trial">
-                <input id="input_save_trial" type="radio" checked=checked data-ng-click="uploadTrial(trial.trialInfo.trialLogoPic, newTrial)">
+                <input id="input_save_trial" type="radio" checked=checked data-ng-click="uploadTrial(trial)">
                 <span>Save Trial</span>
             </label>
         </span>
@@ -26,7 +26,7 @@
             <div class="simplePanel" data-ng-click="showSiteForm()">
                 <h3>Trial Information</h3>
                 <p class="edTrial">Edit Trial Information</p>
-            </div>
+            </div>›
 
             <!-- Trial Sites List -->
             <div class="simplePanel">
@@ -107,9 +107,21 @@
                     <label>Trial Image/Logo</label>
 
                         <span class="trialLogoImage">
-                            <!-- <img ngf-thumbnail="/trialInfoImage/{{trial.id}}" class="thumb" data-ng-click="toggleTrialInfoDisplay()">-->
-                            <img data-ng-src="/trialInfoImage/{{trial.id}}">
-                            <button type="button" class="btn btn-remove">Remove Logo</button>
+                            <input id="trialLogo" type="file" ngf-select ng-model="trial.trialInfo.trialLogoPic" name="file"
+                                   accept="image/*" ngf-max-size="2MB" required ng-change="toggleTrialInfoDisplay()"
+                                   ngf-model-invalid="errorFile" ng-show="isLogoAssociatedWithTrialInfo()">
+
+                            <i ng-show="trial.trialInfo.trialLogoPic.$error.required">*</i>
+                            <i ng-show="trial.trialInfo.trialLogoPic.$error.maxSize">File too large
+                                {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                            <!-- If the model contains the trialLogoPic bytes then the user has just re-uploaded an image or else they've uploaded it for
+                                 the first time
+                                  Therefore because we don't save the image until later we can't reference /trialInfoImage/{{trial.id}}
+                                  as the src to the image as it hasn't been saved/updated
+                                  -->
+                            <img ngf-thumbnail="trial.trialInfo.trialLogoPic" class="thumb" ng-click="toggleTrialInfoDisplay()" ng-if="trial.trialInfo.trialLogoPic">
+                            <img data-ng-src="/trialInfoImage/{{trial.id}}" ng-if="!trial.trialInfo.trialLogoPic && trial.id">
+                            <button ng-click="trial.trialInfo.trialLogoPic = null;" ng-show="trial.trialInfo.trialLogoPic">Remove Logo</button>
                         </span>
                 </div>
 

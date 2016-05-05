@@ -38,7 +38,7 @@ angular.module('trialdirect').controller('TrialController',
                     $scope.wasSaved = true;
                 });
 
-                $scope.reset();
+                //$scope.reset();
             };
 
             $scope.initializeTrialSite = function() {
@@ -119,10 +119,12 @@ angular.module('trialdirect').controller('TrialController',
 
             };
 
-            $scope.uploadTrial = function (file, trial) {
+            $scope.uploadTrial = function ( trial) {
+
+                file = trial.trialInfo.trialLogoPic;
 
                 // Firstly create the Trial Object
-                $scope.addTrial(trial, function(savedTrial) {
+                $scope.addTrial(trial, function(savedTrial, file) {
 
                     file.upload = Upload.upload({
                         url: '/uploadTrialInfo',
@@ -150,6 +152,21 @@ angular.module('trialdirect').controller('TrialController',
 
             $scope.toggleTrialSiteDisplay = function (trialSite) {
                 trialSite.isEditing = !trialSite.isEditing;
+            };
+
+            /**
+             * If the trial has an id then it is a previously saved trial
+             * therefore
+             */
+            $scope.isLogoAssociatedWithTrialInfo = function() {
+                if ($scope.trial.id) {
+                    // then it's a previous trial
+                    // has the user clicked to upload a different image
+                    return $scope.trial.trialInfo.trialLogoPic;
+                } else {
+                    // It's a new trial
+                }
+
             };
 
         }
