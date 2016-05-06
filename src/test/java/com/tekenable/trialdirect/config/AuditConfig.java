@@ -1,6 +1,8 @@
 package com.tekenable.trialdirect.config;
 
 import com.tekenable.config.AuditConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +17,8 @@ import java.util.Properties;
 @Configuration
 public class AuditConfig {
 
+    public static final Logger log = LoggerFactory.getLogger(AuditConfigurator.class);
+
     @Value("classpath:AuditConfigDb.properties")
     private Resource localDbProps;
 
@@ -26,6 +30,9 @@ public class AuditConfig {
         try {
             dbProps.load(localDbProps.getInputStream());
         } catch (IOException e) {
+
+            log.error("***********Please ensure that AuditConfigDb.properties file exists " +
+                    "and contains your local database connection details*********");
             throw new IOException("Cannot load local database properties, " +
                                   "please ensure that AuditConfigDb.properties file exists " +
                                   "and contains your local database connection details");
