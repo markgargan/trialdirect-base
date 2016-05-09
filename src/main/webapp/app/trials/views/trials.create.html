@@ -14,7 +14,6 @@
 
     <div class="list-text input-group">
         <input id="trialInput" type="text" class="form-control"
-               data-ng-disabled="!trial.therapeuticArea"
                ng-model="trial.title" placeholder="e.g. Acme Trial"/>
         <span id="create-trial-span" class="input-group-btn">
             <button id="add-trial-button" class="btn btn-default" type="button"
@@ -26,7 +25,7 @@
 </form>
 
 
-<form id="myForm" name="myForm" ng-hide="!trial.editing">
+<form id="trialForm" name="trial" ng-hide="!trial.editing">
     <fieldset>
         <!-- ----------------- -->
         <!-- Trial Info Start  -->

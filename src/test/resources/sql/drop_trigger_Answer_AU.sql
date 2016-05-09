@@ -1,0 +1,1 @@
+drop trigger if exists Answer_AU

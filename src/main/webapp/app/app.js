@@ -38,3 +38,7 @@ angular.module('trialdirect', [
                 $scope.IsHidden = !$scope.IsHidden
             }
     });
+
+angular.isEmpty = function(obj){
+  return angular.isUndefined(obj) || obj=='';
+};

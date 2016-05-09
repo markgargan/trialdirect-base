@@ -3,6 +3,10 @@ body {
     /*    background: #fafafa*/
 }
 
+.errors {
+    color:red;
+    font-style:italic;
+}
 /**
  Integration start
 **/
@@ -1148,7 +1152,8 @@ a:active.more, a:hover.more {
     text-decoration: none;
 }
 
-input.ng-invalid, input.ng-invalid-required {
+input.ng-invalid, input.ng-invalid-required,
+textarea.ng-invalid, textarea.ng-invalid-required {
     border-color: #c00;
 }
 
@@ -1325,4 +1330,7 @@ max-width: 600px) {
         width: auto;
     }
 }
- 
+
+.trialImage{
+    text-align:center;
+}

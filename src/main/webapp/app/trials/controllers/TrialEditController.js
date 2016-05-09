@@ -8,6 +8,8 @@ angular.module('trialdirect').controller('TrialEditController',
 
             $scope.trialInfo = trialInfo;
 
+            $scope.trial.trialInfo = $scope.trialInfo;
+
             $scope.trialTitle = trial.title;
 
             $scope.trial.checked = true;
@@ -47,6 +49,12 @@ angular.module('trialdirect').controller('TrialEditController',
                     }
                 });
             });
+
+            $scope.setEditing = function (isEditing) {
+                $scope.trialTitle = $scope.trial.title + (isEditing?' *':'');
+                $scope.isEditing = isEditing;
+            };
+
 
             $scope.showSiteForm = function (trialSiteId) {
                 $scope.trialSiteId = trialSiteId;

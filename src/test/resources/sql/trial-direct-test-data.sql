@@ -1,27 +1,27 @@
-INSERT INTO `TherapeuticArea` VALUES (1,'Cancer');
+INSERT INTO `TherapeuticArea` VALUES (1, 1, 'Cancer');
 
-INSERT INTO `Answer` VALUES (1,'Stomach');
-INSERT INTO `Answer` VALUES (2,'Skin');
-INSERT INTO `Answer` VALUES (3,'Lungs');
-INSERT INTO `Answer` VALUES (4,'Larynx');
-INSERT INTO `Answer` VALUES (5,'10 or more');
-INSERT INTO `Answer` VALUES (6,'3-5');
-INSERT INTO `Answer` VALUES (7,'5-10');
-INSERT INTO `Answer` VALUES (8,'0-3');
-INSERT INTO `Answer` VALUES (9,'70+');
-INSERT INTO `Answer` VALUES (10,'0-18');
-INSERT INTO `Answer` VALUES (11,'19-35');
-INSERT INTO `Answer` VALUES (12,'35-70');
+INSERT INTO `Answer` VALUES (1, 1, 'Stomach');
+INSERT INTO `Answer` VALUES (2, 2, 'Skin');
+INSERT INTO `Answer` VALUES (3, 3, 'Lungs');
+INSERT INTO `Answer` VALUES (4, 4, 'Larynx');
+INSERT INTO `Answer` VALUES (5, 5, '10 or more');
+INSERT INTO `Answer` VALUES (6, 6, '3-5');
+INSERT INTO `Answer` VALUES (7, 7, '5-10');
+INSERT INTO `Answer` VALUES (8, 8, '0-3');
+INSERT INTO `Answer` VALUES (9, 9, '70+');
+INSERT INTO `Answer` VALUES (10, 10, '0-18');
+INSERT INTO `Answer` VALUES (11, 11, '19-35');
+INSERT INTO `Answer` VALUES (12, 12, '35-70');
 
-INSERT INTO `Question` VALUES (1,'What is the type of your cancer?');
-INSERT INTO `Question` VALUES (2,'What is your age?');
-INSERT INTO `Question` VALUES (3,'How long do you suffer from cancer (in year)?');
+INSERT INTO `Question` VALUES (1, 1, 'What is the type of your cancer?');
+INSERT INTO `Question` VALUES (2, 2, 'What is your age?');
+INSERT INTO `Question` VALUES (3, 3, 'How long do you suffer from cancer (in year)?');
 
 INSERT INTO `QuestionnaireEntry` VALUES (1,1,1);
 INSERT INTO `QuestionnaireEntry` VALUES (2,3,1);
 INSERT INTO `QuestionnaireEntry` VALUES (3,2,1);
 
-INSERT INTO `Trial` VALUES (1,'Cancer Trial',1);
+INSERT INTO `Trial` VALUES (1, 1,'Cancer Trial',1);
 
 INSERT INTO `TrialSelectorQuestionnaireEntry` VALUES (3,1,1,1);
 INSERT INTO `TrialSelectorQuestionnaireEntry` VALUES (8,2,1,1);

@@ -28,8 +28,8 @@ import java.util.Set;
 
 
 @Entity
-@EntityListeners(TrialListener.class)
-public class Trial extends BaseEntity {
+//@EntityListeners(TrialListener.class)
+public class Trial extends SortEntity {
 
     private String title;
 
@@ -45,6 +45,12 @@ public class Trial extends BaseEntity {
     public Trial(String title, TherapeuticArea therapeuticArea) {
         this.title = title;
         this.therapeuticArea = therapeuticArea;
+    }
+
+    public Trial(String title, TherapeuticArea therapeuticArea, Integer sortOrder) {
+        this.title = title;
+        this.therapeuticArea = therapeuticArea;
+        this.sortOrder = sortOrder;
     }
 
     public String getTitle() {
@@ -83,4 +89,5 @@ public class Trial extends BaseEntity {
     public void setTrialInfos(Set<TrialInfo> trialInfos) {
         this.trialInfos = trialInfos;
     }
+
 }

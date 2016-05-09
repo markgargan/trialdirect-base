@@ -1,0 +1,4 @@
+dbName=Local MySQL Trial Direct
+dbUrl=jdbc:mysql://localhost:3306/trialdirect?zeroDateTimeBehavior=convertToNull
+dbUsername=trialdirect
+dbPassword=trialdirect

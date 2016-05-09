@@ -7,7 +7,7 @@ import javax.persistence.*;
  * Created by smoczyna on 17/03/16.
  */
 @Entity
-public class TherapeuticArea extends BaseEntity {
+public class TherapeuticArea extends SortEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +22,11 @@ public class TherapeuticArea extends BaseEntity {
 
     public TherapeuticArea(String title) {
         this.title =title;
+    }
+
+    public TherapeuticArea(String title, Integer sortOrder) {
+        this.title = title;
+        this.sortOrder = sortOrder;
     }
 
     @Column(name = "title")
