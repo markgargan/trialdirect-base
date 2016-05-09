@@ -3,8 +3,15 @@
     <form class="wide">
 
         <div class="setArea">
-            <p>Trial Therapeutic Area: <strong>{{trial.therapeuticArea.title}}</strong></p>
+            <p>Trial Therapeutic Are: <strong>{{trial.therapeuticArea.title}}</strong></p>
         </div>
+
+         <span class="trial-selection-buttons answers">
+            <label for="inp_to_edit">
+                <input id="inp_to_edit" type="radio" data-ng-checked="{{trial.id}}" data-ui-sref="trials.edit({trialId:trial.id})">
+                <span>Edit Information</span>
+            </label>
+        </span>
 
         <h1>Criteria options for <strong>"<span data-ng-class="{isEditing: isEditing}" data-ng-bind="trialTitle"></span>"</strong></h1>
         <p class="noTopPad">For each question below, select all options that are acceptable to your trial criteria.</p>

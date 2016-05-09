@@ -13,12 +13,11 @@
     </div>
 
     <div class="list-text input-group">
-        <input id="newTrialInput" type="text" class="form-control"
-               data-ng-disabled="!newTrial.therapeuticArea"
-               ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
+        <input id="trialInput" type="text" class="form-control"
+               ng-model="trial.title" placeholder="e.g. Acme Trial"/>
         <span id="create-trial-span" class="input-group-btn">
             <button id="add-trial-button" class="btn btn-default" type="button"
-                    ng-disabled="!newTrial.title" title="Add" ng-click="newTrial.editing=true">
+                    ng-disabled="!trial.title" title="Add" ng-click="trial.editing=true">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
         </span>
@@ -26,7 +25,7 @@
 </form>
 
 
-<form id="myForm" name="myForm" ng-hide="!newTrial.editing">
+<form id="trialForm" name="trial" ng-hide="!trial.editing">
     <fieldset>
         <!-- ----------------- -->
         <!-- Trial Info Start  -->
@@ -41,7 +40,7 @@
                     <label for="trialInfo-description">Trial Description</label>
                 <span>
                     <input id="trialInfo-description" type="text" name="trialInfo-description"
-                           ng-model="newTrial.trialInfo.description" size="31" required>
+                           ng-model="trial.trialInfo.description" size="31" required>
                 </span>
 
                 </div>
@@ -52,12 +51,12 @@
             <!-- ----------------- -->
             <div class="form-group">
                 <label for="trialLogo">Trial Logo</label>
-                <input id="trialLogo" type="file" ngf-select ng-model="newTrial.trialInfo.trialLogoPic" name="file"
+                <input id="trialLogo" type="file" ngf-select ng-model="trial.trialInfo.trialLogoPic" name="file"
                        accept="image/*" ngf-max-size="2MB" required ng-change="toggleTrialInfoDisplay()"
                        ngf-model-invalid="errorFile">
 
-                <i ng-show="newTrial.trialInfo.trialLogoPic.$error.required">*</i>
-                <i ng-show="newTrial.trialInfo.trialLogoPic.$error.maxSize">File too large
+                <i ng-show="trial.trialInfo.trialLogoPic.$error.required">*</i>
+                <i ng-show="trial.trialInfo.trialLogoPic.$error.maxSize">File too large
                     {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
             </div>
         </div>
@@ -68,13 +67,13 @@
             <!-- ------------------ -->
             <div>
                 <span ng-show="!editingTrialInfo">
-                    <h4 class="trialInfoDescription" ng-bind="newTrial.trialInfo.description"></h4>
+                    <h4 class="trialInfoDescription" ng-bind="trial.trialInfo.description"></h4>
                 </span>
             </div>
             <span>
-                <img ngf-thumbnail="newTrial.trialInfo.trialLogoPic" class="thumb" ng-click="toggleTrialInfoDisplay()">
+                <img ngf-thumbnail="trial.trialInfo.trialLogoPic" class="thumb" ng-click="toggleTrialInfoDisplay()">
             </span>
-            <button ng-click="newTrial.trialInfo.trialLogoPic = null; editingTrialInfo=true" ng-show="newTrial.trialInfo.trialLogoPic">Remove
+            <button ng-click="trial.trialInfo.trialLogoPic = null; editingTrialInfo=true" ng-show="trial.trialInfo.trialLogoPic">Remove
                 Logo
             </button>
         </div>
@@ -92,7 +91,7 @@
         <!-- --------------------------------------------------- -->
         <!--                    Trial Site Start                 -->
         <!-- --------------------------------------------------- -->
-        <div class="form-group" ng-repeat="trialSite in newTrial.trialInfo.trialSites">
+        <div class="form-group" ng-repeat="trialSite in trial.trialInfo.trialSites">
 
             <div data-td-id="trialSiteEditor{{$index}}" ng-show="trialSite.isEditing">
 
@@ -103,7 +102,7 @@
                     <label for="trial-site-director{{$index}}">Trial Site Director</label>
 
                         <input id="trial-site-director{{$index}}" type="text" name="trial-site-director"
-                               ng-model="trialSite.siteDirector" size="31" required>
+                               ng-model="trialSite.facilityName" size="31" required>
 
                 </div>
 
@@ -181,7 +180,7 @@
         <!-- --------------------------------------------------- -->
 
         <div class="form-group">
-            <button ng-click="uploadTrial(newTrial.trialInfo.trialLogoPic, newTrial)">Upload Trial
+            <button ng-click="uploadTrial(trial.trialInfo.trialLogoPic, trial)">Upload Trial
             </button>
         </div>
 

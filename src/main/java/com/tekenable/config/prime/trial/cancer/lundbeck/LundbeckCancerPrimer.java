@@ -21,17 +21,17 @@ public class LundbeckCancerPrimer extends TrialPrimer{
     /**
      * Dr images
      */
-    @Value("classpath:primer/lundbeck/images/cuddy.jpg") private Resource trialsite1DoctorImage;
-    @Value("classpath:primer/lundbeck/images/house.jpeg") private Resource trialsite2DoctorImage;
-    @Value("classpath:primer/lundbeck/images/foreman.jpg") private Resource trialSite3DoctorImage;
+    @Value("classpath:primer/lundbeck/images/princeton.jpg") private Resource trialSite1SiteImage;
+    @Value("classpath:primer/lundbeck/images/princeton.jpg") private Resource trialSite2SiteImage;
+    @Value("classpath:primer/lundbeck/images/princeton.jpg") private Resource trialSite3SiteImage;
     @Value("classpath:primer/lundbeck/images/trialLogo.gif") private Resource trialLogoImage;
 
     public void initDB() throws IOException {
         super.initDB();
 
-        trialsite1Image = new TrialDirectImage(trialsite1DoctorImage.getFilename(), MediaType.IMAGE_JPEG_VALUE, IOUtils.toByteArray(trialsite1DoctorImage.getInputStream()));
-        trialsite2Image = new TrialDirectImage(trialsite2DoctorImage.getFilename(), MediaType.IMAGE_JPEG_VALUE, IOUtils.toByteArray(trialsite2DoctorImage.getInputStream()));
-        trialsite3Image = new TrialDirectImage(trialSite3DoctorImage.getFilename(), MediaType.IMAGE_JPEG_VALUE, IOUtils.toByteArray(trialSite3DoctorImage.getInputStream()));
+        trialsite1Image = new TrialDirectImage(trialSite1SiteImage.getFilename(), MediaType.IMAGE_JPEG_VALUE, IOUtils.toByteArray(trialSite1SiteImage.getInputStream()));
+        trialsite2Image = new TrialDirectImage(trialSite2SiteImage.getFilename(), MediaType.IMAGE_JPEG_VALUE, IOUtils.toByteArray(trialSite2SiteImage.getInputStream()));
+        trialsite3Image = new TrialDirectImage(trialSite3SiteImage.getFilename(), MediaType.IMAGE_JPEG_VALUE, IOUtils.toByteArray(trialSite3SiteImage.getInputStream()));
         trialLogo = new TrialDirectImage(trialLogoImage.getFilename(), MediaType.IMAGE_GIF_VALUE, IOUtils.toByteArray(trialLogoImage.getInputStream()));
 
         createTrial();
@@ -47,8 +47,9 @@ public class LundbeckCancerPrimer extends TrialPrimer{
     /**
      * Trial Site 1 Info
      */
-    @Value("${lundbeck.trialsite1.director}") protected String trialSite1_director;
-    @Value("${lundbeck.trialsite1.bio}") protected String trialSite1_bio;
+    @Value("${lundbeck.trialsite1.facility.name}") protected String trialSite1_facility_name;
+    @Value("${lundbeck.trialsite1.facility.description}") protected String trialSite1_facility_description;
+    @Value("${lundbeck.trialsite1.principal.investigator}") protected String trialSite1_principal_investigator;
     @Value("${lundbeck.trialsite1.address1}") protected String trialSite1_address1;
     @Value("${lundbeck.trialsite1.address2}") protected String trialSite1_address2;
     @Value("${lundbeck.trialsite1.address3}") protected String trialSite1_address3;
@@ -60,8 +61,9 @@ public class LundbeckCancerPrimer extends TrialPrimer{
     /**
      * Trial Site 2 Info
      */
-    @Value("${lundbeck.trialsite2.director}") protected String trialSite2_director;
-    @Value("${lundbeck.trialsite2.bio}") protected String trialSite2_bio;
+    @Value("${lundbeck.trialsite2.facility.name}") protected String trialSite2_facility_name;
+    @Value("${lundbeck.trialsite2.facility.description}") protected String trialSite2_facility_description;
+    @Value("${lundbeck.trialsite2.principal.investigator}") protected String trialSite2_principal_investigator;
     @Value("${lundbeck.trialsite2.address1}") protected String trialSite2_address1;
     @Value("${lundbeck.trialsite2.address2}") protected String trialSite2_address2;
     @Value("${lundbeck.trialsite2.address3}") protected String trialSite2_address3;
@@ -73,8 +75,9 @@ public class LundbeckCancerPrimer extends TrialPrimer{
     /**
      * Trial Site 3 Info
      */
-    @Value("${lundbeck.trialsite3.director}") protected String trialSite3_director;
-    @Value("${lundbeck.trialsite3.bio}") protected String trialSite3_bio;
+    @Value("${lundbeck.trialsite3.facility.name}") protected String trialSite3_facility_name;
+    @Value("${lundbeck.trialsite3.facility.description}") protected String trialSite3_facility_description;
+    @Value("${lundbeck.trialsite3.principal.investigator}") protected String trialSite3_principal_investigator;
     @Value("${lundbeck.trialsite3.address1}") protected String trialSite3_address1;
     @Value("${lundbeck.trialsite3.address2}") protected String trialSite3_address2;
     @Value("${lundbeck.trialsite3.address3}") protected String trialSite3_address3;
@@ -103,37 +106,43 @@ public class LundbeckCancerPrimer extends TrialPrimer{
         }});
 
         final TrialSite trialSite1 = new TrialSite(trialInfo,
-                trialSite1_director,
-                trialSite1_bio,
+                trialSite1_facility_name,
+                trialSite1_facility_description,
                 trialSite1_address1,
                 trialSite1_address2,
                 trialSite1_address3,
                 trialSite1_address4,
                 trialSite1_address5,
                 trialSite1_country,
-                trialSite1_site_map, 1);
+                trialSite1_site_map,
+                trialSite3_principal_investigator,
+                1);
 
         final TrialSite trialSite2 = new TrialSite(trialInfo,
-                trialSite2_director,
-                trialSite2_bio,
+                trialSite2_facility_name,
+                trialSite2_facility_description,
                 trialSite2_address2,
                 trialSite2_address2,
                 trialSite2_address3,
                 trialSite2_address4,
                 trialSite2_address5,
                 trialSite2_country,
-                trialSite2_site_map, 2);
+                trialSite2_site_map,
+                trialSite3_principal_investigator,
+                2);
 
         final TrialSite trialSite3 = new TrialSite(trialInfo,
-                trialSite3_director,
-                trialSite3_bio,
+                trialSite3_facility_name,
+                trialSite3_facility_description,
                 trialSite3_address1,
                 trialSite3_address2,
                 trialSite3_address3,
                 trialSite3_address4,
                 trialSite3_address5,
                 trialSite3_country,
-                trialSite3_site_map, 3);
+                trialSite3_site_map,
+                trialSite3_principal_investigator,
+                3);
 
         trialSite1.setTrialSiteImage(trialsite1Image);
         trialSite2.setTrialSiteImage(trialsite2Image);

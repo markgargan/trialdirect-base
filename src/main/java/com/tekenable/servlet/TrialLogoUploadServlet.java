@@ -166,9 +166,9 @@ public class TrialLogoUploadServlet extends HttpServlet {
         TrialDirectAddress trialDirectAddress = trialSite.getTrialDirectAddress()==null ? new TrialDirectAddress() : trialSite.getTrialDirectAddress();
 
         if (fieldName.contains(SITE_DIRECTOR_BIO)) {
-            trialSite.setSiteDirectorBio(fieldValue);
+            trialSite.setFacilityDescription(fieldValue);
         } else if (fieldName.contains(SITE_DIRECTOR)) {
-            trialSite.setSiteDirector(fieldValue);
+            trialSite.setFacilityName(fieldValue);
         } else if (fieldName.contains(SITE_ADDRESS1)) {
             trialDirectAddress.setAddress1(fieldValue);
         } else if (fieldName.contains(SITE_ADDRESS2)) {

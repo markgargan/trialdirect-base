@@ -3,6 +3,10 @@ body {
     /*    background: #fafafa*/
 }
 
+.errors {
+    color:red;
+    font-style:italic;
+}
 /**
  Integration start
 **/
@@ -23,12 +27,40 @@ body {
     float: right;
 }
 
+span.trial-edit-buttons {
+    float:right;
+    width: 9%;
+    padding: 11px 0;
+}
+
+
+span.trial-selection-buttons {
+    float:right; 
+    width: 9%;
+    text-align:left;
+    margin: 1em 2em;
+}
+
 textarea {
     width: 100%;
     border: 1px solid #ccc;
     overflow-y: auto;
     height: 8em;
     margin: 0;
+}
+
+textarea.trialFacility {
+    height: 17em;
+}
+
+.edTrial {
+    padding: 10px 15px;
+    color: #00857f;
+    cursor: pointer;
+}
+
+.edTrial:hover {
+    background: #eee;
 }
 
 #myForm img {
@@ -272,6 +304,10 @@ button {
     /*margin: 0 0 2em 0;*/
     /* padding: .25em 1em; */
     /*clear: both;*/
+}
+
+form {
+    margin: 0;
 }
 
 form.small, form.wide {
@@ -649,6 +685,17 @@ td, th {
     background: #fff;
 }
 
+.btn-add-site {
+    top: -18px;
+    right: -17px;
+    color: #a00 !important;
+    font-size: 18px !important;
+    padding: 6px 7px 2px 8px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 .25em #ddd !important;
+    background: #fff;
+}
+
 .side-panel {
     display: block;
     background: #fff;
@@ -746,6 +793,29 @@ p {
 
 .trialLogoImage .btn-remove {
     margin-left: 0;
+    background: none;
+    border: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.answer-container .btn-remove {
+    border: 0;
+    box-shadow: none;
+    background: #ddd;
+    margin: 0 0 0 1em;
+    padding: .5em .75em;
+}
+.answer-container .btn-remove:hover {
+    background: #ccc;
+}
+
+.answer-container .answerText {
+    line-height: 2.5em;
+}
+
+.questionEdit p {
+    padding:0;
 }
 
 .trialResults {
@@ -893,6 +963,7 @@ span {
 
 .trialLeaderSelect li {
     line-height: 1.2em;
+    padding:.6em 0;
 }
 
 .trialLeaderName {
@@ -1081,7 +1152,8 @@ a:active.more, a:hover.more {
     text-decoration: none;
 }
 
-input.ng-invalid, input.ng-invalid-required {
+input.ng-invalid, input.ng-invalid-required,
+textarea.ng-invalid, textarea.ng-invalid-required {
     border-color: #c00;
 }
 
@@ -1104,6 +1176,30 @@ input.ng-invalid, input.ng-invalid-required {
 }
 */
 
+#horizontal-container {
+    display: block;
+    clear: both;
+    float: right;
+}
+
+#horizontal-container .as-sortable-item,
+#horizontal-container .as-sortable-placeholder,
+#horizontal-container .as-sortable-item-handle {
+    display: inline-block;
+    padding: 0 0 0 12px;
+    margin-left: .25em;
+    float: left;
+    background: #f5f5f5;
+    -webkit-border-radius: .2em;
+    -moz-border-radius: .2em;
+    border-radius: .2em;
+}
+
+#horizontal-container .as-sortable-item-handle {
+    padding: 0;
+    margin-left: 0;
+}
+
 @media screen and (
 max-width: 1200px) {
     .trialIntro span {
@@ -1114,9 +1210,6 @@ max-width: 1200px) {
 
 @media screen and (
 max-width: 900px) {
-    body {
-        font-size: .9em;
-    }
 
     .trialInfo, .trialIntro, .trialLocation, .trialResults, .trialRight, .trialSearch {
         float: none;
@@ -1237,4 +1330,7 @@ max-width: 600px) {
         width: auto;
     }
 }
- 
+
+.trialImage{
+    text-align:center;
+}

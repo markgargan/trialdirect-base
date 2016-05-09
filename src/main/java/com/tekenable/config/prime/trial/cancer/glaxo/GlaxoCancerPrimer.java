@@ -26,9 +26,9 @@ public class GlaxoCancerPrimer extends TrialPrimer{
     /**
      * Dr images
      */
-    @Value("classpath:primer/glaxosmithklein/images/theBunk.jpg") private Resource trialsite1DoctorImage;
-    @Value("classpath:primer/glaxosmithklein/images/bubbles.jpg") private Resource trialsite2DoctorImage;
-    @Value("classpath:primer/glaxosmithklein/images/omar.jpg") private Resource trialSite3DoctorImage;
+    @Value("classpath:primer/glaxosmithklein/images/mercy.jpg") private Resource trialsite1DoctorImage;
+    @Value("classpath:primer/glaxosmithklein/images/mercy.jpg") private Resource trialsite2DoctorImage;
+    @Value("classpath:primer/glaxosmithklein/images/mercy.jpg") private Resource trialSite3DoctorImage;
     @Value("classpath:primer/glaxosmithklein/images/trialLogo.png") private Resource trialLogoImage;
 
     public void initDB() throws IOException {
@@ -52,8 +52,9 @@ public class GlaxoCancerPrimer extends TrialPrimer{
     /**
      * Trial Site 1 Info
      */
-    @Value("${glaxo.trialsite1.director}") protected String trialSite1_director;
-    @Value("${glaxo.trialsite1.bio}") protected String trialSite1_bio;
+    @Value("${glaxo.trialsite1.facility.name}") protected String trialSite1_facility_name;
+    @Value("${glaxo.trialsite1.facility.description}") protected String trialSite1_facility_description;
+    @Value("${glaxo.trialsite1.principal.investigator}") protected String trialSite1_principal_investigator;
     @Value("${glaxo.trialsite1.address1}") protected String trialSite1_address1;
     @Value("${glaxo.trialsite1.address2}") protected String trialSite1_address2;
     @Value("${glaxo.trialsite1.address3}") protected String trialSite1_address3;
@@ -65,8 +66,9 @@ public class GlaxoCancerPrimer extends TrialPrimer{
     /**
      * Trial Site 2 Info
      */
-    @Value("${glaxo.trialsite2.director}") protected String trialSite2_director;
-    @Value("${glaxo.trialsite2.bio}") protected String trialSite2_bio;
+    @Value("${glaxo.trialsite2.facility.name}") protected String trialSite2_facility_name;
+    @Value("${glaxo.trialsite2.facility.description}") protected String trialSite2_facility_description;
+    @Value("${glaxo.trialsite2.principal.investigator}") protected String trialSite2_principal_investigator;
     @Value("${glaxo.trialsite2.address1}") protected String trialSite2_address1;
     @Value("${glaxo.trialsite2.address2}") protected String trialSite2_address2;
     @Value("${glaxo.trialsite2.address3}") protected String trialSite2_address3;
@@ -78,8 +80,9 @@ public class GlaxoCancerPrimer extends TrialPrimer{
     /**
      * Trial Site 3 Info
      */
-    @Value("${glaxo.trialsite3.director}") protected String trialSite3_director;
-    @Value("${glaxo.trialsite3.bio}") protected String trialSite3_bio;
+    @Value("${glaxo.trialsite3.facility.name}") protected String trialSite3_facility_name;
+    @Value("${glaxo.trialsite3.facility.description}") protected String trialSite3_facility_description;
+    @Value("${glaxo.trialsite3.principal.investigator}") protected String trialSite3_principal_investigator;
     @Value("${glaxo.trialsite3.address1}") protected String trialSite3_address1;
     @Value("${glaxo.trialsite3.address2}") protected String trialSite3_address2;
     @Value("${glaxo.trialsite3.address3}") protected String trialSite3_address3;
@@ -107,37 +110,43 @@ public class GlaxoCancerPrimer extends TrialPrimer{
         }});
 
         final TrialSite trialSite1 = new TrialSite(trialInfo,
-                trialSite1_director,
-                trialSite1_bio,
+                trialSite1_facility_name,
+                trialSite1_facility_description,
                 trialSite1_address1,
                 trialSite1_address2,
                 trialSite1_address3,
                 trialSite1_address4,
                 trialSite1_address5,
                 trialSite1_country,
-                trialSite1_site_map, 1);
+                trialSite1_site_map,
+                trialSite3_principal_investigator,
+                1);
 
         final TrialSite trialSite2 = new TrialSite(trialInfo,
-                trialSite2_director,
-                trialSite2_bio,
+                trialSite2_facility_name,
+                trialSite2_facility_description,
                 trialSite2_address2,
                 trialSite2_address2,
                 trialSite2_address3,
                 trialSite2_address4,
                 trialSite2_address5,
                 trialSite2_country,
-                trialSite2_site_map, 2);
+                trialSite2_site_map,
+                trialSite3_principal_investigator,
+                2);
 
         final TrialSite trialSite3 = new TrialSite(trialInfo,
-                trialSite3_director,
-                trialSite3_bio,
+                trialSite3_facility_name,
+                trialSite3_facility_description,
                 trialSite3_address1,
                 trialSite3_address2,
                 trialSite3_address3,
                 trialSite3_address4,
                 trialSite3_address5,
                 trialSite3_country,
-                trialSite3_site_map, 3);
+                trialSite3_site_map,
+                trialSite3_principal_investigator
+                ,3);
 
         trialSite1.setTrialSiteImage(trialsite1Image);
         trialSite2.setTrialSiteImage(trialsite2Image);

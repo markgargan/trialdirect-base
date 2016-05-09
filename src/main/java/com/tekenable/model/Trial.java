@@ -28,7 +28,7 @@ import java.util.Set;
 
 
 @Entity
-@EntityListeners(TrialListener.class)
+//@EntityListeners(TrialListener.class)
 public class Trial extends SortEntity {
 
     private String title;

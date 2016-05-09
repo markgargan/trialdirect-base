@@ -3,10 +3,6 @@
     /* background:#eee; */
     margin-left: .25em;
 }
-.btn-remove:hover, .btn-remove:active {
-    /* background:#ddd; */
-}
-
 
 .slide.ng-leave {
     position: relative;

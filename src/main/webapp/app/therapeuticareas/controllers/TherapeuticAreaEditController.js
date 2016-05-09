@@ -26,7 +26,19 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
             });
 
             $scope.sortableOptions = {
-                containment: '#sortable-container'
+                containment: '#sortable-container',
+                accept: function (sourceItemHandleScope, destSortableScope) {
+                    return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+                }
+            };
+
+
+            $scope.sortableOptionsHorizontal = {
+                containment: '#horizontal-container',
+                // restrict move across columns. move only within column.
+                accept: function (sourceItemHandleScope, destSortableScope) {
+                    return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+                }
             };
 
 
