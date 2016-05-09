@@ -200,9 +200,24 @@
                     </div>
 
                     <!-- Trial Facility Image -->
+                    <!--<div class="trial-site-logo">-->
+                        <!--<label>Trial Facility Image</label>-->
+                        <!--<p class="trialLeaderImage" style="background-image:url(/trialSiteImage/{{trialSite.id}})"></p>-->
+                    <!--</div>-->
+
                     <div class="trial-site-logo">
-                        <label>Trial Facility Image</label>
-                        <p class="trialLeaderImage" style="background-image:url(/trialSiteImage/{{trialSite.id}})"></p>
+                        <!-- -------------- -->
+                        <!-- Trial Site Pic -->
+                        <!-- -------------- -->
+                        <label for="trial-site-logo{{$index}}">Trial Site Pic</label>
+                        <input id="trial-site-logo{{$index}}" type="file" ngf-select ng-model="trialSite.sitePic"
+                               name="siteFile" ng-change="toggleTrialSiteDisplay(trialSite)"
+                               accept="image/*" ngf-max-size="2MB" required
+                               ngf-model-invalid="errorFile">
+                        <img data-ng-src="/trialSiteImage/{{trialSite.id}}" ng-if="!trialSite.sitePic && trialSite.id">
+                        <i ng-show="trialSite.sitePic.$error.required">*required</i><br>
+                        <i ng-show="trialSite.sitePic.$error.maxSize">File too large
+                            {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
                     </div>
 
                     <!-- Trial Facility Image REMOVE -->

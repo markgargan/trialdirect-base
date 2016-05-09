@@ -32,15 +32,15 @@ import java.util.*;
  */
 public class TrialLogoUploadServlet extends HttpServlet {
 
-    private final static String DESCRIPTION = "description";
+    private final static String DESCRIPTION = "Description";
     private final static String TRIAL_ID = "trialId";
     private static final String TRIAL_SITE_FILE = "trialSiteFile";
     private static final String TRIAL_FULL_DESCRIPTION = "fullDescription";
 
     private static final String TRIAL_INFO_LOGO = "trialInfoLogo";
-    private static final String SITE_DIRECTOR_BIO= "siteDescription";
-    private static final String SITE_DIRECTOR   = "siteDirector";
-    private static final String SITE_MAP        = "siteMap";
+    private static final String FACILITY_DESCRIPTION= "facilityDescription";
+    private static final String FACILITY_NAME = "facilityName";
+    private static final String PRINCIPAL_INVESTIGATOR = "principalInvestigator";
 
     private static final String SITE_ADDRESS1        = "siteAddress1";
     private static final String SITE_ADDRESS2        = "siteAddress2";
@@ -48,6 +48,9 @@ public class TrialLogoUploadServlet extends HttpServlet {
     private static final String SITE_ADDRESS4        = "siteAddress4";
     private static final String SITE_ADDRESS5        = "siteAddress5";
     private static final String SITE_COUNTRY        = "siteCountry";
+    private static final String SITE_SORT_ORDER        = "sortOrder";
+
+    private static final String SITE_MAP        = "siteMap";
 
     @Autowired
     TrialRepository trialRepository;
@@ -163,13 +166,15 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
         TrialSite trialSite = getTrialSite(fieldName, trialSites);
 
-        TrialDirectAddress trialDirectAddress = trialSite.getTrialDirectAddress()==null ? new TrialDirectAddress() : trialSite.getTrialDirectAddress();
+        TrialDirectAddress trialDirectAddress = trialSite.getTrialDirectAddress() == null ? new TrialDirectAddress() : trialSite.getTrialDirectAddress();
 
-        if (fieldName.contains(SITE_DIRECTOR_BIO)) {
+        if (fieldName.contains(FACILITY_DESCRIPTION)) {
             trialSite.setFacilityDescription(fieldValue);
-        } else if (fieldName.contains(SITE_DIRECTOR)) {
+        } else if (fieldName.contains(FACILITY_NAME)) {
             trialSite.setFacilityName(fieldValue);
-        } else if (fieldName.contains(SITE_ADDRESS1)) {
+        }else if (fieldName.contains(PRINCIPAL_INVESTIGATOR)) {
+            trialSite.setPrincipalInvestigator(fieldValue);
+        }else if (fieldName.contains(SITE_ADDRESS1)) {
             trialDirectAddress.setAddress1(fieldValue);
         } else if (fieldName.contains(SITE_ADDRESS2)) {
             trialDirectAddress.setAddress2(fieldValue);
@@ -181,6 +186,8 @@ public class TrialLogoUploadServlet extends HttpServlet {
             trialDirectAddress.setAddress5(fieldValue);
         } else if (fieldName.contains(SITE_COUNTRY)) {
             trialDirectAddress.setCountry(fieldValue);
+        } else if (fieldName.contains(SITE_SORT_ORDER)) {
+            trialSite.setSortOrder(Integer.valueOf(fieldValue));
         }
 
         else if (fieldName.contains(SITE_MAP)) {

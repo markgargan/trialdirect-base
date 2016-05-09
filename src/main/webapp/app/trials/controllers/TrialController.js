@@ -164,11 +164,18 @@ angular.module('trialdirect').controller('TrialController',
                 angular.forEach(trial.trialInfo.trialSites._embeddedItems, function(trialSite){
 
                     var trialSite = {
-                        description:trialSite.fullDescription,
+                        facilityName:trialSite.facilityName,
+                        facilityDescription:trialSite.facilityDescription,
                         trialSiteFile:trialSite.sitePic,
-                        siteDirector:trialSite.siteDirector,
+                        principalInvestigator:trialSite.principalInvestigator,
                         siteSummary:trialSite.siteSummary,
                         siteDescription:trialSite.siteDescription,
+                        sortOrder:trialSite.id,
+                        siteAddress1:trialSite.trialDirectAddress.address1,
+                        siteAddress2:trialSite.trialDirectAddress.address2,
+                        siteAddress3:trialSite.trialDirectAddress.address3,
+                        siteAddress4:trialSite.trialDirectAddress.address4,
+                        siteAddress5:trialSite.trialDirectAddress.address5,
                         siteMap:trialSite.siteMap
                     };
 
