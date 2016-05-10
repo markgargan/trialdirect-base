@@ -8,6 +8,19 @@ angular.module('trialdirect').controller('TrialEditController',
 
             $scope.trialInfo = trialInfo;
 
+            // Previously saved TrialInfo objects
+            // must have had an image saved along with them
+            // or validation wouldn't have passed.
+            $scope.trialInfo.hasUploadedImage=true;
+            $scope.trialInfo.needsImageUpload=false;
+
+            if (angular.isDefined($scope.trialInfo.trialSites)) {
+                angular.forEach($scope.trialInfo.trialSites._embeddedItems, function(trialSite) {
+                    trialSite.hasUploadedImage = true;
+                    trialSite.needsImageUpload = false;
+                });
+            }
+
             $scope.trial.trialInfo = $scope.trialInfo;
 
             $scope.trialTitle = trial.title;
@@ -55,6 +68,25 @@ angular.module('trialdirect').controller('TrialEditController',
                 $scope.isEditing = isEditing;
             };
 
+            $scope.resetUploadedImage = function() {
+                $scope.trial.trialInfo.trialLogoPic = null;
+                $scope.trial.trialInfo.needsImageUpload=true;
+                $scope.trial.trialInfo.hasUploadedImage=false;
+            };
+
+            $scope.resetUploadedTrialSiteImage = function(trialSite) {
+                trialSite.sitePic = null;
+                trialSite.needsImageUpload=true;
+                trialSite.hasUploadedImage=false;
+            };
+
+            $scope.toggleTrialInfoImage = function () {
+                $scope.trial.trialInfo.needsImageUpload = !$scope.trial.trialInfo.needsImageUpload;
+            };
+
+            $scope.toggleTrialSiteImage = function (trialSite) {
+                trialSite.needsImageUpload = !trialSite.needsImageUpload;
+            };
 
             $scope.showSiteForm = function (trialSiteId) {
                 $scope.trialSiteId = trialSiteId;

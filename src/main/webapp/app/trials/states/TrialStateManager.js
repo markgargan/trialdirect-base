@@ -16,6 +16,7 @@ angular.module('uiRouterSample.trial', [
 
                                     trials: function (TrialResourceService, TrialInfo) {
 
+                                        TrialResourceService.initialize();
                                         TrialInfo.initialize();
                                         // Initialise the query api and return all available Trials
                                         return TrialResourceService.load();

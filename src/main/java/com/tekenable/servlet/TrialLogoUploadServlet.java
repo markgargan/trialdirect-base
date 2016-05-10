@@ -1,5 +1,6 @@
 package com.tekenable.servlet;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tekenable.model.Trial;
 import com.tekenable.model.common.TrialDirectAddress;
 import com.tekenable.model.trial.TrialDirectImage;
@@ -32,10 +33,12 @@ import java.util.*;
  */
 public class TrialLogoUploadServlet extends HttpServlet {
 
-    private final static String DESCRIPTION = "Description";
     private final static String TRIAL_ID = "trialId";
+    private final static String TRIAL_SITE_ID = "trialSiteId";
+    private final static String TRIAL_INFO_ID = "trialInfoId";
+    private final static String TRIAL_INFO_SUMMARY = "summary";
+    private static final String TRIAL_INFO_FULL_DESCRIPTION = "trialFullDescription";
     private static final String TRIAL_SITE_FILE = "trialSiteFile";
-    private static final String TRIAL_FULL_DESCRIPTION = "fullDescription";
 
     private static final String TRIAL_INFO_LOGO = "trialInfoLogo";
     private static final String FACILITY_DESCRIPTION= "facilityDescription";
@@ -71,8 +74,7 @@ public class TrialLogoUploadServlet extends HttpServlet {
         AutowireHelper.autowire(this, this.trialSiteRepository);
     }
 
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         TrialInfo trialInfo = new TrialInfo();
         Map<Integer, TrialSite> trialSites = new HashMap<Integer, TrialSite>();
@@ -81,6 +83,35 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
         persistTrialInfo(trial, trialInfo, trialSites);
 
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        TrialInfo trialInfo = new TrialInfo();
+
+        Map<Integer, TrialSite> trialSites = new HashMap<Integer, TrialSite>();
+
+        Trial trial = prepareEntities(request, trialInfo, trialSites);
+
+        persistTrialInfo(trial, trialInfo, trialSites);
+
+        // Don't return the trialLogo image in the response
+        trialInfo.setTrialLogo(null);
+        trialInfo.setTrial(null);
+
+        for (TrialSite trialSite : trialSites.values()) {
+            trialSite.setTrialSiteImage(null);
+            trialSite.setTrialInfo(null);
+        }
+
+        response.setContentType("application/json");
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String trialInfoJson = mapper.writeValueAsString(trialInfo);
+        response.setContentLength(trialInfoJson.length());
+
+        mapper.writeValue(response.getOutputStream(), trialInfo);
     }
 
     private void persistTrialInfo(Trial trial, TrialInfo trialInfo, Map<Integer, TrialSite> trialSiteMap) {
@@ -119,13 +150,15 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
                     if (!fieldName.startsWith("trialSites[")) {
                         // It's a trialInfo field
-                        if (fieldName.equals(DESCRIPTION)) {
-                            trialInfo.setSummary(fieldValue);
-                        } else if (fieldName.equals(TRIAL_ID)) {
+                        if (fieldName.equals(TRIAL_ID)) {
                             trial = trialRepository.findOne(Integer.valueOf(fieldValue));
-                        } else if (fieldName.equals(TRIAL_FULL_DESCRIPTION)) {
+                        } else if (fieldName.equals(TRIAL_INFO_SUMMARY)) {
+                            trialInfo.setSummary(fieldValue);
+                        } else if (fieldName.equals(TRIAL_INFO_FULL_DESCRIPTION)) {
                             trialInfo.setTrialFullDescription(new TrialFullDescription(fieldValue));
-
+                        } else if (fieldName.equals(TRIAL_INFO_ID)) {
+                            TrialInfo trialInfoForMerge = trialInfoRepository.findOne(Integer.valueOf(fieldValue));
+                            trialInfo = mergeTrialInfo(trialInfo, trialInfoForMerge);
                         }
                     } else {
                         handleTrialSiteField(fieldName, fieldValue, trialSites);
@@ -154,6 +187,60 @@ public class TrialLogoUploadServlet extends HttpServlet {
         return trial;
     }
 
+    private TrialInfo mergeTrialInfo(TrialInfo dto, TrialInfo existingTrialInfo) {
+
+        if (dto.getTrialLogo() != null) {
+            existingTrialInfo.setTrialLogo(dto.getTrialLogo());
+        }
+
+        if (dto.getSummary()!=null) {
+            existingTrialInfo.setSummary(dto.getSummary());
+        }
+
+        if (dto.getTrialFullDescription()!=null && dto.getTrialFullDescription().getFullDescription()!= null){
+            if ( existingTrialInfo.getTrialFullDescription() == null) {
+                existingTrialInfo.setTrialFullDescription(new TrialFullDescription(dto.getTrialFullDescription().getFullDescription()));
+            } else {
+                existingTrialInfo.getTrialFullDescription().setFullDescription(dto.getTrialFullDescription().getFullDescription());
+            }
+        }
+
+        return existingTrialInfo;
+    }
+
+    private TrialSite mergeTrialSite(TrialSite dto, TrialSite existingTrialSite) {
+
+        if (dto.getTrialSiteImage() != null) {
+            existingTrialSite.setTrialSiteImage(dto.getTrialSiteImage());
+        }
+
+        if (dto.getFacilityDescription()!=null) {
+            existingTrialSite.setFacilityDescription(dto.getFacilityDescription());
+        }
+
+        if (dto.getPrincipalInvestigator()!= null) {
+            existingTrialSite.setPrincipalInvestigator(dto.getPrincipalInvestigator());
+        }
+
+        if (dto.getFacilityName()!= null) {
+            existingTrialSite.setFacilityName(dto.getFacilityName());
+        }
+
+        if (dto.getSiteMap()!= null) {
+            existingTrialSite.setSiteMap(dto.getSiteMap());
+        }
+
+        if (dto.getTrialDirectAddress()!=null) {
+            existingTrialSite.setTrialDirectAddress(dto.getTrialDirectAddress());
+        }
+
+        if (dto.getSortOrder()!=null) {
+            existingTrialSite.setSortOrder(dto.getSortOrder());
+        }
+
+        return existingTrialSite;
+    }
+
     private void handleTrialSiteImage(String fieldName, String fileName, String contentType, byte[] contents, Map<Integer, TrialSite> trialSites) {
 
         TrialSite trialSite = getTrialSite(fieldName, trialSites);
@@ -168,7 +255,10 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
         TrialDirectAddress trialDirectAddress = trialSite.getTrialDirectAddress() == null ? new TrialDirectAddress() : trialSite.getTrialDirectAddress();
 
-        if (fieldName.contains(FACILITY_DESCRIPTION)) {
+        if (fieldName.contains(TRIAL_SITE_ID)) {
+            TrialSite existingTrialSite = trialSiteRepository.findOne(Integer.valueOf(fieldValue));
+            trialSite = mergeTrialSite(trialSite, existingTrialSite);
+        } else if (fieldName.contains(FACILITY_DESCRIPTION)) {
             trialSite.setFacilityDescription(fieldValue);
         } else if (fieldName.contains(FACILITY_NAME)) {
             trialSite.setFacilityName(fieldValue);
