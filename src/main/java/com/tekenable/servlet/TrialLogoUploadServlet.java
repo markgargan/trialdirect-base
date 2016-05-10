@@ -66,6 +66,10 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
     private WebApplicationContext springContext;
 
+    private TrialInfo trialInfo = new TrialInfo();
+    private Map<Integer, TrialSite> trialSites = new HashMap<Integer, TrialSite>();
+
+
     @Override
     public void init(final ServletConfig config) throws ServletException {
         super.init(config);
@@ -76,24 +80,17 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        TrialInfo trialInfo = new TrialInfo();
-        Map<Integer, TrialSite> trialSites = new HashMap<Integer, TrialSite>();
+        Trial trial = prepareEntities(request);
 
-        Trial trial = prepareEntities(request, trialInfo, trialSites);
-
-        persistTrialInfo(trial, trialInfo, trialSites);
+        persistTrialInfo(trial);
 
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        TrialInfo trialInfo = new TrialInfo();
+        Trial trial = prepareEntities(request);
 
-        Map<Integer, TrialSite> trialSites = new HashMap<Integer, TrialSite>();
-
-        Trial trial = prepareEntities(request, trialInfo, trialSites);
-
-        persistTrialInfo(trial, trialInfo, trialSites);
+        persistTrialInfo(trial);
 
         // Don't return the trialLogo image in the response
         trialInfo.setTrialLogo(null);
@@ -114,20 +111,20 @@ public class TrialLogoUploadServlet extends HttpServlet {
         mapper.writeValue(response.getOutputStream(), trialInfo);
     }
 
-    private void persistTrialInfo(Trial trial, TrialInfo trialInfo, Map<Integer, TrialSite> trialSiteMap) {
+    private void persistTrialInfo(Trial trial) {
 
         // Create the TrialDirectImage that houses the Trial Icon
         trialInfo.setTrial(trial);
 
         // Associate the TrialInfo with each site
-        for(TrialSite trialSite : trialSiteMap.values()) {
+        for(TrialSite trialSite : trialSites.values()) {
             trialSite.setTrialInfo(trialInfo);
         }
 
-        final Collection<TrialSite> trialSites = trialSiteMap.values();
+        final Collection<TrialSite> _trialSites = trialSites.values();
 
         Set<TrialSite> trialSiteSet = new HashSet<TrialSite>(){{
-                addAll(trialSites);
+                addAll(_trialSites);
         }};
 
         trialInfo.setTrialSites(trialSiteSet);
@@ -136,7 +133,7 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
     }
 
-    private Trial prepareEntities(HttpServletRequest request, TrialInfo trialInfo, Map<Integer, TrialSite> trialSites) throws IOException, ServletException {
+    private Trial prepareEntities(HttpServletRequest request) throws IOException, ServletException {
 
         Trial trial = null;
 
