@@ -23,20 +23,36 @@
                 </div>
                 <div>
 
-                <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
-                    <div class="option-list slim">
-                    <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
-                        <input id="inp_answer_{{answer.sortOrder}}" type="checkbox"
-                               data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
-                               data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
-                        <span data-ng-bind="answer.answerText"></span>
-                    </label>
+
+
+                    <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
+                            <input id="inp_answer_{{answer.sortOrder}}" type="checkbox"
+                                   data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
+                                   data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
+                            <span data-ng-bind="answer.answerText"></span>
+                        </label>
+                        <label class="select-all">
+                            <input name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
+                                   data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
+                        </label>
                     </div>
-                    <label class="select-all option-list-all">
-                        <input id="inp_selectAll_{{questionnaireEntry.question.sortOrder}}" name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
-                               data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
-                    </label>
-                </div>
+
+
+                    <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                        <div class="option-list slim">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
+                            <input type="checkbox"
+                                   data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
+                                   data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">
+                            <span data-ng-bind="answer.answerText"></span>
+                        </label>
+                        </div>
+                        <label class="select-all option-list-all">
+                            <input name="selectAll" type="checkbox" data-ng-model="questionnaireEntry.selectAll"
+                                   data-ng-click="setEditing(true);selectAll(questionnaireEntry)" title="Select All">
+                        </label>
+                    </div>
 
 
                 <div class="right trialSelectionError" data-ng-hide="!questionnaireEntry.errors">

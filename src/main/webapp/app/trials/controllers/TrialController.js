@@ -137,7 +137,7 @@ angular.module('trialdirect').controller('TrialController',
                 var newTrialSite = {
                     // temporaryId solely used for view purposes
                     // stripped out before persisting to the backend.O
-                    sortOrder:trialInfo.trialSites._embeddedItems.length + 1,
+                    sortOrder:trialInfo.trialSites?trialInfo.trialSites._embeddedItems.length + 1:1,
                     needsImageUpload:true,
                     hasUploadedImage:false
                 };
@@ -146,11 +146,11 @@ angular.module('trialdirect').controller('TrialController',
 
                 trialInfo.trialSites._embeddedItems.unshift(newTrialSite);
 
-                $scope.showSiteForm(newTrialSite.sortOrder);
+                $scope.showSiteForm(newTrialSite);
             };
 
-            $scope.showSiteForm = function (trialSiteId) {
-                $scope.trialSiteId = trialSiteId;
+            $scope.showSiteForm = function (trialSite) {
+                $scope.currentTrialSite = trialSite;
             };
 
             $scope.reset = function() {

@@ -252,6 +252,8 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
         TrialDirectAddress trialDirectAddress = trialSite.getTrialDirectAddress() == null ? new TrialDirectAddress() : trialSite.getTrialDirectAddress();
 
+        trialSite.setTrialDirectAddress(trialDirectAddress);
+
         if (fieldName.contains(TRIAL_SITE_ID)) {
             TrialSite existingTrialSite = trialSiteRepository.findOne(Integer.valueOf(fieldValue));
             trialSite = mergeTrialSite(trialSite, existingTrialSite);

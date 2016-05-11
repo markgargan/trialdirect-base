@@ -88,10 +88,6 @@ angular.module('trialdirect').controller('TrialEditController',
                 trialSite.needsImageUpload = !trialSite.needsImageUpload;
             };
 
-            $scope.showSiteForm = function (trialSiteId) {
-                $scope.trialSiteId = trialSiteId;
-            };
-
 
             $scope.submitTrialSelections = function () {
                 var valid = $scope.validateQuestionnaireEntriesAnswered();

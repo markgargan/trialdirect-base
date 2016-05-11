@@ -37,7 +37,7 @@
                 <ul class="trialLeaderSelect">
                     <li class="trialLeaderName"
                         data-ng-repeat="trialSite in trial.trialInfo.trialSites._embeddedItems | filter : search"
-                        data-ng-click="showSiteForm(trialSite.id)">
+                        data-ng-click="showSiteForm(trialSite)">
                         <strong ng-bind="trialSite.principalInvestigator"></strong><br>
                         <small>
                             <span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
@@ -56,7 +56,7 @@
         <!-- Trial Info Start  -->
 
         <div data-td-id="trialInformationEditor" class="simplePanel col-xs-9"
-             data-ng-hide="trialSiteId">
+             data-ng-hide="currentTrialSite">
 
             <!-- Left Column, Trial Site Information -->
             <div class="trialLeaderBio">
@@ -172,7 +172,7 @@
 
         <!-- Trial Site Start -->
         <div class="form-group simplePanel col-xs-9" data-ng-repeat="trialSite in trial.trialInfo.trialSites._embeddedItems"
-             data-ng-show="trialSiteId == trialSite.id">
+             data-ng-show="currentTrialSite == trialSite">
 
 
             <div class="clear"></div>
@@ -185,15 +185,16 @@
                     <div class="form-group">
                         <label for="inp_trialSiteDirector_{{trialSite.sortOrder}}">Trial Facility Name</label>
                         <input id="inp_trialSiteDirector_{{trialSite.sortOrder}}" type="text" name="trial-site-director"
-                               data-ng-model="trialSite.siteDirector" size="31" required>
+                               data-ng-model="trialSite.facilityName" size="31" required>
                     </div>
 
                     <!-- Trial Facility Description -->
                     <div class="form-group">
-                        <label for="inp_trialSiteSummary_{{trialSite.sortOrder}}">Trial Facility Description</label>
+                        <label for="trial-site-facility-description{{$index}}">Trial Facility Description</label>
                         <span>
-                            <textarea id="inp_trialSiteSummary_{{trialSite.sortOrder}}" name="trial-site-summary"
-                                      data-ng-model="trialSite.siteDirectorBio" required>
+                            <textarea id="inp_facility-description-{{trialSite.sortOrder}}" name="trial-site-facility-description"
+                                      id="trial-site-facility-description{{$index}}" name="trial-site-facility-description"
+                                      data-ng-model="trialSite.facilityDescription" required>
                             </textarea>
                         </span>
                     </div>
@@ -252,9 +253,9 @@
                 <div class="form-group">
                     <label for="inp_trialSiteAddress1_{{trialSite.sortOrder}}">Address 1</label>
                     <span>
-<                       <input id="inp_trialSiteAddress1_{{trialSite.sortOrder}}" type="text" name="trial-site-address1"
+                       <input id="inp_trialSiteAddress1_{{trialSite.sortOrder}}" type="text" name="trial-site-address1"
                                data-ng-model="trialSite.trialDirectAddress.address1" size="31" required>
-=                   </span>
+                   </span>
                 </div>
 
                 <!-- Trial Site Address 2 -->
