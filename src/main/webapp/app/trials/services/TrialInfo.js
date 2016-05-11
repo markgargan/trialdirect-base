@@ -25,6 +25,15 @@ angular.module('trialdirect').factory('TrialInfo',
                 });
             };
 
+            TrialInfo.loadTrialInfoWithCallback = function (trialInfoId, callback) {
+                var deferred = $http.get(RESOURCE_URL + '/' + trialInfoId);
+
+                return SpringDataRestAdapter.process(deferred, 'trialSites').then(function (data) {
+
+                    callback && callback(new TrialInfo(data));
+                });
+            };
+
             // Just load the trials themselves, don't eagerly pull back their questionnaires.
             TrialInfo.load = function () {
                 var deferred = $http.get(RESOURCE_URL);

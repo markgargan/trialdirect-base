@@ -6,9 +6,12 @@ angular.module('trialdirect').controller('TrialController',
             // Initialize the model
             $scope.trial={
                 trialInfo:{
+                    trialFullDescription:{},
                     trialSites:{
                         _embeddedItems:[]
-                    }
+                    },
+                    needsImageUpload:true,
+                    hasUploadedImage:false
                 }
             };
 
@@ -18,33 +21,48 @@ angular.module('trialdirect').controller('TrialController',
 
             $scope.wasSaved = false;
 
-            $scope.editingTrialInfo = true;
-
-            $scope.editingTrialSite = false;
-
-            $scope.therapeuticAreaSet= false;
-
             $scope.errorFields=[];
 
-            $scope.addTrial = function (newTrial, callback) {
-                new TrialResourceService({
-                    title: newTrial.title,
-                    therapeuticArea: newTrial.therapeuticArea.getHrefLink()
-                }).save(function (savedTrial) {
-                    // Goto the new instance on the far side
-                    $scope.trials.unshift(savedTrial);
+            $scope.updateTrial = function (newTrial, callback) {
 
-                    // Update the savedTrial with the trialInfo to be saved.
-                    savedTrial.trialInfo = $scope.trial.trialInfo;
-                    savedTrial.therapeuticArea= $scope.trial.therapeuticArea;
-                    $scope.trial = savedTrial;
+                if (angular.isDefined(newTrial.id)) {
+                    // Means the trial object is being updated
+                    // so just call save and it will call into the update
+                    // version of the save method.
+                    // no 'new' here...
+                    TrialResourceService({
+                        id:newTrial.id,
+                        title:newTrial.title,
+                        therapeuticArea: newTrial.therapeuticArea.getHrefLink()
+                    }).save(function (savedTrial) {
 
-                    callback && callback($scope.trial);
+                        // Update the savedTrial with the trialInfo to be saved.
+                        savedTrial.trialInfo = $scope.trial.trialInfo;
+                        savedTrial.therapeuticArea= $scope.trial.therapeuticArea;
+                        $scope.trial = savedTrial;
+                        callback && callback($scope.trial);
+                        $scope.wasSaved = true;
 
-                    $scope.wasSaved = true;
-                });
+                    });
+                } else {
 
-                //$scope.reset();
+                    new TrialResourceService({
+                        title: newTrial.title,
+                        therapeuticArea: newTrial.therapeuticArea.getHrefLink()
+                    }).save(function (savedTrial) {
+                        // Goto the new instance on the far side
+                        $scope.trials.unshift(savedTrial);
+
+                        // Update the savedTrial with the trialInfo to be saved.
+                        savedTrial.trialInfo = $scope.trial.trialInfo;
+                        savedTrial.therapeuticArea = $scope.trial.therapeuticArea;
+                        $scope.trial = savedTrial;
+
+                        callback && callback($scope.trial);
+
+                        $scope.wasSaved = true;
+                    });
+                }
             };
 
             $scope.validateField = function (trial, fieldName) {
@@ -56,10 +74,11 @@ angular.module('trialdirect').controller('TrialController',
                         $scope.errorFields.indexOf(fieldName),1
                     );
                 }
-
                 return true;
             };
 
+            // Most of the validation is taken care of by the form
+            // Things like the
             $scope.validTrial = function (trial) {
                 var validTrial = true;
                 validTrial &= $scope.validateField(trial, 'title', 'Title');
@@ -100,27 +119,34 @@ angular.module('trialdirect').controller('TrialController',
                 return true;
             };
 
+
+            $scope.validateTrial = function (trial) {
+                if(angular.isEmpty(trial.therapeuticArea)){
+                    trial.unselectedTherapeuticArea = true;
+                    return false;
+                }
+
+                return true;
+            };
+
+
             $scope.initializeTrialSite = function() {
 
                 var trialInfo = $scope.trial.trialInfo;
 
-                if (!trialInfo.trialSites) {
-                    trialInfo.trialSites = {
-                        _embeddedItems:[]
-                    };
-                }
-
                 var newTrialSite = {
                     // temporaryId solely used for view purposes
                     // stripped out before persisting to the backend.O
-                    id:trialInfo.trialSites._embeddedItems.length + 1
+                    sortOrder:trialInfo.trialSites._embeddedItems.length + 1,
+                    needsImageUpload:true,
+                    hasUploadedImage:false
                 };
 
-                $scope.editingTrialSite = true;
+                newTrialSite.trialDirectAddress={};
 
                 trialInfo.trialSites._embeddedItems.unshift(newTrialSite);
 
-                $scope.showSiteForm(trialInfo.trialSites._embeddedItems.length);
+                $scope.showSiteForm(newTrialSite.sortOrder);
             };
 
             $scope.showSiteForm = function (trialSiteId) {
@@ -141,14 +167,16 @@ angular.module('trialdirect').controller('TrialController',
 
             $scope.chooseTherapeuticArea = function(therapeuticArea) {
                 $scope.trial.therapeuticArea = therapeuticArea;
-                $scope.therapeuticAreaSet=true;
+                $scope.trial.unselectedTherapeuticArea= false;
             };
 
             $scope.createTrialInfo = function(trial) {
 
                 var data = {
-                    description: trial.trialInfo.description,
+                    trialInfoId:trial.trialInfo.id,
                     trialId:trial.id,
+                    summary: trial.trialInfo.summary,
+                    trialFullDescription: trial.trialInfo.trialFullDescription.fullDescription,
                     trialInfoLogo: trial.trialInfo.trialLogoPic
                 };
 
@@ -164,19 +192,20 @@ angular.module('trialdirect').controller('TrialController',
                 angular.forEach(trial.trialInfo.trialSites._embeddedItems, function(trialSite){
 
                     var trialSite = {
+                        id:trialSite.id,
                         facilityName:trialSite.facilityName,
                         facilityDescription:trialSite.facilityDescription,
                         trialSiteFile:trialSite.sitePic,
                         principalInvestigator:trialSite.principalInvestigator,
                         siteSummary:trialSite.siteSummary,
                         siteDescription:trialSite.siteDescription,
-                        sortOrder:trialSite.id,
                         siteAddress1:trialSite.trialDirectAddress.address1,
                         siteAddress2:trialSite.trialDirectAddress.address2,
                         siteAddress3:trialSite.trialDirectAddress.address3,
                         siteAddress4:trialSite.trialDirectAddress.address4,
                         siteAddress5:trialSite.trialDirectAddress.address5,
-                        siteMap:trialSite.siteMap
+                        siteMap:trialSite.siteMap,
+                        sortOrder:trialSite.sortOrder
                     };
 
                     data.trialSites.unshift(trialSite);
@@ -191,20 +220,34 @@ angular.module('trialdirect').controller('TrialController',
 
             $scope.uploadTrial = function ( trial, file) {
 
-                // Firstly create the Trial Object
-                $scope.addTrial(trial, function(savedTrial) {
+                if (!$scope.validateTrial(trial)) {
+                    return;
+                }
 
-                    file.upload = Upload.upload({
+                // Firstly create the Trial Object
+                $scope.updateTrial(trial, function(savedTrial) {
+
+                    var upload = Upload.upload({
                         url: '/uploadTrialInfo',
                         data: $scope.createTrialInfo(savedTrial),
                         objectKey: '.k',
                         arrayKey: '[i]'
                     });
 
-                    file.upload.then(function (response) {
+                    upload.then(function (response) {
                         // timeout prevents this from running within the digest cycle
                         $timeout(function () {
-                            file.result = response.data;
+                            // Update TrialInfo and TrialSites
+                            var savedTrialInfo = response.data;
+
+                            TrialInfo.loadTrialInfoWithCallback(savedTrialInfo.id, function(trialInfo){
+                                $scope.trial.trialInfo = trialInfo;
+                                if (file) {
+                                    file.result = response.data;
+                                }
+                            });
+
+
                         });
                     }, function (response) {
                         if (response.status > 0)
@@ -214,12 +257,24 @@ angular.module('trialdirect').controller('TrialController',
             };
 
 
-            $scope.toggleTrialInfoDisplay = function () {
-                $scope.editingTrialInfo = angular.element(document.querySelectorAll("[data-td-id='trialInformationEditor']")).hasClass('ng-hide');
+            $scope.toggleTrialInfoImage = function () {
+                $scope.trial.trialInfo.needsImageUpload = !$scope.trial.trialInfo.needsImageUpload;
             };
 
-            $scope.toggleTrialSiteDisplay = function (trialSite) {
-                trialSite.isEditing = !trialSite.isEditing;
+            $scope.toggleTrialSiteImage = function (trialSite) {
+                trialSite.needsImageUpload = !trialSite.needsImageUpload;
+            };
+
+            $scope.resetUploadedImage = function() {
+                $scope.trial.trialInfo.trialLogoPic = null;
+                $scope.trial.trialInfo.needsImageUpload=true;
+                $scope.trial.trialInfo.hasUploadedImage=false;
+            };
+
+            $scope.resetUploadedTrialSiteImage = function(trialSite) {
+                trialSite.sitePic = null;
+                trialSite.needsImageUpload=true;
+                trialSite.hasUploadedImage=false;
             };
 
             /**

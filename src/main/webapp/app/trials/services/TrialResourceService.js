@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('TrialResourceService',
-    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService','TrialInfo',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TrialInfo ) {
+    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService','TrialInfo', 'TherapeuticAreaResourceService',
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TrialInfo, TherapeuticAreaResourceService ) {
 
             var RESOURCE_URL = './api/trials';
 
@@ -11,6 +11,8 @@ angular.module('trialdirect').factory('TrialResourceService',
                 var deferred = $http.get(RESOURCE_URL + '/' + trialId);
 
                 return SpringDataRestAdapter.process(deferred, 'therapeuticArea').then(function (data) {
+
+                    data.therapeuticArea = new TherapeuticAreaResourceService(data.therapeuticArea);
 
                     return new TrialResourceService(data);
                 });
@@ -24,11 +26,22 @@ angular.module('trialdirect').factory('TrialResourceService',
                     if (angular.isDefined(data._embeddedItems[0])){
                         return new TrialInfo(data._embeddedItems[0]);
                     } else {
-                        return {};
+                        return new TrialInfo(data);
+                        
                     }
                 });
             };
-            
+
+            // Just load the trials themselves, don't eagerly pull back their questionnaires.
+            TrialResourceService.initialize = function () {
+                var deferred = $http.get(RESOURCE_URL);
+
+                return SpringDataRestAdapter.process(deferred ).then(function (data) {
+
+                    TrialResourceService.resources = data._resources("self");
+                });
+            };
+
             // Just load the trials themselves, don't eagerly pull back their questionnaires.
             TrialResourceService.load = function () {
                 var deferred = $http.get(RESOURCE_URL);

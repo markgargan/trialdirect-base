@@ -12,7 +12,7 @@
 
     <div class="clear"></div>
 
-    <form id="myForm" name="trialForm" ng-submit="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
+    <form id="myForm" name="trialForm">
 
         <div class="form-group col-xs-3">
 
@@ -36,7 +36,7 @@
 
                 <ul class="trialLeaderSelect">
                     <li class="trialLeaderName"
-                        data-ng-repeat="trialSite in trialInfo.trialSites._embeddedItems | filter : search"
+                        data-ng-repeat="trialSite in trial.trialInfo.trialSites._embeddedItems | filter : search"
                         data-ng-click="showSiteForm(trialSite.id)">
                         <strong ng-bind="trialSite.principalInvestigator"></strong><br>
                         <small>
@@ -119,7 +119,7 @@
                                   as the src to the image as it hasn't been saved/updated
                                   -->
                             <img ngf-thumbnail="trial.trialInfo.trialLogoPic" class="thumb" ng-show="!trial.trialInfo.needsImageUpload">
-                            <img data-ng-src="/trialInfoImage/{{trial.id}}" ng-show="!trial.trialInfo.needsImageUpload && trial.trialInfo.hasUploadedImage">
+                            <img data-ng-src="/trialInfoImage/{{trialInfo.id}}" ng-show="!trial.trialInfo.needsImageUpload && trial.trialInfo.hasUploadedImage">
                             <div>
                                 <button id="btn_change_trial_logo" ng-click="resetUploadedImage();"
                                         ng-show="!trial.trialInfo.needsImageUpload">Change Logo</button>
@@ -171,7 +171,7 @@
 
 
         <!-- Trial Site Start -->
-        <div class="form-group simplePanel col-xs-9" data-ng-repeat="trialSite in trialInfo.trialSites._embeddedItems"
+        <div class="form-group simplePanel col-xs-9" data-ng-repeat="trialSite in trial.trialInfo.trialSites._embeddedItems"
              data-ng-show="trialSiteId == trialSite.id">
 
 
@@ -207,7 +207,6 @@
                                name="siteFile" ng-change="toggleTrialSiteImage(trialSite)"
                                accept="image/*" ngf-max-size="2MB"
                                ngf-model-invalid="errorFile" ng-show="trialSite.needsImageUpload">
-
 
                         <img data-ng-src="/trialSiteImage/{{trialSite.id}}"
                              ng-show="!trialSite.needsImageUpload && trialSite.hasUploadedImage">
@@ -253,9 +252,9 @@
                 <div class="form-group">
                     <label for="inp_trialSiteAddress1_{{trialSite.sortOrder}}">Address 1</label>
                     <span>
-                        <input id="inp_trialSiteAddress1_{{trialSite.sortOrder}}" type="text" name="trial-site-address1"
+<                       <input id="inp_trialSiteAddress1_{{trialSite.sortOrder}}" type="text" name="trial-site-address1"
                                data-ng-model="trialSite.trialDirectAddress.address1" size="31" required>
-                    </span>
+=                   </span>
                 </div>
 
                 <!-- Trial Site Address 2 -->
@@ -310,6 +309,11 @@
 
         </div>
         <!-- Trial Site End -->
-
+        <span class="trial-edit-buttons answers">
+            <label for="input_save_trial">
+                <input id="input_save_trial" ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
+                <span>Save Trial</span>
+            </label>
+        </span>
     </form>
 </div>

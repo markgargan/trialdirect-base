@@ -26,32 +26,12 @@
         <div data-ng-repeat="questionnaireEntry in questionnaireEntries" data-as-sortable-item class="as-sortable-item">
             <div class="qa" data-as-sortable-item-handle class="as-sortable-item-handle">
 
-                <div class="questionEdit" as-sortable-item-handle class="as-sortable-item-handle">
-                    <button id="btn_deleteQuestion_{{questionnaireEntry.question.sortOrder}}" class="left btn btn-remove btn-remove-question" type="button" title="Delete"
-                            data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                    <p><strong>{{questionnaireEntry.question.questionText}}</strong></p>
-                    <div class="clear"></div>
-                </div>
-
-                <div class="question">
-                    <div class="input-group">
-                        <input id="inp_newAnswer" type="text" class="form-control" data-ng-model="newAnswer"
-                               placeholder="Enter a new answer..."/>
-                              <span class="input-group-btn">
-                                <button id="btn_addAnswer" class="btn btn-default" type="button"
-=======
-
-                    <div class="questionEdit" data-as-sortable-item-handle class="as-sortable-item-handle">
-                        <button id="btn_deleteQuestion_{{questionnaireEntry.question.sortOrder}}" class="left btn btn-remove btn-remove-question" type="button" title="Delete"
                     <div class="questionEdit" as-sortable-item-handle class="as-sortable-item-handle" data-ng-mouseleave="updateSortQuestion(questionnaireEntry.question.id, $index)">
                         <button class="left btn btn-remove btn-remove-question" type="button" title="Delete"
                                 data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                         <p><span class="glyphicon glyphicon-sort"></span> <strong>{{questionnaireEntry.question.questionText}}</strong>
-                        <sup>{{questionnaireEntry.question.id +' '+ questionnaireEntry.question.sortOrder +' '+ $index }}</sup>
                         </p>
                         <div class="clear"></div>
                     </div>
@@ -62,24 +42,11 @@
                                    placeholder="Enter a new answer..."/>
                               <span class="input-group-btn">
                                 <button id="btn_newAnswer_{{questionnaireEntry.question.sortOrder}}" class="btn btn-default" type="button"
->>>>>>> c77feed18192454c4027964ef7a4d0180604a048
                                         data-ng-click="addAnswer(questionnaireEntry, newAnswer)"
                                         data-ng-disabled="!newAnswer" title="Add">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
                               </span>
-<<<<<<< HEAD
-                    </div>
-                </div>
-
-
-                <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
-
-
-                        <div id="horizontal-container" class="answer-container" as-sortable="sortableOptionsHorizontal"
-                             ng-model="questionnaireEntry.answers._embeddedItems">
-                            <div ng-repeat="answer in questionnaireEntry.answers._embeddedItems" as-sortable-item
-=======
                         </div>
                     </div>
 
@@ -89,16 +56,11 @@
                         <div id="horizontal-container" class="answer-container" data-as-sortable="sortableOptionsHorizontal"
                              data-ng-model="questionnaireEntry.answers._embeddedItems">
                             <div data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'" data-as-sortable-item
->>>>>>> c77feed18192454c4027964ef7a4d0180604a048
                                  class="as-sortable-item">
                                 <div data-as-sortable-item-handle>
                                     <span class="answerText" data-ng-bind="answer.answerText"></span>
                                 </div>
-<<<<<<< HEAD
-                                <button id="btn_deleteAnswer{{questionnaireEntry.answers._embeddedItems.id}}"  class="left btn btn-remove" type="button" title="Delete"
-=======
                                 <button id="btn_removeAnswer_{{answer.sortOrder}}" class="left btn btn-remove" type="button" title="Delete"
->>>>>>> c77feed18192454c4027964ef7a4d0180604a048
                                         data-ng-click="deleteAnswer(questionnaireEntry, answer)">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>
@@ -110,12 +72,7 @@
 
                     <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
                         <div class="option-list">
-<<<<<<< HEAD
-                            <button id="btn_deleteAnswer{{questionnaireEntry.answers._embeddedItems.id}}"
-                                    class="left btn btn-remove" type="button" title="Delete"
-=======
                             <button id="btn_removeAnswer_{{answer.sortOrder}}"  class="left btn btn-remove" type="button" title="Delete"
->>>>>>> c77feed18192454c4027964ef7a4d0180604a048
                                     data-ng-click="deleteAnswer(questionnaireEntry, answer)"
                                     data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
                                 {{answer.answerText}} <span class="glyphicon glyphicon-remove"></span>
@@ -133,9 +90,4 @@
     </div>
 
 
-<<<<<<< HEAD
-
 <div class="clear"></div>
-=======
-    <div class="clear"></div>
->>>>>>> c77feed18192454c4027964ef7a4d0180604a048
