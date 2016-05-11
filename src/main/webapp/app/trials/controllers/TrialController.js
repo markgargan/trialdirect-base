@@ -143,6 +143,8 @@ angular.module('trialdirect').controller('TrialController',
                     hasUploadedImage:false
                 };
 
+                newTrialSite.trialDirectAddress={};
+
                 trialInfo.trialSites._embeddedItems.unshift(newTrialSite);
 
                 $scope.showSiteForm(trialInfo.trialSites._embeddedItems.length);

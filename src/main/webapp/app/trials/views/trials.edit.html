@@ -13,7 +13,7 @@
 
     <div class="clear"></div>
 
-    <form id="myForm" name="trialForm" ng-submit="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
+    <form id="myForm" name="trialForm">
 
         <div class="form-group col-xs-3">
 
@@ -261,7 +261,7 @@
                     <label for="trial-site-address1{{$index}}">Address 1</label>
                     <span>
                         <input id="trial-site-address1{{$index}}" type="text" name="trial-site-address1"
-                               data-ng-model="trialSite.trialDirectAddress.address1" size="31" required>
+                               data-ng-model="trialSite.trialDirectAddress.address1" size="31" required="">
                     </span>
                 </div>
 
@@ -319,7 +319,7 @@
         <!-- Trial Site End -->
         <span class="trial-edit-buttons answers">
             <label for="input_save_trial">
-                <input id="input_save_trial" type="submit" checked=checked>
+                <input id="input_save_trial" ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
                 <span>Save Trial</span>
             </label>
         </span>
