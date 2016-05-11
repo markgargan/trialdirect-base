@@ -2,7 +2,7 @@
 <h2>All Therapeutic Areas</h2>
 <ul>
   <li data-ng-repeat="therapeuticArea in therapeuticAreas">
-    <a ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})">{{therapeuticArea.title}}</a>
+    <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})" id="lnk_therapeuticArea_{{therapeuticArea.sortOrder}">{{therapeuticArea.title}}</a>
   </li>
 </ul>    
 -->

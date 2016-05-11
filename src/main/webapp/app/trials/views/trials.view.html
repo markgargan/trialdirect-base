@@ -5,8 +5,7 @@
             <label class="nav-header new-group-label">Add new Clinical Trial</label>
             <ul class="nav nav-list">
                 <!-- <li class="nav-header">Add new Clinical Trial</li> -->
-                <li data-ng-class="{ active: $state.includes('trials.create') }">
-                    <a ui-sref="trials.create">Create Clinical Trial</a></li>
+                <li data-ng-class="{ active: $state.includes('trials.list') }"><a data-ui-sref="trials.list" id="lnk_addNewTrial">Create Clinical Trial</a></li>
             </ul>
         </div>
 
@@ -15,15 +14,28 @@
                 <li class="nav-header">Clinical Trial Criteria Options</li>
                 <!-- This <li> will only add the 'active' class if 'trials.detail' or its descendants are active
                      AND if it is the link for the active contact (aka contactId) -->
-                <li data-ng-repeat="trial in trials " ui-sref-active="active">
-                    <!-- Here's a ui-sref that is also providing necessary parameters -->
-                    <a ui-sref="trials.edit({trialId:trial.id})">{{trial.title}}</a>
+                <li data-ng-repeat="trial in trials " data-ui-sref-active="active">
+                    <!-- Here's a data-ui-sref that is also providing necessary parameters -->
+                    <a data-ui-sref="trials.detail({trialId:trial.id})" id="lnk_trialDetail_{{trial.id}}">{{trial.title}}</a>
                 </li>
             </ul>
         </div>
 
+
+        <div class="side-panel">
+            <ul class="nav nav-list">
+                <li class="nav-header">Edit Trial Information</li>
+                <!-- This <li> will only add the 'active' class if 'trials.detail' or its descendants are active
+                     AND if it is the link for the active contact (aka contactId) -->
+                <li data-ng-repeat="trial in trials " data-ui-sref-active="active">
+                    <!-- Here's a data-ui-sref that is also providing necessary parameters -->
+                    <a data-ui-sref="trials.edit({trialId:trial.id})" id="lnk_trialEdit_{{trial.id}}">{{trial.title}}</a>
+                </li>
+            </ul>
+        </div>
+        
     </div>
 
     <!-- Our unnamed main ui-view for this template -->
-    <div ui-view></div>
+    <div data-ui-view></div>
 </div>
