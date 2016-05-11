@@ -15,9 +15,9 @@
                 <li class="nav-header">Clinical Trial Criteria Options</li>
                 <!-- This <li> will only add the 'active' class if 'trials.detail' or its descendants are active
                      AND if it is the link for the active contact (aka contactId) -->
-                <li data-ng-repeat="trial in trials " ui-sref-active="active">
-                    <!-- Here's a ui-sref that is also providing necessary parameters -->
-                    <a ui-sref="trials.edit({trialId:trial.id})">{{trial.title}}</a>
+                <li data-ng-repeat="trial in trials " data-ui-sref-active="active">
+                    <!-- Here's a data-ui-sref that is also providing necessary parameters -->
+                    <a data-ui-sref="trials.edit({trialId:trial.id})">{{trial.title}}</a>
                 </li>
             </ul>
         </div>
@@ -25,5 +25,5 @@
     </div>
 
     <!-- Our unnamed main ui-view for this template -->
-    <div ui-view></div>
+    <div data-ui-view></div>
 </div>
