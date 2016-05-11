@@ -1,0 +1,18 @@
+// add required prefix settings for older browsers
+// CSS include example:
+//           @include prefix(border-radius, .2em, webkit moz)
+// CSS produced example:
+//           -webkit-border-radius: .2em;
+//           -moz-border-radius: .2em;
+//           border-radius: .2em;
+@mixin prefix($property, $value, $prefixes: webkit moz ms o) {
+
+  // add each prefix settings
+  @each $p in $prefixes {
+      -#{$p}-#{$property}: $value;
+  }
+
+  // add original setting by default
+  #{$property}: $value;
+
+}
