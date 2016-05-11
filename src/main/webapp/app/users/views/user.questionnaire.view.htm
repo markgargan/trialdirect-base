@@ -18,7 +18,7 @@
 			<!--
 			<div class="answers trialTitle" style="float:right">
 				<label>
-					<input id="inp_therapeuticArea{{therapeuticArea.id}}" type="radio" data-ng-checked="user">
+					<input id="inp_therapeuticArea_{{therapeuticArea.sortOrder}}" type="radio" data-ng-checked="user">
 					<span data-ng-bind="user.therapeuticArea.title"></span>
 				</label>
 			</div>
@@ -32,8 +32,8 @@
 					<div class="clear"></div>
 				</div>
 				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
-					<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-						<input id="inp_answer{{answer.id}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+					<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
+						<input id="inp_answer_{{answer.sortOrder}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
 							   data-ng-model="answer.isSelected"/>
 						<span data-ng-bind="answer.answerText"></span>
 					</label>
@@ -41,8 +41,8 @@
 
 				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
 					<div class="option-list">
-						<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
-							<input id="inp_answer{{answer.id}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+						<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
+							<input id="inp_answer_{{answer.sortOrder}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
 								   data-ng-model="answer.isSelected"/>
 							<span data-ng-bind="answer.answerText"></span>
 						</label>
@@ -80,7 +80,7 @@
 						-->
 						<p>
 
-							<strong>{{trialSite.facilityName}}</strong><br>
+							<strong>{{trialSite.siteDirector}}</strong><br>
 						<small>
 							<span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
 							<span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
@@ -102,7 +102,7 @@
 
 			<div class="trialLeadersContainer"  data-ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" data-ng-click="toggleBio(site, trialData)" data-ng-show="site.showBio">
 
-				<h3>{{site.facilityName}}</h3>
+				<h3>{{site.siteDirector}}</h3>
 
 				<div class="simplePanel">
 
@@ -113,7 +113,7 @@
 							<p class="trialLeaderImage" style="background-image:url('/trialSiteImage/{{site.id}}')"></p>
 							-->
 							<p>
-								<strong>{{site.facilityName}}</strong><br>
+								<strong>{{site.siteDirector}}</strong><br>
 								{{site.trialDirectAddress.address1}}
 								{{site.trialDirectAddress.address2}}
 								{{site.trialDirectAddress.address3}}
@@ -122,6 +122,7 @@
 							</p>
 
 							<p ng-bind="site.facilityDescription"></p>
+
 							<div class="clear"></div>
 						</div>
 					</div>
@@ -154,40 +155,6 @@
 
 
 			<div class="clear"></div>
-
-			<!--
-			<div class="trialSiteList">
-				<h3>Available Locations</h3>
-				<div class="simplePanel">
-					<div class="trialDirectorList">
-						<div class="trialSiteOptions" ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" ng-click="toggleBio(site, trialData)">
-							<p><span class="trialSiteImage"><img ng-src="/trialSiteImage/{{site.id}}"></span>
-								<strong>{{site.siteDirector}}</strong></p>
-							<p ng-show="site.showBio" ng-bind="site.siteDirectorBio"></p>
-							<div class="clear"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="trialSiteLocation">
-				<h3>Trial Location Details</h3>
-				<div class="simplePanel">
-					<p>
-						<strong>Memorial Sloan Kettering Center</strong><br>
-						New York, New York, United States, 10065<br>
-						Contact: Kenneth Offit, MD 646-888-4067<br>
-						Principal Investigator: Thomas Haak, MD
-					</p>
-
-
-					<iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
-
-					<div class="clear"></div>
-				</div>
-			</div>
-			-->
-
 
 			<h3>About The Trial</h3>
 

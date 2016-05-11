@@ -6,7 +6,7 @@
 
     <div class="list-answers answers">
         <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-            <input id="inp_therapeuticAreaSelection{{therapeuticArea.id}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+            <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
                    data-ng-click="chooseTherapeuticArea(therapeuticArea)">
             <span data-ng-bind="therapeuticArea.title"></span>
         </label>
