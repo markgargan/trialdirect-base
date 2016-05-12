@@ -2,52 +2,30 @@
 Documentation
 ...
 Test Teardown  Test Teardown
-Force Tags  3.2.15
+Force Tags  3.2.6
 Library  Selenium2Library
 
 *** Variables ***
-${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/trials/create
+${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/users
 ${BROWSER}        Firefox
 
 
 *** Test Cases ***
-3.2.15.2 As a Content Editor, I want to add to be able to add a new trial to the system.
-    [Documentation]   As a Content Editor, I want to add to be able to add a new trial to the system.
-    [Tags]  3.2.15.2
-    [Setup]  Test setup for Trial creation page
-    #Given I as Content Editor
-    And Trial Selection Page Should Be Open
-    Then I want to create a new trial
-    And I want to be able to add new trial name
-    And I want to be able to add trial photo
-    And I want to be able to select therapeutic are for new trial
-    And I want to be able to add trial summary
-    And I want to be able to add trial description
-    Then I want to be able to save new trial informations
-    And new trial should be available on page
-    And screenshot is taken for 3.2.15.2
+3.2.6.2 As a HCP, I want to be able to search for trials available
+    [Documentation]   As a HCP, I want to be able to search for trials available
+    [Tags]  3.2.6.2
+    [Setup]  Test setup for Trial search page
+    #Give I as HCP
+    And Trial search page should be open
+    And I want to be able to select therapeutic area
+    Then I should be able to view set of questions as defined for therapeutic area selected
+    And I want to be able to answer questions
+    Then I should be able to view available trials
+    Then screenshot is taken for 3.2.6.2
 
-3.2.15.4 As a Content Editor, I want to be able to add a new site for the trial
-    [Documentation]  As a Content Editor, I want to be able to add a new site for the trial
-    [Tags]  3.2.15.4
-    [Setup]  Test setup for Trial creation page
-    #Give I as Content Editor
-    And Trial Selection Page Should Be Open
-    Then I want to be able to add new site for selected trial
-    #Blocked by existing bug
-
-3.2.15.5 As a Content Editor, I want to be able to view a list of sites that have been added for a trial.
-    [Documentation]  As a Content Editor, I want to be able to view a list of sites that have been added for a trial.
-    [Tags]  3.2.15.5
-    [Setup]  Test setup for Trial creation page
-    #Give I as Content Editor
-    And Trial Selection Page Should Be Open
-    And previously created trial is selected
-    Then I want to be able to see a list of sites for selected trial
-    And screenshot is taken for 3.2.15.5
 
 *** Keywords ***
-Test setup for Trial creation page
+Test setup for Trial search page
     open browser  ${SERVER}    ${BROWSER}
     set browser implicit wait  15
     Set Selenium Implicit Wait    20
@@ -62,78 +40,37 @@ Test Teardown
 
 
 *** Keywords ***
-Trial Selection Page Should Be Open
-    title should be  Trial Direct
-I want to create a new trial
-    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[1]/ul/li/a
-    sleep  1s
-    click element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[1]/ul/li/a
-    sleep  1s
-I want to be able to add new trial name
-    wait until page contains element  //*[@id='inp_newTrialInput']
-    sleep  1s
-    input text  //*[@id='inp_newTrialInput']    Skin Cancer Trial
-    sleep  1s
-I want to be able to add trial photo
-    wait until page contains element  //*[@id='trialLogo']
-    sleep  1s
-    choose file  //*[@id='trialLogo']    ${CURDIR}${/}glaxo.jpg
-    sleep  1s
-I want to be able to select therapeutic are for new trial
-    wait until page contains element    //*[@id='myForm']/div[2]/div[1]/div[2]/label[2]/span
-    sleep  1s
-    click element  //*[@id='myForm']/div[2]/div[1]/div[2]/label[2]/span
-    sleep  1s
-I want to be able to add trial summary
-    wait until page contains element  //*[@id='inp_trialInfoSummary']
+
+Trial search page should be open
+    title should be    Trial Direct
     sleep  .5s
-    input text  //*[@id='inp_trialInfoSummary']    Skin Cancer Summary
+I want to be able to select therapeutic area
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/form/div[1]/div[2]/label/span
     sleep  .5s
-I want to be able to add trial description
-    wait until page contains element  //*[@id='inp_trialInfoDescription']
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/form/div[1]/div[2]/label/span
     sleep  .5s
-    input text  //*[@id='inp_trialInfoDescription']    Skin Cancer Description
+    wait until page contains element  //*[@id='lnk_savedSearch_1']  #select saved search
     sleep  .5s
-screenshot is taken for 3.2.15.2
-    capture page screenshot  file=3.2.15.2.png
-I want to be able to save new trial informations
-    wait until page contains element  //*[@id='myForm']/span/label/span
+    click element  //*[@id='lnk_savedSearch_1']
     sleep  .5s
-    click element  //*[@id='myForm']/span/label/span
+I should be able to view set of questions as defined for therapeutic area selected
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]
+    sleep  2s
+I want to be able to answer questions
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[3]/div[2]/label[1]/span
     sleep  .5s
-new trial should be available on page
-    sleep  1s
-    reload page
-    sleep  1s
-    page should contain  Skin Cancer Trial
-I want to be able to add new site for selected trial
-    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[2]/ul/li[2]/a
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[3]/div[2]/label[1]/span
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[4]/div[2]/label[1]/span
     sleep  .5s
-    click element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[2]/ul/li[2]/a
-    sleep  1s
-    wait until page contains element  //*[@id='btn_add_site']
-    click element  //*[@id='btn_add_site']
-previously created trial is selected
-    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[2]/ul/li[2]/a
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[4]/div[2]/label[1]/span
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[5]/div[2]/label[1]/span
     sleep  .5s
-    click element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[2]/ul/li[2]/a
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[5]/div[2]/label[1]/span
+I should be able to view available trials
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div/div[1]/ul
     sleep  .5s
-I want to be able to see a list of sites for selected trial
-    wait until page contains element    //*[@id='myForm']/div[1]/div[2]/ul/li[1]
-    sleep  .5s
-screenshot is taken for 3.2.15.5
-    capture page screenshot  file=3.2.15.5.png
-
-
-
-
-
-
-
-
-
-
-
+screenshot is taken for 3.2.6.2
+    capture page screenshot  file=3.2.6.2.png
 
 
 
