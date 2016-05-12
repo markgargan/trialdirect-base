@@ -21,6 +21,7 @@ ${BROWSER}        Firefox
     Then I should be able to view set of questions as defined for therapeutic area selected
     And I want to be able to answer questions
     Then I should be able to view available trials
+    And Start New Search should be visible
     Then screenshot is taken for 3.2.6.2
 
 
@@ -33,14 +34,9 @@ Test setup for Trial search page
     maximize browser window
     sleep  5s
     reload page
-
 Test Teardown
     sleep  5s
     close all browsers
-
-
-*** Keywords ***
-
 Trial search page should be open
     location should be  ${SERVER}
     sleep  .5s
@@ -68,6 +64,9 @@ I want to be able to answer questions
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[5]/div[2]/label[1]/span
 I should be able to view available trials
     wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div/div[1]/ul
+    sleep  .5s
+Start New Search should be visible
+    wait until page contains element  //*[@id='lnk_startNewSearch']
     sleep  .5s
 screenshot is taken for 3.2.6.2
     capture page screenshot  3.2.6.2.png

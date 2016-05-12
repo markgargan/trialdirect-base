@@ -55,13 +55,9 @@ Test setup for Trial creation page
     maximize browser window
     sleep  5s
     reload page
-
 Test Teardown
     sleep  5s
     close all browsers
-
-
-*** Keywords ***
 Trial Selection Page Should Be Open
     location should be  ${SERVER}
 I want to create a new trial

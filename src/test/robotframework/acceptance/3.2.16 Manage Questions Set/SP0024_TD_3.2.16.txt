@@ -51,13 +51,9 @@ Test setup for Therapeutic Areas
     maximize browser window
     sleep  5s
     reload page
-
 Test Teardown
     sleep  5s
     close all browsers
-
-
-*** Keywords ***
 I as Content Editor
 #
 Therapeutic Area Page Should Be Open
