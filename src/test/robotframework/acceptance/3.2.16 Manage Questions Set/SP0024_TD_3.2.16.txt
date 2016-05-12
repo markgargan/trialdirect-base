@@ -61,7 +61,7 @@ Test Teardown
 I as Content Editor
 #
 Therapeutic Area Page Should Be Open
-    title should be  Trial Direct
+    location should be  ${SERVER}
 I want to create a new therapeutic area
     wait until page contains element  //*[@id='inp_newTherapeuticAreaInput']
     input text  //*[@id='inp_newTherapeuticAreaInput']    Diabetes
@@ -100,7 +100,7 @@ I want to be able to add a set of questions for that therapeutic area
     sleep  1s
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
 screenshot is taken for 3.2.16.1
-    capture page screenshot  file=3.2.16.png
+    capture page screenshot  3.2.16.1.png
 I want to select previously created therapeutic area
     wait until page contains element  //*[@id='lnk_therapeuticArea_1']
     click element  //*[@id='lnk_therapeuticArea_1']
@@ -110,14 +110,14 @@ Delete existing question
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[1]/button
     sleep  1s
 screenshot is taken for 3.2.16.5
-    capture page screenshot  file=3.2.16.5.png
+    capture page screenshot  3.2.16.5.png
 Delete existing answer
     wait until page contains element  //*[@id='btn_removeAnswer_1']
     sleep  1s
     click element  //*[@id='btn_removeAnswer_1']
     sleep  1s
 screenshot is taken for 3.2.16.6
-    capture page screenshot  file=3.2.16.6.png
+    capture page screenshot  3.2.16.6.png
 
 
 

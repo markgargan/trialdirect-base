@@ -42,7 +42,7 @@ Test Teardown
 *** Keywords ***
 
 Trial search page should be open
-    title should be    Trial Direct
+    location should be  ${SERVER}
     sleep  .5s
 I want to be able to select therapeutic area
     wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/form/div[1]/div[2]/label/span
@@ -70,7 +70,7 @@ I should be able to view available trials
     wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div/div[1]/ul
     sleep  .5s
 screenshot is taken for 3.2.6.2
-    capture page screenshot  file=3.2.6.2.png
+    capture page screenshot  3.2.6.2.png
 
 
 
