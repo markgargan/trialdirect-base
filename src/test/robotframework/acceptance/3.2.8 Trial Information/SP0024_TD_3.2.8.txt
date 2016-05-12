@@ -9,7 +9,6 @@ Library  Selenium2Library
 ${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/users
 ${BROWSER}        Firefox
 
-
 *** Test Cases ***
 3.2.8.1 As a HCP, I want to be able to see 3.2.15.2 Trial Information
     [Documentation]   As a HCP, I want to be able to see 3.2.15.2 Trial Information
@@ -21,6 +20,7 @@ ${BROWSER}        Firefox
     And Select available trial
     Then I should be able to view selected trial informations
     Then screenshot for 3.2.8 taken
+
 *** Keywords ***
 Test setup for Trial search page
     open browser  ${SERVER}    ${BROWSER}

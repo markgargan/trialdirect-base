@@ -9,7 +9,6 @@ Library  Selenium2Library
 ${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/therapeuticareas
 ${BROWSER}        Firefox
 
-
 *** Test Cases ***
 3.2.16.1 As a Content Editor, I want to add a question set for therapeutic area and disease
     [Documentation]   As a Content Editor, I want to add a question set for therapeutic area and disease
@@ -40,7 +39,6 @@ ${BROWSER}        Firefox
     Then I want to select previously created therapeutic area
     And Delete existing answer
     And screenshot is taken for 3.2.16.6
-
 
 *** Keywords ***
 Test setup for Therapeutic Areas

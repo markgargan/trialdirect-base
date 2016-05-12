@@ -9,7 +9,6 @@ Library  Selenium2Library
 ${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/users
 ${BROWSER}        Firefox
 
-
 *** Test Cases ***
 3.2.6.2 As a HCP, I want to be able to search for trials available
     [Documentation]   As a HCP, I want to be able to search for trials available
@@ -23,7 +22,6 @@ ${BROWSER}        Firefox
     Then I should be able to view available trials
     And Start New Search should be visible
     Then screenshot is taken for 3.2.6.2
-
 
 *** Keywords ***
 Test setup for Trial search page

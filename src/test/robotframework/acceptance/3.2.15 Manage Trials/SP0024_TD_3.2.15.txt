@@ -9,7 +9,6 @@ Library  Selenium2Library
 ${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/trials/create
 ${BROWSER}        Firefox
 
-
 *** Test Cases ***
 3.2.15.2 As a Content Editor, I want to add to be able to add a new trial to the system.
     [Documentation]   As a Content Editor, I want to add to be able to add a new trial to the system.
