@@ -55,7 +55,7 @@
 
                         <div id="horizontal-container" class="answer-container" data-as-sortable="sortableOptionsHorizontal"
                              data-ng-model="questionnaireEntry.answers._embeddedItems">
-                            <div data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'" data-as-sortable-item
+                            <div data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems" data-as-sortable-item
                                  class="as-sortable-item">
                                 <div data-as-sortable-item-handle>
                                     <span class="answerText" data-ng-bind="answer.answerText"></span>
