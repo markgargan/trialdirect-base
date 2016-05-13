@@ -23,11 +23,11 @@
         </div>
 
 
-        <div class="form-group" as-sortable="sortableOptions" ng-model="questionnaireEntries">
-            <div ng-repeat="questionnaireEntry in questionnaireEntries" as-sortable-item class="as-sortable-item">
+        <div class="form-group" data-as-sortable="sortableOptions" ng-model="questionnaireEntries">
+            <div ng-repeat="questionnaireEntry in questionnaireEntries" data-as-sortable-item class="as-sortable-item">
                 <div class="qa">
 
-                    <div class="questionEdit" as-sortable-item-handle class="as-sortable-item-handle">
+                    <div class="questionEdit" data-as-sortable-item-handle class="as-sortable-item-handle">
                         <button class="left btn btn-remove btn-remove-question" type="button" title="Delete"
                                 data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">
                             <span class="glyphicon glyphicon-remove"></span>
@@ -54,11 +54,11 @@
 
                     <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
 
-                        <div id="horizontal-container" class="answer-container" as-sortable="sortableOptionsHorizontal"
+                        <div id="horizontal-container" class="answer-container" data-as-sortable="sortableOptionsHorizontal"
                              ng-model="questionnaireEntry.answers._embeddedItems">
-                            <div ng-repeat="answer in questionnaireEntry.answers._embeddedItems" as-sortable-item
+                            <div ng-repeat="answer in questionnaireEntry.answers._embeddedItems" data-as-sortable-item
                                  class="as-sortable-item">
-                                <div as-sortable-item-handle>
+                                <div data-as-sortable-item-handle>
                                     <span class="answerText" data-ng-bind="answer.answerText"></span>
                                 </div>
                                 <button class="left btn btn-remove" type="button" title="Delete"
