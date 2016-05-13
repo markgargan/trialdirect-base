@@ -4,6 +4,28 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
 
             $scope.count = 0;
 
+            $scope.items = [{
+                name: 'Element 1'
+            }, {
+                name: 'Element 2'
+            }, {
+                name: 'Element 3'
+            }, {
+                name: 'Element 4'
+            }, {
+                name: 'Element 5'
+            }, {
+                name: 'Element 6'
+            }, {
+                name: 'Element 7'
+            }, {
+                name: 'Element 8'
+            }];
+
+            $scope.$watch('items', function () {
+                console.log(arguments);
+            });
+
             $scope.sortableOptions = {
                 containment: '#sortable-container',
                 accept: function (sourceItemHandleScope, destSortableScope) {
