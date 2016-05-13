@@ -40,7 +40,7 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
             };
 
             // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
-            QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink= function (linkname, linkId) {
+            QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink = function (linkname, linkId) {
 
                 var deferred1 = $http.get('api/' + linkname + '/' + linkId + '/therapeuticArea');
 
@@ -139,6 +139,26 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
                             callback && callback();
                         });
                     };
+
+
+                    questionnaireEntry.sortAssociation = function (sortOrderData, sortOrderIndex, callback) {
+
+                        var deferred = $http({
+                            method: 'PATCH',
+                            headers: {'Content-Type': 'application/json'},
+                            data: {
+                                "sortOrder": sortOrderIndex
+                            },
+                            url: sortOrderData._links.self.href
+                        });
+
+                        // no response bar 204 from an association creation.
+                        return SpringDataRestAdapter.process(deferred).then(function () {
+
+                            callback && callback();
+                        });
+                    };
+
 
                     questionnaireEntry.removeAssociation = function (associationName, associatedEntity, callback) {
 

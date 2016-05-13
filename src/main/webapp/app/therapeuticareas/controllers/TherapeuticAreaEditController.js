@@ -1,8 +1,8 @@
 angular.module('trialdirect').controller('TherapeuticAreaEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'therapeuticArea', 'questionnaireEntries',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries ) {
+        function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries) {
 
-            $scope.count = 0;
+            /*$scope.count = 0;
 
             $scope.items = [{
                 name: 'Element 1'
@@ -24,7 +24,7 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
 
             $scope.$watch('items', function () {
                 console.log(arguments);
-            });
+            });*/
 
             $scope.sortableOptions = {
                 containment: '#sortable-container',
@@ -36,30 +36,39 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
 
             $scope.sortableOptionsHorizontal = {
                 containment: '#horizontal-container',
-                // restrict move across columns. move only within column.
+                // restrict movement to within containment div
                 accept: function (sourceItemHandleScope, destSortableScope) {
                     return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
                 }
             };
 
-
-            $scope.updateSortQuestion = function (questionId, sortOrderIndex) {
-
-                $scope.questionId = questionId;
-                $scope.sortOrder = sortOrderIndex+1;
-
-                //$scope.updateQuestion = function (question) {
-                //    question.save();
-                //};
-
-            };
-
-
-
-
             $scope.therapeuticArea = therapeuticArea;
 
             $scope.questionnaireEntries = questionnaireEntries;
+
+
+            /*$scope.updateSortOrder = function (sortOrderData, sortOrderNo) {
+                new QuestionnaireEntryResourceService(
+                    question: sortOrderData.getHrefLink(),
+                ).save(function (question) {
+
+                    new QuestionnaireEntryResourceService({
+                        question: question.getHrefLink(),
+                        therapeuticArea: therapeuticArea.getHrefLink()
+                    }).save(function (questionnaireEntry) {
+                        questionnaireEntry.question = question;
+                        $scope.questionnaireEntries.unshift(questionnaireEntry);
+                    })
+
+                })
+            };
+            */
+
+
+            $scope.updateSortOrder = function (sortOrderData, sortOrderNo) {
+               
+            };
+
 
             $scope.addQuestion = function (questionText) {
                 new Question({
@@ -67,7 +76,7 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
                 }).save(function (question) {
                     new QuestionnaireEntryResourceService({
                         question: question.getHrefLink(),
-                        therapeuticArea:therapeuticArea.getHrefLink()
+                        therapeuticArea: therapeuticArea.getHrefLink()
                     }).save(function (questionnaireEntry) {
                         questionnaireEntry.question = question;
                         $scope.questionnaireEntries.unshift(questionnaireEntry);
@@ -83,9 +92,9 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
             $scope.deleteQuestionnaireEntry = function (questionnaireEntry) {
 
                 questionnaireEntry.removeQEAssociation($scope.therapeuticArea.id, function () {
-                   questionnaireEntry.remove(function () {
-                       $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);
-                   });
+                    questionnaireEntry.remove(function () {
+                        $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);
+                    });
                 });
             };
 
