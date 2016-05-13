@@ -33,7 +33,20 @@ angular.module('uiRouterSample.trial', [
                     })
                     .state('trials.list', {
                         url: '',
+                        templateUrl:'app/trials/views/trials.list.html'
+                    }).state('trials.oldcreate', {
+                        url: '/oldcreate',
                         templateUrl:'app/trials/views/trials.create.html'
+                    })
+                    .state('trials.create', {
+                        url: '/create',
+                        views: {
+
+                            // So this one is targeting the unnamed view within the parent state's template.
+                            '': {
+                                templateUrl: 'app/trials/views/trials.edit.html'
+                            }
+                        }
                     })
                     .state('trials.edit', {
                         url: '/edit/{trialId:[0-9]{1,4}}',
@@ -73,21 +86,6 @@ angular.module('uiRouterSample.trial', [
                                         return TrialSelectorQuestionnaireEntryResourceService.loadTrialSelectorQuestionnaireEntriesForTrial($stateParams.trialId);
                                     }
                                 }
-                            },
-                            //'hint@': {
-                            //  template: 'This is trials.detail populating the "hint" ui-view'
-                            //},
-                            // This one is targeting the ui-view="menuTip" within the parent state's template.
-                            'menuTip': {
-                                // templateProvider is the final method for supplying a template.
-                                // There is: template, templateUrl, and templateProvider.
-                                templateProvider: ['$stateParams',
-                                    function ($stateParams) {
-                                        // This is just to demonstrate that $stateParams injection works for templateProvider.
-                                        // $stateParams are the parameters for the new state we're transitioning to, even
-                                        // though the global '$stateParams' has not been updated yet.
-                                        return '<hr><small class="muted">Trial ID: ' + $stateParams.trialId + '</small>';
-                                    }]
                             }
                         }
                     })

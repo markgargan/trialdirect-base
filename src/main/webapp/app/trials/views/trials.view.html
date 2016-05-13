@@ -5,7 +5,8 @@
             <label class="nav-header new-group-label">Add new Clinical Trial</label>
             <ul class="nav nav-list">
                 <!-- <li class="nav-header">Add new Clinical Trial</li> -->
-                <li data-ng-class="{ active: $state.includes('trials.list') }"><a ui-sref="trials.list">Create Clinical Trial</a></li>
+                <li data-ng-class="{ active: $state.includes('trials.create') }">
+                    <a ui-sref="trials.create">Create Clinical Trial</a></li>
             </ul>
         </div>
 
@@ -16,24 +17,11 @@
                      AND if it is the link for the active contact (aka contactId) -->
                 <li data-ng-repeat="trial in trials " ui-sref-active="active">
                     <!-- Here's a ui-sref that is also providing necessary parameters -->
-                    <a ui-sref="trials.detail({trialId:trial.id})">{{trial.title}}</a>
-                </li>
-            </ul>
-        </div>
-
-
-        <div class="side-panel">
-            <ul class="nav nav-list">
-                <li class="nav-header">Edit Trial Information</li>
-                <!-- This <li> will only add the 'active' class if 'trials.detail' or its descendants are active
-                     AND if it is the link for the active contact (aka contactId) -->
-                <li data-ng-repeat="trial in trials " ui-sref-active="active">
-                    <!-- Here's a ui-sref that is also providing necessary parameters -->
                     <a ui-sref="trials.edit({trialId:trial.id})">{{trial.title}}</a>
                 </li>
             </ul>
         </div>
-        
+
     </div>
 
     <!-- Our unnamed main ui-view for this template -->

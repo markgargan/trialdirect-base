@@ -32,14 +32,12 @@ public class TrialDirectPrimer {
 
     @PostConstruct
     public void initDB() throws IOException {
-
-        this.configureTriggers();
+        this.configureAudit();
         this.runPrimers();
-
     }
 
-    private void configureTriggers() {
-        auditConfigurator.addAuditStuff();
+    private void configureAudit() {
+        auditConfigurator.checkAuditConfiguration();
     }
 
     private void runPrimers() throws IOException {

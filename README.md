@@ -7,7 +7,7 @@ Download and extract Tomcat
 Install Openshift CLI as described in link above. 
       http://openshift.github.io/documentation/oo_cartridge_guide.html#tomcat
 git clone the repo at
-       Git URL:    ssh://56ddf73b7628e1e18a0001cd@trialdirect-tekenable.rhcloud.com/~/git/trialdirect.git/
+       Git URL:git@github.com:markgargan/trialdirect-base.git
 open shell and 'cd' to the root of the git clone
        mvn clean install to build the app
 
@@ -54,7 +54,7 @@ In Intellij
       View -> Tool Windows -> Database
       Hit the '+' to create a new connection and specify the host:port username(root) & password (tr14ld1r3ct)
       Note there is no database yet. 
-      Once the connection is live open the sql editor and create the trialdirect database
+      Once the connection is live open the sql editor and create the TRIALDIRECT database
       
       In the SQL Editor:-
           CREATE DATABASE TRIALDIRECT; -- Note the uppercase.
@@ -77,9 +77,3 @@ Open the context.xml file under the Tomcat installation
   
 Click the 'DEBUG' button next to the new Run Configuration to start the Tomcat container. 
 This will kick off the Tomcat Container which will configure the MySQL datasource as per the <Resource> in the context.xml
-
-March 14th
-------------
-Added TherapeuticArea, Question, Answer
-Added Trial, TrialSelector
-Added PostConstruct in the TrialDirectPrimer bean that creates instances of the objects in the database

@@ -3,6 +3,10 @@ body {
     /*    background: #fafafa*/
 }
 
+.errors {
+    color:red;
+    font-style:italic;
+}
 /**
  Integration start
 **/
@@ -21,6 +25,20 @@ body {
 #myForm input {
     /* line-height:1em; */
     float: right;
+}
+
+span.trial-edit-buttons {
+    float:right;
+    width: 9%;
+    padding: 11px 0;
+}
+
+
+span.trial-selection-buttons {
+    float:right; 
+    width: 9%;
+    text-align:left;
+    margin: 1em 2em;
 }
 
 textarea {
@@ -667,6 +685,17 @@ td, th {
     background: #fff;
 }
 
+.btn-add-site {
+    top: -18px;
+    right: -17px;
+    color: #a00 !important;
+    font-size: 18px !important;
+    padding: 6px 7px 2px 8px !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 .25em #ddd !important;
+    background: #fff;
+}
+
 .side-panel {
     display: block;
     background: #fff;
@@ -1123,7 +1152,8 @@ a:active.more, a:hover.more {
     text-decoration: none;
 }
 
-input.ng-invalid, input.ng-invalid-required {
+input.ng-invalid, input.ng-invalid-required,
+textarea.ng-invalid, textarea.ng-invalid-required {
     border-color: #c00;
 }
 
@@ -1300,4 +1330,7 @@ max-width: 600px) {
         width: auto;
     }
 }
- 
+
+.trialImage{
+    text-align:center;
+}

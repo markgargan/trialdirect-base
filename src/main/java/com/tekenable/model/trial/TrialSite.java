@@ -1,21 +1,26 @@
 package com.tekenable.model.trial;
 
-import com.tekenable.model.BaseEntity;
+import com.tekenable.model.SortEntity;
 import com.tekenable.model.common.TrialDirectAddress;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by mark on 30/03/2016.
  */
 @Entity
-public class TrialSite extends BaseEntity {
+public class TrialSite extends SortEntity {
 
     private TrialInfo trialInfo;
 
-    private String siteDirector;
+    private String facilityName;
 
-    private String siteDirectorBio;
+    private String facilityDescription;
+
+    private String principalInvestigator;
 
     private String siteMap;
 
@@ -26,15 +31,17 @@ public class TrialSite extends BaseEntity {
     public TrialSite() {
     }
 
-    public TrialSite(TrialInfo trialInfo, String siteDirector, String siteDirectorBio,
-                     String address1, String address2,String address3,String address4,
-                     String address5,String country, String siteMap) {
+    public TrialSite(TrialInfo trialInfo, String facilityName, String facilityDescription,
+                     String address1, String address2, String address3, String address4,
+                     String address5, String country, String siteMap, String principalInvestigator, Integer sortOrder) {
         this.trialInfo = trialInfo;
-        this.siteDirector = siteDirector;
-        this.siteDirectorBio = siteDirectorBio;
+        this.facilityName = facilityName;
+        this.facilityDescription = facilityDescription;
+        this.principalInvestigator = principalInvestigator;
 
         trialDirectAddress = new TrialDirectAddress(address1, address2, address3, address4, address5, country);
         this.siteMap = siteMap;
+        this.sortOrder = sortOrder;
     }
 
     @ManyToOne
@@ -55,21 +62,17 @@ public class TrialSite extends BaseEntity {
         this.trialSiteImage = trialSiteImage;
     }
 
-    public String getSiteDirector() {
-        return siteDirector;
-    }
-
-    public void setSiteDirector(String siteDirector) {
-        this.siteDirector = siteDirector;
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
     }
 
     @Column(length=500)
-    public String getSiteDirectorBio() {
-        return siteDirectorBio;
+    public String getFacilityDescription() {
+        return facilityDescription;
     }
 
-    public void setSiteDirectorBio(String siteDirectorBio) {
-        this.siteDirectorBio = siteDirectorBio;
+    public void setFacilityDescription(String facilityDescription) {
+        this.facilityDescription = facilityDescription;
     }
 
     public String getSiteMap() {
@@ -87,5 +90,17 @@ public class TrialSite extends BaseEntity {
 
     public void setTrialDirectAddress(TrialDirectAddress trialDirectAddress) {
         this.trialDirectAddress = trialDirectAddress;
+    }
+
+    public String getPrincipalInvestigator() {
+        return principalInvestigator;
+    }
+
+    public void setPrincipalInvestigator(String principalInvestigator) {
+        this.principalInvestigator = principalInvestigator;
+    }
+
+    public String getFacilityName() {
+        return facilityName;
     }
 }

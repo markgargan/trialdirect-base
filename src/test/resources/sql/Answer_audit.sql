@@ -1,0 +1,1 @@
+create table Answer_audit(id int(11), sortOrder int(11), answerText varchar(255), action varchar(10),dbUser varchar(255), appUser varchar(255), createdTs timestamp)
