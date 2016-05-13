@@ -61,24 +61,24 @@ Trial Selection Page Should Be Open
     location should be  ${SERVER}
 I want to create a new trial
     wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[1]/ul/li/a
-    sleep  1s
+    sleep  .5s
     click element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[1]/ul/li/a
-    sleep  1s
+    sleep  .5s
 I want to be able to add new trial name
     wait until page contains element  //*[@id='inp_newTrialInput']
-    sleep  1s
+    sleep  .5s
     input text  //*[@id='inp_newTrialInput']    Skin Cancer Trial
-    sleep  1s
+    sleep  .5s
 I want to be able to add trial photo
     wait until page contains element  //*[@id='trialLogo']
-    sleep  1s
+    sleep  .5s
     choose file  //*[@id='trialLogo']    ${CURDIR}${/}glaxo.jpg
-    sleep  1s
+    sleep  .5s
 I want to be able to select therapeutic are for new trial
     wait until page contains element    //*[@id='myForm']/div[2]/div[1]/div[2]/label[2]/span
-    sleep  1s
+    sleep  .5s
     click element  //*[@id='myForm']/div[2]/div[1]/div[2]/label[2]/span
-    sleep  1s
+    sleep  .5s
 I want to be able to add trial summary
     wait until page contains element  //*[@id='inp_trialInfoSummary']
     sleep  .5s
@@ -97,15 +97,15 @@ I want to be able to save new trial informations
     click element  //*[@id='myForm']/span/label/span
     sleep  .5s
 new trial should be available on page
-    sleep  1s
+    sleep  .5s
     reload page
-    sleep  1s
+    sleep  .5s
     page should contain  Skin Cancer Trial
 I want to be able to add new site for selected trial
     wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[2]/ul/li[2]/a
     sleep  .5s
     click element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[2]/ul/li[2]/a
-    sleep  1s
+    sleep  .5s
     wait until page contains element  //*[@id='btn_add_site']
     click element  //*[@id='btn_add_site']
 previously created trial is selected

@@ -60,56 +60,57 @@ I want to create a new therapeutic area
     wait until page contains element  //*[@id='inp_newTherapeuticAreaInput']
     input text  //*[@id='inp_newTherapeuticAreaInput']    Diabetes
     click element  xpath=html/body/main/div[1]/div/div/div/div[1]/div[1]/form/div/span
-    sleep  2s
+    sleep  .5s
 I want to be able to add a set of questions for that therapeutic area
     wait until page contains element  //*[@id='inp_newQuestion']
     input text  //*[@id='inp_newQuestion']    Type of diabetes
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[3]/span
     wait until page contains element  //*[@id='inp_newAnswer_']
     input text  //*[@id='inp_newAnswer_']    Type 1
-    sleep  1s
+    sleep  .5s
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div/div/div[2]/div/span
     wait until page contains element  //*[@id='inp_newAnswer_']
     input text  //*[@id='inp_newAnswer_']    Type 2
-    sleep  1s
+    sleep  .5s
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div/div/div[2]/div/span
     wait until page contains element  //*[@id='inp_newQuestion']
     input text  //*[@id='inp_newQuestion']    Your age
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[3]/span
-    sleep  1s
+    sleep  .5s
     wait until page contains element  //*[@id='inp_newAnswer_']
     input text  //*[@id='inp_newAnswer_']    0-18
-    sleep  1s
+    sleep  .5s
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
     wait until page contains element  //*[@id='inp_newAnswer_']
     input text  //*[@id='inp_newAnswer_']    19-35
-    sleep  1s
+    sleep  .5s
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
     wait until page contains element  //*[@id='inp_newAnswer_']
     input text  //*[@id='inp_newAnswer_']    36-69
-    sleep  1s
+    sleep  .5s
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
     wait until page contains element  //*[@id='inp_newAnswer_']
     input text  //*[@id='inp_newAnswer_']    70+
-    sleep  1s
+    sleep  .5s
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[2]/div/span
 screenshot is taken for 3.2.16.1
     capture page screenshot  3.2.16.1.png
 I want to select previously created therapeutic area
     wait until page contains element  //*[@id='lnk_therapeuticArea_1']
-    click element  //*[@id='lnk_therapeuticArea_1']
-    sleep  1s
+    #click element  //*[@id='lnk_therapeuticArea_1']
+    click link  Diabetes
+    sleep  .5s
 Delete existing question
     wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[1]/button
     click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/div[1]/div[4]/div[1]/div/div[1]/button
-    sleep  1s
+    sleep  .5s
 screenshot is taken for 3.2.16.5
     capture page screenshot  3.2.16.5.png
 Delete existing answer
-    wait until page contains element  //*[@id='btn_removeAnswer_1']
-    sleep  1s
-    click element  //*[@id='btn_removeAnswer_1']
-    sleep  1s
+    wait until page contains element  //*[@id='btn_removeAnswer_']
+    sleep  .5s
+    click element  //*[@id='btn_removeAnswer_']
+    sleep  .5s
 screenshot is taken for 3.2.16.6
     capture page screenshot  3.2.16.6.png
 
