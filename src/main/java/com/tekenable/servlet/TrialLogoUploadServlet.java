@@ -80,6 +80,8 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        resetTrialInfoAndSites();
+
         Trial trial = prepareEntities(request);
 
         persistTrialInfo(trial);
@@ -88,6 +90,7 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        resetTrialInfoAndSites();
         Trial trial = prepareEntities(request);
 
         persistTrialInfo(trial);
@@ -298,6 +301,12 @@ public class TrialLogoUploadServlet extends HttpServlet {
         }
 
         return trialSite;
+    }
+
+    private void resetTrialInfoAndSites(){
+        trialInfo = new TrialInfo();
+
+        trialSites = new HashMap<Integer, TrialSite>();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

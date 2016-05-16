@@ -6,6 +6,8 @@ angular.module('trialdirect').controller('TrialEditController',
 
             $scope.trial = trial;
 
+            //$scope.currentTrialSite = null;
+
             $scope.trialInfo = trialInfo;
 
             // Previously saved TrialInfo objects
