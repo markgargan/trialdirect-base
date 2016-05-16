@@ -413,6 +413,9 @@ main {
   transition: all .2s ease;
   background: #fff; }
 
+.header {
+  padding-top: 0; }
+
 .header img, .topNav, .topNav1 {
   -webkit-transition: all .2s ease;
   -moz-transition: all .2s ease;
@@ -508,7 +511,8 @@ a[href="#top"] span {
 .admin {
   text-align: right;
   background: #00857f;
-  padding: .5em 0; }
+  padding: .5em 0;
+  margin-bottom: 1em; }
 
 .admin a {
   transition: color .2s ease;
