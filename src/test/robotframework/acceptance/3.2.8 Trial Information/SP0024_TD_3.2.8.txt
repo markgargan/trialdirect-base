@@ -38,7 +38,7 @@ Trial search page should be open
     sleep  .5s
 I should be able to select previosly saved search
     wait until page contains element  //*[@id='lnk_savedSearch_1']
-    sleep  ..5s
+    sleep   .5s
     click element  //*[@id='lnk_savedSearch_1']
 Select available trial
     wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div/div[1]/ul/li[3]/a
