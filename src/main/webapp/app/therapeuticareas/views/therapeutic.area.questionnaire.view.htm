@@ -26,7 +26,7 @@
         <div data-ng-repeat="questionnaireEntry in questionnaireEntries" data-as-sortable-item class="as-sortable-item">
             <div class="qa">
 
-                    <div class="questionEdit" data-as-sortable-item-handle class="as-sortable-item-handle" data-ng-mouseleave="updateSortOrder(questionnaireEntry.question, $index)">
+                    <div class="questionEdit" data-as-sortable-item-handle class="as-sortable-item-handle"> <!--  data-ng-mouseleave="updateSortOrder()" -->
                         <button class="left btn btn-remove btn-remove-question" type="button" title="Delete"
                                 data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">
                             <span class="glyphicon glyphicon-remove"></span>
@@ -60,6 +60,7 @@
                                  class="as-sortable-item">
                                 <div data-as-sortable-item-handle>
                                     <span class="answerText" data-ng-bind="answer.answerText"></span>
+                                    <!-- <sup>{{$index +' / '+ answer.id +' / '+ answer.sortOrder}}</sup> -->
                                 </div>
                                 <button id="btn_removeAnswer_{{answer.sortOrder}}" class="left btn btn-remove" type="button" title="Delete"
                                         data-ng-click="deleteAnswer(questionnaireEntry, answer)">

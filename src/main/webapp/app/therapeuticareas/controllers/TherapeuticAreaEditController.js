@@ -2,43 +2,41 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'therapeuticArea', 'questionnaireEntries',
         function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries) {
 
-            /*$scope.count = 0;
-
-            $scope.items = [{
-                name: 'Element 1'
-            }, {
-                name: 'Element 2'
-            }, {
-                name: 'Element 3'
-            }, {
-                name: 'Element 4'
-            }, {
-                name: 'Element 5'
-            }, {
-                name: 'Element 6'
-            }, {
-                name: 'Element 7'
-            }, {
-                name: 'Element 8'
-            }];
-
-            $scope.$watch('items', function () {
-                console.log(arguments);
-            });*/
 
             $scope.sortableOptions = {
                 containment: '#sortable-container',
                 accept: function (sourceItemHandleScope, destSortableScope) {
                     return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+                },
+                orderChanged: function(event) {
+                    console.log('Change');
                 }
             };
 
+            $scope.sortableOptions = {
+                containment: '#sortable-container',
+                accept: function (sourceItemHandleScope, destSortableScope) {
+                    return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+                },
+                orderChanged: function(event) {
+                    console.log('Change');
+                }
+            };
 
             $scope.sortableOptionsHorizontal = {
                 containment: '#horizontal-container',
                 // restrict movement to within containment div
                 accept: function (sourceItemHandleScope, destSortableScope) {
                     return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+                },
+                orderChanged: function(event) {
+                    console.log('Change answers: ' + event.source.index);
+
+                    var sortableItems = event.source.sortableScope.modelValue;
+                    angular.forEach(sortableItems, function(item, key){
+                        console.log(key +' / '+ item.id +' / '+ item.sortOrder +' ::'+ item._links.self.href);
+                    });
+
                 }
             };
 
@@ -65,8 +63,8 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
             */
 
 
-            $scope.updateSortOrder = function (sortOrderData, sortOrderNo) {
-               
+            $scope.updateSortOrder = function (question, sortOrderNo) {
+               console.log($scope.questionnaireEntries);
             };
 
 
