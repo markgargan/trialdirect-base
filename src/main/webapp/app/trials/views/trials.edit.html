@@ -190,7 +190,7 @@
 
                     <!-- Trial Facility Description -->
                     <div class="form-group">
-                        <label for="trial-site-facility-description{{$index}}">Trial Facility Description</label>
+                        <label for="inp_facility-description-{{trialSite.sortOrder}}">Trial Facility Description</label>
                         <span>
                             <textarea id="inp_facility-description-{{trialSite.sortOrder}}" name="trial-site-facility-description"
                                       id="trial-site-facility-description{{$index}}" name="trial-site-facility-description"
@@ -203,8 +203,8 @@
                         <!-- -------------- -->
                         <!-- Trial Site Pic -->
                         <!-- -------------- -->
-                        <label for="trial-site-logo{{$index}}">Trial Site Pic</label>
-                        <input id="trial-site-logo{{$index}}" type="file" ngf-select ng-model="trialSite.sitePic"
+                        <label for="trial-site-logo{{trialSite.sortOrder}}">Trial Site Pic</label>
+                        <input id="trial-site-logo{{trialSite.sortOrder}}" type="file" ngf-select ng-model="trialSite.sitePic"
                                name="siteFile" ng-change="toggleTrialSiteImage(trialSite)"
                                accept="image/*" ngf-max-size="2MB"
                                ngf-model-invalid="errorFile" ng-show="trialSite.needsImageUpload">
@@ -222,7 +222,7 @@
                             <img ngf-thumbnail="trialSite.sitePic" class="thumb"
                                  ng-show="!trialSite.needsImageUpload">
                         </span>
-                        <button id="btn_change_site_logo{{$index}}" type="button" class="btn btn-remove"
+                        <button id="btn_change_site_logo{{trialSite.sortOrder}}" type="button" class="btn btn-remove"
                                 ng-click="resetUploadedTrialSiteImage(trialSite);"
                                 style="float:right;clear:both"
                                 ng-show="!trialSite.needsImageUpload">Change Logo</button>

@@ -4,16 +4,24 @@ angular.module('trialdirect').controller('TrialController',
         function ($scope, $state, $timeout, Upload, TrialResourceService, TrialInfo, trials, therapeuticAreas ) {
 
             // Initialize the model
-            $scope.trial={
-                trialInfo:{
-                    trialFullDescription:{},
-                    trialSites:{
-                        _embeddedItems:[]
-                    },
-                    needsImageUpload:true,
-                    hasUploadedImage:false
-                }
-            };
+
+            $scope.resetTrial = function() {
+                $scope.trial = {
+                    trialInfo: {
+                        trialFullDescription: {},
+                        trialSites: {
+                            _embeddedItems: []
+                        },
+                        needsImageUpload: true,
+                        hasUploadedImage: false
+                    }
+                };
+            }
+
+            $scope.resetTrial();
+            //$scope.trial = trial;
+
+            //$scope.currentTrialSite = null;
 
             $scope.trials = trials;
 
@@ -240,12 +248,16 @@ angular.module('trialdirect').controller('TrialController',
                             // Update TrialInfo and TrialSites
                             var savedTrialInfo = response.data;
 
-                            TrialInfo.loadTrialInfoWithCallback(savedTrialInfo.id, function(trialInfo){
-                                $scope.trial.trialInfo = trialInfo;
-                                if (file) {
-                                    file.result = response.data;
-                                }
-                            });
+                            $scope.resetTrial();
+                            $scope.currentTrialSite= null;
+                            $state.go("trials.edit", { 'trialId': savedTrial.id});
+
+                            //TrialInfo.loadTrialInfoWithCallback(savedTrialInfo.id, function(trialInfo){
+                            //    $scope.trial.trialInfo = trialInfo;
+                            //    if (file) {
+                            //        file.result = response.data;
+                            //    }
+                            //});
 
 
                         });
