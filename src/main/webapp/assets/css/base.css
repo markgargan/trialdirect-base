@@ -11,6 +11,14 @@ body {
   color: red;
   font-style: italic; }
 
+.home-banner {
+  display: block;
+  min-height: 250px;
+  background: #bcbebd url("../images/banner-home.jpg") no-repeat center center/auto 100%;
+  -webkit-transition: 0.2s ease;
+  -moz-transition: 0.2s ease;
+  transition: 0.2s ease; }
+
 /**
  Integration start
 **/
@@ -407,15 +415,12 @@ main {
 
 .footer, .header {
   display: block;
-  padding: 1em 0;
+  padding: .25em 0;
   -webkit-transition: all .2s ease;
   -moz-transition: all .2s ease;
   -o-transition: all .2s ease;
   transition: all .2s ease;
   background: #fff; }
-
-.header {
-  padding-top: 0; }
 
 .header img, .topNav, .topNav1 {
   -webkit-transition: all .2s ease;
@@ -477,15 +482,12 @@ a[href="#top"] span {
   position: fixed;
   text-indent: -999em; }
 
-.logo {
-  width: 30%; }
-
 .topNav, .topNav1 {
   display: block;
   float: right;
   width: 65%;
   background: 0;
-  padding: 1.6em 0 .5em;
+  padding: 1em 0;
   border: 0;
   text-align: right;
   transition: all 0.2s ease; }
@@ -511,16 +513,24 @@ a[href="#top"] span {
 
 .admin {
   text-align: right;
+  background: #128474;
+  /*
   background: #00857f;
   padding: .5em 0;
-  margin-bottom: 1em; }
+  margin-bottom: 1em;*/ }
 
 .admin a {
-  transition: color .2s ease;
-  padding: .25em 1em; }
-
-.admin, .admin a, .admin a:active, .admin a:hover {
+  background: transparent;
+  transition: background .2s ease;
+  padding: 1em;
+  display: inline-block;
   color: #fff; }
+
+.admin .active a {
+  background: rgba(0, 0, 0, 0.1); }
+
+.admin a:active, .admin a:hover {
+  background: rgba(0, 0, 0, 0.1); }
 
 .footer {
   border-top: 1px solid #f2f2f2;
@@ -959,6 +969,9 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   .trialIntro span {
     height: 5em;
     width: 5em; } }
+@media screen and (max-width: 1000px) {
+  .home-banner {
+    background-position: center left; } }
 @media screen and (max-width: 900px) {
   .trialInfo, .trialIntro, .trialLocation, .trialResults, .trialRight, .trialSearch {
     float: none;
