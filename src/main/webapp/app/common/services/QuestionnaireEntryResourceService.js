@@ -154,7 +154,6 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
 
                         // no response bar 204 from an association creation.
                         return SpringDataRestAdapter.process(deferred).then(function () {
-
                             callback && callback();
                         });
                     };

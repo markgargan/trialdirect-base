@@ -19,7 +19,14 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
                     return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
                 },
                 orderChanged: function(event) {
-                    console.log('Change');
+                    //console.log('Change');
+                    console.log('Change Question: ' + event.source.index);
+
+                    var sortableItems = event.source.sortableScope.modelValue;
+                    angular.forEach(sortableItems, function(item, key){
+                        console.log(key +' / '+ item.question.id +' / '+ item.question.questionText +' ::'+ item.question._links.self.href);
+                    });
+
                 }
             };
 
@@ -34,7 +41,7 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
 
                     var sortableItems = event.source.sortableScope.modelValue;
                     angular.forEach(sortableItems, function(item, key){
-                        console.log(key +' / '+ item.id +' / '+ item.sortOrder +' ::'+ item._links.self.href);
+                        console.log(key +' / '+ item.id +' / '+ item.answerText +' ::'+ item._links.self.href);
                     });
 
                 }
