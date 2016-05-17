@@ -597,8 +597,9 @@ a[href="#top"] span {
   text-indent: -999em
 }
 
-.logo {
-
+.logo a, .logo a:hover, .logo a:active {
+  text-decoration: none;
+  color: #00857f;
 }
 
 .topNav, .topNav1 {
