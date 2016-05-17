@@ -21,7 +21,7 @@ ${BROWSER}        Firefox
     Then I should be able to select previosly saved search
     And Select available trial
     Then I should be able to view selected trial informations
-    Then screenshot is taken for  3.2.8.1
+    And screenshot is taken for  3.2.8.1
 
 *** Keywords ***
 Trial search page should be open

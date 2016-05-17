@@ -17,4 +17,5 @@ Test setup
     reload page
 screenshot is taken for
     [Arguments]  ${screenshot_number}
+    sleep  2s
     capture page screenshot  ${screenshot_number}

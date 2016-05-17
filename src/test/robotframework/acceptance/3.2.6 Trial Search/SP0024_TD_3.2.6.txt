@@ -23,7 +23,7 @@ ${BROWSER}        Firefox
     And I want to be able to answer questions
     Then I should be able to view available trials
     And Start New Search should be visible
-    Then screenshot is taken for    3.2.6.2
+    And screenshot is taken for    3.2.6.2
 
 *** Keywords ***
 Trial search page should be open
