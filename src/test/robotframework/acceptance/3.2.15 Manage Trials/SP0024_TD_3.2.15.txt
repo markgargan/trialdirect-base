@@ -1,19 +1,20 @@
 *** Settings ***
 Documentation
 ...
+Library  Selenium2Library
+Resource  ../../resources/common_keywords.txt
 Test Teardown  Test Teardown
 Force Tags  3.2.15
-Library  Selenium2Library
+
 
 *** Variables ***
-${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/trials/create
 ${BROWSER}        Firefox
-
+${SERVER}    http://trialdirectuat-tekenable.rhcloud.com/#/trials/create
 *** Test Cases ***
 3.2.15.2 As a Content Editor, I want to add to be able to add a new trial to the system.
     [Documentation]   As a Content Editor, I want to add to be able to add a new trial to the system.
     [Tags]  3.2.15.2
-    [Setup]  Test setup for Trial creation page
+    [Setup]  Test setup    ${SERVER}   ${BROWSER}
     #Given I as Content Editor
     And Trial Selection Page Should Be Open
     Then I want to create a new trial
@@ -24,39 +25,28 @@ ${BROWSER}        Firefox
     And I want to be able to add trial description
     Then I want to be able to save new trial informations
     And new trial should be available on page
-    And screenshot is taken for 3.2.15.2
+    And screenshot is taken for    3.2.15.2
 
 3.2.15.4 As a Content Editor, I want to be able to add a new site for the trial
     [Documentation]  As a Content Editor, I want to be able to add a new site for the trial
     [Tags]  3.2.15.4
-    [Setup]  Test setup for Trial creation page
+    [Setup]  Test setup    ${SERVER}   ${BROWSER}
     #Given I as Content Editor
     And Trial Selection Page Should Be Open
     Then I want to be able to add new site for selected trial
     #Blocked by existing bug
-
+    And screenshot is taken for    3.2.15.4
 3.2.15.5 As a Content Editor, I want to be able to view a list of sites that have been added for a trial.
     [Documentation]  As a Content Editor, I want to be able to view a list of sites that have been added for a trial.
     [Tags]  3.2.15.5
-    [Setup]  Test setup for Trial creation page
+    [Setup]  Test setup    ${SERVER}   ${BROWSER}
     #Given I as Content Editor
     And Trial Selection Page Should Be Open
     And previously created trial is selected
     Then I want to be able to see a list of sites for selected trial
-    And screenshot is taken for 3.2.15.5
+    And screenshot is taken for    3.2.15.5
 
 *** Keywords ***
-Test setup for Trial creation page
-    open browser  ${SERVER}    ${BROWSER}
-    set browser implicit wait  15
-    Set Selenium Implicit Wait    20
-    delete all cookies
-    maximize browser window
-    sleep  5s
-    reload page
-Test Teardown
-    sleep  5s
-    close all browsers
 Trial Selection Page Should Be Open
     location should be  ${SERVER}
 I want to create a new trial
@@ -89,8 +79,6 @@ I want to be able to add trial description
     sleep  .5s
     input text  //*[@id='inp_trialInfoDescription']    Skin Cancer Description
     sleep  .5s
-screenshot is taken for 3.2.15.2
-    capture page screenshot  3.2.15.2.png
 I want to be able to save new trial informations
     wait until page contains element  //*[@id='myForm']/span/label/span
     sleep  .5s
@@ -116,8 +104,7 @@ previously created trial is selected
 I want to be able to see a list of sites for selected trial
     wait until page contains element    //*[@id='myForm']/div[1]/div[2]/ul/li[1]
     sleep  .5s
-screenshot is taken for 3.2.15.5
-    capture page screenshot  3.2.15.5.png
+
 
 
 

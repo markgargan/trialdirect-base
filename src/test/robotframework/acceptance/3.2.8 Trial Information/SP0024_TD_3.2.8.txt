@@ -1,38 +1,29 @@
 *** Settings ***
 Documentation
 ...
+Library  Selenium2Library
+Resource  ../../resources/common_keywords.txt
 Test Teardown  Test Teardown
 Force Tags  3.2.8
-Library  Selenium2Library
+
 
 *** Variables ***
-${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/users
+${SERVER}    http://trialdirectuat-tekenable.rhcloud.com/#/users
 ${BROWSER}        Firefox
 
 *** Test Cases ***
 3.2.8.1 As a HCP, I want to be able to see 3.2.15.2 Trial Information
     [Documentation]   As a HCP, I want to be able to see 3.2.15.2 Trial Information
     [Tags]  3.2.8.1
-    [Setup]  Test setup for Trial search page
+    [Setup]  Test setup    ${SERVER}    ${BROWSER}
     #Given I as HCP
     And Trial search page should be open
     Then I should be able to select previosly saved search
     And Select available trial
     Then I should be able to view selected trial informations
-    Then screenshot for 3.2.8 taken
+    Then screenshot is taken for  3.2.8.1
 
 *** Keywords ***
-Test setup for Trial search page
-    open browser  ${SERVER}    ${BROWSER}
-    set browser implicit wait  15
-    Set Selenium Implicit Wait    20
-    delete all cookies
-    maximize browser window
-    sleep  5s
-    reload page
-Test Teardown
-    sleep  5s
-    close all browsers
 Trial search page should be open
     location should be  ${SERVER}
     sleep  .5s
@@ -58,8 +49,7 @@ I should be able to view selected trial informations
     sleep  .5s
     page should contain element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[2]/div/div[2]/div/iframe
     sleep  .5s
-screenshot for 3.2.8 taken
-    capture page screenshot  3.2.8.png
+
 
 
 

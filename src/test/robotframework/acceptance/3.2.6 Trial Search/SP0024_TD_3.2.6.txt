@@ -1,9 +1,11 @@
 *** Settings ***
 Documentation
 ...
+Library  Selenium2Library
+Resource  ../../resources/common_keywords.txt
 Test Teardown  Test Teardown
 Force Tags  3.2.6
-Library  Selenium2Library
+
 
 *** Variables ***
 ${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/users
@@ -13,7 +15,7 @@ ${BROWSER}        Firefox
 3.2.6.2 As a HCP, I want to be able to search for trials available
     [Documentation]   As a HCP, I want to be able to search for trials available
     [Tags]  3.2.6.2
-    [Setup]  Test setup for Trial search page
+    [Setup]  Test setup    ${SERVER}    ${BROWSER}
     #Given I as HCP
     And Trial search page should be open
     And I want to be able to select therapeutic area
@@ -21,20 +23,9 @@ ${BROWSER}        Firefox
     And I want to be able to answer questions
     Then I should be able to view available trials
     And Start New Search should be visible
-    Then screenshot is taken for 3.2.6.2
+    Then screenshot is taken for    3.2.6.2
 
 *** Keywords ***
-Test setup for Trial search page
-    open browser  ${SERVER}    ${BROWSER}
-    set browser implicit wait  15
-    Set Selenium Implicit Wait    20
-    delete all cookies
-    maximize browser window
-    sleep  5s
-    reload page
-Test Teardown
-    sleep  5s
-    close all browsers
 Trial search page should be open
     location should be  ${SERVER}
     sleep  .5s
@@ -66,8 +57,6 @@ I should be able to view available trials
 Start New Search should be visible
     wait until page contains element  //*[@id='lnk_startNewSearch']
     sleep  .5s
-screenshot is taken for 3.2.6.2
-    capture page screenshot  3.2.6.2.png
 
 
 
