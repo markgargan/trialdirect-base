@@ -14,7 +14,7 @@ ${BROWSER}        Firefox
     [Documentation]   As a HCP, I want to be able to search for trials available
     [Tags]  3.2.6.2
     [Setup]  Test setup for Trial search page
-    #Give I as HCP
+    #Given I as HCP
     And Trial search page should be open
     And I want to be able to select therapeutic area
     Then I should be able to view set of questions as defined for therapeutic area selected

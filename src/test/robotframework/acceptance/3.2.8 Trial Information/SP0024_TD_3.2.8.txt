@@ -14,7 +14,7 @@ ${BROWSER}        Firefox
     [Documentation]   As a HCP, I want to be able to see 3.2.15.2 Trial Information
     [Tags]  3.2.8.1
     [Setup]  Test setup for Trial search page
-    #Give I as HCP
+    #Given I as HCP
     And Trial search page should be open
     Then I should be able to select previosly saved search
     And Select available trial

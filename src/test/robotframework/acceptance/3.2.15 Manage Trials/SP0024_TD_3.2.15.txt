@@ -30,7 +30,7 @@ ${BROWSER}        Firefox
     [Documentation]  As a Content Editor, I want to be able to add a new site for the trial
     [Tags]  3.2.15.4
     [Setup]  Test setup for Trial creation page
-    #Give I as Content Editor
+    #Given I as Content Editor
     And Trial Selection Page Should Be Open
     Then I want to be able to add new site for selected trial
     #Blocked by existing bug
@@ -39,7 +39,7 @@ ${BROWSER}        Firefox
     [Documentation]  As a Content Editor, I want to be able to view a list of sites that have been added for a trial.
     [Tags]  3.2.15.5
     [Setup]  Test setup for Trial creation page
-    #Give I as Content Editor
+    #Given I as Content Editor
     And Trial Selection Page Should Be Open
     And previously created trial is selected
     Then I want to be able to see a list of sites for selected trial

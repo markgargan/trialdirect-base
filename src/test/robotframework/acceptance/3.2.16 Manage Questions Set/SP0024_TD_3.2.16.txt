@@ -24,7 +24,7 @@ ${BROWSER}        Firefox
     [Documentation]  As a Content Editor, I want to be able to add delete a question
     [Tags]  3.2.16.5
     [Setup]  Test setup for Therapeutic Areas
-    #Give I as Content Editor
+    #Given I as Content Editor
     And Therapeutic Area Page Should Be Open
     Then I want to select previously created therapeutic area
     And Delete existing question
@@ -34,7 +34,7 @@ ${BROWSER}        Firefox
     [Documentation]  As a Content Editor, I want to be able to delete an answer option
     [Tags]  3.2.16.6
     [Setup]  test setup for therapeutic areas
-    #Give I as Content Editor
+    #Given I as Content Editor
     And Therapeutic Area Page Should Be Open
     Then I want to select previously created therapeutic area
     And Delete existing answer
@@ -97,7 +97,6 @@ screenshot is taken for 3.2.16.1
     capture page screenshot  3.2.16.1.png
 I want to select previously created therapeutic area
     wait until page contains element  //*[@id='lnk_therapeuticArea_1']
-    #click element  //*[@id='lnk_therapeuticArea_1']
     click link  Diabetes
     sleep  .5s
 Delete existing question
