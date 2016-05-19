@@ -7,7 +7,6 @@ package com.tekenable.trialdirect.rest;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -33,12 +32,17 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         int taID = this.getNewItemId();
 
+        // new Specialist Area
+        System.out.println(this.createTextItem("specialistareas", "title", "Type2 Diabetes"));
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        int saID = this.getNewItemId();
+
         // first question of new questionnaire
         System.out.println(this.createTextItem("questions", "questionText", "What is your diabetes type?"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         int qID = this.getNewItemId();
 
-        System.out.println(this.createQuestionnaireEntry(taID, qID));
+        System.out.println(this.createQuestionnaireEntry(saID, qID));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         int qeID = this.getNewItemId();
 
@@ -59,7 +63,7 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         qID = this.getNewItemId();
 
-        System.out.println(this.createQuestionnaireEntry(taID, qID));
+        System.out.println(this.createQuestionnaireEntry(saID, qID));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         qeID = this.getNewItemId();
 

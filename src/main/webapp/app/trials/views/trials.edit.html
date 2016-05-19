@@ -81,16 +81,16 @@
 
 
                 <!--
-                    Trial TherapeuticArea
+                    Trial SpecialistArea
                 -->
                 <div class="list-answers answers">
                     <label>Therapeutic Area</label>
                     <div class="clear"></div>
 
-                    <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-                        <input name="tTherapeuticArea" type="radio" data-ng-model="therapeuticArea.checked"
-                               data-ng-click="chooseTherapeuticArea(therapeuticArea)" required="">
-                        <span data-ng-bind="therapeuticArea.title"></span>
+                    <label data-ng-repeat="specialistArea in specialistAreas">
+                        <input name="tTherapeuticArea" type="radio" data-ng-model="specialistArea.checked"
+                               data-ng-click="chooseTherapeuticArea(specialistArea)" required="">
+                        <span data-ng-bind="specialistArea.title"></span>
                         <div ng-show="trialForm.$submitted || trialForm.tTherapeuticArea.$empty">
                             <div class="errors" ng-show="trialForm.tTherapeuticArea.$error.required">Please specify a Therapeutic Area</div>
                         </div>

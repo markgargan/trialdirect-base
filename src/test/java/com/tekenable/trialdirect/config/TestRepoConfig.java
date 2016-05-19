@@ -25,6 +25,11 @@ public class TestRepoConfig {
     }
 
     @Bean
+    public SpecialistAreaRepository specialistAreaRepositoryMock() {
+        return Mockito.mock(SpecialistAreaRepository.class);
+    }
+
+    @Bean
     public QuestionRepository questionRepositoryMock() {
         return Mockito.mock(QuestionRepository.class);
     }

@@ -31,17 +31,17 @@
 
                 <label for="newUserInput" class="nav-header new-group-label">Begin User Assessment</label>
 
-                <div ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
+                <div ng-repeat="specialistArea in therapeuticAreas | orderBy:'id'">
                     <div class="radio">
-                        <label><input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
-                                      ng-click="chooseTherapeuticArea(therapeuticArea, $event)"/>
-                            {{therapeuticArea.title}}</label>
+                        <label><input name="therapeuticAreaSelection" type="radio" ng-model="specialistArea.checked"
+                                      ng-click="chooseTherapeuticArea(specialistArea, $event)"/>
+                            {{specialistArea.title}}</label>
                     </div>
                 </div>
 
 
                 <div class="input-group add-new-group">
-                    <input id="newUserInput" type="text" class="form-control" ng-disabled="!newUser.therapeuticArea"
+                    <input id="newUserInput" type="text" class="form-control" ng-disabled="!newUser.specialistArea"
                            ng-model="newUser.pseudonym" placeholder="e.g. Kate's assessment"/>
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="submit"

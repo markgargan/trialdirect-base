@@ -16,7 +16,7 @@ public class Question extends SortEntity {
         this.questionText = questionText;
     }
 
-    public Question(String questionText, Set<TherapeuticArea> therapeuticAreas) {
+    public Question(String questionText, Set<SpecialistArea> specialistAreas) {
         this.questionText = questionText;
     }
 

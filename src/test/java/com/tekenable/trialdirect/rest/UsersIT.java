@@ -6,7 +6,7 @@
 package com.tekenable.trialdirect.rest;
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -30,8 +30,8 @@ public class UsersIT extends RestTestResourceTemplate {
     }
 
     @Test
-    public void testGetUserTherapeuticAreas() {
-        String output = this.getAllItems("users/"+1+"/therapeuticArea");
+    public void testGetUserSpecialistAreas() {
+        String output = this.getAllItems("users/"+1+"/specialistArea");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }

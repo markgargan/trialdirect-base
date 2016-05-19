@@ -5,10 +5,10 @@
 <form name="CreateTrialArea" class="form-horizontal" role="form">
 
     <div class="list-answers answers">
-        <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-            <input name="therapeuticAreaSelection" type="radio" ng-model="therapeuticArea.checked"
-                   ng-click="chooseTherapeuticArea(therapeuticArea)">
-            <span ng-bind="therapeuticArea.title"></span>
+        <label data-ng-repeat="specialistArea in specialistAreas">
+            <input name="therapeuticAreaSelection" type="radio" ng-model="specialistArea.checked"
+                   ng-click="chooseTherapeuticArea(specialistArea)">
+            <span ng-bind="specialistArea.title"></span>
         </label>
     </div>
 

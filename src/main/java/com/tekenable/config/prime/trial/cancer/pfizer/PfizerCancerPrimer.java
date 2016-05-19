@@ -7,8 +7,6 @@ import com.tekenable.model.trial.TrialInfo;
 import com.tekenable.model.trial.TrialSite;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 
@@ -96,7 +94,7 @@ public class PfizerCancerPrimer extends TrialPrimer {
 
     protected void createTrial() {
 
-        Trial trial = new Trial(trialTitle, therapeuticAreaCancer);
+        Trial trial = new Trial(trialTitle, specialistAreaCancer);
 
         final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary, trialInfoFullDescription);
 
