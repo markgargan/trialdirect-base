@@ -482,7 +482,7 @@ a[href="#top"] span {
   position: fixed;
   text-indent: -999em; }
 
-.logo a, .logo a:hover .logo a:active {
+.logo a, .logo a:hover, .logo a:active {
   text-decoration: none;
   color: #00857f; }
 
@@ -528,7 +528,8 @@ a[href="#top"] span {
   transition: background .2s ease;
   padding: 1em;
   display: inline-block;
-  color: #fff; }
+  color: #fff;
+  margin-right: -4; }
 
 .admin .active a {
   background: rgba(0, 0, 0, 0.1); }

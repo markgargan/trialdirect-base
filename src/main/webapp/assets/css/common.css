@@ -34,4 +34,28 @@
 .col12 {
   width: 100%; }
 
+.col25 {
+  width: 25%; }
+
+.col50 {
+  width: 50%; }
+
+.col75 {
+  width: 75%; }
+
+.col100 {
+  width: 100%; }
+
+.col33 {
+  width: 33.3333%; }
+
+.col66 {
+  width: 66.6667%; }
+
+.col25, .col50, .col75, .col100, .col33, .col66 {
+  padding: 0 10px; }
+
+.pad0 {
+  padding: 0; }
+
 /*# sourceMappingURL=common.css.map */
