@@ -37,7 +37,7 @@ public class CancerQuestionnairePrimer {
     private UserRepository userRepository;
 
     // This primer is for questions for the Cancer SpecialistArea.
-    protected final SpecialistArea specialistAreaCancer = new SpecialistArea("Cancer", 1);
+    protected final SpecialistArea specialistAreaCancer = new SpecialistArea("Lung Cancer", 1, 1);
     // main question (no wrong answers here, it determines the initial path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
     protected final Question q1 = new Question("What is the type of your cancer?", 1);

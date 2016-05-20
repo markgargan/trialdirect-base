@@ -1,9 +1,6 @@
 package com.tekenable.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Set;
 
 /**
@@ -14,7 +11,12 @@ public class TherapeuticArea extends BaseEntity {
 
     private String title; //Name of the Therapeutic area e.g. Cancer,
 
-    private Set<SpecialistArea> specialistAreaSet; //Link to one or more specialist areas e.g. Lung cancer.
+    private Set<SpecialistArea> specialistAreas; //Link to one or more specialist areas e.g. Lung cancer.
+
+    /**
+     *
+     */
+    public TherapeuticArea(){}
 
     /**
      *
@@ -34,13 +36,12 @@ public class TherapeuticArea extends BaseEntity {
         this.title = title;
     }
 
-    @ManyToOne
-    @JoinColumn(nullable = true, name = "specialist_area_id")
-    public Set<SpecialistArea> getSpecialistAreaSet() {
-        return specialistAreaSet;
+    @OneToMany(mappedBy = "therapeuticArea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    public Set<SpecialistArea> getSpecialistAreas() {
+        return specialistAreas;
     }
 
-    public void setSpecialistAreaSet(Set<SpecialistArea> specialistAreaSet) {
-        this.specialistAreaSet = specialistAreaSet;
+    public void setSpecialistAreas(Set<SpecialistArea> specialistAreas) {
+        this.specialistAreas = specialistAreas;
     }
 }

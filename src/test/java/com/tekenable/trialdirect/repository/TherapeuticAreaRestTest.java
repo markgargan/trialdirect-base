@@ -42,7 +42,7 @@ public class TherapeuticAreaRestTest extends RestTestMockTemplate {
         log.info(" ");
         ResultActions result = mockMvc.perform(get("/therapeuticareas/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
-        result.andExpect(jsonPath("$.title").value("Lung Cancer"));
+        result.andExpect(jsonPath("$.title").value("Cancer"));
         result.andDo(MockMvcResultHandlers.print());
     }
 }

@@ -27,7 +27,7 @@ public class SpecialistAreaRestTest extends RestTestMockTemplate {
     }
 
     @Test
-    public void getAllTAreasTest() throws Exception {
+    public void getAllSAreasTest() throws Exception {
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
         Integer count = jdbc.queryForObject("select count(*) from SpecialistArea", Integer.class);
         log.info("Overall Specialist Areas found: "+String.valueOf(count));
@@ -40,7 +40,7 @@ public class SpecialistAreaRestTest extends RestTestMockTemplate {
     public void getSingleArea() throws Exception {
         log.info("Reading the first Specialist area");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/specialistareas/{id}", 1)).andExpect(status().isOk());
+        ResultActions result = mockMvc.perform(get("/specialistareas/{specialist_area_id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
         result.andExpect(jsonPath("$.title").value("Lung Cancer"));
         result.andDo(MockMvcResultHandlers.print());

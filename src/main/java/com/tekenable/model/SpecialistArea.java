@@ -16,6 +16,9 @@ public class SpecialistArea extends SortEntity {
     private static final long serialVersionUID = 1L;
 
     private String title;
+
+    private TherapeuticArea therapeuticArea;
+
     private Set<QuestionnaireEntry> questionnaireentries;
     private Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries;
 
@@ -24,12 +27,15 @@ public class SpecialistArea extends SortEntity {
     public SpecialistArea() {
     }
 
-    public SpecialistArea(String title) {
+    public SpecialistArea(String title, TherapeuticArea therapeuticArea) {
+
         this.title =title;
+        this.therapeuticArea = therapeuticArea;
     }
 
-    public SpecialistArea(String title, Integer sortOrder) {
+    public SpecialistArea(String title, TherapeuticArea therapeuticArea, Integer sortOrder) {
         this.title = title;
+        this.therapeuticArea = therapeuticArea;
         this.sortOrder = sortOrder;
     }
 
@@ -40,6 +46,16 @@ public class SpecialistArea extends SortEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "therapeutic_area_id")
+    public TherapeuticArea getTherapeuticArea() {
+        return therapeuticArea;
+    }
+
+    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
+        this.therapeuticArea = therapeuticArea;
     }
 
     @OneToMany(mappedBy = "specialistArea", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)

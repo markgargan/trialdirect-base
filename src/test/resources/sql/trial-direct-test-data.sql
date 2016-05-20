@@ -1,8 +1,9 @@
 
-INSERT INTO `TherapeuticArea` VALUES (1, 1, 'Cancer');
+INSERT INTO `TherapeuticArea` VALUES (1, 'Cancer');
 
-INSERT INTO `SpecialistArea` VALUES (1, 1, 'Lung Cancer');
-INSERT INTO `SpecialistArea` VALUES (2, 1, 'Skin Cancer');
+INSERT INTO `SpecialistArea` VALUES (1, 1, 'Lung Cancer',1);
+INSERT INTO `SpecialistArea` VALUES (2, 2, 'Skin Cancer', 1);
+
 
 INSERT INTO `Answer` VALUES (1, 1, 'Stomach');
 INSERT INTO `Answer` VALUES (2, 2, 'Skin');
