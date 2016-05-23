@@ -19,12 +19,12 @@ ${ENTRY_FORM}    //*[@id='entryArea']
     And Translation Tool page is open
     Then I should see epmty aplication page
     And screenshot is taken for  trans_1.1
-1.2 Transaction Service User should be albe to open new jason file for translation, select landguage and start translation
+1.2 Transaction Service User should be albe to open new json file for translation, select landguage and start translation
     [Tags]  trans_1.2
     [Setup]  Test setup  ${SERVER}  ${BROWSER}
     #Given I as Transaction Service User
     And Translation Tool page is open
-    Then I should be able to upload new jason file for translation
+    Then I should be able to upload new json file for translation
     Then Uploaded file should be visible in the application
     And screenshot is taken for  trans_1.2
     Then I should be able to select language for translation
@@ -39,7 +39,7 @@ Translation Tool page is open
     sleep  1s
 I should see epmty aplication page
     element text should be    ${ENTRY_FORM}    ${EMPTY}
-I should be able to upload new jason file for translation
+I should be able to upload new json file for translation
     wait until page contains element  //*[@id='new']
     click element  //*[@id='new']
     wait until page contains element  //*[@id='newFromDisk']
@@ -53,7 +53,8 @@ Uploaded file should be visible in the application
     page should contain element  //*[@id='input_leafNode_0']
 I should be able to select language for translation
     wait until page contains element  //*[@id='targetLanguage']
-    select from list  //*[@id='targetLanguage']    Polish
+    #select from list  //*[@id='targetLanguage']    Polish
+    select from list by index    //*[@id='targetLanguage']    101
 I should be able to start new translation process
     wait until page contains element  //*[@id='btnAuto']
     click element  //*[@id='btnAuto']
