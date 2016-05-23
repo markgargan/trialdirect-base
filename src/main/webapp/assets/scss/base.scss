@@ -880,17 +880,25 @@ span {
 }
 
 .trialLeader {
-  display: inline-block;
-  cursor: pointer;
+/*  display: inline-block;
   width: 32.825%;
   padding: 1em;
   margin: .25%;
   vertical-align: top;
+*/
+  display: block;
+  cursor: pointer;
+  padding: .5em;
+  background: #fafafa;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ddd;
+
 }
 
 .simplePanel.trialLeaderList {
-  max-height: 13.5em;
+  max-height: 20.5em;
   overflow: auto;
+  /* margin-bottom:10em; */
 }
 
 .trialLeader p {
