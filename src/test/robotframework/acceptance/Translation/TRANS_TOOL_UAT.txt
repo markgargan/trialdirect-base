@@ -1,0 +1,73 @@
+*** Settings ***
+Documentation
+...
+Library  Selenium2Library
+Resource  ../../resources/common_keywords.txt
+Test Teardown  Test Teardown
+Force Tags  trans
+
+
+*** Variables ***
+${BROWSER}        Firefox
+${SERVER}    http://jsontranslate-tekenable2.rhcloud.com/Translator.htm#/translate-form
+${ENTRY_FORM}    //*[@id='entryArea']
+*** Test Cases ***
+1.1 Transaction Service User can open the tool and on first running is presented with a blank application
+    [Tags]  trans_1.1
+    [Setup]  Test setup  ${SERVER}  ${BROWSER}
+    #Given I as Transaction Service User
+    And Translation Tool page is open
+    Then I should see epmty aplication page
+    And screenshot is taken for  trans_1.1
+1.2 Transaction Service User should be albe to open new jason file for translation, select landguage and start translation
+    [Tags]  trans_1.2
+    [Setup]  Test setup  ${SERVER}  ${BROWSER}
+    #Given I as Transaction Service User
+    And Translation Tool page is open
+    Then I should be able to upload new jason file for translation
+    Then Uploaded file should be visible in the application
+    And screenshot is taken for  trans_1.2
+    Then I should be able to select language for translation
+    Then I should be able to start new translation process
+    And screenshot is taken for  trans_1.2_2
+    Then I should be able to select element from input window and see it highlighted in output window with color yellow (rgb 255,255,0)
+    And screenshot is taken for  trans_1.2_3
+*** Keywords ***
+
+Translation Tool page is open
+    location should be  ${SERVER}
+    sleep  1s
+I should see epmty aplication page
+    element text should be    ${ENTRY_FORM}    ${EMPTY}
+I should be able to upload new jason file for translation
+    wait until page contains element  //*[@id='new']
+    click element  //*[@id='new']
+    wait until page contains element  //*[@id='newFromDisk']
+    click element  //*[@id='newFromDisk']
+    sleep  1s
+    wait until page contains element  //*[@id='json-file-choose']
+    choose file  //*[@id='json-file-choose']    ${CURDIR}${/}translate_test.json
+    sleep  1s
+Uploaded file should be visible in the application
+    page should contain element  //*[@id='output']/json-tree/json-node/ul/li[2]/json-node/span[2]
+    page should contain element  //*[@id='input_leafNode_0']
+I should be able to select language for translation
+    wait until page contains element  //*[@id='targetLanguage']
+    select from list  //*[@id='targetLanguage']    Polish
+I should be able to start new translation process
+    wait until page contains element  //*[@id='btnAuto']
+    click element  //*[@id='btnAuto']
+    sleep  10s
+I should be able to select element from input window and see it highlighted in output window with color yellow (rgb 255,255,0)
+    wait until page contains element  //*[@id='output']/json-tree/json-node/ul/li[2]/json-node/span[1]
+    click element  //*[@id='output']/json-tree/json-node/ul/li[2]/json-node/span[1]
+    sleep  .5s
+    wait until page contains element  //*[@id='output']/json-tree/json-node/ul/li[2]/json-node/ul/li/json-node/span[1]
+    click element  //*[@id='output']/json-tree/json-node/ul/li[2]/json-node/ul/li/json-node/span[1]
+    sleep  .5s
+    wait until page contains element  //*[@id='output']/json-tree/json-node/ul/li[2]/json-node/ul/li/json-node/ul/li[3]/json-node/span[1]
+    click element  //*[@id='output']/json-tree/json-node/ul/li[2]/json-node/ul/li/json-node/ul/li[3]/json-node/span[1]
+    sleep  .5s
+    ${bgcolor}    Execute Javascript    return document.defaultView.getComputedStyle(document.getElementById("input_leafNode_3"),null)['background-color']
+    should be equal    ${bgcolor}    rgb(255, 255, 0)
+    sleep  1s

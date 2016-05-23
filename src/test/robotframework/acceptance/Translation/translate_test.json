@@ -1,0 +1,14 @@
+{
+    "LANGUAGE_NAME": "English",
+    "FC": {
+        "COMMONS": {
+            "OK_BUTTON": "OK",
+            "CANCEL_BUTTON": "Cancel",
+            "LEARN_MORE":"More Info",
+            "MORE_VIDEOS":"More Videos",
+            "STUDY_ON_HOLD_TITLE":"Study Recruitment on Hold",
+            "STUDY_ON_HOLD_Message":"This study is not currently looking for further candidates.",
+            "STUDY_ON_HOLD_Message2":"However, if you are interested in participating in future clinical trials and would like to be contacted, please click the button below and you will be re-directed to the ICON Clinical website where you will be able to register your interest. "
+        }
+    }
+}
