@@ -124,6 +124,14 @@ div.list-answers {
   color: #00857f;
   text-decoration: underline; }
 
+.searchTabs .nav a {
+  border: 1px solid #eee;
+  border-radius: .35em 0 0 .35em;
+  border-right: 0;
+  margin-bottom: .15em;
+  background: #fff;
+  margin-right: -1px; }
+
 .nav-list > .active > a,
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
@@ -364,12 +372,13 @@ form.small label {
 
 .setArea {
   display: block;
-  background: #eee;
-  padding: 1em;
-  border-radius: .4em;
-  float: right;
-  border: 1px solid #00857f;
-  margin: 1.1em 0 2em;
+  padding: 1em 0;
+  /*  background: #eee;
+    padding: 1em;
+    border-radius: .4em;
+    float: right;
+    border: 1px solid #00857f;
+    margin: 1.1em 0 2em;*/
   color: #00857f; }
 
 .setArea p {
@@ -468,9 +477,6 @@ a[href="#top"] {
   -moz-border-radius: .2em;
   border-radius: 0.2em; }
 
-.footer, .trialList {
-  font-size: 0.9em; }
-
 a[href="#top"]:active, a[href="#top"]:hover {
   background: rgba(0, 0, 0, 0.9); }
 
@@ -503,12 +509,6 @@ a[href="#top"] span {
 .nav a {
   padding: .25em 0 .25em 1em;
   transition: all .2s ease; }
-
-.searchTabs .nav a {
-  border: 1px solid #eee;
-  border-radius: .35em 0 0 .35em;
-  border-right: 0;
-  margin-bottom: .15em; }
 
 .topNav1 a {
   padding: .5em 1em;
@@ -709,13 +709,19 @@ p {
 .trialIntro .trialBrief {
   display: block;
   float: left;
-  width: 66.6667%;
+  width: 83%;
   line-height: 1.25;
-  padding-bottom: 1em; }
+  padding: 0 1em 1em; }
 
 .trialIntro .trialLink {
   display: block;
-  text-align: right; }
+  text-align: right;
+  float: right;
+  width: 2%;
+  color: #ccc; }
+
+.trialIntro:hover .trialLink {
+  color: #999; }
 
 .trialSiteImage,
 .trialIntro
@@ -737,10 +743,14 @@ span {
   */
   display: block;
   cursor: pointer;
-  padding: .5em;
+  padding: 1em;
   background: #fafafa;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #ddd; }
+
+.trialLeadersContainer {
+  display: block;
+  margin-top: 3em; }
 
 .simplePanel.trialLeaderList {
   max-height: 20.5em;
@@ -859,9 +869,9 @@ span.doc3 {
 
 .trialDataInfo {
   display: block;
-  float: left;
+  /*float: left;
   width: 54%;
-  padding-top: 1em; }
+  padding-top: 1em;*/ }
 
 .simplePanel {
   display: block;
