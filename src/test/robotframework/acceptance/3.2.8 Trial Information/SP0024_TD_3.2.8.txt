@@ -1,0 +1,59 @@
+*** Settings ***
+Documentation
+...
+Library  Selenium2Library
+Resource  ../../resources/common_keywords.txt
+Test Teardown  Test Teardown
+Force Tags  3.2.8
+
+
+*** Variables ***
+${SERVER}    http://trialdirectuat-tekenable.rhcloud.com/#/users
+${BROWSER}        Firefox
+
+*** Test Cases ***
+3.2.8.1 As a HCP, I want to be able to see 3.2.15.2 Trial Information
+    [Documentation]   As a HCP, I want to be able to see 3.2.15.2 Trial Information
+    [Tags]  3.2.8.1
+    [Setup]  Test setup    ${SERVER}    ${BROWSER}
+    #Given I as HCP
+    And Trial search page should be open
+    Then I should be able to select previosly saved search
+    And Select available trial
+    Then I should be able to view selected trial informations
+    And screenshot is taken for  3.2.8.1
+
+*** Keywords ***
+Trial search page should be open
+    location should be  ${SERVER}
+    sleep  .5s
+I should be able to select previosly saved search
+    wait until page contains element  //*[@id='lnk_savedSearch_1']
+    sleep   .5s
+    click element  //*[@id='lnk_savedSearch_1']
+Select available trial
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div/div[1]/ul/li[3]/a
+    sleep  .5s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div/div[1]/ul/li[3]/a
+    sleep  .5s
+I should be able to view selected trial informations
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]
+    sleep  .5s
+    page should contain element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[1]/div[3]
+    sleep  .5s
+    page should contain element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[6]
+    sleep  .5s
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[1]/div[3]/div[1]/p
+    sleep  .5s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[1]/div[3]/div[1]/p
+    sleep  .5s
+    page should contain element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[3]/div[2]/div/div[2]/div/iframe
+    sleep  .5s
+
+
+
+
+
+
+
+

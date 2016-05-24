@@ -1,0 +1,67 @@
+*** Settings ***
+Documentation
+...
+Library  Selenium2Library
+Resource  ../../resources/common_keywords.txt
+Test Teardown  Test Teardown
+Force Tags  3.2.6
+
+
+*** Variables ***
+${SERVER}         http://trialdirectuat-tekenable.rhcloud.com/#/users
+${BROWSER}        Firefox
+
+*** Test Cases ***
+3.2.6.2 As a HCP, I want to be able to search for trials available
+    [Documentation]   As a HCP, I want to be able to search for trials available
+    [Tags]  3.2.6.2
+    [Setup]  Test setup    ${SERVER}    ${BROWSER}
+    #Given I as HCP
+    And Trial search page should be open
+    And I want to be able to select therapeutic area
+    Then I should be able to view set of questions as defined for therapeutic area selected
+    And I want to be able to answer questions
+    Then I should be able to view available trials
+    And Start New Search should be visible
+    And screenshot is taken for    3.2.6.2
+
+*** Keywords ***
+Trial search page should be open
+    location should be  ${SERVER}
+    sleep  .5s
+I want to be able to select therapeutic area
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/form/div[1]/div[2]/label/span
+    sleep  .5s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/form/div[1]/div[2]/label/span
+    sleep  .5s
+    wait until page contains element  //*[@id='lnk_savedSearch_1']  #select saved search
+    sleep  .5s
+    click element  //*[@id='lnk_savedSearch_1']
+    sleep  .5s
+I should be able to view set of questions as defined for therapeutic area selected
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]
+    sleep  2s
+I want to be able to answer questions
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[3]/div[2]/label[1]/span
+    sleep  .5s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[3]/div[2]/label[1]/span
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[4]/div[2]/label[1]/span
+    sleep  .5s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[4]/div[2]/label[1]/span
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[5]/div[2]/label[1]/span
+    sleep  .5s
+    click element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[2]/div[5]/div[2]/label[1]/span
+I should be able to view available trials
+    wait until page contains element  xpath=html/body/main/div[1]/div/div/div/div[2]/div/form/div[4]/div/div[1]/ul
+    sleep  .5s
+Start New Search should be visible
+    wait until page contains element  //*[@id='lnk_startNewSearch']
+    sleep  .5s
+
+
+
+
+
+
+
+
