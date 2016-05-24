@@ -32,6 +32,9 @@ import java.util.Set;
 public class Trial extends SortEntity {
 
     private String title;
+    private String trialCode; //This code will be used to search for a trial. The code is used internally by Icon
+                                //to uniquely identify a trial. The codes are tracked by Icon in their own Gira
+                                //and are used when an admin user logs on to lookup a trial.
 
     private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
 
@@ -47,6 +50,12 @@ public class Trial extends SortEntity {
         this.therapeuticArea = therapeuticArea;
     }
 
+    public Trial(String title, TherapeuticArea therapeuticArea, String trialCode) {
+        this.title = title;
+        this.therapeuticArea = therapeuticArea;
+        this.trialCode = trialCode;
+    }
+
     public Trial(String title, TherapeuticArea therapeuticArea, Integer sortOrder) {
         this.title = title;
         this.therapeuticArea = therapeuticArea;
@@ -59,6 +68,14 @@ public class Trial extends SortEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getTrialCode() {
+        return trialCode;
+    }
+
+    public void setTrialCode(String trialCode) {
+        this.trialCode = trialCode;
     }
 
     @JsonIgnore

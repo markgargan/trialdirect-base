@@ -2,11 +2,7 @@ package com.tekenable.config.prime;
 
 import com.tekenable.model.*;
 import com.tekenable.repository.*;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -76,7 +72,7 @@ public class CancerQuestionnairePrimer {
     protected final Set cancerEntries = new HashSet<QuestionnaireEntry>() {{add(entry1); add(entry2); add(entry3);}};
 
     // creating trial structure
-    protected final Trial cancerTrial = new Trial("Cancer Trial", therapeuticAreaCancer);
+    protected final Trial cancerTrial = new Trial("Cancer Trial", therapeuticAreaCancer, "TC1234");
 
     protected final TrialSelectorQuestionnaireEntry ts11 = new TrialSelectorQuestionnaireEntry(q2, a23, cancerTrial);
 

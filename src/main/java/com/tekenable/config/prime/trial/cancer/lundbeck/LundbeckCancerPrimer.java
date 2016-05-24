@@ -95,7 +95,7 @@ public class LundbeckCancerPrimer extends TrialPrimer{
 
     protected void createTrial() {
 
-        Trial trial = new Trial(trialTitle, therapeuticAreaCancer);
+        Trial trial = new Trial(trialTitle, therapeuticAreaCancer, "LND_TC_222");
 
         final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary, trialInfoFullDescription);
 
