@@ -33,9 +33,10 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         int taID = this.getNewItemId();
 
         // new Specialist Area
-        System.out.println(this.createTextItem("specialistareas", "title", "Type2 Diabetes"));
-        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-        int saID = this.getNewItemId();
+//        System.out.println(this.createTextItem("therapeuticareas/3/specialistareas", "title", "Type2 Diabetes"));
+//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+//        int saID = this.getNewItemId();
+        int saID = 1;
 
         // first question of new questionnaire
         System.out.println(this.createTextItem("questions", "questionText", "What is your diabetes type?"));

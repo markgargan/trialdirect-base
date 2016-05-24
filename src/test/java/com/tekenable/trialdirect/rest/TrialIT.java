@@ -30,7 +30,7 @@ public class TrialIT extends RestTestResourceTemplate {
 
     @Test
     public void testGetTrialSpecialistAreas() {
-        String output = this.getAllItems("trials/"+1+"/specialistArea");
+        String output = this.getAllItems("trials/"+1+"/specialistarea");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }

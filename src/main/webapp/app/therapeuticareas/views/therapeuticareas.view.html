@@ -24,12 +24,12 @@
             <ul class="nav nav-list">
                 <li class="nav-header">Therapeutic Area: Questionnaires</li>
 
-                <!-- This <li> will only add the 'active' class if 'specialistAreas.detail' or its descendants are active
+                <!-- This <li> will only add the 'active' class if 'specialistareas.detail' or its descendants are active
                      AND if it is the link for the active contact (aka contactId) -->
-                <li data-ng-repeat="specialistArea in specialistAreas " ui-sref-active="active">
+                <li data-ng-repeat="specialistarea in specialistareas " ui-sref-active="active">
 
                     <!-- Here's a ui-sref that is also providing necessary parameters -->
-                    <a ui-sref="specialistAreas.detail({therapeuticAreaId:specialistArea.id})">{{specialistArea.title}}</a>
+                    <a ui-sref="specialistareas.detail({therapeuticAreaId:specialistarea.id})">{{specialistarea.title}}</a>
                 </li>
             </ul>
         </div>

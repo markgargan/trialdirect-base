@@ -11,7 +11,7 @@ public class TherapeuticArea extends BaseEntity {
 
     private String title; //Name of the Therapeutic area e.g. Cancer,
 
-    private Set<SpecialistArea> specialistAreas; //Link to one or more specialist areas e.g. Lung cancer.
+    private Set<SpecialistArea> specialistareas; //Link to one or more specialist areas e.g. Lung cancer.
 
     /**
      *
@@ -36,12 +36,12 @@ public class TherapeuticArea extends BaseEntity {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "therapeuticArea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    public Set<SpecialistArea> getSpecialistAreas() {
-        return specialistAreas;
+    @OneToMany(mappedBy = "therapeuticarea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    public Set<SpecialistArea> getSpecialistareas() {
+        return specialistareas;
     }
 
-    public void setSpecialistAreas(Set<SpecialistArea> specialistAreas) {
-        this.specialistAreas = specialistAreas;
+    public void setSpecialistareas(Set<SpecialistArea> specialistareas) {
+        this.specialistareas = specialistareas;
     }
 }

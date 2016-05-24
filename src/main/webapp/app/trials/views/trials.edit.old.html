@@ -83,10 +83,10 @@
                     <label>Therapeutic Area</label>
                     <div class="clear"></div>
 
-                    <label data-ng-repeat="specialistArea in specialistAreas">
-                        <input name="therapeuticAreaSelection" type="radio" data-ng-model="specialistArea.checked"
-                               data-ng-click="chooseTherapeuticArea(specialistArea)">
-                        <span data-ng-bind="specialistArea.title"></span>
+                    <label data-ng-repeat="specialistarea in specialistareas">
+                        <input name="therapeuticAreaSelection" type="radio" data-ng-model="specialistarea.checked"
+                               data-ng-click="chooseTherapeuticArea(specialistarea)">
+                        <span data-ng-bind="specialistarea.title"></span>
                     </label>
                 </div>
 

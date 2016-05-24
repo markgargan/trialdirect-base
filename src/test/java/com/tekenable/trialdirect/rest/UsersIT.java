@@ -31,7 +31,7 @@ public class UsersIT extends RestTestResourceTemplate {
 
     @Test
     public void testGetUserSpecialistAreas() {
-        String output = this.getAllItems("users/"+1+"/specialistArea");
+        String output = this.getAllItems("users/"+1+"/specialistarea");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }

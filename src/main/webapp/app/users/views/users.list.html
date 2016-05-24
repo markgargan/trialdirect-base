@@ -10,27 +10,27 @@
         </div>
     <!--
       <div class="answers">
-        <label data-ng-repeat="specialistArea in specialistAreas">
-          <input name="therapeuticAreaSelection" type="radio" ng-model="specialistArea.checked"
-                 ng-click="chooseTherapeuticArea(specialistArea)">
-          <span ng-bind="specialistArea.title"></span>
+        <label data-ng-repeat="specialistarea in specialistareas">
+          <input name="therapeuticAreaSelection" type="radio" ng-model="specialistarea.checked"
+                 ng-click="chooseTherapeuticArea(specialistarea)">
+          <span ng-bind="specialistarea.title"></span>
         </label>
       </div>
     -->
-        <div class="answers" ng-if="specialistAreas.length<=4">
-            <label data-ng-repeat="specialistArea in specialistAreas">
-                <input name="therapeuticAreaSelection" type="radio" data-ng-model="specialistArea.checked"
-                       data-ng-click="chooseTherapeuticArea(specialistArea)">
-                <span data-ng-bind="specialistArea.title"></span>
+        <div class="answers" ng-if="specialistareas.length<=4">
+            <label data-ng-repeat="specialistarea in specialistareas">
+                <input name="therapeuticAreaSelection" type="radio" data-ng-model="specialistarea.checked"
+                       data-ng-click="chooseTherapeuticArea(specialistarea)">
+                <span data-ng-bind="specialistarea.title"></span>
             </label>
         </div>
 
-        <div class="answers" ng-if="specialistAreas.length>=5">
+        <div class="answers" ng-if="specialistareas.length>=5">
             <div class="option-list">
-                <label data-ng-repeat="specialistArea in specialistAreas">
-                    <input name="therapeuticAreaSelection" type="radio" data-ng-model="specialistArea.checked"
-                           data-ng-click="chooseTherapeuticArea(specialistArea)">
-                    <span data-ng-bind="specialistArea.title"></span>
+                <label data-ng-repeat="specialistarea in specialistareas">
+                    <input name="therapeuticAreaSelection" type="radio" data-ng-model="specialistarea.checked"
+                           data-ng-click="chooseTherapeuticArea(specialistarea)">
+                    <span data-ng-bind="specialistarea.title"></span>
                 </label>
             </div>
         </div>
@@ -49,7 +49,7 @@
 
           <div class="list-text input-group">
             <input id="newUserInput" type="text" class="form-control"
-                   data-ng-disabled="!newUser.specialistArea"
+                   data-ng-disabled="!newUser.specialistarea"
                    ng-model="newUser.pseudonym" placeholder="e.g. Acme User"/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit"

@@ -37,7 +37,7 @@ public class TrialListener {
     public void onCreate(Trial trial) {
         AutowireHelper.autowire(this, this.trialSelectorQuestionnaireEntryRepository);
         Set<TrialSelectorQuestionnaireEntry> trialSelectorQuestionnaireEntries = new HashSet<TrialSelectorQuestionnaireEntry>();
-        Set<QuestionnaireEntry> questionnaireEntries = trial.getSpecialistArea().getQuestionnaireentries();
+        Set<QuestionnaireEntry> questionnaireEntries = trial.getSpecialistarea().getQuestionnaireentries();
         for ( QuestionnaireEntry questionnaireEntry : questionnaireEntries) {
 
             for (Answer answer : questionnaireEntry.getAnswers()) {

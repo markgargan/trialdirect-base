@@ -11,14 +11,14 @@ public class UserSelectorQuestionnaireEntry extends QuestionEntry {
 
     private User user;
 
-    private SpecialistArea specialistArea;
+    private SpecialistArea specialistarea;
 
     public UserSelectorQuestionnaireEntry(){}
 
-    public UserSelectorQuestionnaireEntry(User user, Question question, Answer answer, SpecialistArea specialistArea) {
+    public UserSelectorQuestionnaireEntry(User user, Question question, Answer answer, SpecialistArea specialistarea) {
         super(question, answer);
         this.user = user;
-        this.specialistArea = specialistArea;
+        this.specialistarea = specialistarea;
     }
 
     @ManyToOne
@@ -33,11 +33,11 @@ public class UserSelectorQuestionnaireEntry extends QuestionEntry {
 
     @ManyToOne
     @JoinColumn(name = "specialist_area_id")
-    public SpecialistArea getSpecialistArea() {
-        return specialistArea;
+    public SpecialistArea getSpecialistarea() {
+        return specialistarea;
     }
 
-    public void setSpecialistArea(SpecialistArea specialistArea) {
-        this.specialistArea = specialistArea;
+    public void setSpecialistarea(SpecialistArea specialistarea) {
+        this.specialistarea = specialistarea;
     }
 }

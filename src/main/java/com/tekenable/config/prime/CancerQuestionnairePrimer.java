@@ -12,6 +12,9 @@ import java.util.Set;
 public class CancerQuestionnairePrimer {
 
     @Autowired
+    private TherapeuticAreaRepository therapeuticAreaRepository;
+
+    @Autowired
     private SpecialistAreaRepository specialistAreaRepository;
 
     @Autowired
@@ -36,8 +39,12 @@ public class CancerQuestionnairePrimer {
     @Autowired
     private UserRepository userRepository;
 
-    // This primer is for questions for the Cancer SpecialistArea.
-    protected final SpecialistArea specialistAreaCancer = new SpecialistArea("Lung Cancer", 1, 1);
+    //Create the Therapeutic Area
+    protected final TherapeuticArea therapeuticArea = new TherapeuticArea("Cancer");
+
+    // This primer is for questions for the Lung Cancer SpecialistArea.
+    protected final SpecialistArea specialistAreaCancer = new SpecialistArea("Lung Cancer", therapeuticArea, 1);
+
     // main question (no wrong answers here, it determines the initial path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
     protected final Question q1 = new Question("What is the type of your cancer?", 1);
@@ -104,9 +111,11 @@ public class CancerQuestionnairePrimer {
             add(q3);
         }});
 
-        entry1.setSpecialistArea(specialistAreaCancer);
-        entry2.setSpecialistArea(specialistAreaCancer);
-        entry3.setSpecialistArea(specialistAreaCancer);
+        therapeuticAreaRepository.save(therapeuticArea);
+
+        entry1.setSpecialistarea(specialistAreaCancer);
+        entry2.setSpecialistarea(specialistAreaCancer);
+        entry3.setSpecialistarea(specialistAreaCancer);
 
         specialistAreaRepository.save(specialistAreaCancer);
 

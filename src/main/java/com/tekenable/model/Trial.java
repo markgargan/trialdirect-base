@@ -35,21 +35,21 @@ public class Trial extends SortEntity {
 
     private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
 
-    private SpecialistArea specialistArea;
+    private SpecialistArea specialistarea;
 
     private Set<TrialInfo> trialInfos;
 
     public Trial() {
     }
 
-    public Trial(String title, SpecialistArea specialistArea) {
+    public Trial(String title, SpecialistArea specialistarea) {
         this.title = title;
-        this.specialistArea = specialistArea;
+        this.specialistarea = specialistarea;
     }
 
-    public Trial(String title, SpecialistArea specialistArea, Integer sortOrder) {
+    public Trial(String title, SpecialistArea specialistarea, Integer sortOrder) {
         this.title = title;
-        this.specialistArea = specialistArea;
+        this.specialistarea = specialistarea;
         this.sortOrder = sortOrder;
     }
 
@@ -73,12 +73,12 @@ public class Trial extends SortEntity {
 
     @ManyToOne
     @JoinColumn(nullable = true, name = "specialist_area_id")
-    public SpecialistArea getSpecialistArea() {
-        return specialistArea;
+    public SpecialistArea getSpecialistarea() {
+        return specialistarea;
     }
 
-    public void setSpecialistArea(SpecialistArea specialistArea) {
-        this.specialistArea = specialistArea;
+    public void setSpecialistarea(SpecialistArea specialistarea) {
+        this.specialistarea = specialistarea;
     }
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
