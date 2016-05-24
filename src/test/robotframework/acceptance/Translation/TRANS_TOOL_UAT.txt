@@ -19,7 +19,7 @@ ${ENTRY_FORM}    //*[@id='entryArea']
     And Translation Tool page is open
     Then I should see epmty aplication page
     And screenshot is taken for  trans_1.1
-1.2 Translation Service User should be albe to open new json file for translation, select landguage and start translation
+1.2 Translation Service User should be albe to open new json file for translation, select landguage and start auto translation
     [Tags]  trans_1.2
     [Setup]  Test setup  ${SERVER}  ${BROWSER}
     #Given I as Translation Service User
