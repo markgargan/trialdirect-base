@@ -94,7 +94,7 @@ public class PfizerCancerPrimer extends TrialPrimer {
 
     protected void createTrial() {
 
-        Trial trial = new Trial(trialTitle, therapeuticAreaCancer, "PFZ_TC_333");
+        Trial trial = new Trial(trialTitle, specialistAreaCancer);
 
         final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary, trialInfoFullDescription);
 

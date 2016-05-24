@@ -99,7 +99,7 @@ public class GlaxoCancerPrimer extends TrialPrimer{
 
     protected void createTrial() {
 
-        Trial trial = new Trial(trialTitle, therapeuticAreaCancer, "GLXO_TC_111");
+        Trial trial = new Trial(trialTitle, specialistAreaCancer);
 
         final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary, trialInfoFullDescription);
 

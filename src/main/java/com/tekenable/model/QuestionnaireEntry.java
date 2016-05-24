@@ -1,7 +1,5 @@
 package com.tekenable.model;
 
-import org.springframework.data.rest.core.annotation.RestResource;
-
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -24,7 +22,7 @@ public class QuestionnaireEntry extends BaseEntity {
 
     protected Question question;
     protected Set<Answer> answers;
-    protected TherapeuticArea therapeuticArea;
+    protected SpecialistArea specialistarea;
 
     public QuestionnaireEntry() {
     }
@@ -35,17 +33,17 @@ public class QuestionnaireEntry extends BaseEntity {
         this.answers.add(new Answer(answer));
     }
 
-    public QuestionnaireEntry(Question question, Answer answer, TherapeuticArea therapeuticArea) {
+    public QuestionnaireEntry(Question question, Answer answer, SpecialistArea specialistarea) {
         this.question = question;
         this.answers = new LinkedHashSet();
         this.answers.add(answer);
-        this.therapeuticArea = therapeuticArea;
+        this.specialistarea = specialistarea;
     }
 
-    public QuestionnaireEntry(Question question, Set<Answer> answers, TherapeuticArea therapeuticArea) {
+    public QuestionnaireEntry(Question question, Set<Answer> answers, SpecialistArea specialistarea) {
         this.question = question;
         this.answers = answers;
-        this.therapeuticArea = therapeuticArea;
+        this.specialistarea = specialistarea;
     }
 
     @ManyToOne
@@ -71,13 +69,13 @@ public class QuestionnaireEntry extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "therapeutic_area_id")
-    public TherapeuticArea getTherapeuticArea() {
-        return therapeuticArea;
+    @JoinColumn(name = "specialist_area_id")
+    public SpecialistArea getSpecialistarea() {
+        return specialistarea;
     }
 
-    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
-        this.therapeuticArea = therapeuticArea;
+    public void setSpecialistarea(SpecialistArea specialistarea) {
+        this.specialistarea = specialistarea;
     }
 
 }
