@@ -24,25 +24,33 @@ public class TherapauticAreaIT extends RestTestResourceTemplate {
     }
 
     @Test
-    public void testGetTaQuestionnaireEntries() {
-        String output = this.getAllItems("therapeuticareas/" + 1 + "/questionnaireentries");
+    public void testGetTaSpecialistAreas() {
+        String output = this.getAllItems("therapeuticareas/" + 1 + "/specialistareas");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
     }
 
-    @Test
-    public void testGetTaTrials() {
-        String output = this.getAllItems("therapeuticareas/" + 1 + "/trials");
-        System.out.println(output);
-        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-    }
-
-    @Test
-    public void testGetTaUserSelectorQuestionnaireEntries() {
-        String output = this.getAllItems("therapeuticareas/" + 1 + "/userselectorquestionnaireentries");
-        System.out.println(output);
-        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-    }
+//    @Test
+//    public void testGetTaQuestionnaireEntries() {
+//        String output = this.getAllItems("therapeuticareas/" + 1 + "/questionnaireentries");
+//        System.out.println(output);
+//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+//    }
+//
+//    @Test
+//    public void testGetTaTrials() {
+//        String output = this.getAllItems("therapeuticareas/" + 1 + "/trials");
+//        System.out.println(output);
+//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+//    }
+//
+//    @Test
+//    public void testGetTaUserSelectorQuestionnaireEntries() {
+//        String output = this.getAllItems("therapeuticareas/" + 1 + "/userselectorquestionnaireentries");
+//        System.out.println(output);
+//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+//    }
 
     @Test
     public void testAddUpdateDeleteTherapeuticArea() {
@@ -52,9 +60,9 @@ public class TherapauticAreaIT extends RestTestResourceTemplate {
 
         int newID = this.getNewItemId();
         if (newID>0) {
-            output = this.updateItemText("therapeuticareas", newID, "answerText", "Astma");
-            System.out.println(output);
-            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+//            output = this.updateItemText("therapeuticareas", newID, "answerText", "Astma");
+//            System.out.println(output);
+//            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
             output = this.deleteItem("therapeuticareas", newID);
             System.out.println(output);

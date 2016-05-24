@@ -17,13 +17,13 @@ import java.util.Set;
         @NamedNativeQuery(name="Trial.getAvailableTrialIds",
                 query="select matching_trial.id from Trial matching_trial  where matching_trial.id not in ( " +
                         "select distinct (trial_id) from Trial t " +
-                        "  inner join User u on t.therapeutic_area_id = u.therapeutic_area_id " +
+                        "  inner join User u on t.specialist_area_id = u.specialist_area_id " +
                         "  inner join UserSelectorQuestionnaireEntry usqe " +
                         "  inner join TrialSelectorQuestionnaireEntry tsqe " +
                         "    on usqe.question_id=tsqe.question_id " +
                         "       and usqe.answer_id=tsqe.answer_id " +
                         "where user_id=:userId) " +
-                        "and matching_trial.therapeutic_area_id = :usersTherapeuticAreaId")
+                        "and matching_trial.specialist_area_id = :usersSpecialistAreaId")
 })
 
 
@@ -35,21 +35,21 @@ public class Trial extends SortEntity {
 
     private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
 
-    private TherapeuticArea therapeuticArea;
+    private SpecialistArea specialistarea;
 
     private Set<TrialInfo> trialInfos;
 
     public Trial() {
     }
 
-    public Trial(String title, TherapeuticArea therapeuticArea) {
+    public Trial(String title, SpecialistArea specialistarea) {
         this.title = title;
-        this.therapeuticArea = therapeuticArea;
+        this.specialistarea = specialistarea;
     }
 
-    public Trial(String title, TherapeuticArea therapeuticArea, Integer sortOrder) {
+    public Trial(String title, SpecialistArea specialistarea, Integer sortOrder) {
         this.title = title;
-        this.therapeuticArea = therapeuticArea;
+        this.specialistarea = specialistarea;
         this.sortOrder = sortOrder;
     }
 
@@ -72,13 +72,13 @@ public class Trial extends SortEntity {
     }
 
     @ManyToOne
-    @JoinColumn(nullable = true, name = "therapeutic_area_id")
-    public TherapeuticArea getTherapeuticArea() {
-        return therapeuticArea;
+    @JoinColumn(nullable = true, name = "specialist_area_id")
+    public SpecialistArea getSpecialistarea() {
+        return specialistarea;
     }
 
-    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
-        this.therapeuticArea = therapeuticArea;
+    public void setSpecialistarea(SpecialistArea specialistarea) {
+        this.specialistarea = specialistarea;
     }
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
