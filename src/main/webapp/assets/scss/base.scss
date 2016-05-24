@@ -503,17 +503,17 @@ main {
 .limiter {
   margin: auto;
   width: 92.5%;
-  max-width: 125em;
+  max-width: 100em;
   min-width: 16em
 }
 
-.limiter.inline {
+/*.limiter.inline {
   margin: 0;
   width: auto;
   max-width: none;
   min-width: 0;
   display: inline
-}
+}*/
 
 .footer, .header {
   display: block;
@@ -620,7 +620,14 @@ a[href="#top"] span {
 
 .nav a {
   padding: .25em 0 .25em 1em;
-  transition: all .2s ease
+  transition: all .2s ease;
+}
+
+.searchTabs .nav a {
+  border: 1px solid #eee;
+  border-radius: .35em 0 0 .35em;
+  border-right: 0;
+  margin-bottom: .15em;
 }
 
 .topNav1 a {
@@ -772,7 +779,7 @@ p {
   text-align: right;
 }
 
-.trialSearch {
+/*.trialSearch {
   display: block;
   float: left;
   width: 54%;
@@ -783,7 +790,7 @@ p {
   float: right;
   width: 20%;
   display: block;
-}
+}*/
 
 .trialLogoImage {
   display: block;
@@ -825,6 +832,8 @@ p {
 .trialResults {
   /*    margin-bottom: 40em !important;*/
   margin-top: 1em !important;
+  display: block;
+  clear: both;
 }
 
 .trialIntro {
@@ -848,7 +857,7 @@ p {
 .trialIntro .trialImage {
   display: block;
   float: left;
-  width: 33.3333%;
+  width: 15%;
   padding-right: .6em;
 }
 
@@ -880,12 +889,12 @@ span {
 }
 
 .trialLeader {
-/*  display: inline-block;
-  width: 32.825%;
-  padding: 1em;
-  margin: .25%;
-  vertical-align: top;
-*/
+  /*  display: inline-block;
+    width: 32.825%;
+    padding: 1em;
+    margin: .25%;
+    vertical-align: top;
+  */
   display: block;
   cursor: pointer;
   padding: .5em;
@@ -1172,8 +1181,6 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   margin-left: 0;
 }
 
-
-
 .emulateUserNav {
   position: fixed;
   bottom: 0;
@@ -1193,19 +1200,21 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 .emulateUserNav li {
   display: block;
-  padding:.25em .75em;
-  min-width:12em;
+  padding: .25em .75em;
+  min-width: 12em;
   cursor: pointer;
   color: #c00;
 }
+
 .emulateUserNav li[data-ng-click]:hover {
-  color:#e00;
+  color: #e00;
   background: #fff;
 }
+
 .emulateUserNav li i {
   position: relative;
   float: right;
-  top:3px;
+  top: 3px;
 }
 
 .emulateUserNavIcon i {
@@ -1215,6 +1224,26 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   background: #ddd;
   padding: 1em 1.1em;
   cursor: pointer;
+}
+
+.searchTabs {
+  display: block;
+  float: left;
+  width: 15%;
+  text-align: right;
+  margin: 3.5em 0;
+}
+
+.searchContent {
+  display: block;
+  float: left;
+  width: 85%;
+  padding: 1em 2em;
+  background: #fff;
+  margin: 2em 0;
+  border: 1px solid #eee;
+  border-radius: .35em;
+  min-height: 20em;
 }
 
 @media screen and (max-width: 1200px) {

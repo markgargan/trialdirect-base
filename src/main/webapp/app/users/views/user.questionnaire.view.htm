@@ -1,13 +1,9 @@
 <!-- ngView:  -->
 <div data-autoscroll="true" class="view-frame">
 	<form class="wide">
-		<div class="trialRight" data-ng-hide="showList">
-			<!-- <h3 class="trialCountH">Trials</h3> -->
-			<div class="trialCount"><p>Trials Available</p>
-				<h1 data-ng-bind="availableTrialIds.length"></h1>
-			</div>
 
-		</div>
+
+		
 
 
 		<div class="trialSearch" data-ng-hide="trialData">
@@ -53,7 +49,17 @@
 		</div>
 
 
+		<div class="clear"></div>
 
+
+
+		<div class="trialRight" data-ng-hide="showList">
+			<!-- <h3 class="trialCountH">Trials</h3> -->
+			<div class="trialCount"><p>Trials Available</p>
+				<h1 data-ng-bind="availableTrialIds.length"></h1>
+			</div>
+
+		</div>
 
 
 
@@ -149,7 +155,7 @@
 
 				<div class="clear"></div>
 
-				<div class="simplePanel trialLeaderList">
+				<div class="trialLeaderList">
 
 
 					<div class="trialLeader" data-ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" data-ng-click="toggleBio(trialSite, trialData)">

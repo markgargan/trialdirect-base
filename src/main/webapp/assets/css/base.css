@@ -403,16 +403,16 @@ main {
 .limiter {
   margin: auto;
   width: 92.5%;
-  max-width: 125em;
+  max-width: 100em;
   min-width: 16em; }
 
-.limiter.inline {
+/*.limiter.inline {
   margin: 0;
   width: auto;
   max-width: none;
   min-width: 0;
-  display: inline; }
-
+  display: inline
+}*/
 .footer, .header {
   display: block;
   -webkit-transition: all .2s ease;
@@ -502,7 +502,13 @@ a[href="#top"] span {
 
 .nav a {
   padding: .25em 0 .25em 1em;
-  transition: all 0.2s ease; }
+  transition: all .2s ease; }
+
+.searchTabs .nav a {
+  border: 1px solid #eee;
+  border-radius: .35em 0 0 .35em;
+  border-right: 0;
+  margin-bottom: .15em; }
 
 .topNav1 a {
   padding: .5em 1em;
@@ -629,17 +635,18 @@ p {
   width: 66.6666%;
   text-align: right; }
 
-.trialSearch {
+/*.trialSearch {
   display: block;
   float: left;
-  width: 54%; }
+  width: 54%;
+}
 
 .trialLocation, .trialResults, .trialRight {
   text-align: center;
   float: right;
   width: 20%;
-  display: block; }
-
+  display: block;
+}*/
 .trialLogoImage {
   display: block;
   width: 50%;
@@ -673,7 +680,9 @@ p {
 
 .trialResults {
   /*    margin-bottom: 40em !important;*/
-  margin-top: 1em !important; }
+  margin-top: 1em !important;
+  display: block;
+  clear: both; }
 
 .trialIntro {
   display: block;
@@ -694,7 +703,7 @@ p {
 .trialIntro .trialImage {
   display: block;
   float: left;
-  width: 33.3333%;
+  width: 15%;
   padding-right: .6em; }
 
 .trialIntro .trialBrief {
@@ -1012,6 +1021,24 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   background: #ddd;
   padding: 1em 1.1em;
   cursor: pointer; }
+
+.searchTabs {
+  display: block;
+  float: left;
+  width: 15%;
+  text-align: right;
+  margin: 3.5em 0; }
+
+.searchContent {
+  display: block;
+  float: left;
+  width: 85%;
+  padding: 1em 2em;
+  background: #fff;
+  margin: 2em 0;
+  border: 1px solid #eee;
+  border-radius: .35em;
+  min-height: 20em; }
 
 @media screen and (max-width: 1200px) {
   .trialIntro span {
