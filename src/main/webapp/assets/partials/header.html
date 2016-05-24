@@ -1,6 +1,9 @@
 <header>
     <div class="header" data-ng-controller="NavController" ng-init="navUserType = 'sa'; showNavUserType=true">
 
+
+        <!-- // DEMO Nav Toggle, to emulate Navigation by User Type -->
+        <!-- FOR TEST & DEV ONLY, NOT TO BE INCLUDED IN LIVE WEBSITE -->
         <div class="emulateUserNavIcon">
             <i class="fa fa-chevron-down" data-ng-show="showNavUserType" data-ng-click="showNavUserType=false"></i>
             <i class="fa fa-chevron-up" data-ng-hide="showNavUserType" data-ng-click="showNavUserType=true"></i>
@@ -9,13 +12,16 @@
             <ul>
                 <li><b style="color:#000">User Type</b></li>
                 <li data-ng-click="navUserType='sa'">SuperAdmin <i class="fa fa-check" data-ng-show="navUserType=='sa'"></i></li>
-                <li data-ng-click="navUserType='qa'">Q&A Admin <i class="fa fa-check" data-ng-show="navUserType=='qa'"></i></li>
+                <li data-ng-click="navUserType='qa'">Q&amp;A Admin <i class="fa fa-check" data-ng-show="navUserType=='qa'"></i></li>
                 <li data-ng-click="navUserType='to'">Trial Owner <i class="fa fa-check" data-ng-show="navUserType=='to'"></i></li>
                 <li data-ng-click="navUserType='hcp'">Health Care Pro <i class="fa fa-check" data-ng-show="navUserType=='hcp'"></i></li>
             </ul>
         </div>
+        <!-- // END DEMO Nav Toggle -->
 
-            <div class="topHeader">
+
+
+        <div class="topHeader">
             <div class="limiter">
                 <div class="headerPanel">
                     <div class="limiter inline">
