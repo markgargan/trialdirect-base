@@ -3,8 +3,18 @@
 	<form class="wide">
 
 		<div class="trialSearch" data-ng-hide="trialData">
+
+			<div class="" style="float:left">
+				<h3>Refine Search Results</h3>
+			</div>
+
+			<div class="trialRight" style="float:right" data-ng-hide="showList">
+				<div class="trialCount"><p>Trials Available: <span data-ng-bind="availableTrialIds.length"></span></p>
+				</div>
+			</div>
+
 			<div class="setArea">
-				<p>Trial Therapeutic Area: <strong>{{user.therapeuticArea.title}}</strong></p>
+				<p>Find clinical trials for: <strong>{{user.therapeuticArea.title}}</strong></p>
 			</div>
 
 			<div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
@@ -30,6 +40,8 @@
 					</div>
 				</div>
 
+				<div class="clear"></div>
+
 			</div>
 		</div>
 
@@ -38,12 +50,7 @@
 
 
 
-		<div class="trialRight" data-ng-hide="showList">
-			<div class="trialCount"><p>Trials Available</p>
-				<h1 data-ng-bind="availableTrialIds.length"></h1>
-			</div>
 
-		</div>
 
 
 

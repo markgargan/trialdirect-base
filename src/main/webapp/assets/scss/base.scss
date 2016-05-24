@@ -161,8 +161,20 @@ div.list-answers {
   border-radius: .35em 0 0 .35em;
   border-right: 0;
   margin-bottom: .15em;
-  background: #fff;
   margin-right: -1px;
+  color: #ccc;
+  border-color: transparent;
+  background: none;
+}
+.searchTabs .nav a:hover {
+  background: none;
+}
+
+.searchTabs .nav .active a {
+  background: #fff;
+  color: #00857f;
+  text-shadow: none;
+  border-color:#eee transparent #eee #eee;
 }
 
 .nav-list > .active > a,
@@ -381,7 +393,6 @@ form.small label {
   background: #eee;
   padding: .5em 1em;
   margin-left: .25em;
-  margin-bottom: .5em;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -465,14 +476,9 @@ form.small label {
 
 .setArea {
   display: block;
-  padding:1em 0;
-/*  background: #eee;
-  padding: 1em;
-  border-radius: .4em;
-  float: right;
-  border: 1px solid #00857f;
-  margin: 1.1em 0 2em;*/
   color: #00857f;
+  float: left;
+  clear: left;
 }
 
 .setArea p {
@@ -687,10 +693,11 @@ td, th {
 }
 
 .qa {
-  width: 100%;
-  display: inline-block;
-  /* border-bottom: 1px solid #eee; */
-  padding: 1em 0;
+  display: block;
+  clear: both;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #fff;
+  padding: 2em 0;
   position: relative;
 }
 
@@ -864,7 +871,7 @@ p {
 .trialIntro .trialBrief {
   display: block;
   float: left;
-  width: 83%;
+  width: 81%;
   line-height: 1.25;
   padding: 0 1em 1em;
 }
@@ -1081,18 +1088,21 @@ span.doc3 {;
 }
 
 .trialCount {
-  padding: .5em;
+  padding: .5em 3em 1.5em 2em;
   text-align: center;
-  color: #00857f;
-  margin-top: 1em;
-  border: 1px solid #eee;
-  -webkit-border-radius: .3em;
-  -moz-border-radius: .3em;
-  border-radius: .3em;
-  -webkit-transition: all .2s ease;
-  -moz-transition: all .2s ease;
-  -o-transition: all .2s ease;
-  transition: all .2s ease;
+  color: #fff;
+  background: #00857f;
+  -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+}
+.trialCount span {
+  font-size: 3em;
+  font-weight: bold;
+  line-height: .75em;
+  position: relative;
+  top: 8px;
+  left: 10px;
 }
 
 .trialApply,
