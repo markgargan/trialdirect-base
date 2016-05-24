@@ -1,7 +1,7 @@
 package com.tekenable.config.prime.trial.cancer;
 
-import com.tekenable.model.TherapeuticArea;
-import com.tekenable.repository.TherapeuticAreaRepository;
+import com.tekenable.model.SpecialistArea;
+import com.tekenable.repository.SpecialistAreaRepository;
 import com.tekenable.repository.TrialRepository;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +17,17 @@ public abstract class TrialPrimer implements ApplicationContextAware {
 
     protected ApplicationContext ctx = null;
 
-    protected TherapeuticArea therapeuticAreaCancer = null;
+    protected SpecialistArea specialistAreaCancer = null;
 
     @Autowired
-    protected TherapeuticAreaRepository therapeuticAreaRepository;
+    protected SpecialistAreaRepository specialistAreaRepository;
 
     @Autowired
     protected TrialRepository trialRepository;
 
     public void initDB() throws IOException {
 
-        therapeuticAreaCancer = therapeuticAreaRepository.findOne(1);
+        specialistAreaCancer = specialistAreaRepository.findOne(1);
 
     }
 

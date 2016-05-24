@@ -1,7 +1,6 @@
 package com.tekenable.trialdirect.repository;
 
 import com.tekenable.repository.TrialRepository;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -43,7 +42,7 @@ public class TrialRepositoryRestTest extends RestTestMockTemplate {
         log.info(" ");
         ResultActions result = mockMvc.perform(get("/trials/{id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
-        result.andExpect(jsonPath("$.title").value("Cancer Trial"));
+        result.andExpect(jsonPath("$.title").value("Lung Cancer Trial"));
         result.andDo(MockMvcResultHandlers.print());
     }
 
