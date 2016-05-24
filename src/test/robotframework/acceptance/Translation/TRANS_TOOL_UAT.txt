@@ -12,17 +12,17 @@ ${BROWSER}        Firefox
 ${SERVER}    http://jsontranslate-tekenable2.rhcloud.com/Translator.htm#/translate-form
 ${ENTRY_FORM}    //*[@id='entryArea']
 *** Test Cases ***
-1.1 Transaction Service User can open the tool and on first running is presented with a blank application
+1.1 Translation Service User can open the tool and on first running is presented with a blank application
     [Tags]  trans_1.1
     [Setup]  Test setup  ${SERVER}  ${BROWSER}
-    #Given I as Transaction Service User
+    #Given I as Translation Service User
     And Translation Tool page is open
     Then I should see epmty aplication page
     And screenshot is taken for  trans_1.1
-1.2 Transaction Service User should be albe to open new json file for translation, select landguage and start translation
+1.2 Translation Service User should be albe to open new json file for translation, select landguage and start translation
     [Tags]  trans_1.2
     [Setup]  Test setup  ${SERVER}  ${BROWSER}
-    #Given I as Transaction Service User
+    #Given I as Translation Service User
     And Translation Tool page is open
     Then I should be able to upload new json file for translation
     Then Uploaded file should be visible in the application
@@ -32,6 +32,39 @@ ${ENTRY_FORM}    //*[@id='entryArea']
     And screenshot is taken for  trans_1.2_2
     Then I should be able to select element from input window and see it highlighted in output window with color yellow (rgb 255,255,0)
     And screenshot is taken for  trans_1.2_3
+1.3 Translation Service User can create NEW translation project from base language JSON file via NEW function
+    [Tags]  trans_1.3
+    [Setup]  Test setup  ${SERVER}  ${BROWSER}
+    #Give I as Translation Service User
+    And Translation Tool page is open
+    Then I should be able to upload new json file for translation
+    And screenshot is taken for  trans_1.3
+1.4 Translation Service User can navigate to content structure and select down leaf nodes to update translation content
+    [Tags]  trans_1.4
+    [Setup]  Test setup  ${SERVER}  ${BROWSER}
+    #Given I as Translation Service User
+    And Translation Tool page is open
+    And I should be able to upload new json file for translation
+    And Uploaded file should be visible in the application
+    And I should be able to select language for translation
+    Then I shoud be able to navigate to content panel
+    And I should be able to select down leaf nodes to update translation content
+    And I should be able to update translation content
+    Then screenshot is taken for  trans_1.4
+1.5 The Translation Service User can save the translation project via a SAVE function. This should allow the user to save the project and re-open it at a later date
+    [Tags]  trans_1.5
+    [Setup]  Test setup  ${SERVER}  ${BROWSER}
+    #Given I as Translation Service User
+    And Translation Tool page is open
+    And I should be able to upload new json file for translation
+    And Uploaded file should be visible in the application
+    And I should be able to select language for translation
+    Then I shoud be able to navigate to content panel
+    And I should be able to select down leaf nodes to update translation content
+    And I should be able to update translation content
+    Then I should be able to SAVE translated content
+    Then screenshot is taken for  trans_1.5
+
 *** Keywords ***
 
 Translation Tool page is open
@@ -53,7 +86,6 @@ Uploaded file should be visible in the application
     page should contain element  //*[@id='input_leafNode_0']
 I should be able to select language for translation
     wait until page contains element  //*[@id='targetLanguage']
-    #select from list  //*[@id='targetLanguage']    Polish
     select from list by index    //*[@id='targetLanguage']    101
 I should be able to start new translation process
     wait until page contains element  //*[@id='btnAuto']
@@ -72,3 +104,36 @@ I should be able to select element from input window and see it highlighted in o
     ${bgcolor}    Execute Javascript    return document.defaultView.getComputedStyle(document.getElementById("input_leafNode_3"),null)['background-color']
     should be equal    ${bgcolor}    rgb(255, 255, 0)
     sleep  1s
+I shoud be able to navigate to content panel
+    wait until page contains element  //*[@id='entryArea']
+    sleep  1s
+    click element  //*[@id='entryArea']
+I should be able to select down leaf nodes to update translation content
+    wait until page contains element  //*[@id='input_leafNode_1']
+    sleep  1s
+    click element  //*[@id='input_leafNode_1']
+I should be able to update translation content
+    wait until page contains element  //*[@id='input_leafNode_2']
+    click element  //*[@id='input_leafNode_2']
+    input text  //*[@id='input_leafNode_2']    Anuluj
+    sleep  1s
+    wait until page contains element  //*[@id='input_leafNode_3']
+    input text  //*[@id='input_leafNode_3']    Wiecej informacji
+    sleep  1s
+    wait until page contains element  //*[@id='input_leafNode_4']
+    input text  //*[@id='input_leafNode_4']    Wiecej wideo
+    sleep  1
+I should be able to SAVE translated content
+    wait until page contains element  //*[@id='save']
+    click element  //*[@id='save']
+    sleep  1s
+    wait until page contains element  //*[@id='saveProject']
+    click element  //*[@id='saveProject']
+    sleep  1s
+    wait until page contains element  xpath=html/body/div[1]/div[10]/div
+    wait until page contains element  //*[@id='inp_save-project']
+    input text  //*[@id='inp_save-project']    polish_translate
+    sleep  1s
+    wait until page contains element  //*[@id='btn_save-project']
+    click element  //*[@id='btn_save-project']
+    sleep  2s
