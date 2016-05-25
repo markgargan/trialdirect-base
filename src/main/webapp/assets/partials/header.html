@@ -1,54 +1,95 @@
 <header>
-    <div class="header" data-ng-controller="NavController">
-        <div class="limiter">
-            <div class="headerPanel">
-                <div class="limiter inline">
-                    <div class="logo"><a href="./"><img src="assets/images/trial-direct-logo.png"
-                                                        alt="Trial Direct Logo"></a></div>
-                    <div class="menu" title="open/close menu" data-ng-click="ShowHide()"><i class="fa fa-bars"></i>
+    <div class="header" data-ng-controller="NavController" ng-init="navUserType = 'sa'; showNavUserType=true">
+
+
+        <!-- // DEMO Nav Toggle, to emulate Navigation by User Type -->
+        <!-- FOR TEST & DEV ONLY, NOT TO BE INCLUDED IN LIVE WEBSITE -->
+        <div class="emulateUserNavIcon">
+            <i class="fa fa-chevron-down" data-ng-show="showNavUserType" data-ng-click="showNavUserType=false"></i>
+            <i class="fa fa-chevron-up" data-ng-hide="showNavUserType" data-ng-click="showNavUserType=true"></i>
+        </div>
+        <div class="emulateUserNav" data-ng-show="showNavUserType">
+            <ul>
+                <li><b style="color:#000">User Type</b></li>
+                <li data-ng-click="navUserType='sa'">SuperAdmin <i class="fa fa-check" data-ng-show="navUserType=='sa'"></i></li>
+                <li data-ng-click="navUserType='qa'">Q&amp;A Admin <i class="fa fa-check" data-ng-show="navUserType=='qa'"></i></li>
+                <li data-ng-click="navUserType='to'">Trial Owner <i class="fa fa-check" data-ng-show="navUserType=='to'"></i></li>
+                <li data-ng-click="navUserType='hcp'">Health Care Pro <i class="fa fa-check" data-ng-show="navUserType=='hcp'"></i></li>
+            </ul>
+        </div>
+        <!-- // END DEMO Nav Toggle -->
+
+
+
+        <div class="topHeader">
+            <div class="limiter">
+                <div class="headerPanel">
+                    <div class="limiter inline">
+                        <div class="logo">
+                            <h2>
+                                <a href="./">
+                                    <!-- <img src="assets/images/trial-direct-logo.png" alt="Trial Direct Logo"> -->
+                                    Trial<b>Direct</b>
+                                </a>
+                            </h2>
+                        </div>
+                        <div class="menu" title="open/close menu" data-ng-click="ShowHide()"><i class="fa fa-bars"></i>
+                        </div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="clear"></div>
+                    <nav>
+                        <div class="limiter inline">
+                            <div class="nav topNav" data-ng-show="IsHidden" data-ng-click="ShowHide()">
+                                <ul>
+                                    <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
+                                     will set the links to 'active' if, for example on the first link, 'contacts' or any of
+                                     its descendant states are activated. -->
+                                    <li ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
+                                    <li ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.list">Manage Trials</a></li>
+
+                                    <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
+                                     will set the links to 'active' if, for example on the first link, 'contacts' or any of
+                                     its descendant states are activated. -->
+                                    <li class="mobileOnly" ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
+                                    <li class="mobileOnly" ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.list">Manage Trials</a></li>
+                                    <li><a href="#/my-profile">My Profile</a></li>
+                                    <li><a href="#/logout">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
                 <nav>
-                    <div class="limiter inline">
-                        <div class="nav topNav" data-ng-show="IsHidden" data-ng-click="ShowHide()">
-                            <ul>
-                                <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
-                                 will set the links to 'active' if, for example on the first link, 'contacts' or any of
-                                 its descendant states are activated. -->
-                                <li ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Therapeutic
-                                    Areas</a></li>
-                                <li ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.list">Trial Selectors</a></li>
-                                <li ng-class="{active: $state.includes('users')}"><a ui-sref="users.list">User Selectors</a></li>
-
-                                <!-- Here you can see ui-sref in action again. Also notice the use of $state.includes, which
-                                 will set the links to 'active' if, for example on the first link, 'contacts' or any of
-                                 its descendant states are activated. -->
-                                <li class="mobileOnly" ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Therapeutic
-                                    Areas</a></li>
-                                <li class="mobileOnly" ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.list">Trial Selectors</a></li>
-                                <li class="mobileOnly" ng-class="{active: $state.includes('users')}"><a ui-sref="users.list">User Selectors</a></li>
-
-                            </ul>
-                        </div>
+                    <div class="nav topNav1">
+                        <ul>
+                            <li data-ng-show="navUserType=='hcp'" ><a href="#/my-patients">My Patients</a></li>
+                            <li><a href="#/my-profile">My Profile</a></li>
+                            <li><a href="#/logout">Logout</a></li>
+                        </ul>
                     </div>
                 </nav>
+                <div class="clear"></div>
             </div>
-            <nav>
-                <div class="nav topNav1">
-                    <ul>
-                        <li ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Therapeutic
-                            Areas</a></li>
-                        <li ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.create">Trial Selection</a></li>
-                        <li ng-class="{active: $state.includes('users')}"><a ui-sref="users.list">Trial Search</a></li>
-                        <!--
-                        <li><a href="#/about-clinical-trials">About Clinical Trials</a></li>
-                        <li><a href="#/help">Help</a></li>
-                        -->
-                    </ul>
-                </div>
-            </nav>
             <div class="clear"></div>
         </div>
+
+
+    <nav>
+        <div class="nav admin">
+            <div class="limiter">
+                <ul>
+                    <li data-ng-show="navUserType=='sa' || navUserType=='qa'"  ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
+                    <li data-ng-show="navUserType=='sa' || navUserType=='to'" ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.create">Manage Trials</a></li>
+                    <li data-ng-show="navUserType=='hcp'" data-ng-class="{active: $state.includes('users')}"><a ui-sref="users.list">Search for Clinical Trials</a></li>
+                    <li data-ng-show="navUserType=='hcp'"><a href="#/about-clinical-trials">About Clinical Trials</a></li>
+                    <li data-ng-show="navUserType=='hcp'"><a href="#/help">Help</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     </div>
+
+
+    <div class="home-banner"></div>
 </header>
