@@ -1,4 +1,7 @@
-/* Steve */
+/* ::: IMPORTANT NOTE :::
+DO NOT edit base.css directly, as changes will be overwritten by SASS file process.
+CSS files should be edited/created via the assets/scss folder, and compiled using SASS compiler.
+*/
 @import 'vars.scss';
 @import 'mixins.scss';
 
@@ -155,7 +158,7 @@ div.list-answers {
   color: #00857f;
   text-decoration: underline;
 }
-
+/*
 .searchTabs .nav a {
   border: 1px solid #eee;
   border-radius: .35em 0 0 .35em;
@@ -166,6 +169,7 @@ div.list-answers {
   border-color: transparent;
   background: none;
 }
+
 .searchTabs .nav a:hover {
   background: none;
 }
@@ -174,8 +178,8 @@ div.list-answers {
   background: #fff;
   color: #00857f;
   text-shadow: none;
-  border-color:#eee transparent #eee #eee;
-}
+  border-color: #eee transparent #eee #eee;
+}*/
 
 .nav-list > .active > a,
 .nav-list > .active > a:hover,
@@ -595,7 +599,6 @@ a[href="#top"] {
   border-radius: .2em
 }
 
-
 a[href="#top"]:active, a[href="#top"]:hover {
   background: rgba(0, 0, 0, .9)
 }
@@ -695,10 +698,14 @@ td, th {
 .qa {
   display: block;
   clear: both;
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #fff;
-  padding: 2em 0;
+  /*border-bottom: 1px solid #eee;
+  border-top: 1px solid #fff;*/
+  padding: 2em 1em;
   position: relative;
+  @include prefix(border-radius, .3em, webkit moz);
+}
+.qa:hover {
+  @include prefix(box-shadow, 0 0 .2em #00857f, webkit moz);
 }
 
 .btn-remove-question {
@@ -845,7 +852,7 @@ p {
 
 .trialIntro {
   display: block;
-  padding: 1em;
+  padding: 2em;
   background: #fff;
   margin: .5em 0 1em;
   -webkit-border-radius: .3em;
@@ -880,11 +887,16 @@ p {
   display: block;
   text-align: right;
   float: right;
-  width:2%;
-  color:#ccc;
+  width: 2%;
+  color: #ccc;
 }
+
+.trialIntro:hover {
+  box-shadow: 0 0 .2em #ccc;
+}
+
 .trialIntro:hover .trialLink {
-  color:#999;
+  color: #999;
 }
 
 .trialSiteImage,
@@ -916,6 +928,7 @@ span {
   border-bottom: 1px solid #ddd;
 
 }
+
 .trialLeadersContainer {
   display: block;
   margin-top: 3em;
@@ -1096,6 +1109,7 @@ span.doc3 {;
   -moz-border-radius: .5em;
   border-radius: .5em;
 }
+
 .trialCount span {
   font-size: 3em;
   font-weight: bold;
@@ -1256,14 +1270,19 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 .searchContent {
   display: block;
-  float: left;
+  float: right;
   width: 85%;
-  padding: 1em 2em;
-  background: #fff;
   margin: 2em 0;
+}
+
+
+.panelContent {
+  display: block;
+  padding: 1em;
+  background: #fff;
+  margin-bottom: 2em;
   border: 1px solid #eee;
   border-radius: .35em;
-  min-height: 20em;
 }
 
 @media screen and (max-width: 1200px) {

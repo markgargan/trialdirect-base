@@ -2,20 +2,31 @@
 <div data-autoscroll="true" class="view-frame">
 	<form class="wide">
 
-		<div class="trialSearch" data-ng-hide="trialData">
-
-			<div class="" style="float:left">
-				<h3>Refine Search Results</h3>
-			</div>
-
-			<div class="trialRight" style="float:right" data-ng-hide="showList">
-				<div class="trialCount"><p>Trials Available: <span data-ng-bind="availableTrialIds.length"></span></p>
-				</div>
-			</div>
+		<div class="" style="float:left">
+			<h3>Refine Search Results</h3>
 
 			<div class="setArea">
 				<p>Find clinical trials for: <strong>{{user.therapeuticArea.title}}</strong></p>
 			</div>
+		</div>
+
+
+
+		<div class="trialRight" style="float:right" data-ng-hide="showList">
+			<div class="trialCount"><p>Trials Available: <span data-ng-bind="availableTrialIds.length"></span></p>
+			</div>
+		</div>
+
+
+
+		<div class="clear"></div>
+
+
+		<div class="trialSearch panelContent" data-ng-hide="trialData">
+
+
+
+
 
 			<div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
 				<div class="question">
@@ -54,7 +65,7 @@
 
 
 
-		<div class="trialDataInfo" data-ng-show="trialData">
+		<div class="trialDataInfo panelContent" data-ng-show="trialData">
 
 
 			<div class="clear"></div>
@@ -142,13 +153,16 @@
 
 
 
-		<div class="trialResults trialRight">
+		<div class="trialResults">
+
+			<h3>Available Trials</h3>
+
 			<div class="trialList">
 
 				<div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
 					<ul>
 						<li class="trialImage"><img data-ng-src="/trialInfoImage/{{trial.id}}"></li>
-						<li class="trialBrief">{{trial.summary +' '+ trial.trialFullDescription.fullDescription | limitTo:300}}...</li>
+						<li class="trialBrief">{{trial.summary +' '+ trial.trialFullDescription.fullDescription | limitTo:400}}...</li>
 						<li class="trialLink"><i class="fa fa-2x fa-chevron-right"></i></li>
 					</ul>
 					<div class="clear"></div>

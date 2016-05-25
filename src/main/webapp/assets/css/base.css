@@ -1,4 +1,7 @@
-/* Steve */
+/* ::: IMPORTANT NOTE :::
+DO NOT edit base.css directly, as changes will be overwritten by SASS file process.
+CSS files should be edited/created via the assets/scss folder, and compiled using SASS compiler.
+*/
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -124,6 +127,7 @@ div.list-answers {
   color: #00857f;
   text-decoration: underline; }
 
+/*
 .searchTabs .nav a {
   border: 1px solid #eee;
   border-radius: .35em 0 0 .35em;
@@ -132,17 +136,19 @@ div.list-answers {
   margin-right: -1px;
   color: #ccc;
   border-color: transparent;
-  background: none; }
+  background: none;
+}
 
 .searchTabs .nav a:hover {
-  background: none; }
+  background: none;
+}
 
 .searchTabs .nav .active a {
   background: #fff;
   color: #00857f;
   text-shadow: none;
-  border-color: #eee transparent #eee #eee; }
-
+  border-color: #eee transparent #eee #eee;
+}*/
 .nav-list > .active > a,
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
@@ -563,10 +569,18 @@ td, th {
 .qa {
   display: block;
   clear: both;
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #fff;
-  padding: 2em 0;
-  position: relative; }
+  /*border-bottom: 1px solid #eee;
+  border-top: 1px solid #fff;*/
+  padding: 2em 1em;
+  position: relative;
+  -webkit-border-radius: 0.3em;
+  -moz-border-radius: 0.3em;
+  border-radius: 0.3em; }
+
+.qa:hover {
+  -webkit-box-shadow: 0 0 0.2em #00857f;
+  -moz-box-shadow: 0 0 0.2em #00857f;
+  box-shadow: 0 0 0.2em #00857f; }
 
 .btn-remove-question {
   position: absolute;
@@ -692,7 +706,7 @@ p {
 
 .trialIntro {
   display: block;
-  padding: 1em;
+  padding: 2em;
   background: #fff;
   margin: .5em 0 1em;
   -webkit-border-radius: .3em;
@@ -725,6 +739,9 @@ p {
   float: right;
   width: 2%;
   color: #ccc; }
+
+.trialIntro:hover {
+  box-shadow: 0 0 .2em #ccc; }
 
 .trialIntro:hover .trialLink {
   color: #999; }
@@ -1050,14 +1067,17 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 .searchContent {
   display: block;
-  float: left;
+  float: right;
   width: 85%;
-  padding: 1em 2em;
+  margin: 2em 0; }
+
+.panelContent {
+  display: block;
+  padding: 1em;
   background: #fff;
-  margin: 2em 0;
+  margin-bottom: 2em;
   border: 1px solid #eee;
-  border-radius: .35em;
-  min-height: 20em; }
+  border-radius: .35em; }
 
 @media screen and (max-width: 1200px) {
   .trialIntro span {
