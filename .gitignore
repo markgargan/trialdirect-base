@@ -9,3 +9,9 @@ vendor
 /nbproject/
 test/resources/AuditConfigDb.properties
 **/AuditConfigDb.properties
+webapps/ROOT.war
+src/main/java/com/tekenable/config/prime/trial/cancer/glaxo/GlaxoCancerPrimer.java
+src/main/java/com/tekenable/config/prime/trial/cancer/glaxo/GlaxoCancerPrimer.java
+src/main/java/com/tekenable/config/prime/trial/cancer/glaxo/GlaxoCancerPrimer.java
+src/main/java/com/tekenable/config/prime/trial/cancer/lundbeck/LundbeckCancerPrimer.java
+src/main/java/com/tekenable/config/prime/trial/cancer/pfizer/PfizerCancerPrimer.java

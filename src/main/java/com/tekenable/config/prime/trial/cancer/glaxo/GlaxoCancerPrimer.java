@@ -46,6 +46,7 @@ public class GlaxoCancerPrimer extends TrialPrimer{
      * Trial Info
      */
     @Value("${glaxo.trial.title}") protected String trialTitle;
+    @Value("${glaxo.trial.trialCode}") protected String trialCode;
     @Value("${glaxo.trialinfo.summary}") protected String trialInfoSummary;
     @Value("${glaxo.trialinfo.fullDescription}") protected String trialInfoFullDescription;
 
@@ -99,7 +100,7 @@ public class GlaxoCancerPrimer extends TrialPrimer{
 
     protected void createTrial() {
 
-        Trial trial = new Trial(trialTitle, specialistAreaCancer);
+        Trial trial = new Trial(trialTitle, therapeuticAreaCancer, trialCode);
 
         final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary, trialInfoFullDescription);
 

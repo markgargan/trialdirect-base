@@ -22,7 +22,7 @@ public class QuestionnaireEntry extends BaseEntity {
 
     protected Question question;
     protected Set<Answer> answers;
-    protected SpecialistArea specialistarea;
+    protected TherapeuticArea therapeuticarea;
 
     public QuestionnaireEntry() {
     }
@@ -33,17 +33,17 @@ public class QuestionnaireEntry extends BaseEntity {
         this.answers.add(new Answer(answer));
     }
 
-    public QuestionnaireEntry(Question question, Answer answer, SpecialistArea specialistarea) {
+    public QuestionnaireEntry(Question question, Answer answer, TherapeuticArea therapeuticarea) {
         this.question = question;
         this.answers = new LinkedHashSet();
         this.answers.add(answer);
-        this.specialistarea = specialistarea;
+        this.therapeuticarea = therapeuticarea;
     }
 
-    public QuestionnaireEntry(Question question, Set<Answer> answers, SpecialistArea specialistarea) {
+    public QuestionnaireEntry(Question question, Set<Answer> answers, TherapeuticArea therapeuticarea) {
         this.question = question;
         this.answers = answers;
-        this.specialistarea = specialistarea;
+        this.therapeuticarea = therapeuticarea;
     }
 
     @ManyToOne
@@ -69,13 +69,13 @@ public class QuestionnaireEntry extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "specialist_area_id")
-    public SpecialistArea getSpecialistarea() {
-        return specialistarea;
+    @JoinColumn(name = "therapeutic_area_id")
+    public TherapeuticArea getTherapeuticarea() {
+        return therapeuticarea;
     }
 
-    public void setSpecialistarea(SpecialistArea specialistarea) {
-        this.specialistarea = specialistarea;
+    public void setTherapeuticarea(TherapeuticArea therapeuticarea) {
+        this.therapeuticarea = therapeuticarea;
     }
 
 }

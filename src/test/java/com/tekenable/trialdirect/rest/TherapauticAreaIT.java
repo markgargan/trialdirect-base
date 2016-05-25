@@ -23,34 +23,34 @@ public class TherapauticAreaIT extends RestTestResourceTemplate {
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
+//    @Test
+//    public void testGetTaTherapeuticAreas() {
+//        String output = this.getAllItems("therapeuticareas/" + 1 + "/therapeuticareas");
+//        System.out.println(output);
+//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+//
+//    }
+
     @Test
-    public void testGetTaSpecialistAreas() {
-        String output = this.getAllItems("therapeuticareas/" + 1 + "/specialistareas");
+    public void testGetTaQuestionnaireEntries() {
+        String output = this.getAllItems("therapeuticareas/" + 1 + "/questionnaireentries");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-
     }
 
-//    @Test
-//    public void testGetTaQuestionnaireEntries() {
-//        String output = this.getAllItems("therapeuticareas/" + 1 + "/questionnaireentries");
-//        System.out.println(output);
-//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-//    }
-//
-//    @Test
-//    public void testGetTaTrials() {
-//        String output = this.getAllItems("therapeuticareas/" + 1 + "/trials");
-//        System.out.println(output);
-//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-//    }
-//
-//    @Test
-//    public void testGetTaUserSelectorQuestionnaireEntries() {
-//        String output = this.getAllItems("therapeuticareas/" + 1 + "/userselectorquestionnaireentries");
-//        System.out.println(output);
-//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-//    }
+    @Test
+    public void testGetTaTrials() {
+        String output = this.getAllItems("therapeuticareas/" + 1 + "/trials");
+        System.out.println(output);
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+    }
+
+    @Test
+    public void testGetTaUserSelectorQuestionnaireEntries() {
+        String output = this.getAllItems("therapeuticareas/" + 1 + "/userselectorquestionnaireentries");
+        System.out.println(output);
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+    }
 
     @Test
     public void testAddUpdateDeleteTherapeuticArea() {

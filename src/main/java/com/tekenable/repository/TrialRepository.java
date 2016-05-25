@@ -13,6 +13,6 @@ public interface TrialRepository extends PagingAndSortingRepository<Trial, Integ
 
    @Query(nativeQuery = true)
     List<Integer> getAvailableTrialIds(@Param("userId")Integer userId,
-                                       @Param("usersSpecialistAreaId")Integer usersSpecialistAreaId);
+                                       @Param("usersTherapeuticAreaId")Integer usersTherapeuticAreaId);
 }
 

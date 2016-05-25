@@ -77,3 +77,5 @@ Open the context.xml file under the Tomcat installation
   
 Click the 'DEBUG' button next to the new Run Configuration to start the Tomcat container. 
 This will kick off the Tomcat Container which will configure the MySQL datasource as per the <Resource> in the context.xml
+
+The application is then available at http://localhost:8080/#/

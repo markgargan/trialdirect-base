@@ -41,6 +41,7 @@ public class PfizerCancerPrimer extends TrialPrimer {
      * Trial Info
      */
     @Value("${pfizer.trial.title}") protected String trialTitle;
+    @Value("${pfizer.trial.trialCode}") protected String trialCode;
     @Value("${pfizer.trialinfo.summary}") protected String trialInfoSummary;
     @Value("${pfizer.trialinfo.fullDescription}") protected String trialInfoFullDescription;
 
@@ -94,7 +95,7 @@ public class PfizerCancerPrimer extends TrialPrimer {
 
     protected void createTrial() {
 
-        Trial trial = new Trial(trialTitle, specialistAreaCancer);
+        Trial trial = new Trial(trialTitle, therapeuticAreaCancer, trialCode);
 
         final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary, trialInfoFullDescription);
 

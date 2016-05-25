@@ -63,7 +63,7 @@ public class RestTestResourceTemplate {
 
     /**
      * this method suites for artifacts having any text field
-     * like Question, Answer, SpecialistArea or Trial
+     * like Question, Answer, TherapeuticArea or Trial
      * it won't work for all other artifacts containing just ids and references
      * like QuestionnaireEntry or all selectors
      * @param restPath
@@ -132,7 +132,7 @@ public class RestTestResourceTemplate {
      */
     public String createQuestionnaireEntry(int saId, int questionId) {
         String payload = "{\"question\": \""+BASE_URL+"/questions/#QID#{?projection}\",\n" +
-                " \"specialistarea\": \""+BASE_URL+"/specialistareas/#SAID#\"\n" +
+                " \"therapeuticarea\": \""+BASE_URL+"/therapeuticareas/#SAID#\"\n" +
                 "}";
         payload = payload.replace("#QID#", String.valueOf(questionId));
         payload = payload.replace("#SAID#", String.valueOf(saId));

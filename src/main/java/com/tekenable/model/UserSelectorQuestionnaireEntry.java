@@ -5,20 +5,20 @@ import javax.persistence.*;
 @Entity
 @Table(
         uniqueConstraints=
-        @UniqueConstraint(columnNames={"user_id", "specialist_area_id","question_id", "answer_id"})
+        @UniqueConstraint(columnNames={"user_id", "therapeutic_area_id","question_id", "answer_id"})
 )
 public class UserSelectorQuestionnaireEntry extends QuestionEntry {
 
     private User user;
 
-    private SpecialistArea specialistarea;
+    private TherapeuticArea therapeuticarea;
 
     public UserSelectorQuestionnaireEntry(){}
 
-    public UserSelectorQuestionnaireEntry(User user, Question question, Answer answer, SpecialistArea specialistarea) {
+    public UserSelectorQuestionnaireEntry(User user, Question question, Answer answer, TherapeuticArea therapeuticarea) {
         super(question, answer);
         this.user = user;
-        this.specialistarea = specialistarea;
+        this.therapeuticarea = therapeuticarea;
     }
 
     @ManyToOne
@@ -32,12 +32,12 @@ public class UserSelectorQuestionnaireEntry extends QuestionEntry {
     }
 
     @ManyToOne
-    @JoinColumn(name = "specialist_area_id")
-    public SpecialistArea getSpecialistarea() {
-        return specialistarea;
+    @JoinColumn(name = "therapeutic_area_id")
+    public TherapeuticArea getTherapeuticarea() {
+        return therapeuticarea;
     }
 
-    public void setSpecialistarea(SpecialistArea specialistarea) {
-        this.specialistarea = specialistarea;
+    public void setTherapeuticarea(TherapeuticArea therapeuticarea) {
+        this.therapeuticarea = therapeuticarea;
     }
 }
