@@ -2,6 +2,9 @@ package com.tekenable.trialdirect.rest;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -56,8 +59,11 @@ public class TherapauticAreaIT extends RestTestResourceTemplate {
         int newParentID = this.getNewItemId();
 
         //Create the child: therapeuticArea
-        output = this.createTextItem("therapeuticareas", "title", "T1 Diabetes");
-        System.out.println(output);
+        Map<String, String> params = new HashMap(2);
+        params.put("title", "T1 Diabetes");
+        params.put("therapeuticparent", RestTestResourceTemplate.BASE_URL + "/therapeuticparent/" + newParentID);
+
+        System.out.println(this.createTextItems("therapeuticareas", params));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
         int newChildID = this.getNewItemId();
