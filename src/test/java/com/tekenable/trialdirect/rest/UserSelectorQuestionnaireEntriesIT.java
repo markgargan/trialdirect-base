@@ -51,8 +51,8 @@ public class UserSelectorQuestionnaireEntriesIT extends RestTestResourceTemplate
     }
 
     @Test
-    public void testGetEntrySpecialistArea() {
-        String output = this.getAllItems("userselectorquestionnaireentries/"+1+"/specialistarea");
+    public void testGetEntryTherapeuticArea() {
+        String output = this.getAllItems("userselectorquestionnaireentries/"+1+"/therapeuticarea");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }

@@ -8,7 +8,7 @@ import java.util.Set;
  * Updated by nbarrett on 19/05/2016:
  * The TherapeuticArea is the 'Disease' or 'Patient Condition' within a selected therapeutic area. E.g Syndrome is
  * Cancer, the TherapeuticArea can be any one of Lung Cancer, Skin cancer etc.
- * Please Note: This class was originally called Syndrome before the specialistarea was introduced.
+ * Please Note: This class was originally called Syndrome before the therapeuticarea was introduced.
  */
 @Entity
 public class TherapeuticArea extends SortEntity {
@@ -16,11 +16,11 @@ public class TherapeuticArea extends SortEntity {
     private static final long serialVersionUID = 1L;
 
     //Please Note: Attribute names below in lower case to make for consistent rest url's on the browser.
-    //e.g. http://localhost:8080/api/trials/1/specialistarea
+    //e.g. http://localhost:8080/api/trials/1/therapeuticarea
 
     private String title;
 
-    //private Syndrome therapeuticarea;
+    //private Syndrome syndrome;
 
     private Set<QuestionnaireEntry> questionnaireentries;
     private Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries;
@@ -36,11 +36,11 @@ public class TherapeuticArea extends SortEntity {
         //this.therapeuticarea = therapeuticarea;
     }
 
-//    public SpecialistArea(String title, Syndrome therapeuticarea, Integer sortOrder) {
-//        this.title = title;
-//        //this.therapeuticarea = therapeuticarea;
-//        this.sortOrder = sortOrder;
-//    }
+    public TherapeuticArea(String title, Integer sortOrder) {
+        this.title = title;
+        //this.therapeuticarea = therapeuticarea;
+        this.sortOrder = sortOrder;
+    }
 
     @Column(name = "title")
     public String getTitle() {

@@ -1,6 +1,6 @@
 package com.tekenable.trialdirect.repository;
 
-import com.tekenable.repository.SpecialistAreaRepository;
+import com.tekenable.repository.TherapeuticAreaRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -19,30 +19,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class TherapeuticAreaRestTest extends RestTestMockTemplate {
 
     @Autowired
-    public SpecialistAreaRepository specialistAreaRepositoryMock;
+    public TherapeuticAreaRepository therapeuticAreaRepositoryMock;
 
     @Override
     public PagingAndSortingRepository getRepository() {
-        return this.specialistAreaRepositoryMock;
+        return this.therapeuticAreaRepositoryMock;
     }
 
     @Test
     public void getAllSAreasTest() throws Exception {
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-        Integer count = jdbc.queryForObject("select count(*) from SpecialistArea", Integer.class);
-        log.info("Overall Specialist Areas found: "+String.valueOf(count));
+        Integer count = jdbc.queryForObject("select count(*) from TherapeuticArea", Integer.class);
+        log.info("Overall Therapeutic Areas found: "+String.valueOf(count));
 
-        ResultActions result = mockMvc.perform(get("/childareas")).andExpect(status().isOk());
+        ResultActions result = mockMvc.perform(get("/therapeuticareas")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
     }
 
     @Test
     public void getSingleArea() throws Exception {
-        log.info("Reading the first Specialist area");
+        log.info("Reading the first Therapeutic area");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/childareas/{specialist_area_id}", 1)).andExpect(status().isOk());
+        ResultActions result = mockMvc.perform(get("/therapeuticareas/{therapeutic_area_id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
-        result.andExpect(jsonPath("$.title").value("Lung Cancer"));
+        result.andExpect(jsonPath("$.title").value("Cancer"));
         result.andDo(MockMvcResultHandlers.print());
     }
 }

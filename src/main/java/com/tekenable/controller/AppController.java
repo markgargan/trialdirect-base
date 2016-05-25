@@ -23,10 +23,10 @@ public class AppController {
   @Autowired
   TrialRepository trialRepository;
 
-  @RequestMapping(value = "/availabletrialids/{userId}/specialistarea/{usersSpecialistAreaId}", method = RequestMethod.GET)
+  @RequestMapping(value = "/availabletrialids/{userId}/therapeuticarea/{usersTherapeuticAreaId}", method = RequestMethod.GET)
   public @ResponseBody List<Integer> availableTrialsIds(@PathVariable("userId") Integer userId,
-                                                        @PathVariable("usersSpecialistAreaId") Integer usersSpecialistAreaId) {
-    return trialRepository.getAvailableTrialIds(userId, usersSpecialistAreaId);
+                                                        @PathVariable("usersTherapeuticAreaId") Integer usersTherapeuticAreaId) {
+    return trialRepository.getAvailableTrialIds(userId, usersTherapeuticAreaId);
   }
 
 }

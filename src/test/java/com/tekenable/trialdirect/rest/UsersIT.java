@@ -23,15 +23,15 @@ public class UsersIT extends RestTestResourceTemplate {
     }
 
     @Test
-    public void testGetSigleUser() {
+    public void testGetSingleUser() {
         String output = this.getSingleItemById("users", 1);
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
     @Test
-    public void testGetUserSpecialistAreas() {
-        String output = this.getAllItems("users/"+1+"/specialistarea");
+    public void testGetUserTherapeuticAreas() {
+        String output = this.getAllItems("users/"+1+"/therapeuticarea");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }

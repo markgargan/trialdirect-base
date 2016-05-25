@@ -17,13 +17,13 @@ import java.util.Set;
         @NamedNativeQuery(name="Trial.getAvailableTrialIds",
                 query="select matching_trial.id from Trial matching_trial  where matching_trial.id not in ( " +
                         "select distinct (trial_id) from Trial t " +
-                        "  inner join User u on t.specialist_area_id = u.specialist_area_id " +
+                        "  inner join User u on t.therapeutic_area_id = u.therapeutic_area_id " +
                         "  inner join UserSelectorQuestionnaireEntry usqe " +
                         "  inner join TrialSelectorQuestionnaireEntry tsqe " +
                         "    on usqe.question_id=tsqe.question_id " +
                         "       and usqe.answer_id=tsqe.answer_id " +
                         "where user_id=:userId) " +
-                        "and matching_trial.specialist_area_id = :usersSpecialistAreaId")
+                        "and matching_trial.therapeutic_area_id = :usersTherapeuticAreaId")
 })
 
 
@@ -33,23 +33,33 @@ public class Trial extends SortEntity {
 
     private String title;
 
+    private String trialCode; //This code will be used to search for a trial. The code is used internally by Icon
+    //to uniquely identify a trial. The codes are tracked by Icon in their own Gira
+    //and are used when an admin user logs on to lookup a trial.
+
     private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
 
-    private SpecialistArea specialistarea;
+    private TherapeuticArea therapeuticarea;
 
     private Set<TrialInfo> trialInfos;
 
     public Trial() {
     }
 
-    public Trial(String title, SpecialistArea specialistarea) {
+    public Trial(String title, TherapeuticArea therapeuticarea) {
         this.title = title;
-        this.specialistarea = specialistarea;
+        this.therapeuticarea = therapeuticarea;
     }
 
-    public Trial(String title, SpecialistArea specialistarea, Integer sortOrder) {
+    public Trial(String title, TherapeuticArea therapeuticarea, String trialCode) {
         this.title = title;
-        this.specialistarea = specialistarea;
+        this.therapeuticarea = therapeuticarea;
+        this.trialCode = trialCode;
+    }
+
+    public Trial(String title, TherapeuticArea therapeuticarea, Integer sortOrder) {
+        this.title = title;
+        this.therapeuticarea = therapeuticarea;
         this.sortOrder = sortOrder;
     }
 
@@ -59,6 +69,14 @@ public class Trial extends SortEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getTrialCode() {
+        return trialCode;
+    }
+
+    public void setTrialCode(String trialCode) {
+        this.trialCode = trialCode;
     }
 
     @JsonIgnore
@@ -72,13 +90,13 @@ public class Trial extends SortEntity {
     }
 
     @ManyToOne
-    @JoinColumn(nullable = true, name = "specialist_area_id")
-    public SpecialistArea getSpecialistarea() {
-        return specialistarea;
+    @JoinColumn(nullable = true, name = "therapeutic_area_id")
+    public TherapeuticArea getTherapeuticarea() {
+        return therapeuticarea;
     }
 
-    public void setSpecialistarea(SpecialistArea specialistarea) {
-        this.specialistarea = specialistarea;
+    public void setTherapeuticarea(TherapeuticArea therapeuticarea) {
+        this.therapeuticarea = therapeuticarea;
     }
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

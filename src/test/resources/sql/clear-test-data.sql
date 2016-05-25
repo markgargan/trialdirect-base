@@ -6,6 +6,6 @@ DELETE FROM `Trial`;
 DELETE FROM `QuestionnaireEntry`;
 DELETE FROM `Question`;
 DELETE FROM `Answer`;
-DELETE FROM `SpecialistArea`;
+
 DELETE FROM `TherapeuticArea`;
 DELETE FROM `hibernate_sequences`;

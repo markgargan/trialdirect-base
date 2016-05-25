@@ -1,7 +1,7 @@
 package com.tekenable.model;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 /**
  * Created by nbarrett on 19/05/2016.
@@ -11,7 +11,7 @@ public class Syndrome extends BaseEntity {
 
     private String title; //Name of the Therapeutic area e.g. Cancer,
 
-    private Set<SpecialistArea> specialistareas; //Link to one or more specialist areas e.g. Lung cancer.
+   // private Set<TherapeuticArea> therapeuticareas; //Link to one or more Therapeutic areas e.g. Lung cancer.
 
     /**
      *
@@ -36,12 +36,12 @@ public class Syndrome extends BaseEntity {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "therapeuticarea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    public Set<SpecialistArea> getSpecialistareas() {
-        return specialistareas;
-    }
-
-    public void setSpecialistareas(Set<SpecialistArea> specialistareas) {
-        this.specialistareas = specialistareas;
-    }
+//    @OneToMany(mappedBy = "therapeuticarea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+//    public Set<TherapeuticArea> getTherapeuticareas() {
+//        return therapeuticareas;
+//    }
+//
+//    public void setTherapeuticareas(Set<TherapeuticArea> therapeuticareas) {
+//        this.therapeuticareas = therapeuticareas;
+//    }
 }
