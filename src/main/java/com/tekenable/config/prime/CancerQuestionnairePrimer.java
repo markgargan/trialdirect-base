@@ -43,7 +43,7 @@ public class CancerQuestionnairePrimer {
     protected final TherapeuticParent therapeuticParent = new TherapeuticParent("Cancer");
 
     // This primer is for questions for the Lung Cancer TherapeuticArea.
-    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer", therapeuticParent);
+    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Lung Cancer", therapeuticParent);
 
     // main question (no wrong answers here, it determines the initial path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
