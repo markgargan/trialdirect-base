@@ -4,28 +4,43 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Created by nbarrett on 19/05/2016.
+ * Created by smoczyna on 17/03/16.
+ * Updated by nbarrett on 19/05/2016:
+ * The TherapeuticArea is the 'Disease' or 'Patient Condition' within a selected therapeutic area. E.g Syndrome is
+ * Cancer, the TherapeuticArea can be any one of Lung Cancer, Skin cancer etc.
+ * Please Note: This class was originally called Syndrome before the specialistarea was introduced.
  */
 @Entity
-public class TherapeuticArea extends BaseEntity {
+public class TherapeuticArea extends SortEntity {
 
-    private String title; //Name of the Therapeutic area e.g. Cancer,
+    private static final long serialVersionUID = 1L;
 
-    private Set<SpecialistArea> specialistareas; //Link to one or more specialist areas e.g. Lung cancer.
+    //Please Note: Attribute names below in lower case to make for consistent rest url's on the browser.
+    //e.g. http://localhost:8080/api/trials/1/specialistarea
 
-    /**
-     *
-     */
-    public TherapeuticArea(){}
+    private String title;
 
-    /**
-     *
-     * @param title
-     */
-    public TherapeuticArea(String title) {
-        this.title =title;
+    //private Syndrome therapeuticarea;
+
+    private Set<QuestionnaireEntry> questionnaireentries;
+    private Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries;
+
+    private Set<Trial> trials;
+
+    public TherapeuticArea() {
     }
 
+    public TherapeuticArea(String title) {
+
+        this.title =title;
+        //this.therapeuticarea = therapeuticarea;
+    }
+
+//    public SpecialistArea(String title, Syndrome therapeuticarea, Integer sortOrder) {
+//        this.title = title;
+//        //this.therapeuticarea = therapeuticarea;
+//        this.sortOrder = sortOrder;
+//    }
 
     @Column(name = "title")
     public String getTitle() {
@@ -36,12 +51,41 @@ public class TherapeuticArea extends BaseEntity {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "therapeuticarea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    public Set<SpecialistArea> getSpecialistareas() {
-        return specialistareas;
+//    @ManyToOne
+//    @JoinColumn(nullable = false, name = "therapeutic_area_id")
+//    public Syndrome getTherapeuticarea() {
+//        return therapeuticarea;
+//    }
+//
+//    public void setTherapeuticarea(Syndrome therapeuticarea) {
+//        this.therapeuticarea = therapeuticarea;
+//    }
+
+    @OneToMany(mappedBy = "therapeuticarea", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    public Set<QuestionnaireEntry> getQuestionnaireentries() {
+        return questionnaireentries;
     }
 
-    public void setSpecialistareas(Set<SpecialistArea> specialistareas) {
-        this.specialistareas = specialistareas;
+    public void setQuestionnaireentries(Set<QuestionnaireEntry> questionnaireentries) {
+        this.questionnaireentries = questionnaireentries;
     }
+
+    @OneToMany(mappedBy = "therapeuticarea", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    public Set<Trial> getTrials() {
+        return trials;
+    }
+
+    public void setTrials(Set<Trial> trials) {
+        this.trials = trials;
+    }
+
+    @OneToMany(mappedBy = "therapeuticarea", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<UserSelectorQuestionnaireEntry> getUserselectorquestionnaireentries() {
+        return userselectorquestionnaireentries;
+    }
+
+    public void setUserselectorquestionnaireentries(Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries) {
+        this.userselectorquestionnaireentries = userselectorquestionnaireentries;
+    }
+
 }
