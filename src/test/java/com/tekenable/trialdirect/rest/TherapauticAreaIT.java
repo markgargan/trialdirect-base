@@ -2,6 +2,9 @@ package com.tekenable.trialdirect.rest;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -23,13 +26,6 @@ public class TherapauticAreaIT extends RestTestResourceTemplate {
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
     }
 
-//    @Test
-//    public void testGetTaTherapeuticAreas() {
-//        String output = this.getAllItems("therapeuticareas/" + 1 + "/therapeuticareas");
-//        System.out.println(output);
-//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-//
-//    }
 
     @Test
     public void testGetTaQuestionnaireEntries() {
@@ -54,17 +50,34 @@ public class TherapauticAreaIT extends RestTestResourceTemplate {
 
     @Test
     public void testAddUpdateDeleteTherapeuticArea() {
-        String output = this.createTextItem("therapeuticareas", "title", "Diabetes");
+
+        //Create the parent: therapeuticParent
+        String output = this.createTextItem("therapeuticparent", "title", "Diabetes");
         System.out.println(output);
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
-        int newID = this.getNewItemId();
-        if (newID>0) {
+        int newParentID = this.getNewItemId();
+
+        //Create the child: therapeuticArea
+        Map<String, String> params = new HashMap(2);
+        params.put("title", "T1 Diabetes");
+        params.put("therapeuticparent", RestTestResourceTemplate.BASE_URL + "/therapeuticparent/" + newParentID);
+
+        System.out.println(this.createTextItems("therapeuticareas", params));
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
+        int newChildID = this.getNewItemId();
+
+        if (newChildID>0) {
 //            output = this.updateItemText("therapeuticareas", newID, "answerText", "Astma");
 //            System.out.println(output);
 //            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
 
-            output = this.deleteItem("therapeuticareas", newID);
+            output = this.deleteItem("therapeuticareas", newChildID);
+            System.out.println(output);
+            assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+
+            output = this.deleteItem("therapeuticparent", newParentID);
             System.out.println(output);
             assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         }

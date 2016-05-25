@@ -19,10 +19,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"com.tekenable.repository"})
 public class TestRepoConfig {
 
-//    @Bean
-//    public SyndromeRepository therapeuticAreaRepositoryMock() {
-//        return Mockito.mock(SyndromeRepository.class);
-//    }
+    @Bean
+    public TherapeuticParentRepository therapeuticParentRepositoryMock() {
+        return Mockito.mock(TherapeuticParentRepository.class);
+    }
 
     @Bean
     public TherapeuticAreaRepository therapeuticAreaRepositoryMock() {

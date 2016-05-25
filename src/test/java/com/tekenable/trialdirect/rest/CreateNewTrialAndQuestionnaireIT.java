@@ -7,6 +7,9 @@ package com.tekenable.trialdirect.rest;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -27,23 +30,26 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
 
         // *** first step - create new questionnaire ***
 
-        // new Therapeutic Area
-        System.out.println(this.createTextItem("therapeuticareas", "title", "Diabetes"));
+        // new Therapeutic Area Parent
+        System.out.println(this.createTextItem("therapeuticparent", "title", "Diabetes"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-        int taID = this.getNewItemId();
+        int parentID = this.getNewItemId();
 
         // new Therapeutic Area
-//        System.out.println(this.createTextItem("therapeuticareas/3/therapeuticareas", "title", "Type2 Diabetes"));
-//        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
-//        int saID = this.getNewItemId();
-        int saID = 1;
+        Map<String, String> params = new HashMap(2);
+        params.put("title", "T2 Diabetes");
+        params.put("therapeuticparent", RestTestResourceTemplate.BASE_URL + "/therapeuticparent/" + parentID);
+
+        System.out.println(this.createTextItems("therapeuticareas", params));
+        assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
+        int taID = this.getNewItemId();
 
         // first question of new questionnaire
         System.out.println(this.createTextItem("questions", "questionText", "What is your diabetes type?"));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         int qID = this.getNewItemId();
 
-        System.out.println(this.createQuestionnaireEntry(saID, qID));
+        System.out.println(this.createQuestionnaireEntry(taID, qID));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         int qeID = this.getNewItemId();
 
@@ -64,7 +70,7 @@ public class CreateNewTrialAndQuestionnaireIT extends RestTestResourceTemplate {
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         qID = this.getNewItemId();
 
-        System.out.println(this.createQuestionnaireEntry(saID, qID));
+        System.out.println(this.createQuestionnaireEntry(taID, qID));
         assertTrue(RestTestResourceTemplate.REST_TEST_DESC, this.getStatus().is2xxSuccessful());
         qeID = this.getNewItemId();
 
