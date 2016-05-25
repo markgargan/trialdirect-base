@@ -1,6 +1,6 @@
 package com.tekenable.trialdirect.repository;
 
-import com.tekenable.repository.TherapeuticAreaRepository;
+import com.tekenable.repository.TherapeuticParentRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -10,39 +10,39 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static junit.framework.TestCase.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Created by smoczyna on 04/04/16.
+ * Created by nbarrett on 25/05/2016.
  */
-public class TherapeuticAreaRestTest extends RestTestMockTemplate {
+public class TherapeuticParentITRestTest extends RestTestMockTemplate {
 
     @Autowired
-    public TherapeuticAreaRepository therapeuticAreaRepositoryMock;
+    public TherapeuticParentRepository therapeuticParentRepositoryMock;
 
     @Override
     public PagingAndSortingRepository getRepository() {
-        return this.therapeuticAreaRepositoryMock;
+        return this.therapeuticParentRepositoryMock;
     }
 
     @Test
-    public void getAllSAreasTest() throws Exception {
+    public void getAllParentAreasTest() throws Exception {
         JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-        Integer count = jdbc.queryForObject("select count(*) from TherapeuticArea", Integer.class);
-        log.info("Overall Therapeutic Areas found: "+String.valueOf(count));
+        Integer count = jdbc.queryForObject("select count(*) from TherapeuticParent", Integer.class);
+        log.info("Overall Therapeutic Parents found: "+String.valueOf(count));
 
-        ResultActions result = mockMvc.perform(get("/therapeuticareas")).andExpect(status().isOk());
+        ResultActions result = mockMvc.perform(get("/therapeuticparent")).andExpect(status().isOk());
         result.andExpect(jsonPath("$.page.totalElements").value(count));
     }
 
     @Test
     public void getSingleArea() throws Exception {
-        log.info("Reading the first Therapeutic area");
+        log.info("Reading the first Therapeutic parent");
         log.info(" ");
-        ResultActions result = mockMvc.perform(get("/therapeuticareas/{therapeutic_area_id}", 1)).andExpect(status().isOk());
+        ResultActions result = mockMvc.perform(get("/therapeuticparent/{therapeutic_parent_id}", 1)).andExpect(status().isOk());
         assertNotNull(result);
-        result.andExpect(jsonPath("$.title").value("Lung Cancer"));
+        result.andExpect(jsonPath("$.title").value("Cancer"));
         result.andDo(MockMvcResultHandlers.print());
     }
 }

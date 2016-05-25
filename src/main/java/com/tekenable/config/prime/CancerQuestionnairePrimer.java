@@ -12,7 +12,7 @@ import java.util.Set;
 public class CancerQuestionnairePrimer {
 
     @Autowired
-    private SyndromeRepository syndromeRepository;
+    private TherapeuticParentRepository therapeuticParentRepository;
 
     @Autowired
     private TherapeuticAreaRepository therapeuticAreaRepository;
@@ -39,11 +39,11 @@ public class CancerQuestionnairePrimer {
     @Autowired
     private UserRepository userRepository;
 
-    //Create the Therapeutic Area
-   // protected final Syndrome syndrome = new Syndrome("Cancer");
+    //Create the Therapeutic Area Parent
+    protected final TherapeuticParent therapeuticParent = new TherapeuticParent("Cancer");
 
     // This primer is for questions for the Lung Cancer TherapeuticArea.
-    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer", 1);
+    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer", therapeuticParent);
 
     // main question (no wrong answers here, it determines the initial path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
@@ -111,7 +111,7 @@ public class CancerQuestionnairePrimer {
             add(q3);
         }});
 
-        //syndromeRepository.save(therapeuticAreaCancer);
+        therapeuticParentRepository.save(therapeuticParent);
 
         entry1.setTherapeuticarea(therapeuticAreaCancer);
         entry2.setTherapeuticarea(therapeuticAreaCancer);

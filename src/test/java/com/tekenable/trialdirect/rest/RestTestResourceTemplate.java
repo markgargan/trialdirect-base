@@ -126,16 +126,16 @@ public class RestTestResourceTemplate {
 
     /**
      *
-     * @param saId
+     * @param taId
      * @param questionId
      * @return
      */
-    public String createQuestionnaireEntry(int saId, int questionId) {
+    public String createQuestionnaireEntry(int taId, int questionId) {
         String payload = "{\"question\": \""+BASE_URL+"/questions/#QID#{?projection}\",\n" +
-                " \"therapeuticarea\": \""+BASE_URL+"/therapeuticareas/#SAID#\"\n" +
+                " \"therapeuticarea\": \""+BASE_URL+"/therapeuticareas/#TAID#\"\n" +
                 "}";
         payload = payload.replace("#QID#", String.valueOf(questionId));
-        payload = payload.replace("#SAID#", String.valueOf(saId));
+        payload = payload.replace("#TAID#", String.valueOf(taId));
         return this.makeRestCall("POST", BASE_URL.concat("questionnaireentries"), payload);
     }
 
