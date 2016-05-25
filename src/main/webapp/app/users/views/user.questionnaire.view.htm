@@ -2,29 +2,23 @@
 <div data-autoscroll="true" class="view-frame">
 	<form class="wide">
 
-		<div class="" style="float:left">
-			<h3>Refine Search Results</h3>
-
-			<div class="setArea">
-				<p>Find clinical trials for: <strong>{{user.therapeuticArea.title}}</strong></p>
-			</div>
-		</div>
-
-
-
-		<div class="trialRight" style="float:right" data-ng-hide="showList">
-			<div class="trialCount"><p>Trials Available: <span data-ng-bind="availableTrialIds.length"></span></p>
-			</div>
-		</div>
-
-
-
-		<div class="clear"></div>
+		<h3>Refine Search &amp; Results</h3>
 
 
 		<div class="trialSearch panelContent" data-ng-hide="trialData">
 
+<!--			<div class="searchResults">
+				<p>We have found <span data-ng-bind="availableTrialIds.length"></span> potential options specializing in {{user.therapeuticArea.title}}</p>
+			</div>-->
 
+<!--			<div class="setArea">
+                <p>Find clinical trials for: <strong>{{user.therapeuticArea.title}}</strong></p>
+            </div>
+
+
+			<div class="trialRight" style="float:right" data-ng-hide="showList">
+                   <div class="trialCount"><p>Trials Available: <span data-ng-bind="availableTrialIds.length"></span></p></div>
+			</div>-->
 
 
 
@@ -57,7 +51,12 @@
 		</div>
 
 
-		<div class="clear"></div>
+
+		<div class="trialCount">
+			<p>We have found <span class="trialTotal" data-ng-bind="availableTrialIds.length"></span> clinical trials</p>
+				<!--specializing in <span class="trialArea">{{user.therapeuticArea.title}}</span>-->
+
+		</div>
 
 
 
@@ -155,7 +154,7 @@
 
 		<div class="trialResults">
 
-			<h3>Available Trials</h3>
+			<h3>Search Results</h3>
 
 			<div class="trialList">
 

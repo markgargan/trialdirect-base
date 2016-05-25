@@ -20,7 +20,7 @@ body {
 
 .home-banner {
   display: block;
-  height: 300px;
+  height: 250px;
   background: #bcbebd url('../images/banner-home.jpg') no-repeat center center / auto 100%;
   @include prefix(transition, all .3s ease, webkit moz);
 }
@@ -158,6 +158,7 @@ div.list-answers {
   color: #00857f;
   text-decoration: underline;
 }
+
 /*
 .searchTabs .nav a {
   border: 1px solid #eee;
@@ -569,6 +570,10 @@ main {
   float: left
 }
 
+.topHeader {
+  padding: .5em 0;
+}
+
 .menu i {
   font-size: 25px;
   color: #aaa;
@@ -700,13 +705,15 @@ td, th {
   clear: both;
   /*border-bottom: 1px solid #eee;
   border-top: 1px solid #fff;*/
-  padding: 2em 1em;
+  padding: 1.5em 1em;
   position: relative;
   @include prefix(border-radius, .3em, webkit moz);
 }
+
+/*
 .qa:hover {
   @include prefix(box-shadow, 0 0 .2em #00857f, webkit moz);
-}
+}*/
 
 .btn-remove-question {
   position: absolute;
@@ -892,7 +899,7 @@ p {
 }
 
 .trialIntro:hover {
-  box-shadow: 0 0 .2em #ccc;
+  box-shadow: 0 0 .2em #00857f,
 }
 
 .trialIntro:hover .trialLink {
@@ -1085,10 +1092,10 @@ span.doc3 {;
   border-radius: .3em;
 }
 
-.trialCount, .trialInfo {
+/*.trialCount, .trialInfo {
   display: block;
   background: #fff;
-}
+}*/
 
 .trialInfo {
   float: left;
@@ -1100,6 +1107,33 @@ span.doc3 {;
   border-radius: .3em;
 }
 
+.trialCount {
+  text-align: center;
+  position: relative;
+  top: -6em;
+  height: 3em;
+}
+
+.trialTotal {
+  font-size: 3em;
+  background: #eee;
+  width: 3em;
+  display: inline-block;
+  height: 3em;
+  vertical-align: middle;
+  line-height: 3em;
+  margin: 0 .15em;
+  border-radius: 50%;
+  background: #00857f;
+  color: #fff;
+}
+
+.trialArea {
+  font-size: 1.5em;
+  top: .1em;
+}
+
+/*
 .trialCount {
   padding: .5em 3em 1.5em 2em;
   text-align: center;
@@ -1117,7 +1151,7 @@ span.doc3 {;
   position: relative;
   top: 8px;
   left: 10px;
-}
+}*/
 
 .trialApply,
 p.link {
@@ -1125,10 +1159,9 @@ p.link {
   text-align: right;
 }
 
-.trialCount
-h1, .trialCount p {
+/*.trialCount h1, .trialCount p {
   padding: 0;
-}
+}*/
 
 .trialApply {
   padding: 1em 0 .5em;
@@ -1265,7 +1298,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   float: left;
   width: 15%;
   text-align: right;
-  margin: 3.5em 0;
+  margin: 7em 0 1em;
 }
 
 .searchContent {
@@ -1275,7 +1308,6 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   margin: 2em 0;
 }
 
-
 .panelContent {
   display: block;
   padding: 1em;
@@ -1283,6 +1315,10 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   margin-bottom: 2em;
   border: 1px solid #eee;
   border-radius: .35em;
+}
+
+.panelContent:first-of-type {
+  min-height: 20em;
 }
 
 @media screen and (max-width: 1200px) {
@@ -1297,7 +1333,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 @media screen and (max-width: 1000px) {
   .home-banner {
-    height: 250px;
+    height: 225px;
   }
 }
 
@@ -1314,7 +1350,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
     display: none;
   }
 
-  .trialCountH {
+  /*.trialCountH {
     display: none;
   }
 
@@ -1332,7 +1368,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
     position: relative;
     top: -4px;
     padding-right: .5em;
-  }
+  }*/
 
   .trialIntro span {
     height: 4em;
@@ -1413,7 +1449,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 @media screen and (max-width: 800px) {
   .home-banner {
-    height: 200px;
+    height: 175px;
   }
 }
 
