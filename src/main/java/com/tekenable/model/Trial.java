@@ -33,23 +33,33 @@ public class Trial extends SortEntity {
 
     private String title;
 
+    private String trialCode; //This code will be used to search for a trial. The code is used internally by Icon
+    //to uniquely identify a trial. The codes are tracked by Icon in their own Gira
+    //and are used when an admin user logs on to lookup a trial.
+
     private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
 
-    private TherapeuticArea therapeuticArea;
+    private TherapeuticArea therapeuticarea;
 
     private Set<TrialInfo> trialInfos;
 
     public Trial() {
     }
 
-    public Trial(String title, TherapeuticArea therapeuticArea) {
+    public Trial(String title, TherapeuticArea therapeuticarea) {
         this.title = title;
-        this.therapeuticArea = therapeuticArea;
+        this.therapeuticarea = therapeuticarea;
     }
 
-    public Trial(String title, TherapeuticArea therapeuticArea, Integer sortOrder) {
+    public Trial(String title, TherapeuticArea therapeuticarea, String trialCode) {
         this.title = title;
-        this.therapeuticArea = therapeuticArea;
+        this.therapeuticarea = therapeuticarea;
+        this.trialCode = trialCode;
+    }
+
+    public Trial(String title, TherapeuticArea therapeuticarea, Integer sortOrder) {
+        this.title = title;
+        this.therapeuticarea = therapeuticarea;
         this.sortOrder = sortOrder;
     }
 
@@ -59,6 +69,14 @@ public class Trial extends SortEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getTrialCode() {
+        return trialCode;
+    }
+
+    public void setTrialCode(String trialCode) {
+        this.trialCode = trialCode;
     }
 
     @JsonIgnore
@@ -73,12 +91,12 @@ public class Trial extends SortEntity {
 
     @ManyToOne
     @JoinColumn(nullable = true, name = "therapeutic_area_id")
-    public TherapeuticArea getTherapeuticArea() {
-        return therapeuticArea;
+    public TherapeuticArea getTherapeuticarea() {
+        return therapeuticarea;
     }
 
-    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
-        this.therapeuticArea = therapeuticArea;
+    public void setTherapeuticarea(TherapeuticArea therapeuticarea) {
+        this.therapeuticarea = therapeuticarea;
     }
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

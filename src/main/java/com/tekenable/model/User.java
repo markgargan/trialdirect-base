@@ -10,13 +10,13 @@ public class User extends BaseEntity{
 
     private Set<UserSelectorQuestionnaireEntry> userselectorquestionnaireentries;
 
-    private TherapeuticArea therapeuticArea;
+    private TherapeuticArea therapeuticarea;
 
     public User() {}
 
-    public User(String pseudonym, TherapeuticArea therapeuticArea) {
+    public User(String pseudonym, TherapeuticArea therapeuticarea) {
         this.pseudonym = pseudonym;
-        this.therapeuticArea = therapeuticArea;
+        this.therapeuticarea = therapeuticarea;
     }
 
     public String getPseudonym() {
@@ -38,11 +38,11 @@ public class User extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "therapeutic_area_id")
-    public TherapeuticArea getTherapeuticArea() {
-        return therapeuticArea;
+    public TherapeuticArea getTherapeuticarea() {
+        return therapeuticarea;
     }
 
-    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
-        this.therapeuticArea = therapeuticArea;
+    public void setTherapeuticarea(TherapeuticArea therapeuticarea) {
+        this.therapeuticarea = therapeuticarea;
     }
 }

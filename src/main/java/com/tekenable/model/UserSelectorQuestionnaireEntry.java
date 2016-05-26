@@ -11,14 +11,14 @@ public class UserSelectorQuestionnaireEntry extends QuestionEntry {
 
     private User user;
 
-    private TherapeuticArea therapeuticArea;
+    private TherapeuticArea therapeuticarea;
 
     public UserSelectorQuestionnaireEntry(){}
 
-    public UserSelectorQuestionnaireEntry(User user, Question question, Answer answer, TherapeuticArea therapeuticArea) {
+    public UserSelectorQuestionnaireEntry(User user, Question question, Answer answer, TherapeuticArea therapeuticarea) {
         super(question, answer);
         this.user = user;
-        this.therapeuticArea = therapeuticArea;
+        this.therapeuticarea = therapeuticarea;
     }
 
     @ManyToOne
@@ -33,11 +33,11 @@ public class UserSelectorQuestionnaireEntry extends QuestionEntry {
 
     @ManyToOne
     @JoinColumn(name = "therapeutic_area_id")
-    public TherapeuticArea getTherapeuticArea() {
-        return therapeuticArea;
+    public TherapeuticArea getTherapeuticarea() {
+        return therapeuticarea;
     }
 
-    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
-        this.therapeuticArea = therapeuticArea;
+    public void setTherapeuticarea(TherapeuticArea therapeuticarea) {
+        this.therapeuticarea = therapeuticarea;
     }
 }

@@ -20,6 +20,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class TestRepoConfig {
 
     @Bean
+    public TherapeuticParentRepository therapeuticParentRepositoryMock() {
+        return Mockito.mock(TherapeuticParentRepository.class);
+    }
+
+    @Bean
     public TherapeuticAreaRepository therapeuticAreaRepositoryMock() {
         return Mockito.mock(TherapeuticAreaRepository.class);
     }

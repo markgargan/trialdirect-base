@@ -41,6 +41,7 @@ public class LundbeckCancerPrimer extends TrialPrimer{
      * Trial Info
      */
     @Value("${lundbeck.trial.title}") protected String trialTitle;
+    @Value("${lundbeck.trial.trialCode}") protected String trialCode;
     @Value("${lundbeck.trialinfo.summary}") protected String trialInfoSummary;
     @Value("${lundbeck.trialinfo.fullDescription}") protected String trialInfoFullDescription;
 
@@ -95,7 +96,7 @@ public class LundbeckCancerPrimer extends TrialPrimer{
 
     protected void createTrial() {
 
-        Trial trial = new Trial(trialTitle, therapeuticAreaCancer);
+        Trial trial = new Trial(trialTitle, therapeuticAreaCancer, trialCode);
 
         final TrialInfo trialInfo = new TrialInfo(trial, trialInfoSummary, trialInfoFullDescription);
 

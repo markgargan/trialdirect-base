@@ -2,11 +2,7 @@ package com.tekenable.config.prime;
 
 import com.tekenable.model.*;
 import com.tekenable.repository.*;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -14,6 +10,9 @@ import java.util.Set;
 
 
 public class CancerQuestionnairePrimer {
+
+    @Autowired
+    private TherapeuticParentRepository therapeuticParentRepository;
 
     @Autowired
     private TherapeuticAreaRepository therapeuticAreaRepository;
@@ -40,8 +39,12 @@ public class CancerQuestionnairePrimer {
     @Autowired
     private UserRepository userRepository;
 
-    // This primer is for questions for the Cancer TherapeuticArea.
-    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Cancer", 1);
+    //Create the Therapeutic Area Parent
+    protected final TherapeuticParent therapeuticParent = new TherapeuticParent("Cancer");
+
+    // This primer is for questions for the Lung Cancer TherapeuticArea.
+    protected final TherapeuticArea therapeuticAreaCancer = new TherapeuticArea("Lung Cancer", therapeuticParent);
+
     // main question (no wrong answers here, it determines the initial path (the right questionnaire) to be follow
     // this question has no therapeutic area attached
     protected final Question q1 = new Question("What is the type of your cancer?", 1);
@@ -76,7 +79,7 @@ public class CancerQuestionnairePrimer {
     protected final Set cancerEntries = new HashSet<QuestionnaireEntry>() {{add(entry1); add(entry2); add(entry3);}};
 
     // creating trial structure
-    protected final Trial cancerTrial = new Trial("Cancer Trial", therapeuticAreaCancer);
+    protected final Trial cancerTrial = new Trial("Cancer Trial", therapeuticAreaCancer, "TC_1234");
 
     protected final TrialSelectorQuestionnaireEntry ts11 = new TrialSelectorQuestionnaireEntry(q2, a23, cancerTrial);
 
@@ -108,9 +111,11 @@ public class CancerQuestionnairePrimer {
             add(q3);
         }});
 
-        entry1.setTherapeuticArea(therapeuticAreaCancer);
-        entry2.setTherapeuticArea(therapeuticAreaCancer);
-        entry3.setTherapeuticArea(therapeuticAreaCancer);
+        therapeuticParentRepository.save(therapeuticParent);
+
+        entry1.setTherapeuticarea(therapeuticAreaCancer);
+        entry2.setTherapeuticarea(therapeuticAreaCancer);
+        entry3.setTherapeuticarea(therapeuticAreaCancer);
 
         therapeuticAreaRepository.save(therapeuticAreaCancer);
 

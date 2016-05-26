@@ -5,6 +5,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Map;
 
 /**
  * Created by smoczyna on 05/04/16.
@@ -12,8 +13,10 @@ import java.net.URISyntaxException;
 public class RestTestResourceTemplate {
 
     public static final String REST_TEST_DESC = "HTTP response should be equal 20x";
-    public final static String BASE_URL = "http://localhost:8080/trialdirect/api/";
-    //public final static String BASE_URL = "http://localhost:8080/api/";
+
+    //public final static String BASE_URL = "http://localhost:8080/trialdirect/api/";
+    //Had to uncomment the line below to run this locally. NoelB 23/05/2016
+    public final static String BASE_URL = "http://localhost:8080/api/";
 
     private HttpStatus status;
     private HttpHeaders responseHeaders;
@@ -73,6 +76,37 @@ public class RestTestResourceTemplate {
         return this.makeRestCall("POST", BASE_URL.concat(restPath), payload);
     }
 
+    /**
+     * Create a url from a Map of parameters
+     * @param restPath
+     * @param params
+     * @return
+     */
+    public String createTextItems(String restPath, Map<String, String> params) {
+
+        StringBuilder payloadSB = new StringBuilder();
+
+        //The payload starts and ends with curly brackets.
+        payloadSB.append("{");
+
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+
+            String itemName = entry.getKey();
+            String itemText = entry.getValue();
+
+            String payload = "\"#NAME#\" : \"#VAL#\"".replace("#NAME#", itemName).replace("#VAL#", itemText);
+            payloadSB.append(payload);
+            payloadSB.append(",");
+        }
+
+        //Replace the last character with a curly bracket
+        payloadSB.replace(payloadSB.length() -1, payloadSB.length() -1, "}");
+       // payloadSB.append(",");
+
+        return this.makeRestCall("POST", BASE_URL.concat(restPath), payloadSB.toString());
+    }
+
+
     public String deleteItem(String restPath, int id) {
         return this.makeRestCall("DELETE", BASE_URL.concat(restPath)+"/"+id, null);
     }
@@ -90,9 +124,15 @@ public class RestTestResourceTemplate {
         return this.makeRestCall("PUT", BASE_URL.concat(restPath)+"/"+id, payload);
     }
 
+    /**
+     *
+     * @param taId
+     * @param questionId
+     * @return
+     */
     public String createQuestionnaireEntry(int taId, int questionId) {
         String payload = "{\"question\": \""+BASE_URL+"/questions/#QID#{?projection}\",\n" +
-                " \"therapeuticArea\": \""+BASE_URL+"/therapeuticareas/#TAID#\"\n" +
+                " \"therapeuticarea\": \""+BASE_URL+"/therapeuticareas/#TAID#\"\n" +
                 "}";
         payload = payload.replace("#QID#", String.valueOf(questionId));
         payload = payload.replace("#TAID#", String.valueOf(taId));
