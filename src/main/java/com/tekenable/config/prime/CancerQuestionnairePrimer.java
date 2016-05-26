@@ -113,9 +113,9 @@ public class CancerQuestionnairePrimer {
 
         therapeuticParentRepository.save(therapeuticParent);
 
-        entry1.setTherapeuticarea(therapeuticAreaCancer);
-        entry2.setTherapeuticarea(therapeuticAreaCancer);
-        entry3.setTherapeuticarea(therapeuticAreaCancer);
+        entry1.setTherapeuticArea(therapeuticAreaCancer);
+        entry2.setTherapeuticArea(therapeuticAreaCancer);
+        entry3.setTherapeuticArea(therapeuticAreaCancer);
 
         therapeuticAreaRepository.save(therapeuticAreaCancer);
 

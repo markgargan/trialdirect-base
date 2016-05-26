@@ -132,7 +132,7 @@ public class RestTestResourceTemplate {
      */
     public String createQuestionnaireEntry(int taId, int questionId) {
         String payload = "{\"question\": \""+BASE_URL+"/questions/#QID#{?projection}\",\n" +
-                " \"therapeuticarea\": \""+BASE_URL+"/therapeuticareas/#TAID#\"\n" +
+                " \"therapeuticArea\": \""+BASE_URL+"/therapeuticareas/#TAID#\"\n" +
                 "}";
         payload = payload.replace("#QID#", String.valueOf(questionId));
         payload = payload.replace("#TAID#", String.valueOf(taId));
