@@ -26,10 +26,10 @@
 
                 <!-- This <li> will only add the 'active' class if 'therapeuticAreas.detail' or its descendants are active
                      AND if it is the link for the active contact (aka contactId) -->
-                <li data-ng-repeat="therapeuticarea in therapeuticAreas " data-ui-sref-active="active">
+                <li data-ng-repeat="therapeuticArea in therapeuticAreas " data-ui-sref-active="active">
 
                     <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                    <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticarea.id})" id="lnk_therapeuticArea_{{therapeuticarea.sortOrder}}">{{therapeuticarea.title}}</a>
+                    <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticArea.id})" id="lnk_therapeuticArea_{{therapeuticArea.sortOrder}}">{{therapeuticArea.title}}</a>
                 </li>
             </ul>
         </div>

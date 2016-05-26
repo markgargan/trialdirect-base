@@ -78,11 +78,11 @@
                     <label>Therapeutic Area</label>
                     <div class="clear"></div>
 
-                    <label data-ng-repeat="therapeuticarea in therapeuticAreas">
-                        <input id="inp_therapeuticAreaSelection_{{therapeuticarea.sortOrder}}"
-                               name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticarea.checked"
-                               data-ng-click="chooseTherapeuticArea(therapeuticarea)">
-                        <span data-ng-bind="therapeuticarea.title"></span>
+                    <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                        <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}"
+                               name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                               data-ng-click="chooseTherapeuticArea(therapeuticArea)">
+                        <span data-ng-bind="therapeuticArea.title"></span>
                     </label>
                     <div ng-show="trial.unselectedTherapeuticArea">
                         <div class="errors">Please specify a Therapeutic Area</div>

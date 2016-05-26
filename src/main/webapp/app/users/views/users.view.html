@@ -45,17 +45,17 @@
 
                 <label for="newUserInput" class="nav-header new-group-label">Begin User Assessment</label>
 
-                <div data-ng-repeat="syndrome in therapeuticAreas | orderBy:'id'">
+                <div data-ng-repeat="therapeuticArea in therapeuticAreas | orderBy:'id'">
                     <div class="radio">
-                        <label><input id="inp_therapeuticAreaSelection_{{syndrome.sortOrder}}" name="therapeuticAreaSelection" type="radio" data-ng-model="syndrome.checked"
-                                      data-ng-click="chooseTherapeuticArea(syndrome, $event)"/>
-                            {{syndrome.title}}</label>
+                        <label><input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                                      data-ng-click="chooseTherapeuticArea(therapeuticArea, $event)"/>
+                            {{therapeuticArea.title}}</label>
                     </div>
                 </div>
 
 
                 <div class="input-group add-new-group">
-                    <input id="inp_newUserInput" type="text" class="form-control" data-ng-disabled="!newUser.syndrome"
+                    <input id="inp_newUserInput" type="text" class="form-control" data-ng-disabled="!newUser.therapeuticArea"
                            data-ng-model="newUser.pseudonym" placeholder="e.g. Kate's assessment"/>
                   <span class="input-group-btn">
                     <button id="btn_saveTrialSearch" class="btn btn-default" type="submit"
