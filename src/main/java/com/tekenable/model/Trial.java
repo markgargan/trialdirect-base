@@ -39,27 +39,27 @@ public class Trial extends SortEntity {
 
     private Set<TrialSelectorQuestionnaireEntry> trialselectorquestionnaireentries;
 
-    private TherapeuticArea therapeuticarea;
+    private TherapeuticArea therapeuticArea;
 
     private Set<TrialInfo> trialInfos;
 
     public Trial() {
     }
 
-    public Trial(String title, TherapeuticArea therapeuticarea) {
+    public Trial(String title, TherapeuticArea therapeuticArea) {
         this.title = title;
-        this.therapeuticarea = therapeuticarea;
+        this.therapeuticArea = therapeuticArea;
     }
 
-    public Trial(String title, TherapeuticArea therapeuticarea, String trialCode) {
+    public Trial(String title, TherapeuticArea therapeuticArea, String trialCode) {
         this.title = title;
-        this.therapeuticarea = therapeuticarea;
+        this.therapeuticArea = therapeuticArea;
         this.trialCode = trialCode;
     }
 
-    public Trial(String title, TherapeuticArea therapeuticarea, Integer sortOrder) {
+    public Trial(String title, TherapeuticArea therapeuticArea, Integer sortOrder) {
         this.title = title;
-        this.therapeuticarea = therapeuticarea;
+        this.therapeuticArea = therapeuticArea;
         this.sortOrder = sortOrder;
     }
 
@@ -91,12 +91,12 @@ public class Trial extends SortEntity {
 
     @ManyToOne
     @JoinColumn(nullable = true, name = "therapeutic_area_id")
-    public TherapeuticArea getTherapeuticarea() {
-        return therapeuticarea;
+    public TherapeuticArea getTherapeuticArea() {
+        return therapeuticArea;
     }
 
-    public void setTherapeuticarea(TherapeuticArea therapeuticarea) {
-        this.therapeuticarea = therapeuticarea;
+    public void setTherapeuticArea(TherapeuticArea therapeuticArea) {
+        this.therapeuticArea = therapeuticArea;
     }
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
