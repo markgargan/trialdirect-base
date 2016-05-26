@@ -13,20 +13,24 @@
         </div>
 
         <div class="input-group">
-            <input id="inp_newQuestion" type="text" class="form-control" data-ng-model="newQuestion" placeholder="Enter the question..."/>
+            <input id="inp_newQuestion" type="text" class="form-control" data-ng-model="newQuestion"
+                   placeholder="Enter the question..."/>
               <span class="input-group-btn">
-                <button id="btn_addQuestion" class="btn btn-default" data-ng-click="addQuestion(newQuestion)" data-ng-disabled="!newQuestion"
+                <button id="btn_addQuestion" class="btn btn-default" data-ng-click="addQuestion(newQuestion)"
+                        data-ng-disabled="!newQuestion"
                         title="Add">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
               </span>
         </div>
 
-    <div class="form-group" data-as-sortable="sortableOptions" data-ng-model="questionnaireEntries">
-        <div data-ng-repeat="questionnaireEntry in questionnaireEntries" data-as-sortable-item class="as-sortable-item">
-            <div class="qa">
+        <div class="form-group" data-as-sortable="sortableOptions" data-ng-model="questionnaireEntries">
+            <div data-ng-repeat="questionnaireEntry in questionnaireEntries" data-as-sortable-item
+                 class="as-sortable-item">
+                <div class="qa">
 
-                    <div class="questionEdit" as-sortable-item-handle class="as-sortable-item-handle" data-ng-mouseleave="updateSortQuestion(questionnaireEntry.question.id, $index)">
+                    <div class="questionEdit" as-sortable-item-handle class="as-sortable-item-handle"
+                         data-ng-mouseleave="updateSortQuestion(questionnaireEntry.question.id, $index)">
                         <button class="left btn btn-remove btn-remove-question" type="button" title="Delete"
                                 data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">
                             <span class="glyphicon glyphicon-remove"></span>
@@ -38,10 +42,12 @@
 
                     <div class="question">
                         <div class="input-group">
-                            <input id="inp_newAnswer_{{questionnaireEntry.question.sortOrder}}" type="text" class="form-control" data-ng-model="newAnswer"
+                            <input id="inp_newAnswer_{{questionnaireEntry.question.sortOrder}}" type="text"
+                                   class="form-control" data-ng-model="newAnswer"
                                    placeholder="Enter a new answer..."/>
                               <span class="input-group-btn">
-                                <button id="btn_newAnswer_{{questionnaireEntry.question.sortOrder}}" class="btn btn-default" type="button"
+                                <button id="btn_newAnswer_{{questionnaireEntry.question.sortOrder}}"
+                                        class="btn btn-default" type="button"
                                         data-ng-click="addAnswer(questionnaireEntry, newAnswer)"
                                         data-ng-disabled="!newAnswer" title="Add">
                                     <span class="glyphicon glyphicon-plus"></span>
@@ -53,14 +59,17 @@
 
                     <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
 
-                        <div id="horizontal-container" class="answer-container" data-as-sortable="sortableOptionsHorizontal"
+                        <div id="horizontal-container" class="answer-container"
+                             data-as-sortable="sortableOptionsHorizontal"
                              data-ng-model="questionnaireEntry.answers._embeddedItems">
-                            <div data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems" data-as-sortable-item
+                            <div data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems"
+                                 data-as-sortable-item
                                  class="as-sortable-item">
                                 <div data-as-sortable-item-handle>
                                     <span class="answerText" data-ng-bind="answer.answerText"></span>
                                 </div>
-                                <button id="btn_removeAnswer_{{answer.sortOrder}}" class="left btn btn-remove" type="button" title="Delete"
+                                <button id="btn_removeAnswer_{{answer.sortOrder}}" class="left btn btn-remove"
+                                        type="button" title="Delete"
                                         data-ng-click="deleteAnswer(questionnaireEntry, answer)">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>
@@ -72,7 +81,8 @@
 
                     <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
                         <div class="option-list">
-                            <button id="btn_removeAnswer_{{answer.sortOrder}}"  class="left btn btn-remove" type="button" title="Delete"
+                            <button id="btn_removeAnswer_{{answer.sortOrder}}" class="left btn btn-remove" type="button"
+                                    title="Delete"
                                     data-ng-click="deleteAnswer(questionnaireEntry, answer)"
                                     data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
                                 {{answer.answerText}} <span class="glyphicon glyphicon-remove"></span>
@@ -90,4 +100,4 @@
     </div>
 
 
-<div class="clear"></div>
+    <div class="clear"></div>

@@ -88,9 +88,10 @@
 				<div class="aboutTrial">
 					<h3>About The Trial</h3>
 
-					<div class="panelContent">
+					<div class="panelContent aboutTrialDesc">
 
 						<p><strong>{{trialData.summary}}</strong></p>
+
 
 						<p data-ng-show="trialData.trialFullDescription.fullDescription"
 						   data-ng-repeat="value in trialData.trialFullDescription.fullDescription | newlines">
@@ -149,17 +150,22 @@
 
 							<div class="trialLeader" data-ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" data-ng-click="toggleBio(trialSite, trialData)">
 
-								<p>
+								<div class="updown" style="float:right;color:#ccc">
+									<i class="fa fa-2x fa-chevron-down" data-ng-hide="trialSite.showBio"></i>
+									<i class="fa fa-2x fa-chevron-up" data-ng-show="trialSite.showBio" style="color:#999"></i>
+								</div>
 
+								<p>
 									<strong>{{trialSite.facilityName}}</strong><br>
-									<small>
+
 										<span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
 										<span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
 										<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
 										<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address4}}, </span>
 										<span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
-										<span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span>
-									</small>
+										<span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span><br>
+										<i class="fa fa-map-marker"></i> XXX Miles away
+
 								</p>
 
 								<div class="clear"></div>
@@ -174,6 +180,8 @@
                                             <a href="/" class="refer">Refer your Patient to this facility</a>
 
                                             <p ng-bind="trialSite.facilityDescription"></p>
+
+											<p style="display: block; text-align: center; padding:1em 0;"><i class="fa fa-map-marker fa-2x" style="position:relative;top:.15em"></i> This facility is XXX Miles away</p>
 
 
                                         </div>
