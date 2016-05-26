@@ -368,6 +368,15 @@ input {
   border-radius: .2em
 }
 
+a.refer {
+  background: #00857f;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+  border-radius: .35em;
+  margin-bottom: 1em;
+}
+
 .answers, .footer, .header, .question {
 
 }
@@ -941,11 +950,10 @@ span {
   margin-top: 3em;
 }
 
-.simplePanel.trialLeaderList {
+/*.trialLeaderList {
   max-height: 20.5em;
-  overflow: auto;
-  /* margin-bottom:10em; */
-}
+  overflow-y: auto;
+}*/
 
 .trialLeader p {
   padding: 0;
@@ -1043,6 +1051,10 @@ select, input[type="file"] {
   text-align: left;
 }
 
+.trialSiteExpand {
+  margin-top: 1em;
+}
+
 /*
 .trialSiteOptions {
     display: block;
@@ -1129,8 +1141,11 @@ span.doc3 {;
 }
 
 .trialArea {
-  font-size: 1.5em;
-  top: .1em;
+  background: #00857f;
+  padding: .5em 2em;
+  border-radius: .35em;
+  font-size: 1.2em;
+  color: #fff;
 }
 
 /*
@@ -1310,6 +1325,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 .panelContent {
   display: block;
+  clear: both;
   padding: 1em;
   background: #fff;
   margin-bottom: 2em;
