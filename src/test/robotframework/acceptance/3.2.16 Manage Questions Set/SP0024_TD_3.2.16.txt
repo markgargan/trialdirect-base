@@ -15,7 +15,7 @@ ${SERVER}    http://trialdirectuat-tekenable.rhcloud.com/#/therapeuticareas
     [Documentation]   As a Content Editor, I want to add a question set for therapeutic area and disease
     [Tags]  3.2.16.1
     [Setup]  Test setup    ${SERVER}    ${BROWSER}
-    #Given I as Content Editor
+    ###Given I as Content Editor
     And Therapeutic Area Page Should Be Open
     Then I want to create a new therapeutic area
     Then I want to be able to add a set of questions for that therapeutic area
