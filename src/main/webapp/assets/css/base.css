@@ -1,4 +1,7 @@
-/* Steve */
+/* ::: IMPORTANT NOTE :::
+DO NOT edit base.css directly, as changes will be overwritten by SASS file process.
+CSS files should be edited/created via the assets/scss folder, and compiled using SASS compiler.
+*/
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -13,7 +16,7 @@ body {
 
 .home-banner {
   display: block;
-  height: 300px;
+  height: 250px;
   background: #bcbebd url("../images/banner-home.jpg") no-repeat center center/auto 100%;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -124,6 +127,7 @@ div.list-answers {
   color: #00857f;
   text-decoration: underline; }
 
+/*
 .searchTabs .nav a {
   border: 1px solid #eee;
   border-radius: .35em 0 0 .35em;
@@ -132,17 +136,19 @@ div.list-answers {
   margin-right: -1px;
   color: #ccc;
   border-color: transparent;
-  background: none; }
+  background: none;
+}
 
 .searchTabs .nav a:hover {
-  background: none; }
+  background: none;
+}
 
 .searchTabs .nav .active a {
   background: #fff;
   color: #00857f;
   text-shadow: none;
-  border-color: #eee transparent #eee #eee; }
-
+  border-color: #eee transparent #eee #eee;
+}*/
 .nav-list > .active > a,
 .nav-list > .active > a:hover,
 .nav-list > .active > a:focus {
@@ -287,6 +293,14 @@ input {
 
 .btn.answers, .answers label span, p.distance {
   border-radius: 0.2em; }
+
+a.refer {
+  background: #00857f;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+  border-radius: .35em;
+  margin-bottom: 1em; }
 
 input[type=checkbox], input[type=radio] {
   display: inline;
@@ -455,6 +469,9 @@ main {
 .headerPanel, .logo {
   float: left; }
 
+.topHeader {
+  padding: .5em 0; }
+
 .menu i {
   font-size: 25px;
   color: #aaa;
@@ -563,11 +580,18 @@ td, th {
 .qa {
   display: block;
   clear: both;
-  border-bottom: 1px solid #eee;
-  border-top: 1px solid #fff;
-  padding: 2em 0;
-  position: relative; }
+  /*border-bottom: 1px solid #eee;
+  border-top: 1px solid #fff;*/
+  padding: 1.5em 1em;
+  position: relative;
+  -webkit-border-radius: 0.3em;
+  -moz-border-radius: 0.3em;
+  border-radius: 0.3em; }
 
+/*
+.qa:hover {
+  @include prefix(box-shadow, 0 0 .2em #00857f, webkit moz);
+}*/
 .btn-remove-question {
   position: absolute;
   top: -18px;
@@ -692,7 +716,7 @@ p {
 
 .trialIntro {
   display: block;
-  padding: 1em;
+  padding: 2em;
   background: #fff;
   margin: .5em 0 1em;
   -webkit-border-radius: .3em;
@@ -726,6 +750,9 @@ p {
   width: 2%;
   color: #ccc; }
 
+.trialIntro:hover {
+  box-shadow: 0 0 0.2em #00857f; }
+
 .trialIntro:hover .trialLink {
   color: #999; }
 
@@ -749,23 +776,28 @@ span {
   */
   display: block;
   cursor: pointer;
-  padding: 1em;
+  padding: 1.5em;
   background: #fafafa;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #ddd; }
+
+.trialLeader:hover {
+  background: #f4f4f4; }
+
+.trialLeader:hover .fa {
+  color: #999; }
 
 .trialLeadersContainer {
   display: block;
   margin-top: 3em; }
 
-.simplePanel.trialLeaderList {
+/*.trialLeaderList {
   max-height: 20.5em;
-  overflow: auto;
-  /* margin-bottom:10em; */ }
-
+  overflow-y: auto;
+}*/
 .trialLeader p {
   padding: 0;
-  line-height: 1; }
+  line-height: 1.5; }
 
 .highlighted {
   background: #000;
@@ -845,6 +877,9 @@ select, input[type="file"] {
   width: 49%;
   text-align: left; }
 
+.trialSiteExpand {
+  margin-top: 1em; }
+
 /*
 .trialSiteOptions {
     display: block;
@@ -888,10 +923,10 @@ span.doc3 {
   -moz-border-radius: .3em;
   border-radius: .3em; }
 
-.trialCount, .trialInfo {
+/*.trialCount, .trialInfo {
   display: block;
-  background: #fff; }
-
+  background: #fff;
+}*/
 .trialInfo {
   float: left;
   width: 54%;
@@ -902,13 +937,49 @@ span.doc3 {
   border-radius: .3em; }
 
 .trialCount {
+  text-align: center;
+  position: relative;
+  top: -2.5em;
+  height: 6.5em; }
+
+.trialTotal {
+  font-size: 3em;
+  background: #eee;
+  width: 3em;
+  display: inline-block;
+  height: 3em;
+  vertical-align: middle;
+  line-height: 3em;
+  margin: 0 .15em;
+  border-radius: 50%;
+  background: #00857f;
+  color: #fff; }
+
+/*.aboutTrialDesc {
+  max-height:15em;
+  overflow: hidden;
+  @include prefix(transition, all 1s ease 1s);
+}
+.aboutTrialDesc:hover {
+  max-height: 250em;
+}*/
+.trialArea {
+  background: #00857f;
+  padding: .5em 2em;
+  border-radius: .35em;
+  font-size: 1.2em;
+  color: #fff; }
+
+/*
+.trialCount {
   padding: .5em 3em 1.5em 2em;
   text-align: center;
   color: #fff;
   background: #00857f;
   -webkit-border-radius: .5em;
   -moz-border-radius: .5em;
-  border-radius: .5em; }
+  border-radius: .5em;
+}
 
 .trialCount span {
   font-size: 3em;
@@ -916,17 +987,16 @@ span.doc3 {
   line-height: .75em;
   position: relative;
   top: 8px;
-  left: 10px; }
-
+  left: 10px;
+}*/
 .trialApply,
 p.link {
   display: block;
   text-align: right; }
 
-.trialCount
-h1, .trialCount p {
-  padding: 0; }
-
+/*.trialCount h1, .trialCount p {
+  padding: 0;
+}*/
 .trialApply {
   padding: 1em 0 .5em; }
 
@@ -1046,19 +1116,26 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   float: left;
   width: 15%;
   text-align: right;
-  margin: 3.5em 0; }
+  margin: 7em 0 1em; }
 
 .searchContent {
   display: block;
-  float: left;
+  float: right;
   width: 85%;
-  padding: 1em 2em;
+  margin: 2em 0; }
+
+.panelContent {
+  display: block;
+  clear: both;
+  padding: 1em;
   background: #fff;
-  margin: 2em 0;
   border: 1px solid #eee;
   border-radius: .35em;
-  min-height: 20em; }
+  font-size: 1em; }
 
+/*.panelContent:first-of-type {
+  min-height: 20em;
+}*/
 @media screen and (max-width: 1200px) {
   .trialIntro span {
     height: 5em;
@@ -1068,7 +1145,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
     background-position: center left; } }
 @media screen and (max-width: 1000px) {
   .home-banner {
-    height: 250px; } }
+    height: 225px; } }
 @media screen and (max-width: 900px) {
   .trialInfo, .trialIntro, .trialLocation, .trialResults, .trialRight, .trialSearch {
     float: none;
@@ -1079,22 +1156,25 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   .pa-sidebar, .answers.trialTitle {
     display: none; }
 
-  .trialCountH {
-    display: none; }
+  /*.trialCountH {
+    display: none;
+  }
 
   .trialCount {
     display: block;
     float: right;
-    padding: .1em 1em; }
+    padding: .1em 1em;
+  }
 
   .trialCount h1, .trialCount p {
-    display: inline; }
+    display: inline;
+  }
 
   .trialCount p {
     position: relative;
     top: -4px;
-    padding-right: .5em; }
-
+    padding-right: .5em;
+  }*/
   .trialIntro span {
     height: 4em;
     width: 4em; }
@@ -1158,7 +1238,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
     border-top: 3px solid #00857f; } }
 @media screen and (max-width: 800px) {
   .home-banner {
-    height: 200px; } }
+    height: 175px; } }
 @media screen and (max-width: 600px) {
   .answers, .question {
     float: none;

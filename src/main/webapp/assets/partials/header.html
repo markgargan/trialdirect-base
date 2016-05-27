@@ -1,9 +1,9 @@
 <header>
-    <div class="header" data-ng-controller="NavController" ng-init="navUserType = 'sa'; showNavUserType=true">
+    <div class="header" data-ng-controller="NavController" ng-init="navUserType = 'hcp'; showNavUserType=false">
 
 
         <!-- // DEMO Nav Toggle, to emulate Navigation by User Type -->
-        <!-- FOR TEST & DEV ONLY, NOT TO BE INCLUDED IN LIVE WEBSITE -->
+        <!-- FOR TEST & DEV ONLY, WILL NEED TO BE REMOVED (or auto-excluded) FROM LIVE WEBSITE -->
         <div class="emulateUserNavIcon">
             <i class="fa fa-chevron-down" data-ng-show="showNavUserType" data-ng-click="showNavUserType=false"></i>
             <i class="fa fa-chevron-up" data-ng-hide="showNavUserType" data-ng-click="showNavUserType=true"></i>
@@ -28,7 +28,6 @@
                         <div class="logo">
                             <h2>
                                 <a href="./">
-                                    <!-- <img src="assets/images/trial-direct-logo.png" alt="Trial Direct Logo"> -->
                                     Trial<b>Direct</b>
                                 </a>
                             </h2>
@@ -62,7 +61,6 @@
                 <nav>
                     <div class="nav topNav1">
                         <ul>
-                            <li data-ng-show="navUserType=='hcp'" ><a href="#/my-patients">My Patients</a></li>
                             <li><a href="#/my-profile">My Profile</a></li>
                             <li><a href="#/logout">Logout</a></li>
                         </ul>
