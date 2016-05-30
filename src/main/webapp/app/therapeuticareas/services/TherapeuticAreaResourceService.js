@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('TherapeuticAreaResourceService',
     ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService) {
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService ) {
 
             var RESOURCE_URL = './api/therapeuticareas';
 
@@ -21,7 +21,7 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
             TherapeuticAreaResourceService.load = function () {
                 var deferred = $http.get(RESOURCE_URL);
 
-                return SpringDataRestAdapter.process(deferred).then(function (data) {
+                return SpringDataRestAdapter.process(deferred ).then(function (data) {
 
                     TherapeuticAreaResourceService.resources = data._resources("self");
 
@@ -35,9 +35,9 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
             // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
             TherapeuticAreaResourceService.inflateTherapeuticArea = function (therapeuticAreaId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + therapeuticAreaId);
-
+                
                 return SpringDataRestAdapter.process(deferred, ['questionnaireentries', ['question', 'answers']]).then(function (data) {
-
+                    
                     TherapeuticAreaResourceService.resources = data._resources("self");
 
                     // Inflate all the questionnaireEntries so that their question and corresponding answers
@@ -46,9 +46,9 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
 
                     var questionnaireentriesList = data.questionnaireentries._embeddedItems;
                     angular.forEach(questionnaireentriesList, function (uninflatedQuestionnaireEntry) {
-                        QuestionnaireEntryResourceService.inflateQuestionnaireEntry(uninflatedQuestionnaireEntry)
-                            .then(function (inflatedQuestionnaireEntry) {
-                                questionnaireentriesList[questionnaireentriesList.indexOf(uninflatedQuestionnaireEntry)] = inflatedQuestionnaireEntry;
+                            QuestionnaireEntryResourceService.inflateQuestionnaireEntry(uninflatedQuestionnaireEntry)
+                                .then(function(inflatedQuestionnaireEntry){
+                                    questionnaireentriesList[questionnaireentriesList.indexOf(uninflatedQuestionnaireEntry)] = inflatedQuestionnaireEntry;
                             });
                     });
 
@@ -62,11 +62,11 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
 
                 // If the therapeuticAreaResource is being created and
                 if (angular.isUndefined(therapeuticArea._resources)) {
-
+                    
                     // the therapeuticAreaResource that we are creating has a save function
                     // placed onto the prototype for the object.
                     therapeuticArea.save = function (callback) {
-
+                        
                         // TherapeuticAreaResourceService representing the top-level '/api/therapeuticareas'
                         // was initialized during the load call hence it has the 'resources' member with methods
                         // for saving at the top-level
@@ -87,7 +87,7 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
                             });
                         });
                     };
-
+                    
 
                 } else {
 
@@ -119,7 +119,7 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
                     };
                 }
 
-                therapeuticArea.getHrefLink = function () {
+                therapeuticArea.getHrefLink = function() {
                     return therapeuticArea._links.self.href;
                 };
 

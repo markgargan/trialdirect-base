@@ -1,10 +1,11 @@
-angular.module('uiRouterSample.trial', [
-    'ui.router'
-])
+angular
+    .module('uiRouterSample.trial', ['ui.router'])
     .config(
         ['$stateProvider', '$urlRouterProvider',
             function ($stateProvider, $urlRouterProvider) {
+                
                 $stateProvider
+                    
                     .state('trials', {
 
                         abstract: true,
@@ -32,23 +33,27 @@ angular.module('uiRouterSample.trial', [
                             }
                         }
                     })
+                    
                     .state('trials.list', {
                         url: '',
                         templateUrl: 'app/trials/views/trials.list.html'
-                    }).state('trials.oldcreate', {
-                    url: '/oldcreate',
-                    templateUrl: 'app/trials/views/trials.create.html'
-                })
+                    })
+                    
+                    .state('trials.oldcreate', {
+                        url: '/oldcreate',
+                        templateUrl: 'app/trials/views/trials.create.html'
+                    })
+                    
                     .state('trials.create', {
                         url: '/create',
                         views: {
-
                             // So this one is targeting the unnamed view within the parent state's template.
                             '': {
                                 templateUrl: 'app/trials/views/trials.edit.html'
                             }
                         }
                     })
+                    
                     .state('trials.edit', {
                         url: '/edit/{trialId:[0-9]{1,4}}',
                         views: {
