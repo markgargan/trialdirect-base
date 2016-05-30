@@ -40,7 +40,7 @@ angular.module('trialdirect').factory('QuestionnaireEntryResourceService',
             };
 
             // Load the specific TherapeuticArea drilling for the questionnaire and the nested questions and answers
-            QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink= function (linkname, linkId) {
+            QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink = function (linkname, linkId) {
 
                 var deferred1 = $http.get('api/' + linkname + '/' + linkId + '/therapeuticArea');
 

@@ -1,6 +1,6 @@
 angular.module('trialdirect').controller('TherapeuticAreaController',
     ['$scope', '$state', 'TherapeuticAreaResourceService', 'therapeuticAreas',
-        function ($scope, $state, TherapeuticAreaResourceService, therapeuticAreas ) {
+        function ($scope, $state, TherapeuticAreaResourceService, therapeuticAreas) {
 
             $scope.therapeuticAreas = therapeuticAreas;
 
@@ -9,11 +9,11 @@ angular.module('trialdirect').controller('TherapeuticAreaController',
                     title: therapeuticAreaTitle
                 }).save(function (newTherapeuticArea) {
                     $scope.therapeuticAreas.unshift(newTherapeuticArea);
-                    
-                    $state.go("therapeuticAreas.detail", { 'therapeuticAreaId': newTherapeuticArea.id});
+
+                    $state.go("therapeuticAreas.detail", {'therapeuticAreaId': newTherapeuticArea.id});
                 });
 
-                $scope.newTherapeuticArea= "";
+                $scope.newTherapeuticArea = "";
             };
         }
     ]);

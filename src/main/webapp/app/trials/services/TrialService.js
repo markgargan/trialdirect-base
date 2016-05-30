@@ -1,4 +1,4 @@
-angular.module('trialdirect').service('TrialService', ['$http', function($http){
+angular.module('trialdirect').service('TrialService', ['$http', function ($http) {
 
     var AVAILABLE_TRIALS_COUNT_URL = './availabletrialids';
 
@@ -6,17 +6,17 @@ angular.module('trialdirect').service('TrialService', ['$http', function($http){
 
     function getAvailableTrialsCount(userId, therapeuticAreaId, callback) {
         return $http.get(AVAILABLE_TRIALS_COUNT_URL + '/' + userId + '/therapeuticarea/' + therapeuticAreaId)
-            .then (function(trials){
+            .then(function (trials) {
 
-            if (trials == [])
-                trials.data = [];
+                if (trials == [])
+                    trials.data = [];
 
-            callback && callback(trials.data);
-        })
+                callback && callback(trials.data);
+            })
     }
 
     function getAvailableTrials(userId, therapeuticAreaId) {
-        $http.get(AVAILABLE_TRIALS_URL + '/' + userId).then (function(trials){
+        $http.get(AVAILABLE_TRIALS_URL + '/' + userId).then(function (trials) {
 
             return _.map(trials, function (trial) {
 
@@ -26,8 +26,8 @@ angular.module('trialdirect').service('TrialService', ['$http', function($http){
     }
 
     return {
-        getAvailableTrials:getAvailableTrials,
-        getAvailableTrialsCount:getAvailableTrialsCount
+        getAvailableTrials: getAvailableTrials,
+        getAvailableTrialsCount: getAvailableTrialsCount
     };
     //Test for new branch
 

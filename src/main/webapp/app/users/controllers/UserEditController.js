@@ -1,7 +1,7 @@
 angular.module('trialdirect').controller('UserEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'UserResourceService',
         'user', 'questionnaireEntries', 'userSelectorQuestionnaireEntries',
-        'UserSelectorQuestionnaireEntryResourceService', 'TrialService','TrialResourceService','TrialInfo',
+        'UserSelectorQuestionnaireEntryResourceService', 'TrialService', 'TrialResourceService', 'TrialInfo',
         function ($scope, Question, Answer, QuestionnaireEntryResourceService, UserResourceService,
                   user, questionnaireEntries, userSelectorQuestionnaireEntries,
                   UserSelectorQuestionnaireEntryResourceService, TrialService, TrialResourceService, TrialInfo) {
@@ -46,17 +46,16 @@ angular.module('trialdirect').controller('UserEditController',
                 newUser.therapeuticArea = therapeuticArea;
             };
 
-            $scope.updateAvailableTrials = function() {
+            $scope.updateAvailableTrials = function () {
                 TrialService.getAvailableTrialsCount($scope.user.id, $scope.user.therapeuticArea.id, function (availableTrialIds) {
                     $scope.availableTrialIds = availableTrialIds;
 
-                    $scope.trialInfos= [];
+                    $scope.trialInfos = [];
 
                     if (availableTrialIds.length < 5) {
-                        angular.forEach(availableTrialIds, function(availableTrialId) {
-                            TrialResourceService.loadTrialInfo(availableTrialId).then(function(trialInfos){
-                                if(!angular.isUndefined(trialInfos))
-                                {
+                        angular.forEach(availableTrialIds, function (availableTrialId) {
+                            TrialResourceService.loadTrialInfo(availableTrialId).then(function (trialInfos) {
+                                if (!angular.isUndefined(trialInfos)) {
                                     $scope.trialInfos.push(trialInfos);
                                 }
                             });
@@ -140,26 +139,26 @@ angular.module('trialdirect').controller('UserEditController',
                 }
             };
 
-            $scope.toggleBio= function(site, trialData) {
+            $scope.toggleBio = function (site, trialData) {
                 var bioIsShowing = site.showBio;
 
                 if (bioIsShowing) {
                     site.showBio = !site.showBio;
                 } else {
                     site.showBio = true;
-                    angular.forEach(trialData.trialSites._embeddedItems, function(otherSite){
+                    angular.forEach(trialData.trialSites._embeddedItems, function (otherSite) {
                         if (otherSite.id != site.id) {
-                            otherSite.showBio =false;
+                            otherSite.showBio = false;
                         }
                     });
                 }
             };
         }
     ]).filter('newlines', function () {
-        return function(text) {
-            if (!text)
-                return '';
+    return function (text) {
+        if (!text)
+            return '';
 
-            return text.split('\n');
-        }
-    });
+        return text.split('\n');
+    }
+});

@@ -1,13 +1,13 @@
 angular.module('trialdirect', [
-        'uiRouterSample.therapeuticarea',
-        'uiRouterSample.trial',
-        'uiRouterSample.user',
-        'ngResource',
-        'spring-data-rest',
-        'ui.router',
-        'ngFileUpload',
-        'as.sortable'
-    ])
+    'uiRouterSample.therapeuticarea',
+    'uiRouterSample.trial',
+    'uiRouterSample.user',
+    'ngResource',
+    'spring-data-rest',
+    'ui.router',
+    'ngFileUpload',
+    'as.sortable'
+])
     .run(
         ['$rootScope', '$state', '$stateParams',
             function ($rootScope, $state, $stateParams) {
@@ -32,13 +32,13 @@ angular.module('trialdirect', [
     return function (items) {
         return items.slice().reverse();
     };
-}).controller("NavController", function($scope) {
-        $scope.IsHidden = !1,
-            $scope.ShowHide = function() {
-                $scope.IsHidden = !$scope.IsHidden
-            }
-    });
+}).controller("NavController", function ($scope) {
+    $scope.IsHidden = !1,
+        $scope.ShowHide = function () {
+            $scope.IsHidden = !$scope.IsHidden
+        }
+});
 
-angular.isEmpty = function(obj){
-  return angular.isUndefined(obj) || obj=='';
+angular.isEmpty = function (obj) {
+    return angular.isUndefined(obj) || obj == '';
 };

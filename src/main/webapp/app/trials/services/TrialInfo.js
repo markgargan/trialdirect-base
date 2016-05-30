@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('TrialInfo',
     ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService ) {
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService) {
 
             var RESOURCE_URL = './api/trialinfos';
 
@@ -10,7 +10,7 @@ angular.module('trialdirect').factory('TrialInfo',
             TrialInfo.initialize = function () {
                 var deferred = $http.get(RESOURCE_URL);
 
-                return SpringDataRestAdapter.process(deferred ).then(function (data) {
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
 
                     TrialInfo.resources = data._resources("self");
                 });
@@ -38,7 +38,7 @@ angular.module('trialdirect').factory('TrialInfo',
             TrialInfo.load = function () {
                 var deferred = $http.get(RESOURCE_URL);
 
-                return SpringDataRestAdapter.process(deferred ).then(function (data) {
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
 
                     TrialInfo.resources = data._resources("self");
 
@@ -55,11 +55,11 @@ angular.module('trialdirect').factory('TrialInfo',
 
                 // If the trialInfoResource is being created and
                 if (angular.isUndefined(trialInfo._resources)) {
-                    
+
                     // the trialInfoResource that we are creating has a save function
                     // placed onto the prototype for the object.
                     trialInfo.save = function (callback) {
-                        
+
                         // TrialInfo representing the top-level '/api/trialinfos'
                         // was initialized during the load call hence it has the 'resources' member with methods
                         // for saving at the top-level
@@ -80,7 +80,7 @@ angular.module('trialdirect').factory('TrialInfo',
                             });
                         });
                     };
-                    
+
 
                 } else {
 
@@ -112,7 +112,7 @@ angular.module('trialdirect').factory('TrialInfo',
                     };
                 }
 
-                trialInfo.getHrefLink = function() {
+                trialInfo.getHrefLink = function () {
                     return trialInfo._links.self.href;
                 };
 

@@ -1,6 +1,6 @@
 angular.module('uiRouterSample.trial', [
-        'ui.router'
-    ])
+    'ui.router'
+])
     .config(
         ['$stateProvider', '$urlRouterProvider',
             function ($stateProvider, $urlRouterProvider) {
@@ -34,11 +34,11 @@ angular.module('uiRouterSample.trial', [
                     })
                     .state('trials.list', {
                         url: '',
-                        templateUrl:'app/trials/views/trials.list.html'
+                        templateUrl: 'app/trials/views/trials.list.html'
                     }).state('trials.oldcreate', {
-                        url: '/oldcreate',
-                        templateUrl:'app/trials/views/trials.create.html'
-                    })
+                    url: '/oldcreate',
+                    templateUrl: 'app/trials/views/trials.create.html'
+                })
                     .state('trials.create', {
                         url: '/create',
                         views: {

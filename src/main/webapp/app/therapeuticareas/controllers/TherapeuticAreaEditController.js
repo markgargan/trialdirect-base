@@ -1,6 +1,6 @@
 angular.module('trialdirect').controller('TherapeuticAreaEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'therapeuticArea', 'questionnaireEntries',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries ) {
+        function ($scope, Question, Answer, QuestionnaireEntryResourceService, therapeuticArea, questionnaireEntries) {
 
             $scope.count = 0;
 
@@ -24,15 +24,13 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
             $scope.updateSortQuestion = function (questionId, sortOrderIndex) {
 
                 $scope.questionId = questionId;
-                $scope.sortOrder = sortOrderIndex+1;
+                $scope.sortOrder = sortOrderIndex + 1;
 
                 //$scope.updateQuestion = function (question) {
                 //    question.save();
                 //};
 
             };
-
-
 
 
             $scope.therapeuticArea = therapeuticArea;
@@ -45,7 +43,7 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
                 }).save(function (question) {
                     new QuestionnaireEntryResourceService({
                         question: question.getHrefLink(),
-                        therapeuticArea:therapeuticArea.getHrefLink()
+                        therapeuticArea: therapeuticArea.getHrefLink()
                     }).save(function (questionnaireEntry) {
                         questionnaireEntry.question = question;
                         $scope.questionnaireEntries.unshift(questionnaireEntry);
@@ -61,9 +59,9 @@ angular.module('trialdirect').controller('TherapeuticAreaEditController',
             $scope.deleteQuestionnaireEntry = function (questionnaireEntry) {
 
                 questionnaireEntry.removeQEAssociation($scope.therapeuticArea.id, function () {
-                   questionnaireEntry.remove(function () {
-                       $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);
-                   });
+                    questionnaireEntry.remove(function () {
+                        $scope.questionnaireEntries.splice($scope.questionnaireEntries.indexOf(questionnaireEntry), 1);
+                    });
                 });
             };
 
