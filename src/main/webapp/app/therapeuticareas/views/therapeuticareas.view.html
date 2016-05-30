@@ -5,9 +5,11 @@
 
             <form name="CreateTherapeuticArea" role="form" data-ng-submit="addTherapeuticArea(newTherapeuticArea)">
 
-                <label for="inp_newTherapeuticAreaInput" class="nav-header new-group-label">Add new Therapeutic Area</label>
+                <label for="inp_newTherapeuticAreaInput" class="nav-header new-group-label">Add new Therapeutic
+                    Area</label>
                 <div class="input-group add-new-group">
-                    <input id="inp_newTherapeuticAreaInput" type="text" class="form-control" data-ng-model="newTherapeuticArea"
+                    <input id="inp_newTherapeuticAreaInput" type="text" class="form-control"
+                           data-ng-model="newTherapeuticArea"
                            placeholder="e.g. Cardiovascular"/>
                     <span class="input-group-btn">
                       <button id="btn_addTherapeuticArea" class="btn btn-default" type="submit"
@@ -29,7 +31,8 @@
                 <li data-ng-repeat="therapeuticarea in therapeuticAreas " data-ui-sref-active="active">
 
                     <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                    <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticarea.id})" id="lnk_therapeuticArea_{{therapeuticarea.sortOrder}}">{{therapeuticarea.title}}</a>
+                    <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticarea.id})"
+                       id="lnk_therapeuticArea_{{therapeuticarea.sortOrder}}">{{therapeuticarea.title}}</a>
                 </li>
             </ul>
         </div>

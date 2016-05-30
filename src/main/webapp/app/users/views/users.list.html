@@ -1,86 +1,41 @@
-
 <h3>Start New Search</h3>
 
 <div class="panelContent" style="min-height: 20em">
 
     <form name="CreateUserArea" class="form-horizontal" role="form" data-ng-click="addUser(newUser)">
 
-    <div class="qa">
-
-      <!--
-      <label>Special Condition</label>
-      <select name="therapeuticAreaSelection">
-        <option data-ng-repeat="therapeuticArea in therapeuticAreas">{{therapeuticArea.title}}</option>
-      </select>
-      <button>Submit</button>
-      -->
+        <div class="qa">
 
 
+            <div class="question">
+                <p>Select main Therapeutic Area</p>
+            </div>
 
-
-        <div class="question">
-            <p>Select main Therapeutic Area</p>
-        </div>
-        <!--
-          <div class="answers">
-            <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-              <input id="inp_" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
-                     data-ng-click="chooseTherapeuticArea(therapeuticArea)">
-              <span data-ng-bind="therapeuticArea.title"></span>
-            </label>
-          </div>
-        -->
-        <div class="answers" data-ng-if="therapeuticAreas.length<=4">
-            <label data-ng-repeat="therapeuticArea in therapeuticAreas">
-                <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}" name="therapeuticAreaSelection"
-                       type="radio" data-ng-model="therapeuticArea.checked"
-                       data-ng-click="chooseTherapeuticArea(therapeuticArea)">
-                <span data-ng-bind="therapeuticArea.title"></span>
-            </label>
-        </div>
-
-        <div class="answers" data-ng-if="therapeuticAreas.length>=5">
-            <div class="option-list">
+            <div class="answers" data-ng-if="therapeuticAreas.length<=4">
                 <label data-ng-repeat="therapeuticArea in therapeuticAreas">
                     <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}"
-                           name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                           name="therapeuticAreaSelection"
+                           type="radio" data-ng-model="therapeuticArea.checked"
                            data-ng-click="chooseTherapeuticArea(therapeuticArea)">
                     <span data-ng-bind="therapeuticArea.title"></span>
                 </label>
             </div>
-        </div>
 
-
-        <div class="clear"></div>
-    </div>
-
-    <!--
-    <div class="qa">
-        <div class="question">
-            <p>Name your search</p>
-            <div class="clear"></div>
-        </div>
-        <div class="answers">
-
-            <div class="list-text input-group">
-                <input id="inp_newUserInput" type="text" class="form-control"
-                       data-ng-disabled="!newUser.therapeuticArea"
-                       data-ng-model="newUser.pseudonym" placeholder="e.g. Acme User"/>
-                    <span class="input-group-btn">
-                        <button id="btn_saveTrialSearch" class="btn btn-default" type="submit"
-                                data-ng-disabled="!newUser.pseudonym" title="Add">
-                          <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </span>
+            <div class="answers" data-ng-if="therapeuticAreas.length>=5">
+                <div class="option-list">
+                    <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                        <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}"
+                               name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
+                               data-ng-click="chooseTherapeuticArea(therapeuticArea)">
+                        <span data-ng-bind="therapeuticArea.title"></span>
+                    </label>
+                </div>
             </div>
-            <div class="clear"></div>
 
+
+            <div class="clear"></div>
         </div>
 
-        <div class="clear"></div>
-    </div>
-    -->
-
-</form>
+    </form>
 
 </div>
