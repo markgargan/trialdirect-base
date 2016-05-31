@@ -1,13 +1,60 @@
 <div class="row">
     <div class="col-xs-3">
 
+
         <div class="side-panel">
 
-            <form name="CreateTherapeuticArea" role="form" data-ng-submit="addTherapeuticArea(newTherapeuticArea, 1)">
+            <form name="CreateTherapeuticParent" role="form"
+                  data-ng-submit="addTherapeuticParent(newTherapeuticParent)">
+
+                <label for="inp_newTherapeuticParentInput" class="nav-header new-group-label">Add new Therapeutic
+                    Parent</label>
+                <div class="input-group add-new-group">
+
+                    <input id="inp_newTherapeuticParentInput" type="text" class="form-control"
+                           data-ng-model="newTherapeuticParent"
+                           placeholder="e.g. Cancer, Stroke, etc"/>
+
+                    <span class="input-group-btn">
+                      <button id="btn_addTherapeuticParent" class="btn btn-default" type="submit"
+                              data-ng-disabled="!newTherapeuticParent" title="Add">
+                          <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </span>
+                </div>
+            </form>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="side-panel">
+
+            <form name="CreateTherapeuticArea" role="form"
+                  data-ng-submit="addTherapeuticArea(newTherapeuticArea, newTherapeuticParent)">
 
                 <label for="inp_newTherapeuticAreaInput" class="nav-header new-group-label">Add new Therapeutic
-                    Area</label>
+                    Condition</label>
                 <div class="input-group add-new-group">
+
+                    <div data-ng-repeat="therapeuticParent in therapeuticParents">
+                        <label>
+                            <input type="radio"
+                                   id="inp_newTherapeuticAreaInput_{{therapeuticParent.id}}"
+                                   value="{{therapeuticParent.id}}" data-ng-value="{{therapeuticParent.id}}" data-ng-model="$parent.newTherapeuticParent">{{therapeuticParent.title}}
+                        </label>
+                    </div>
+
+                    <div class="clear"></div>
 
                     <input id="inp_newTherapeuticAreaInput" type="text" class="form-control"
                            data-ng-model="newTherapeuticArea"

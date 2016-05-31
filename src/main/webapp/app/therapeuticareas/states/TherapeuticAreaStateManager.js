@@ -18,7 +18,14 @@ angular.module('uiRouterSample.therapeuticarea', [
 
                                         // Initialise the query api and return all available Therapeutic Areas
                                         return TherapeuticAreaResourceService.load();
+                                    },
+
+                                    therapeuticParents: function (TherapeuticParentResourceService) {
+
+                                        // Initialise the query api and return all available Therapeutic Areas
+                                        return TherapeuticParentResourceService.load();
                                     }
+
                                 },
 
                                 controller: 'TherapeuticAreaController'
