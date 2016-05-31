@@ -150,6 +150,11 @@ div.list-answers {
   outline: 0;
   text-decoration: none; }
 
+.searchTabs .nav li > a {
+  -website-border-radius: 0.35em 0 0 0.35em;
+  -moz-border-radius: 0.35em 0 0 0.35em;
+  border-radius: 0.35em 0 0 0.35em; }
+
 .answers label.select-all input {
   position: relative;
   left: 5px;
@@ -1026,6 +1031,15 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   -webkit-border-radius: 0.35em;
   -moz-border-radius: 0.35em;
   border-radius: 0.35em; }
+
+.input-group-addon, .input-group-btn {
+  vertical-align: bottom !important; }
+
+button[disabled] {
+  cursor: not-allowed !important;
+  background-color: #eee !important;
+  opacity: 1 !important;
+  color: #999 !important; }
 
 @media screen and (max-width: 1200px) {
   .trialIntro span {

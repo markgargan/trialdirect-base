@@ -187,6 +187,10 @@ div.list-answers {
   text-decoration: none;
 }
 
+.searchTabs .nav li > a {
+  @include prefix(border-radius, .35em 0 0 .35em, website moz);
+}
+
 .answers label.select-all input {
   position: relative;
   left: 5px;
@@ -891,7 +895,7 @@ span {
   /*background-color: #eee;
   background-size: cover;
   background-position: center top;*/
-  background:#eee center top / cover;
+  background: #eee center top / cover;
   @include prefix(border-radius, 50%, webkit moz);
   @include prefix(box-shadow, 0 0 .15em #ccc, webkit moz);
 }
@@ -1106,7 +1110,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 .emulateUserNav li {
   /*display: block;*/
   padding: .25em 1em;
-/*  min-width: 12em;*/
+  /*  min-width: 12em;*/
   cursor: pointer;
   color: #c00;
 }
@@ -1118,7 +1122,7 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 .emulateUserNav li i {
   position: relative;
-/*  float: right;*/
+  /*  float: right;*/
   top: -1px;
 }
 
@@ -1160,6 +1164,16 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   @include prefix(border-radius, .35em, webkit moz);
 }
 
+.input-group-addon, .input-group-btn {
+  vertical-align: bottom !important;
+}
+
+button[disabled] {
+  cursor: not-allowed !important;
+  background-color: #eee !important;
+  opacity: 1 !important;
+  color: #999 !important;
+}
 
 @media screen and (max-width: 1200px) {
   .trialIntro span {

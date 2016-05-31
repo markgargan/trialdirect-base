@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-xs-5">
 
-                        <div class="">
+                        <div class="input-group">
 
                             <label for="inp_addNewTherapeuticParentInput">Name of Therapeutic Area</label>
                             <input id="inp_addNewTherapeuticParentInput" type="text" class="form-control"
@@ -38,7 +38,7 @@
                     <span class="input-group-btn">
                       <button id="btn_addTherapeuticParent" class="btn btn-default" type="submit"
                               data-ng-disabled="!addNewTherapeuticParent" title="Add">
-                          Add <span class="glyphicon glyphicon-plus"></span>
+                          <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     </span>
                         </div>
@@ -66,7 +66,7 @@
                     <form name="CreateTherapeuticArea" role="form"
                           data-ng-submit="addTherapeuticArea(newTherapeuticArea, newTherapeuticParent)">
 
-                        <div class="">
+
 
                             <!--<div data-ng-repeat="therapeuticParent in therapeuticParents">
                                 <label>
@@ -84,17 +84,17 @@
                             </select>
 
                             <div class="clear"></div>
-
-                            <label for="inp_newTherapeuticAreaInput" data-ng-hide="!newTherapeuticParent">Name of
+                        <div class="input-group">
+                            <label for="inp_newTherapeuticAreaInput">Name of
                                 Condition</label>
                             <input id="inp_newTherapeuticAreaInput" type="text" class="form-control"
-                                   data-ng-model="newTherapeuticArea" data-ng-hide="!newTherapeuticParent"
+                                   data-ng-model="newTherapeuticArea" data-ng-disabled="!newTherapeuticParent"
                                    placeholder="e.g. Cardiovascular"/>
 
                     <span class="input-group-btn">
                       <button id="btn_addTherapeuticArea" class="btn btn-default" type="submit"
-                              data-ng-hide="!newTherapeuticArea || !newTherapeuticParent" title="Add">
-                          Add <span class="glyphicon glyphicon-plus"></span>
+                              data-ng-disabled="!newTherapeuticArea || !newTherapeuticParent" title="Add">
+                            <span class="glyphicon glyphicon-plus"></span>
                       </button>
                     </span>
                         </div>
@@ -105,7 +105,10 @@
         </div>
 
 
+
         <div class="panelContent" data-ng-show="navPanel=='qa'">
+
+            <div class="col-xs-3">
             <ul class="nav nav-list">
                 <li class="nav-header">Therapeutic Area: Questionnaires</li>
 
@@ -118,13 +121,11 @@
                        id="lnk_therapeuticArea_{{therapeuticarea.sortOrder}}">{{therapeuticarea.title}}</a>
                 </li>
             </ul>
+            </div>
+
+            <!-- Our unnamed main ui-view for this template -->
+            <div data-ui-view class="" data-ng-show="navPanel=='qa'"></div>
         </div>
-
-        <!--</div>-->
-
-        <!-- Our unnamed main ui-view for this template -->
-        <div data-ui-view class="" data-ng-show="navPanel=='qa'"></div>
-        <!--</div>-->
 
 
     </div>
