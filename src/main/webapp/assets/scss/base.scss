@@ -25,6 +25,12 @@ body {
   @include prefix(transition, all .3s ease, webkit moz);
 }
 
+.no-home-banner {
+  display: block;
+  height: 5px;
+  background: #bcbebd;
+}
+
 /**
  Integration start
 **/
@@ -322,7 +328,7 @@ form a {
   display: block
 }
 
-input {
+input, select {
   display: block;
   border: 1px solid #ccc;
   width: 100%;
@@ -1086,21 +1092,21 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 .emulateUserNav {
   position: fixed;
   bottom: 0;
-  left: 7em;
+  left: 1em;
   font-size: .9em;
   z-index: 10;
-  background: #eee;
-  padding: 1em .5em;
-  border: 1px solid #ddd;
-  border-bottom: 0;
+  background: #fef;
+  padding: .5em 0 .4em;
+  /*border: 1px solid #ddd;
+  border-bottom: 0;*/
   @include prefix(border-radius, .25em .25em 0 0, webkit moz);
   @include prefix(user-select, none, webkit moz);
 }
 
 .emulateUserNav li {
-  display: block;
-  padding: .25em .75em;
-  min-width: 12em;
+  /*display: block;*/
+  padding: .25em 1em;
+/*  min-width: 12em;*/
   cursor: pointer;
   color: #c00;
 }
@@ -1112,8 +1118,8 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 .emulateUserNav li i {
   position: relative;
-  float: right;
-  top: 3px;
+/*  float: right;*/
+  top: -1px;
 }
 
 .emulateUserNavIcon i {
@@ -1131,6 +1137,10 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   width: 15%;
   text-align: right;
   margin: 7em 0 1em;
+}
+
+.searchTabs li {
+  cursor: pointer;
 }
 
 .searchContent {
