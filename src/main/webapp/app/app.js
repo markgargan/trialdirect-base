@@ -1,13 +1,14 @@
-angular.module('trialdirect', [
-    'uiRouterSample.therapeuticarea',
-    'uiRouterSample.trial',
-    'uiRouterSample.user',
-    'ngResource',
-    'spring-data-rest',
-    'ui.router',
-    'ngFileUpload',
-    'as.sortable'
-])
+angular.module(
+        'trialdirect', [
+        'uiRouterSample.therapeuticarea',
+        'uiRouterSample.trial',
+        'uiRouterSample.user',
+        'ngResource',
+        'spring-data-rest',
+        'ui.router',
+        'ngFileUpload',
+        'as.sortable'
+    ])
     .run(
         ['$rootScope', '$state', '$stateParams',
             function ($rootScope, $state, $stateParams) {
@@ -24,20 +25,27 @@ angular.module('trialdirect', [
 
             }
         ]
-    ).config(['$stateProvider', '$urlRouterProvider',
-    function ($stateProvider, $urlRouterProvider) {
+    )
+    .config(['$stateProvider', '$urlRouterProvider',
+        function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/therapeuticareas');
+        }
+    ])
 
-        $urlRouterProvider.otherwise('/therapeuticareas');
-    }]).filter('reverse', function () {
-    return function (items) {
-        return items.slice().reverse();
-    };
-}).controller("NavController", function ($scope) {
-    $scope.IsHidden = !1,
+    .filter('reverse', function () {
+        return function (items) {
+            return items.slice().reverse();
+        };
+    })
+
+    .controller("NavController", function ($scope) {
+        $scope.IsHidden = !1,
         $scope.ShowHide = function () {
             $scope.IsHidden = !$scope.IsHidden
         }
-});
+    });
+
+
 
 angular.isEmpty = function (obj) {
     return angular.isUndefined(obj) || obj == '';

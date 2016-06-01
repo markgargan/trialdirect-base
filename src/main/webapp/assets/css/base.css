@@ -552,11 +552,14 @@ td, th {
 .qa {
   display: block;
   clear: both;
-  padding: 1.5em 1em;
+  padding: 0 0 2.5em;
   position: relative;
   -webkit-border-radius: 0.3em;
   -moz-border-radius: 0.3em;
   border-radius: 0.3em; }
+
+.qa:last-of-type {
+  padding: 0; }
 
 .btn-remove-question {
   position: absolute;
@@ -981,6 +984,9 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   -moz-user-select: none;
   user-select: none; }
 
+.emulateUserNav b {
+  color: #000; }
+
 .emulateUserNav li {
   /*display: block;*/
   padding: .25em 1em;
@@ -1024,10 +1030,11 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 .panelContent {
   display: block;
   clear: both;
-  padding: 1em;
+  padding: 2em;
   background: #fff;
   border: 1px solid #eee;
   font-size: 1em;
+  min-height: 15em;
   -webkit-border-radius: 0.35em;
   -moz-border-radius: 0.35em;
   border-radius: 0.35em; }

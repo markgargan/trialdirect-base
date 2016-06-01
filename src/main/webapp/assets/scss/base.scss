@@ -661,9 +661,13 @@ td, th {
 .qa {
   display: block;
   clear: both;
-  padding: 1.5em 1em;
+  padding: 0 0 2.5em;
   position: relative;
   @include prefix(border-radius, .3em, webkit moz);
+}
+
+.qa:last-of-type {
+  padding: 0;
 }
 
 .btn-remove-question {
@@ -1107,6 +1111,10 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   @include prefix(user-select, none, webkit moz);
 }
 
+.emulateUserNav b {
+  color: #000
+}
+
 .emulateUserNav li {
   /*display: block;*/
   padding: .25em 1em;
@@ -1157,10 +1165,11 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 .panelContent {
   display: block;
   clear: both;
-  padding: 1em;
+  padding: 2em;
   background: #fff;
   border: 1px solid #eee;
   font-size: 1em;
+  min-height: 15em;
   @include prefix(border-radius, .35em, webkit moz);
 }
 

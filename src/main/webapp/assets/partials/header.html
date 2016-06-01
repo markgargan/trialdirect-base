@@ -1,5 +1,5 @@
 <header>
-    <div class="header" data-ng-controller="NavController" ng-init="navUserType = 'hcp'; showNavUserType=false">
+    <div class="header" data-ng-controller="NavController" ng-init="navUserType='hcp'; showNavUserType=false">
 
 
         <!-- // DEMO Nav Toggle, to emulate Navigation by User Type -->
@@ -10,7 +10,7 @@
         </div>-->
         <div class="emulateUserNav"> <!--data-ng-show="showNavUserType"-->
             <ul>
-                <li><b style="color:#000">User Type</b></li>
+                <li><b>User Type</b></li>
                 <li data-ng-click="navUserType='sa'">SuperAdmin <i class="fa fa-check" data-ng-show="navUserType=='sa'"></i></li>
                 <li data-ng-click="navUserType='qa'">Q&amp;A Admin <i class="fa fa-check" data-ng-show="navUserType=='qa'"></i></li>
                 <li data-ng-click="navUserType='to'">Trial Owner <i class="fa fa-check" data-ng-show="navUserType=='to'"></i></li>

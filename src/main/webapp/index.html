@@ -59,9 +59,7 @@
     <div class="limiter">
         <div class="view-container">
 
-            <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-12"
-                 ui-view="viewA"></div>
-
+            <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-12" ui-view="viewA"></div>
             <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewA"></div>
             <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewB"></div>
 
