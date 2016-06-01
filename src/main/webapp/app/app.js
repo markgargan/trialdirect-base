@@ -1,5 +1,7 @@
 angular.module(
         'trialdirect', [
+        'uiRouterSample.about',
+        'uiRouterSample.help',
         'uiRouterSample.therapeuticarea',
         'uiRouterSample.trial',
         'uiRouterSample.user',

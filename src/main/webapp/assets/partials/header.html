@@ -79,8 +79,10 @@
                     <li data-ng-show="navUserType=='sa' || navUserType=='qa'"  ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
                     <li data-ng-show="navUserType=='sa' || navUserType=='to'" ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.create">Manage Trials</a></li>
                     <li data-ng-show="navUserType=='hcp'" data-ng-class="{active: $state.includes('users')}"><a ui-sref="users.list">Search for Clinical Trials</a></li>
-                    <li data-ng-show="navUserType=='hcp'"><a href="#/about-clinical-trials">About Clinical Trials</a></li>
-                    <li data-ng-show="navUserType=='hcp'"><a href="#/help">Help</a></li>
+                    <li data-ng-show="navUserType=='hcp'" data-ng-class="{active: $state.includes('about')}"><a data-ui-sref="about">About Trial Direct</a></li>
+                    <li data-ng-show="navUserType=='hcp'" data-ng-class="{active: $state.includes('help')}"><a data-ui-sref="help">Help</a></li>
+
+
                 </ul>
             </div>
         </div>

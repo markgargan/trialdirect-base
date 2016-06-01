@@ -1162,6 +1162,11 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   margin: 2em 0;
 }
 
+.mainContent {
+  display: block;
+  margin: 2em 0;
+}
+
 .panelContent {
   display: block;
   clear: both;
@@ -1171,6 +1176,13 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   font-size: 1em;
   min-height: 15em;
   @include prefix(border-radius, .35em, webkit moz);
+}
+
+.panelClear {
+  display: block;
+  clear: both;
+  height:1px;
+  margin: 1em;
 }
 
 .input-group-addon, .input-group-btn {
