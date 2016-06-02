@@ -1258,6 +1258,9 @@ ul.steps li span {
 
 @media screen and (max-width: 900px) {
 
+  .no-home-banner {
+    display: none;
+  }
   .trialInfo, .trialIntro, .trialLocation, .trialResults, .trialRight, .trialSearch {
     float: none;
     width: auto;
@@ -1336,9 +1339,8 @@ ul.steps li span {
   }
 
   .headerPanel {
-    padding: 10px 0 0;
     width: 100%;
-    border-top: 3px solid #00857f;
+    /*border-top: 3px solid #00857f;*/
     @include prefix(transition, all .2s ease, webkit moz);
   }
 }

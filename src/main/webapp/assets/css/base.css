@@ -1179,6 +1179,9 @@ ul.steps li span {
   .home-banner {
     height: 225px; } }
 @media screen and (max-width: 900px) {
+  .no-home-banner {
+    display: none; }
+
   .trialInfo, .trialIntro, .trialLocation, .trialResults, .trialRight, .trialSearch {
     float: none;
     width: auto;
@@ -1242,9 +1245,8 @@ ul.steps li span {
     min-width: 16em; }
 
   .headerPanel {
-    padding: 10px 0 0;
     width: 100%;
-    border-top: 3px solid #00857f;
+    /*border-top: 3px solid #00857f;*/
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     transition: all 0.2s ease; } }
