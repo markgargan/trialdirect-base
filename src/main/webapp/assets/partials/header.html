@@ -1,16 +1,16 @@
 <header>
-    <div class="header" data-ng-controller="NavController" ng-init="navUserType = 'hcp'; showNavUserType=false">
+    <div class="header" data-ng-controller="NavController" ng-init="navUserType='hcp'; showNavUserType=false">
 
 
         <!-- // DEMO Nav Toggle, to emulate Navigation by User Type -->
         <!-- FOR TEST & DEV ONLY, WILL NEED TO BE REMOVED (or auto-excluded) FROM LIVE WEBSITE -->
-        <div class="emulateUserNavIcon">
+        <!--<div class="emulateUserNavIcon">
             <i class="fa fa-chevron-down" data-ng-show="showNavUserType" data-ng-click="showNavUserType=false"></i>
             <i class="fa fa-chevron-up" data-ng-hide="showNavUserType" data-ng-click="showNavUserType=true"></i>
-        </div>
-        <div class="emulateUserNav" data-ng-show="showNavUserType">
+        </div>-->
+        <div class="emulateUserNav"> <!--data-ng-show="showNavUserType"-->
             <ul>
-                <li><b style="color:#000">User Type</b></li>
+                <li><b>User Type</b></li>
                 <li data-ng-click="navUserType='sa'">SuperAdmin <i class="fa fa-check" data-ng-show="navUserType=='sa'"></i></li>
                 <li data-ng-click="navUserType='qa'">Q&amp;A Admin <i class="fa fa-check" data-ng-show="navUserType=='qa'"></i></li>
                 <li data-ng-click="navUserType='to'">Trial Owner <i class="fa fa-check" data-ng-show="navUserType=='to'"></i></li>
@@ -79,8 +79,10 @@
                     <li data-ng-show="navUserType=='sa' || navUserType=='qa'"  ng-class="{active: $state.includes('therapeuticAreas')}"><a ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
                     <li data-ng-show="navUserType=='sa' || navUserType=='to'" ng-class="{active: $state.includes('trials')}"><a ui-sref="trials.create">Manage Trials</a></li>
                     <li data-ng-show="navUserType=='hcp'" data-ng-class="{active: $state.includes('users')}"><a ui-sref="users.list">Search for Clinical Trials</a></li>
-                    <li data-ng-show="navUserType=='hcp'"><a href="#/about-clinical-trials">About Clinical Trials</a></li>
-                    <li data-ng-show="navUserType=='hcp'"><a href="#/help">Help</a></li>
+                    <li data-ng-show="navUserType=='hcp'" data-ng-class="{active: $state.includes('about')}"><a data-ui-sref="about">About Trial Direct</a></li>
+                    <li data-ng-show="navUserType=='hcp'" data-ng-class="{active: $state.includes('help')}"><a data-ui-sref="help">Help</a></li>
+
+
                 </ul>
             </div>
         </div>
@@ -89,5 +91,6 @@
     </div>
 
 
-    <div class="home-banner"></div>
+    <div class="no-home-banner"></div>
+    <!--<div class="home-banner"></div>-->
 </header>

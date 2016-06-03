@@ -59,11 +59,9 @@
     <div class="limiter">
         <div class="view-container">
 
-            <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-12"
-                 ui-view="viewA"></div>
-
-            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewA"></div>
-            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewB"></div>
+            <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col12" ui-view="viewA"></div>
+            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col6" ui-view="viewA"></div>
+            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col6" ui-view="viewB"></div>
 
         </div>
     </div>
@@ -105,6 +103,9 @@
 <script type="text/javascript" src="./app/common/services/AnswerService.js"></script>
 <script type="text/javascript" src="./app/common/services/QuestionnaireEntryResourceService.js"></script>
 
+<script type="text/javascript" src="app/home/states/HomeStateManager.js"></script>
+<script type="text/javascript" src="app/help/states/HelpStateManager.js"></script>
+<script type="text/javascript" src="app/about/states/AboutStateManager.js"></script>
 
 <!-- TherapeuticAreas start -->
 <script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaController.js"></script>

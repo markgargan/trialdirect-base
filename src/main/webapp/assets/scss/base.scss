@@ -4,6 +4,7 @@ CSS files should be edited/created via the assets/scss folder, and compiled usin
 */
 @import 'vars.scss';
 @import 'mixins.scss';
+@import 'common.scss';
 
 *, *:before, *:after {
   @include prefix(box-sizing, border-box, webkit moz);
@@ -23,6 +24,12 @@ body {
   height: 250px;
   background: #bcbebd url('../images/banner-home.jpg') no-repeat center center / auto 100%;
   @include prefix(transition, all .3s ease, webkit moz);
+}
+
+.no-home-banner {
+  display: block;
+  height: 5px;
+  background: #bcbebd;
 }
 
 /**
@@ -181,6 +188,10 @@ div.list-answers {
   text-decoration: none;
 }
 
+.searchTabs .nav li > a {
+  @include prefix(border-radius, .35em 0 0 .35em, website moz);
+}
+
 .answers label.select-all input {
   position: relative;
   left: 5px;
@@ -242,11 +253,23 @@ hr, span.br {
   clear: both
 }
 
-.float-left {
+.align-left, .all {
+  text-align: left;
+}
+
+.align-right, .alr {
+  text-align: right;
+}
+
+.align-center, .alc {
+  text-align: center;
+}
+
+.float-left, .fll {
   float: left;
 }
 
-.float-right {
+.float-right, .flr {
   float: right;
 }
 
@@ -322,7 +345,7 @@ form a {
   display: block
 }
 
-input {
+input, select {
   display: block;
   border: 1px solid #ccc;
   width: 100%;
@@ -651,9 +674,13 @@ td, th {
 .qa {
   display: block;
   clear: both;
-  padding: 1.5em 1em;
+  padding: 0 0 2.5em;
   position: relative;
   @include prefix(border-radius, .3em, webkit moz);
+}
+
+.qa:last-of-type {
+  padding: 0;
 }
 
 .btn-remove-question {
@@ -885,7 +912,7 @@ span {
   /*background-color: #eee;
   background-size: cover;
   background-position: center top;*/
-  background:#eee center top / cover;
+  background: #eee center top / cover;
   @include prefix(border-radius, 50%, webkit moz);
   @include prefix(box-shadow, 0 0 .15em #ccc, webkit moz);
 }
@@ -1086,21 +1113,25 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 .emulateUserNav {
   position: fixed;
   bottom: 0;
-  left: 7em;
+  left: 1em;
   font-size: .9em;
   z-index: 10;
-  background: #eee;
-  padding: 1em .5em;
-  border: 1px solid #ddd;
-  border-bottom: 0;
+  background: #fef;
+  padding: .5em 0 .4em;
+  /*border: 1px solid #ddd;
+  border-bottom: 0;*/
   @include prefix(border-radius, .25em .25em 0 0, webkit moz);
   @include prefix(user-select, none, webkit moz);
 }
 
+.emulateUserNav b {
+  color: #000
+}
+
 .emulateUserNav li {
-  display: block;
-  padding: .25em .75em;
-  min-width: 12em;
+  /*display: block;*/
+  padding: .25em 1em;
+  /*  min-width: 12em;*/
   cursor: pointer;
   color: #c00;
 }
@@ -1112,8 +1143,8 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 .emulateUserNav li i {
   position: relative;
-  float: right;
-  top: 3px;
+  /*  float: right;*/
+  top: -1px;
 }
 
 .emulateUserNavIcon i {
@@ -1133,10 +1164,19 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   margin: 7em 0 1em;
 }
 
+.searchTabs li {
+  cursor: pointer;
+}
+
 .searchContent {
   display: block;
   float: right;
   width: 85%;
+  margin: 2em 0;
+}
+
+.mainContent {
+  display: block;
   margin: 2em 0;
 }
 
@@ -1147,9 +1187,58 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   background: #fff;
   border: 1px solid #eee;
   font-size: 1em;
+  min-height: 15em;
+  margin-bottom: 2em;
   @include prefix(border-radius, .35em, webkit moz);
 }
 
+.panelClear {
+  display: block;
+  clear: both;
+  height: 1px;
+  margin: 1em;
+}
+
+.input-group-addon, .input-group-btn {
+  vertical-align: bottom !important;
+}
+
+button[disabled] {
+  cursor: not-allowed !important;
+  background-color: #eee !important;
+  opacity: 1 !important;
+  color: #999 !important;
+}
+
+ul.steps li {
+  display: block;
+  float: left;
+  width: 19%;
+  margin: 0 .5%;
+  border-radius: .5em;
+  text-align: center;
+}
+
+ul.steps li strong {
+  display: block;
+  background: #fff;
+  width: 3em;
+  padding: 1em;
+  text-align: center;
+  border-radius: 50%;
+  clear: left;
+  margin: .25em auto;
+  font-size: 2em;
+  height: 3em;
+  line-height: .9em;
+  color: #128474;
+  box-shadow: 0 0 1em #ddd inset;
+  border: 1px solid rgba(0,0,0,.05);
+}
+
+ul.steps li span {
+  display: block;
+}
 
 @media screen and (max-width: 1200px) {
   .trialIntro span {
@@ -1169,6 +1258,9 @@ textarea.ng-invalid, textarea.ng-invalid-required {
 
 @media screen and (max-width: 900px) {
 
+  .no-home-banner {
+    display: none;
+  }
   .trialInfo, .trialIntro, .trialLocation, .trialResults, .trialRight, .trialSearch {
     float: none;
     width: auto;
@@ -1247,9 +1339,8 @@ textarea.ng-invalid, textarea.ng-invalid-required {
   }
 
   .headerPanel {
-    padding: 10px 0 0;
     width: 100%;
-    border-top: 3px solid #00857f;
+    /*border-top: 3px solid #00857f;*/
     @include prefix(transition, all .2s ease, webkit moz);
   }
 }

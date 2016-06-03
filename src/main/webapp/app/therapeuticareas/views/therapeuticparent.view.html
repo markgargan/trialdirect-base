@@ -1,0 +1,39 @@
+<h3>Add new Therapeutic Area</h3>
+
+<div class="panelContent">
+
+    <form name="CreateTherapeuticParent" role="form"
+          data-ng-submit="addTherapeuticParent(addNewTherapeuticParent)">
+
+        <div class="row">
+            <div class="col-xs-5">
+
+                <div class="input-group">
+
+                    <label for="inp_addNewTherapeuticParentInput">Name of Therapeutic Area</label>
+                    <input id="inp_addNewTherapeuticParentInput" type="text" class="form-control"
+                           data-ng-model="addNewTherapeuticParent"
+                           placeholder="e.g. Cancer, Stroke, etc"/>
+
+                    <span class="input-group-btn">
+                      <button id="btn_addTherapeuticParent" class="btn btn-default" type="submit"
+                              data-ng-disabled="!addNewTherapeuticParent" title="Add">
+                          <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <br>
+        <p><strong>List of Therapeutic Areas</strong></p>
+        <ul>
+            <li data-ng-repeat="therapeuticParent in therapeuticParents | orderBy: 'title'">
+                {{therapeuticParent.title}}<br></li>
+        </ul>
+
+    </form>
+
+</div>

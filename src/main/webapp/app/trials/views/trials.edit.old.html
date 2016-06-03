@@ -1,7 +1,7 @@
 <div class="col-xs-9">
 
     <div>
-        <h2 style="display:inline-block">{{trial.title}}</h2>
+        <h2>{{trial.title}}</h2>
         <span class="trial-edit-buttons answers">
             <label for="input_save_trial">
                 <input id="input_save_trial" type="radio" checked=checked data-ng-click="uploadTrial(trial)">
@@ -163,7 +163,7 @@
                     <label for="trialInfo-description">Full Description</label>
                     <span>
                         <textarea id="trialInfo-description" name="trialInfo-description"
-                                  data-ng-model="trialInfo.summary" style="min-height: 25em" required>
+                                  data-ng-model="trialInfo.summary" required>
                         </textarea>
                     </span>
                 </div>

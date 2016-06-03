@@ -1,0 +1,44 @@
+<h3>Add new Condition</h3>
+
+<div class="panelContent">
+
+    <div class="row">
+        <div class="col-xs-5">
+            <form name="CreateTherapeuticArea" role="form"
+                  data-ng-submit="addTherapeuticArea(newTherapeuticArea, newTherapeuticParent)">
+
+
+                <!--<div data-ng-repeat="therapeuticParent in therapeuticParents">
+                    <label>
+                        <input type="radio"
+                               id="inp_newTherapeuticAreaInput_{{therapeuticParent.id}}"
+                               value="{{therapeuticParent.id}}" data-ng-value="{{therapeuticParent.id}}"
+                               data-ng-model="$parent.newTherapeuticParent">{{therapeuticParent.title}}
+                    </label>
+                </div>-->
+
+                <label for="inp_newTherapeuticAreaParent">Main Therapeutic Area?</label>
+                <select id="inp_newTherapeuticAreaParent" ng-model="$parent.newTherapeuticParent"
+                        ng-options="therapeuticParent.id as therapeuticParent.title for therapeuticParent in therapeuticParents | orderBy: 'title'">
+                    <option value="">Select Option</option>
+                </select>
+
+                <div class="clear"></div>
+                <div class="input-group">
+                    <label for="inp_newTherapeuticAreaInput">Condition Name</label>
+                    <input id="inp_newTherapeuticAreaInput" type="text" class="form-control"
+                           data-ng-model="newTherapeuticArea" data-ng-disabled="!newTherapeuticParent"
+                           placeholder="e.g. Cardiovascular"/>
+
+                    <span class="input-group-btn">
+                      <button id="btn_addTherapeuticArea" class="btn btn-default" type="submit"
+                              data-ng-disabled="!newTherapeuticArea || !newTherapeuticParent" title="Add">
+                            <span class="glyphicon glyphicon-plus"></span>
+                      </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
