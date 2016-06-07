@@ -16,7 +16,7 @@ CSS files should be edited/created via the assets/scss folder, and compiled usin
 .col33, .col66 {
   display: block;
   float: left;
-  padding: 0 10px; }
+  padding: 0 5px; }
 
 /* columns :: bootstrap style, grid-based */
 .col1 {
@@ -1167,6 +1167,10 @@ ul.steps li strong {
 
 ul.steps li span {
   display: block; }
+
+.formItem {
+  display: block;
+  padding-bottom: 1.5em; }
 
 @media screen and (max-width: 1200px) {
   .trialIntro span {

@@ -1240,6 +1240,11 @@ ul.steps li span {
   display: block;
 }
 
+.formItem {
+  display: block;
+  padding-bottom: 1.5em;
+}
+
 @media screen and (max-width: 1200px) {
   .trialIntro span {
     height: 5em;
