@@ -249,7 +249,8 @@ hr, span.br {
 
 }
 
-.clear, form a, hr, p.distance {
+.clear, hr, p.distance /*, form a,*/
+{
   clear: both
 }
 
@@ -329,8 +330,15 @@ hr {
 
 button, input, label, textarea {
   font-family: inherit;
-  font-size: inherit
+  font-size: inherit;
 }
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+  height: 34px !important;
+}
+
 
 form {
   margin: 0;
@@ -341,9 +349,9 @@ form.small, form.wide {
   display: block
 }
 
-form a {
+/*form a {
   display: block
-}
+}*/
 
 input, select {
   display: block;
@@ -726,7 +734,7 @@ td, th {
   padding: 1em;
   border: 1px solid #eee;
   position: relative;
-  margin-top: 2em;
+  margin-bottom: 3em;
   background: #fff;
   @include prefix(border-radius, .4em, webkit moz);
 }
@@ -1233,7 +1241,7 @@ ul.steps li strong {
   line-height: .9em;
   color: #128474;
   box-shadow: 0 0 1em #ddd inset;
-  border: 1px solid rgba(0,0,0,.05);
+  border: 1px solid rgba(0, 0, 0, .05);
 }
 
 ul.steps li span {
@@ -1242,7 +1250,7 @@ ul.steps li span {
 
 .formItem {
   display: block;
-  padding-bottom: 1.5em;
+  padding-bottom: 1em;
 }
 
 @media screen and (max-width: 1200px) {

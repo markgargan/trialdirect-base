@@ -270,7 +270,7 @@ hr, img {
 hr, span.br {
   display: block; }
 
-.clear, form a, hr, p.distance {
+.clear, hr, p.distance {
   clear: both; }
 
 .align-left, .all {
@@ -334,6 +334,12 @@ button, input, label, textarea {
   font-family: inherit;
   font-size: inherit; }
 
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+  height: 34px !important; }
+
 form {
   margin: 0; }
 
@@ -341,9 +347,9 @@ form.small, form.wide {
   margin: auto;
   display: block; }
 
-form a {
-  display: block; }
-
+/*form a {
+  display: block
+}*/
 input, select {
   display: block;
   border: 1px solid #ccc;
@@ -692,7 +698,7 @@ td, th {
   padding: 1em;
   border: 1px solid #eee;
   position: relative;
-  margin-top: 2em;
+  margin-bottom: 3em;
   background: #fff;
   -webkit-border-radius: 0.4em;
   -moz-border-radius: 0.4em;
@@ -1170,7 +1176,7 @@ ul.steps li span {
 
 .formItem {
   display: block;
-  padding-bottom: 1.5em; }
+  padding-bottom: 1em; }
 
 @media screen and (max-width: 1200px) {
   .trialIntro span {
