@@ -29,9 +29,11 @@
     <link rel="stylesheet" type="text/css" href="assets/css/ng-sortable.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/ng-sortable.style.min.css">
 
-    <link rel="stylesheet" type="text/css" href="assets/css/base.css">
+
     <link rel="stylesheet" type="text/css" href="assets/css/file-upload.css">
     <link rel="stylesheet" href="./assets/css/style.css"/>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/base.css">
 
     <style type="text/css">@charset "UTF-8";
     [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
@@ -51,24 +53,17 @@
     }</style>
 
 </head>
-
-<div data-ng-include="'assets/partials/navAdmin.html'"></div>
-
-<div data-ng-include="'assets/partials/header.html'"></div>
-
 <body data-pinterest-extension-installed="cr1.39.1">
 
-<a href="#top" style="display: none;"><i class="fa fa-angle-double-up fa-2x"></i><span>Back To Top</span></a>
+<div data-ng-include="'assets/partials/header.html'"></div>
 
 <main class="trial-direct">
     <div class="limiter">
         <div class="view-container">
 
-            <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-xs-12"
-                 ui-view="viewA"></div>
-
-            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewA"></div>
-            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-xs-6" ui-view="viewB"></div>
+            <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col12" ui-view="viewA"></div>
+            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col6" ui-view="viewA"></div>
+            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col6" ui-view="viewB"></div>
 
         </div>
     </div>
@@ -110,12 +105,20 @@
 <script type="text/javascript" src="./app/common/services/AnswerService.js"></script>
 <script type="text/javascript" src="./app/common/services/QuestionnaireEntryResourceService.js"></script>
 
+<script type="text/javascript" src="./app/home/states/HomeStateManager.js"></script>
+<script type="text/javascript" src="./app/login/states/LoginStateManager.js"></script>
+<script type="text/javascript" src="./app/logout/states/LogoutStateManager.js"></script>
+<script type="text/javascript" src="./app/register/states/RegisterStateManager.js"></script>
+<script type="text/javascript" src="./app/help/states/HelpStateManager.js"></script>
+<script type="text/javascript" src="./app/about/states/AboutStateManager.js"></script>
+<script type="text/javascript" src="./app/profile/states/ProfileStateManager.js"></script>
 
 <!-- TherapeuticAreas start -->
 <script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaController.js"></script>
 <script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaEditController.js"></script>
 <script type="text/javascript" src="app/therapeuticareas/states/TherapeuticAreaStateManager.js"></script>
 <script type="text/javascript" src="app/therapeuticareas/services/TherapeuticAreaResourceService.js"></script>
+<script type="text/javascript" src="app/therapeuticareas/services/TherapeuticParentResourceService.js"></script>
 <!-- TherapeuticAreas end -->
 
 <!-- Trials start -->
@@ -154,7 +157,7 @@
 
 
 <!-- File end -->
-
+<a href="#top" style="display: none;"><i class="fa fa-angle-double-up fa-2x"></i><span>Back To Top</span></a>
 </body>
 
 </html>

@@ -1,163 +1,183 @@
 <!-- ngView:  -->
 <div data-autoscroll="true" class="view-frame">
-	<form class="wide">
-
-		<div class="trialSearch" data-ng-hide="trialData">
-
-			<div class="" style="float:left">
-				<h3>Refine Search Results</h3>
-			</div>
-
-			<div class="trialRight" style="float:right" data-ng-hide="showList">
-				<div class="trialCount"><p>Trials Available: <span data-ng-bind="availableTrialIds.length"></span></p>
-				</div>
-			</div>
-
-			<div class="setArea">
-				<p>Find clinical trials for: <strong>{{user.therapeuticArea.title}}</strong></p>
-			</div>
-
-			<div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
-				<div class="question">
-					<p data-ng-bind="questionnaireEntry.question.questionText"></p>
-					<div class="clear"></div>
-				</div>
-				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
-					<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
-						<input id="inp_answer_{{answer.sortOrder}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
-							   data-ng-model="answer.isSelected"/>
-						<span data-ng-bind="answer.answerText"></span>
-					</label>
-				</div>
-
-				<div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
-					<div class="option-list">
-						<label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
-							<input id="inp_answer_{{answer.sortOrder}}" type="checkbox" data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
-								   data-ng-model="answer.isSelected"/>
-							<span data-ng-bind="answer.answerText"></span>
-						</label>
-					</div>
-				</div>
-
-				<div class="clear"></div>
-
-			</div>
-		</div>
 
 
-		<div class="clear"></div>
+    <form class="wide">
 
 
+        <!-- Refine Search Options // Questionnaire -->
+
+        <div class="trialSearch" data-ng-hide="trialData">
+            <h3 class="float-left">Refine Search</h3>
+            <h3 class="trialArea float-right">{{user.therapeuticArea.title}}</h3>
+
+            <div class="panelContent">
+
+                <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
+                    <div class="question">
+                        <p data-ng-bind="questionnaireEntry.	question.questionText"></p>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
+                            <input id="inp_answer_{{answer.sortOrder}}" type="checkbox"
+                                   data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+                                   data-ng-model="answer.isSelected"/>
+                            <span data-ng-bind="answer.answerText"></span>
+                        </label>
+                    </div>
+
+                    <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                        <div class="option-list">
+                            <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
+                                <input id="inp_answer_{{answer.sortOrder}}" type="checkbox"
+                                       data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
+                                       data-ng-model="answer.isSelected"/>
+                                <span data-ng-bind="answer.answerText"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+            </div>
+        </div>
 
 
+        <!-- Display Result Count -->
+
+        <div class="trialCount" data-ng-hide="trialData">
+            <p>We have found <span class="trialTotal" data-ng-bind="availableTrialIds.length"></span> clinical trials
+            </p>
+        </div>
 
 
+        <!-- Display Result List -->
 
-		<div class="trialDataInfo" data-ng-show="trialData">
+        <div class="trialResults" data-ng-hide="trialData">
 
+            <h3>Search Results for: {{user.therapeuticArea.title}}</h3>
 
-			<div class="clear"></div>
+            <div class="trialList">
 
-			<h3>About The Trial</h3>
-			<p><strong>{{trialData.summary}}</strong></p>
+                <div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
+                    <ul>
+                        <li class="trialImage"><img data-ng-src="/trialInfoImage/{{trial.id}}"></li>
+                        <li class="trialBrief">{{trial.summary +' '+ trial.trialFullDescription.fullDescription |
+                            limitTo:400}}...
+                        </li>
+                        <li class="trialLink"><i class="fa fa-2x fa-chevron-right"></i></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
 
-			<p data-ng-show="trialData.trialFullDescription.fullDescription"
-			   data-ng-repeat="value in trialData.trialFullDescription.fullDescription | newlines">
-				<span data-ng-bind="value"></span>
-			</p>
-
-			<div class="clear"></div>
-
-
-
-			<div class="trialLeadersContainer"  data-ng-repeat="site in trialData.trialSites._embeddedItems | orderBy:'id'" data-ng-click="toggleBio(site, trialData)" data-ng-show="site.showBio">
-
-				<h3>{{site.facilityName}}</h3>
-
-					<div class="trialLeaderBio">
-						<p>
-							<strong>{{site.facilityName}}</strong><br>
-							{{site.trialDirectAddress.address1}}
-							{{site.trialDirectAddress.address2}}
-							{{site.trialDirectAddress.address3}}
-							{{site.trialDirectAddress.address4}}
-							{{site.trialDirectAddress.address5}}
-						</p>
-						<p ng-bind="site.facilityDescription"></p>
-						<div class="clear"></div>
-					</div>
-
-					<div class="trialSiteLocation">
-						<iframe width="100%" height="250" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
-					</div>
-
-					<div class="clear"></div>
+            </div>
+        </div>
 
 
-			</div>
+        <div class="trialDataInfo" data-ng-show="trialData">
 
 
+            <!-- Trial Summary -->
 
-			<div class="trialLeadersContainer">
+            <div class="aboutTrial">
+                <h3>About The Trial</h3>
 
+                <div class="panelContent aboutTrialDesc">
 
-				<h3 class="float-left">Trial Sites</h3>
-				<div class="float-right">
-					<input id="inp_search" style="margin:.5em 0" type="text" data-ng-model="search" placeholder="Trial Site Search...">
-				</div>
-
-				<div class="clear"></div>
-
-				<div class="trialLeaderList">
+                    <p><strong>{{trialData.summary}}</strong></p>
 
 
-					<div class="trialLeader" data-ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search" data-ng-click="toggleBio(trialSite, trialData)">
+                    <p data-ng-show="trialData.trialFullDescription.fullDescription"
+                       data-ng-repeat="value in trialData.trialFullDescription.fullDescription | newlines">
+                        <span data-ng-bind="value"></span>
+                    </p>
 
-						<p>
+                    <div class="clear"></div>
 
-							<strong>{{trialSite.facilityName}}</strong><br>
-							<small>
-								<span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
-								<span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
-								<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
-								<span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address4}}, </span>
-								<span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
-								<span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span>
-							</small>
-						</p>
-
-						<div class="clear"></div>
-					</div>
-					<div class="clear"></div>
-
-				</div>
-
-			</div>
+                </div>
+            </div>
 
 
-		</div>
+            <!-- Trial Site List -->
+            <div class="trialLeadersContainer">
+
+                <h3 class="float-left">Trial Sites</h3>
+
+                <div class="float-right">
+                    <input id="inp_search" style="margin:.5em 0" type="text" data-ng-model="search"
+                           placeholder="Trial Site Search...">
+                </div>
+
+                <div class="panelContent trialLeaderList">
+
+                    <div class="trialLeader"
+                         data-ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search"
+                         data-ng-click="toggleBio(trialSite, trialData)">
+
+                        <div class="updown" style="float:right;color:#ccc">
+                            <i class="fa fa-2x fa-chevron-down" data-ng-hide="trialSite.showBio"></i>
+                            <i class="fa fa-2x fa-chevron-up" data-ng-show="trialSite.showBio" style="color:#999"></i>
+                        </div>
+
+                        <p>
+                            <strong>{{trialSite.facilityName}}</strong><br>
+
+                            <span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
+                            <span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
+                            <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
+                            <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address4}}, </span>
+                            <span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
+                            <span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span><br>
+                            <i class="fa fa-map-marker"></i> XXX Miles away
+
+                        </p>
+
+                        <div class="clear"></div>
 
 
+                        <div class="trialSiteExpand" data-ng-show="trialSite.showBio">
+
+                            <div class="panelContent">
+
+                                <div class="trialLeaderBio">
+
+                                    <a href="/" class="refer">Refer your Patient to this facility</a>
+
+                                    <p ng-bind="trialSite.facilityDescription"></p>
+
+                                    <p style="display: block; text-align: center; padding:1em 0;"><i
+                                            class="fa fa-map-marker fa-2x" style="position:relative;top:.15em"></i> This
+                                        facility is XXX Miles away</p>
 
 
+                                </div>
 
-		<div class="trialResults trialRight">
-			<div class="trialList">
+                                <div class="trialSiteLocation">
+                                    <iframe width="100%" height="250" frameborder="0" style="border:0"
+                                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
+                                </div>
 
-				<div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
-					<ul>
-						<li class="trialImage"><img data-ng-src="/trialInfoImage/{{trial.id}}"></li>
-						<li class="trialBrief">{{trial.summary +' '+ trial.trialFullDescription.fullDescription | limitTo:300}}...</li>
-						<li class="trialLink"><i class="fa fa-2x fa-chevron-right"></i></li>
-					</ul>
-					<div class="clear"></div>
-				</div>
+                                <div class="clear"></div>
 
-			</div>
-		</div>
-	</form>
-	<div class="clear"></div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </form>
+    <div class="clear"></div>
 </div>
 
 

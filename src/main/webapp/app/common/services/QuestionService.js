@@ -33,7 +33,7 @@ angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapt
                     };
                 }
 
-                question.getHrefLink = function() {
+                question.getHrefLink = function () {
                     return question._links.self.href;
                 };
 
@@ -42,7 +42,7 @@ angular.module('trialdirect').factory('Question', ['$http', 'SpringDataRestAdapt
 
             Question.initialize = function () {
                 var deferred = $http.get(HATEOAS_URL);
-                return SpringDataRestAdapter.process( deferred ).then(function (data) {
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
                     Question.resources = data._resources("self");
 
                 });

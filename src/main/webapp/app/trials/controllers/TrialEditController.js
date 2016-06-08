@@ -13,11 +13,11 @@ angular.module('trialdirect').controller('TrialEditController',
             // Previously saved TrialInfo objects
             // must have had an image saved along with them
             // or validation wouldn't have passed.
-            $scope.trialInfo.hasUploadedImage=true;
-            $scope.trialInfo.needsImageUpload=false;
+            $scope.trialInfo.hasUploadedImage = true;
+            $scope.trialInfo.needsImageUpload = false;
 
             if (angular.isDefined($scope.trialInfo.trialSites)) {
-                angular.forEach($scope.trialInfo.trialSites._embeddedItems, function(trialSite) {
+                angular.forEach($scope.trialInfo.trialSites._embeddedItems, function (trialSite) {
                     trialSite.hasUploadedImage = true;
                     trialSite.needsImageUpload = false;
                 });
@@ -66,20 +66,20 @@ angular.module('trialdirect').controller('TrialEditController',
             });
 
             $scope.setEditing = function (isEditing) {
-                $scope.trialTitle = $scope.trial.title + (isEditing?' *':'');
+                $scope.trialTitle = $scope.trial.title + (isEditing ? ' *' : '');
                 $scope.isEditing = isEditing;
             };
 
-            $scope.resetUploadedImage = function() {
+            $scope.resetUploadedImage = function () {
                 $scope.trial.trialInfo.trialLogoPic = null;
-                $scope.trial.trialInfo.needsImageUpload=true;
-                $scope.trial.trialInfo.hasUploadedImage=false;
+                $scope.trial.trialInfo.needsImageUpload = true;
+                $scope.trial.trialInfo.hasUploadedImage = false;
             };
 
-            $scope.resetUploadedTrialSiteImage = function(trialSite) {
+            $scope.resetUploadedTrialSiteImage = function (trialSite) {
                 trialSite.sitePic = null;
-                trialSite.needsImageUpload=true;
-                trialSite.hasUploadedImage=false;
+                trialSite.needsImageUpload = true;
+                trialSite.hasUploadedImage = false;
             };
 
             $scope.toggleTrialInfoImage = function () {
@@ -95,7 +95,7 @@ angular.module('trialdirect').controller('TrialEditController',
                 var valid = $scope.validateQuestionnaireEntriesAnswered();
 
                 if (valid) {
-                    $scope.saveTrialSelectorQuestionnaireEntries(function() {
+                    $scope.saveTrialSelectorQuestionnaireEntries(function () {
 
                         // Upon successful save turn off editing
 
@@ -121,15 +121,15 @@ angular.module('trialdirect').controller('TrialEditController',
                 // By doing it this way we never encounter conflicts in the db as we'll
                 // never add a trialSelectorQuestionnaireEntry duplicate.
 
-                angular.forEach(questionnaireEntries, function(questionnaireEntry){
+                angular.forEach(questionnaireEntries, function (questionnaireEntry) {
 
-                    angular.forEach(questionnaireEntry.answers._embeddedItems, function(answer) {
+                    angular.forEach(questionnaireEntry.answers._embeddedItems, function (answer) {
 
                         var isNewAnswer = true;
 
                         // If the answer exists in the trialSelectorQuestionnaireEntry collection
                         // and is now considered acceptable then it must be removed
-                        angular.forEach(trialSelectorQuestionnaireEntries, function(trialSelectorQuestionnaireEntry){
+                        angular.forEach(trialSelectorQuestionnaireEntries, function (trialSelectorQuestionnaireEntry) {
 
                             // If the answer was considered unacceptable when the page loaded
                             if (trialSelectorQuestionnaireEntry.answer.id == answer.id) {
@@ -145,7 +145,7 @@ angular.module('trialdirect').controller('TrialEditController',
                         }, isNewAnswer);
 
                         if (isNewAnswer) {
-                            if (! answer.isAcceptable ) {
+                            if (!answer.isAcceptable) {
                                 new TrialSelectorQuestionnaireEntryResourceService({
                                     question: questionnaireEntry.question.getHrefLink(),
                                     answer: answer.getHrefLink(),
@@ -196,14 +196,14 @@ angular.module('trialdirect').controller('TrialEditController',
                 });
             };
 
-            $scope.updateQuestionnaireEntrySet = function(questionnaireEntry) {
+            $scope.updateQuestionnaireEntrySet = function (questionnaireEntry) {
                 $scope.setEditing(true);
                 $scope.wasSaved = false;
-                questionnaireEntry.selectAll=false;
+                questionnaireEntry.selectAll = false;
                 questionnaireEntry.errors = null;
             };
 
-            $scope.removeFromTrialSelectorQuestionnaireEntryCollection = function(trialSelectorQuestionnaireEntry) {
+            $scope.removeFromTrialSelectorQuestionnaireEntryCollection = function (trialSelectorQuestionnaireEntry) {
 
                 $scope.trialSelectorQuestionnaireEntries.splice(
                     $scope.trialSelectorQuestionnaireEntries.indexOf(trialSelectorQuestionnaireEntry), 1);

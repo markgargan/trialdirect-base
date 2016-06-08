@@ -18,5 +18,4 @@ Test setup
 screenshot is taken for
     [Arguments]  ${screenshot_number}
     ${screenshot_title}    catenate    SEPARATOR=    ${screenshot_number}    .png
-    sleep  2s
     capture page screenshot    ${screenshot_title}

@@ -1,76 +1,13 @@
-
 <div class="searchTabs">
     <ul class="nav nav-list">
-        <li data-ng-class="{ active: $state.includes('users.list') }"><a data-ui-sref="users.list" id="lnk_startNewSearch">Trial Search</a></li>
-        <li data-ng-class="{ active: $state.includes('users.list.id') }"><a data-ui-sref="users.list.id" id="lnk_SearchQuestionnaire">Trial Results</a></li>
-        <li data-ng-class="{ active: $state.includes('users.list.id') }"><a data-ui-sref="users.list.id" id="lnk_TrialInfo">Trial Information</a></li>
+        <li data-ng-class="{ active: $state.includes('users.list') }">
+            <a data-ui-sref="users.list" id="lnk_startNewSearch">Trial Search</a></li>
+        <li data-ng-class="{ active: $state.includes('users.list.id') }">
+            <a data-ui-sref="users.list.id" id="lnk_SearchQuestionnaire">Trial Results</a></li>
+        <li data-ng-class="{ active: $state.includes('users.list.id') }">
+            <a data-ui-sref="users.list.id" id="lnk_TrialInfo">Trial Information</a>
+        </li>
     </ul>
 </div>
 
 <div class="searchContent" data-ui-view></div>
-
-
-<!--<div class="row">
-    <div class="col-xs-3">-->
-
-        <!--<div class="side-panel" data-ng-hide="trialData">-->
-            <!-- <p><strong>Start New Search</strong></p> -->
-            <!--<label class="nav-header new-group-label">New Search</label>-->
-<!--            <ul class="nav nav-list">
-                <li data-ng-class="{ active: $state.includes('users.list') }"><a data-ui-sref="users.list" id="lnk_startNewSearch">Start New Search</a></li>
-            </ul>-->
-        <!--</div>-->
-
-        <!-- 
-        <div class="side-panel" data-ng-hide="trialData">
-
-            <ul class="nav nav-list">
-                <li class="nav-header">Saved Searches</li>
-                <!-- This <li> will only add the 'active' class if 'users.detail' or its descendants are active
-                     AND if it is the link for the active contact (aka contactId) --/>
-                <li data-ng-repeat="user in users " data-ui-sref-active="active">
-                    <!-- Here's a data-ui-sref that is also providing necessary parameters --/>
-                    <a data-ui-sref="users.detail({userId:user.id})" id="lnk_savedSearch_{{user.id}}">{{user.pseudonym}}</a>
-                </li>
-            </ul>
-
-        </div>
-        -->
-
-
-
-            <!--
-            <form data-ng-hide="$state.includes('users.list')" class="form-horizontal" role="form"
-                  data-ng-submit="addUser(newUser)">
-
-                <label for="newUserInput" class="nav-header new-group-label">Begin User Assessment</label>
-
-                <div data-ng-repeat="syndrome in therapeuticAreas | orderBy:'id'">
-                    <div class="radio">
-                        <label><input id="inp_therapeuticAreaSelection_{{syndrome.sortOrder}}" name="therapeuticAreaSelection" type="radio" data-ng-model="syndrome.checked"
-                                      data-ng-click="chooseTherapeuticArea(syndrome, $event)"/>
-                            {{syndrome.title}}</label>
-                    </div>
-                </div>
-
-
-                <div class="input-group add-new-group">
-                    <input id="inp_newUserInput" type="text" class="form-control" data-ng-disabled="!newUser.syndrome"
-                           data-ng-model="newUser.pseudonym" placeholder="e.g. Kate's assessment"/>
-                  <span class="input-group-btn">
-                    <button id="btn_saveTrialSearch" class="btn btn-default" type="submit"
-                            data-ng-disabled="!newUser.pseudonym" title="Add">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                  </span>
-                </div>
-
-
-            </form>
-            <hr>
-             -->
-    <!--</div>-->
-
-    <!-- Our unnamed main ui-view for this template -->
-<!--    <div data-ui-view></div>-->
-<!--</div>-->

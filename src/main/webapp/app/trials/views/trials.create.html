@@ -6,7 +6,8 @@
 
     <div class="list-answers answers">
         <label data-ng-repeat="therapeuticarea in therapeuticAreas">
-            <input id="inp_therapeuticAreaSelection_{{therapeuticarea.sortOrder}}" name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticarea.checked"
+            <input id="inp_therapeuticAreaSelection_{{therapeuticarea.sortOrder}}" name="therapeuticAreaSelection"
+                   type="radio" data-ng-model="therapeuticarea.checked"
                    data-ng-click="chooseTherapeuticArea(therapeuticarea)">
             <span data-ng-bind="therapeuticarea.title"></span>
         </label>
@@ -52,7 +53,8 @@
             <!-- ----------------- -->
             <div class="form-group">
                 <label for="inp_trialLogo">Trial Logo</label>
-                <input id="inp_trialLogo" type="file" data-ngf-select data-ng-model="newTrial.trialInfo.trialLogoPic" name="file"
+                <input id="inp_trialLogo" type="file" data-ngf-select data-ng-model="newTrial.trialInfo.trialLogoPic"
+                       name="file"
                        accept="image/*" data-ngf-max-size="2MB" required data-ng-change="toggleTrialInfoDisplay()"
                        data-ngf-model-invalid="errorFile">
 
@@ -72,9 +74,12 @@
                 </span>
             </div>
             <span>
-                <img data-ngf-thumbnail="newTrial.trialInfo.trialLogoPic" class="thumb" data-ng-click="toggleTrialInfoDisplay()">
+                <img data-ngf-thumbnail="newTrial.trialInfo.trialLogoPic" class="thumb"
+                     data-ng-click="toggleTrialInfoDisplay()">
             </span>
-            <button id="btn_removeTrialLogo" data-ng-click="newTrial.trialInfo.trialLogoPic = null; editingTrialInfo=true" data-ng-show="newTrial.trialInfo.trialLogoPic">Remove
+            <button id="btn_removeTrialLogo"
+                    data-ng-click="newTrial.trialInfo.trialLogoPic = null; editingTrialInfo=true"
+                    data-ng-show="newTrial.trialInfo.trialLogoPic">Remove
                 Logo
             </button>
         </div>
@@ -102,8 +107,8 @@
                     <!-- -------------------- -->
                     <label for="inp_trialSiteDirector">Trial Site Director</label>
 
-                        <input id="inp_trialSiteDirector" type="text" name="trial-site-director"
-                               data-ng-model="trialSite.siteDirector" size="31" required>
+                    <input id="inp_trialSiteDirector" type="text" name="trial-site-director"
+                           data-ng-model="trialSite.siteDirector" size="31" required>
 
                 </div>
 
@@ -167,9 +172,11 @@
                 </span>
                 </div>
                 <span>
-                    <img data-ngf-thumbnail="trialSite.sitePic" class="thumb" data-ng-click="toggleTrialSiteDisplay(trialSite)">
+                    <img data-ngf-thumbnail="trialSite.sitePic" class="thumb"
+                         data-ng-click="toggleTrialSiteDisplay(trialSite)">
                 </span>
-                <button id="btn_removeSitePic" data-ng-click="trialSite.sitePic = null; trialSite.isEditing=true" data-ng-show="trialSite.sitePic">Remove
+                <button id="btn_removeSitePic" data-ng-click="trialSite.sitePic = null; trialSite.isEditing=true"
+                        data-ng-show="trialSite.sitePic">Remove
                     Logo
                 </button>
             </div>
@@ -181,7 +188,8 @@
         <!-- --------------------------------------------------- -->
 
         <div class="form-group">
-            <button id="btn_uploadTrial" data-ng-click="uploadTrial(newTrial.trialInfo.trialLogoPic, newTrial)">Upload Trial
+            <button id="btn_uploadTrial" data-ng-click="uploadTrial(newTrial.trialInfo.trialLogoPic, newTrial)">Upload
+                Trial
             </button>
         </div>
 

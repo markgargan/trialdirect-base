@@ -1,7 +1,15 @@
-angular.module('trialdirect', [
+angular.module(
+        'trialdirect', [
+        'uiRouterSample.about',
+        'uiRouterSample.help',
+        'uiRouterSample.home',
         'uiRouterSample.therapeuticarea',
         'uiRouterSample.trial',
         'uiRouterSample.user',
+        'uiRouterSample.login',
+        'uiRouterSample.logout',
+        'uiRouterSample.register',
+        'uiRouterSample.profile',
         'ngResource',
         'spring-data-rest',
         'ui.router',
@@ -24,21 +32,28 @@ angular.module('trialdirect', [
 
             }
         ]
-    ).config(['$stateProvider', '$urlRouterProvider',
-    function ($stateProvider, $urlRouterProvider) {
+    )
+    .config(['$stateProvider', '$urlRouterProvider',
+        function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.otherwise('/therapeuticareas');
+        }
+    ])
 
-        $urlRouterProvider.otherwise('/therapeuticareas');
-    }]).filter('reverse', function () {
-    return function (items) {
-        return items.slice().reverse();
-    };
-}).controller("NavController", function($scope) {
+    .filter('reverse', function () {
+        return function (items) {
+            return items.slice().reverse();
+        };
+    })
+
+    .controller("NavController", function ($scope) {
         $scope.IsHidden = !1,
-            $scope.ShowHide = function() {
-                $scope.IsHidden = !$scope.IsHidden
-            }
+        $scope.ShowHide = function () {
+            $scope.IsHidden = !$scope.IsHidden
+        }
     });
 
-angular.isEmpty = function(obj){
-  return angular.isUndefined(obj) || obj=='';
+
+
+angular.isEmpty = function (obj) {
+    return angular.isUndefined(obj) || obj == '';
 };

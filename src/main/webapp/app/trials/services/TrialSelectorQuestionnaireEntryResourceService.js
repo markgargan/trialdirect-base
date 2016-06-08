@@ -141,10 +141,10 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
 
                     var promises = [];
 
-                    for (var i=0; i<trialSelectorQuestionnaireEntries.length; i++) {
+                    for (var i = 0; i < trialSelectorQuestionnaireEntries.length; i++) {
                         var trialSelectorQuestionnaireEntry = trialSelectorQuestionnaireEntries[i];
                         // Delete each TrialSelectorQuestionnaireEntry.
-                        promises.push ( new TrialSelectorQuestionnaireEntryResourceService(trialSelectorQuestionnaireEntry).remove());
+                        promises.push(new TrialSelectorQuestionnaireEntryResourceService(trialSelectorQuestionnaireEntry).remove());
                     }
                     $q.all(promises);
 

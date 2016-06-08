@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('TrialResourceService',
-    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService','TrialInfo', 'TherapeuticAreaResourceService',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TrialInfo, TherapeuticAreaResourceService ) {
+    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService', 'TrialInfo', 'TherapeuticAreaResourceService',
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TrialInfo, TherapeuticAreaResourceService) {
 
             var RESOURCE_URL = './api/trials';
 
@@ -23,11 +23,11 @@ angular.module('trialdirect').factory('TrialResourceService',
 
                 return SpringDataRestAdapter.process(deferred, 'trialSites').then(function (data) {
 
-                    if (angular.isDefined(data._embeddedItems[0])){
+                    if (angular.isDefined(data._embeddedItems[0])) {
                         return new TrialInfo(data._embeddedItems[0]);
                     } else {
                         return new TrialInfo(data);
-                        
+
                     }
                 });
             };
@@ -36,7 +36,7 @@ angular.module('trialdirect').factory('TrialResourceService',
             TrialResourceService.initialize = function () {
                 var deferred = $http.get(RESOURCE_URL);
 
-                return SpringDataRestAdapter.process(deferred ).then(function (data) {
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
 
                     TrialResourceService.resources = data._resources("self");
                 });
@@ -46,7 +46,7 @@ angular.module('trialdirect').factory('TrialResourceService',
             TrialResourceService.load = function () {
                 var deferred = $http.get(RESOURCE_URL);
 
-                return SpringDataRestAdapter.process(deferred ).then(function (data) {
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
 
                     TrialResourceService.resources = data._resources("self");
 
@@ -60,9 +60,9 @@ angular.module('trialdirect').factory('TrialResourceService',
             // Load the specific Trial drilling for the questionnaire and the nested questions and answers
             TrialResourceService.inflateTrial = function (trialId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialId);
-                
+
                 return SpringDataRestAdapter.process(deferred, ['trialselectorquestionnaireentries']).then(function (data) {
-                    
+
                     TrialResourceService.resources = data._resources("self");
 
                     // Inflate all the questionnaireEntries so that their question and corresponding answers
@@ -71,9 +71,9 @@ angular.module('trialdirect').factory('TrialResourceService',
 
                     var trialselectorquestionentriesList = data.trialselectorquestionnaireentries._embeddedItems;
                     angular.forEach(questionnaireentriesList, function (uninflatedQuestionnaireEntry) {
-                            QuestionnaireEntryResourceService.inflateQuestionnaireEntry(uninflatedQuestionnaireEntry)
-                                .then(function(inflatedQuestionnaireEntry){
-                                    questionnaireentriesList[questionnaireentriesList.indexOf(uninflatedQuestionnaireEntry)] = inflatedQuestionnaireEntry;
+                        QuestionnaireEntryResourceService.inflateQuestionnaireEntry(uninflatedQuestionnaireEntry)
+                            .then(function (inflatedQuestionnaireEntry) {
+                                questionnaireentriesList[questionnaireentriesList.indexOf(uninflatedQuestionnaireEntry)] = inflatedQuestionnaireEntry;
                             });
                     });
 
@@ -87,11 +87,11 @@ angular.module('trialdirect').factory('TrialResourceService',
 
                 // If the trialResource is being created and
                 if (angular.isUndefined(trial._resources)) {
-                    
+
                     // the trialResource that we are creating has a save function
                     // placed onto the prototype for the object.
                     trial.save = function (callback) {
-                        
+
                         // TrialResourceService representing the top-level '/api/trials'
                         // was initialized during the load call hence it has the 'resources' member with methods
                         // for saving at the top-level
@@ -112,7 +112,7 @@ angular.module('trialdirect').factory('TrialResourceService',
                             });
                         });
                     };
-                    
+
 
                 } else {
 
@@ -144,7 +144,7 @@ angular.module('trialdirect').factory('TrialResourceService',
                     };
                 }
 
-                trial.getHrefLink = function() {
+                trial.getHrefLink = function () {
                     return trial._links.self.href;
                 };
 

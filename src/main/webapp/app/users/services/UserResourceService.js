@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('UserResourceService',
     ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService', 'TherapeuticAreaResourceService',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TherapeuticAreaResourceService ) {
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TherapeuticAreaResourceService) {
 
             var RESOURCE_URL = './api/users';
 
@@ -33,7 +33,7 @@ angular.module('trialdirect').factory('UserResourceService',
             UserResourceService.load = function () {
                 var deferred = $http.get(RESOURCE_URL);
 
-                return SpringDataRestAdapter.process(deferred ).then(function (data) {
+                return SpringDataRestAdapter.process(deferred).then(function (data) {
 
                     UserResourceService.resources = data._resources("self");
 
@@ -47,9 +47,9 @@ angular.module('trialdirect').factory('UserResourceService',
             // Load the specific User drilling for the questionnaire and the nested questions and answers
             UserResourceService.inflateUser = function (userId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + userId);
-                
+
                 return SpringDataRestAdapter.process(deferred, ['userSelectorquestionnaireentries']).then(function (data) {
-                    
+
                     UserResourceService.resources = data._resources("self");
 
                     // Inflate all the questionnaireEntries so that their question and corresponding answers
@@ -58,9 +58,9 @@ angular.module('trialdirect').factory('UserResourceService',
 
                     var userSelectorquestionentriesList = data.userSelectorquestionnaireentries._embeddedItems;
                     angular.forEach(questionnaireentriesList, function (uninflatedQuestionnaireEntry) {
-                            QuestionnaireEntryResourceService.inflateQuestionnaireEntry(uninflatedQuestionnaireEntry)
-                                .then(function(inflatedQuestionnaireEntry){
-                                    questionnaireentriesList[questionnaireentriesList.indexOf(uninflatedQuestionnaireEntry)] = inflatedQuestionnaireEntry;
+                        QuestionnaireEntryResourceService.inflateQuestionnaireEntry(uninflatedQuestionnaireEntry)
+                            .then(function (inflatedQuestionnaireEntry) {
+                                questionnaireentriesList[questionnaireentriesList.indexOf(uninflatedQuestionnaireEntry)] = inflatedQuestionnaireEntry;
                             });
                     });
 
@@ -74,11 +74,11 @@ angular.module('trialdirect').factory('UserResourceService',
 
                 // If the userResource is being created and
                 if (angular.isUndefined(user._resources)) {
-                    
+
                     // the userResource that we are creating has a save function
                     // placed onto the prototype for the object.
                     user.save = function (callback) {
-                        
+
                         // UserResourceService representing the top-level '/api/users'
                         // was initialized during the load call hence it has the 'resources' member with methods
                         // for saving at the top-level
@@ -99,7 +99,7 @@ angular.module('trialdirect').factory('UserResourceService',
                             });
                         });
                     };
-                    
+
 
                 } else {
 
@@ -131,7 +131,7 @@ angular.module('trialdirect').factory('UserResourceService',
                     };
                 }
 
-                user.getHrefLink = function() {
+                user.getHrefLink = function () {
                     return user._links.self.href;
                 };
 
