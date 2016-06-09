@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('Answer', ['$http', 'SpringDataRestAdapter',
         function ($http, SpringDataRestAdapter) {
-            var ANSWER_URL = '/api/answers';
+            var ANSWER_URL = './api/answers';
 
             function Answer(answer) {
 

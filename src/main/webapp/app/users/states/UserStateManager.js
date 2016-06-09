@@ -84,7 +84,8 @@ angular.module('uiRouterSample.user', [
                                     }]
                             }
                         }
-                    });
+                    }
+                    );
             }
         ]
     );

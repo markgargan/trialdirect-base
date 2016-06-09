@@ -68,7 +68,7 @@ angular.module('trialdirect').factory('UserResourceService',
                 });
             };
 
-            // e.g. '/api/users/1' is being initialized
+            // e.g. './api/users/1' is being initialized
             // as a userResource in it's own right.
             function UserResourceService(user) {
 
@@ -79,7 +79,7 @@ angular.module('trialdirect').factory('UserResourceService',
                     // placed onto the prototype for the object.
                     user.save = function (callback) {
 
-                        // UserResourceService representing the top-level '/api/users'
+                        // UserResourceService representing the top-level './api/users'
                         // was initialized during the load call hence it has the 'resources' member with methods
                         // for saving at the top-level
 

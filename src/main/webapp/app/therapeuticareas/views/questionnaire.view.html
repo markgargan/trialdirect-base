@@ -3,21 +3,26 @@
 <div class="panelContent">
 
     <div class="col3">
-        <h4>Load Questionnaire</h4>
 
-        <ul class="nav nav-list">
+        <div class="col11">
 
-            <!-- <li class="nav-header">Therapeutic Area: Questionnaires</li> -->
+            <label><strong>Load Condition Questionnaire</strong></label>
 
-            <!-- This <li> will only add the 'active' class if 'therapeuticAreas.detail' or its descendants are active
-                 AND if it is the link for the active contact (aka contactId) -->
-            <li data-ng-repeat="therapeuticarea in therapeuticAreas " data-ui-sref-active="active">
+            <ul class="nav nav-list">
 
-                <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticarea.id})"
-                   id="lnk_therapeuticArea_{{therapeuticarea.sortOrder}}">{{therapeuticarea.title}}</a>
-            </li>
-        </ul>
+                <!-- <li class="nav-header">Therapeutic Area: Questionnaires</li> -->
+
+                <!-- This <li> will only add the 'active' class if 'therapeuticAreas.detail' or its descendants are active
+                     AND if it is the link for the active contact (aka contactId) -->
+                <li data-ng-repeat="therapeuticarea in therapeuticAreas " data-ui-sref-active="active">
+
+                    <!-- Here's a data-ui-sref that is also providing necessary parameters -->
+                    <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticarea.id})"
+                       id="lnk_therapeuticArea_{{therapeuticarea.sortOrder}}">{{therapeuticarea.title}}</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 
     <!-- Our unnamed main ui-view for this template -->

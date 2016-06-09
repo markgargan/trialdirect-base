@@ -114,14 +114,15 @@ body {
 
 span.trial-edit-buttons {
   float: right;
-  width: 9%;
+  /*width: 9%;*/
   padding: 11px 0; }
 
 span.trial-selection-buttons {
   float: right;
-  width: 9%;
+  /*width: 9%;
   text-align: left;
-  margin: 1em 2em; }
+  margin: 1em 2em;*/
+  margin: 11px 0; }
 
 textarea {
   width: 100%;
@@ -362,6 +363,7 @@ input, select {
   border-radius: 0.2em; }
 
 a.refer {
+  display: block;
   background: #00857f;
   color: #fff;
   padding: 1em;
