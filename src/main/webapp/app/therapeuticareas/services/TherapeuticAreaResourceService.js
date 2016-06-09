@@ -56,7 +56,7 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
                 });
             };
 
-            // e.g. '/api/therapeuticareas/1' is being initialized
+            // e.g. './api/therapeuticareas/1' is being initialized
             // as a therapeuticAreaResource in it's own right.
             function TherapeuticAreaResourceService(therapeuticArea) {
 
@@ -67,7 +67,7 @@ angular.module('trialdirect').factory('TherapeuticAreaResourceService',
                     // placed onto the prototype for the object.
                     therapeuticArea.save = function (callback) {
                         
-                        // TherapeuticAreaResourceService representing the top-level '/api/therapeuticareas'
+                        // TherapeuticAreaResourceService representing the top-level './api/therapeuticareas'
                         // was initialized during the load call hence it has the 'resources' member with methods
                         // for saving at the top-level
 

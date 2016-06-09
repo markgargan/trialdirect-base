@@ -2,9 +2,9 @@
 <div data-autoscroll="true" class="view-frame col9">
     <form class="wide">
 
-        <div class="setArea">
+        <!-- <div class="setArea">
             <p>Trial Therapeutic Are: <strong>{{trial.therapeuticarea.title}}</strong></p>
-        </div>
+        </div> -->
 
          <span class="trial-selection-buttons answers">
             <label for="inp_to_edit">
@@ -14,9 +14,10 @@
             </label>
         </span>
 
-        <h1>Criteria options for <strong>"<span data-ng-class="{isEditing: isEditing}" data-ng-bind="trialTitle"></span>"</strong>
-        </h1>
-        <p class="noTopPad">For each question below, select all options that are acceptable to your trial criteria.</p>
+        <div class="float-left">
+            <h3>Criteria options for <strong>"<span data-ng-class="{isEditing: isEditing}" data-ng-bind="trialTitle"></span>"</strong></h3>
+            <p class="noTopPad">For each question below, select all options that are acceptable to your trial criteria.</p>
+        </div>
 
         <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'sortOrder'">
             <div class="question">
@@ -60,6 +61,8 @@
                     <label data-ng-bind="questionnaireEntry.errors"></label>
                 </div>
             </div>
+
+            <div class="clear"></div>
         </div>
 
         <div class="right trialSubmission answers">

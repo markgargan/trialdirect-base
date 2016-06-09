@@ -16,7 +16,7 @@ CSS files should be edited/created via the assets/scss folder, and compiled usin
 .col33, .col66 {
   display: block;
   float: left;
-  padding: 0 10px; }
+  padding: 0 5px; }
 
 /* columns :: bootstrap style, grid-based */
 .col1 {
@@ -114,14 +114,15 @@ body {
 
 span.trial-edit-buttons {
   float: right;
-  width: 9%;
+  /*width: 9%;*/
   padding: 11px 0; }
 
 span.trial-selection-buttons {
   float: right;
-  width: 9%;
+  /*width: 9%;
   text-align: left;
-  margin: 1em 2em; }
+  margin: 1em 2em;*/
+  margin: 11px 0; }
 
 textarea {
   width: 100%;
@@ -270,7 +271,7 @@ hr, img {
 hr, span.br {
   display: block; }
 
-.clear, form a, hr, p.distance {
+.clear, hr, p.distance {
   clear: both; }
 
 .align-left, .all {
@@ -334,6 +335,12 @@ button, input, label, textarea {
   font-family: inherit;
   font-size: inherit; }
 
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+  height: 34px !important; }
+
 form {
   margin: 0; }
 
@@ -341,9 +348,9 @@ form.small, form.wide {
   margin: auto;
   display: block; }
 
-form a {
-  display: block; }
-
+/*form a {
+  display: block
+}*/
 input, select {
   display: block;
   border: 1px solid #ccc;
@@ -356,6 +363,7 @@ input, select {
   border-radius: 0.2em; }
 
 a.refer {
+  display: block;
   background: #00857f;
   color: #fff;
   padding: 1em;
@@ -692,7 +700,7 @@ td, th {
   padding: 1em;
   border: 1px solid #eee;
   position: relative;
-  margin-top: 2em;
+  margin-bottom: 3em;
   background: #fff;
   -webkit-border-radius: 0.4em;
   -moz-border-radius: 0.4em;
@@ -1167,6 +1175,10 @@ ul.steps li strong {
 
 ul.steps li span {
   display: block; }
+
+.formItem {
+  display: block;
+  padding-bottom: 1em; }
 
 @media screen and (max-width: 1200px) {
   .trialIntro span {

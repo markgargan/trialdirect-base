@@ -10,6 +10,7 @@ angular.module(
         'uiRouterSample.logout',
         'uiRouterSample.register',
         'uiRouterSample.profile',
+        'uiRouterSample.patients',
         'ngResource',
         'spring-data-rest',
         'ui.router',

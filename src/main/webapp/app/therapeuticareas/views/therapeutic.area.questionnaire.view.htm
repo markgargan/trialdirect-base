@@ -1,16 +1,19 @@
 <div>
     <div class="form-horizontal" role="form">
 
-        <div class="page-header">
+        <!--<div class="page-header">
             <h1>Questionnaire for <strong>"{{therapeuticarea.title}}"</strong> Trials</h1>
             <p class="noTopPad">Use this page to add/amend Questions &amp; Answers for all "{{therapeuticarea.title}}"
                 Trials.</p>
-        </div>
+        </div>-->
 
+        <label><strong>Add New Question</strong></label>
         <div class="alert alert-info" role="alert"
              data-ng-hide="questionnaireEntries && questionnaireEntries.length > 0">
             There are no questions yet.
         </div>
+
+        <div class="clear"></div>
 
         <div class="input-group">
             <input id="inp_newQuestion" type="text" class="form-control" data-ng-model="newQuestion"
@@ -22,8 +25,11 @@
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
               </span>
+            <div class="clear"></div>
         </div>
 
+        <br><br>
+        <label><strong>Edit Questionnaire</strong></label>
         <div class="form-group" data-as-sortable="sortableOptions" data-ng-model="questionnaireEntries">
             <div data-ng-repeat="questionnaireEntry in questionnaireEntries" data-as-sortable-item
                  class="as-sortable-item">

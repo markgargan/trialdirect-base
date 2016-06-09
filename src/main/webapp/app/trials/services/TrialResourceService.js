@@ -81,7 +81,7 @@ angular.module('trialdirect').factory('TrialResourceService',
                 });
             };
 
-            // e.g. '/api/trials/1' is being initialized
+            // e.g. './api/trials/1' is being initialized
             // as a trialResource in it's own right.
             function TrialResourceService(trial) {
 
@@ -92,7 +92,7 @@ angular.module('trialdirect').factory('TrialResourceService',
                     // placed onto the prototype for the object.
                     trial.save = function (callback) {
 
-                        // TrialResourceService representing the top-level '/api/trials'
+                        // TrialResourceService representing the top-level './api/trials'
                         // was initialized during the load call hence it has the 'resources' member with methods
                         // for saving at the top-level
 

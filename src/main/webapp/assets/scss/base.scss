@@ -53,15 +53,16 @@ body {
 
 span.trial-edit-buttons {
   float: right;
-  width: 9%;
+  /*width: 9%;*/
   padding: 11px 0;
 }
 
 span.trial-selection-buttons {
   float: right;
-  width: 9%;
+  /*width: 9%;
   text-align: left;
-  margin: 1em 2em;
+  margin: 1em 2em;*/
+  margin: 11px 0;
 }
 
 textarea {
@@ -249,7 +250,8 @@ hr, span.br {
 
 }
 
-.clear, form a, hr, p.distance {
+.clear, hr, p.distance /*, form a,*/
+{
   clear: both
 }
 
@@ -329,8 +331,15 @@ hr {
 
 button, input, label, textarea {
   font-family: inherit;
-  font-size: inherit
+  font-size: inherit;
 }
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+  height: 34px !important;
+}
+
 
 form {
   margin: 0;
@@ -341,9 +350,9 @@ form.small, form.wide {
   display: block
 }
 
-form a {
+/*form a {
   display: block
-}
+}*/
 
 input, select {
   display: block;
@@ -357,6 +366,7 @@ input, select {
 }
 
 a.refer {
+  display: block;
   background: #00857f;
   color: #fff;
   padding: 1em;
@@ -726,7 +736,7 @@ td, th {
   padding: 1em;
   border: 1px solid #eee;
   position: relative;
-  margin-top: 2em;
+  margin-bottom: 3em;
   background: #fff;
   @include prefix(border-radius, .4em, webkit moz);
 }
@@ -1233,11 +1243,16 @@ ul.steps li strong {
   line-height: .9em;
   color: #128474;
   box-shadow: 0 0 1em #ddd inset;
-  border: 1px solid rgba(0,0,0,.05);
+  border: 1px solid rgba(0, 0, 0, .05);
 }
 
 ul.steps li span {
   display: block;
+}
+
+.formItem {
+  display: block;
+  padding-bottom: 1em;
 }
 
 @media screen and (max-width: 1200px) {
