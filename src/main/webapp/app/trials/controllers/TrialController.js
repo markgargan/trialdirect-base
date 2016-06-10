@@ -41,6 +41,7 @@ angular.module('trialdirect').controller('TrialController',
                     TrialResourceService({
                         id: newTrial.id,
                         title: newTrial.title,
+                        trialCode: newTrial.trialCode,
                         therapeuticArea: newTrial.therapeuticArea.getHrefLink()
                     }).save(function (savedTrial) {
 
@@ -56,6 +57,7 @@ angular.module('trialdirect').controller('TrialController',
 
                     new TrialResourceService({
                         title: newTrial.title,
+                        trialCode: newTrial.trialCode,
                         therapeuticArea: newTrial.therapeuticArea.getHrefLink()
                     }).save(function (savedTrial) {
                         // Goto the new instance on the far side
@@ -90,6 +92,7 @@ angular.module('trialdirect').controller('TrialController',
             $scope.validTrial = function (trial) {
                 var validTrial = true;
                 validTrial &= $scope.validateField(trial, 'title', 'Title');
+                validTrial &= $scope.validateField(trial, 'trialCode', 'Trial Code');
                 validTrial &= $scope.validateField(trial, 'therapeuticArea', 'Therapeutic Area');
                 validTrial &= $scope.validateField(trial.trialInfo.summary, 'summary', 'Summary');
                 validTrial &= $scope.validateField(trial.trialInfo, 'fullDescription', 'Full Description');
