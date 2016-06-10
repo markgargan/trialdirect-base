@@ -131,8 +131,11 @@ textarea {
   height: 8em;
   margin: 0; }
 
-textarea.trialFacility {
-  height: 17em; }
+textarea.trialSummary {
+  height: 10em; }
+
+textarea.trialDescription {
+  height: 25em; }
 
 .edTrial {
   padding: 10px 15px;

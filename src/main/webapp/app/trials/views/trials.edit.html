@@ -73,6 +73,19 @@
                             <div class="errors" ng-show="trialForm.tTitle.$error.required">Please supply a title</div>
                         </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <label for="inp_newTrialCode">Trial Code</label>
+                        <span>
+                            <input id="inp_newTrialCode" name="tTrialCode" type="text" class="form-control"
+                                   data-ng-model="trial.trialCode" value="{{trial.trialCode}}" required>
+                        </span>
+                        <div ng-show="trialForm.$submitted || trialForm.tTrialCode.$touched">
+                            <div class="errors" ng-show="trialForm.tTrialCode.$error.required">Please supply a trial code</div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="list-answers answers">
@@ -143,7 +156,7 @@
                     <label for="inp_trialInfoSummary">Trial Summary</label>
                     <span>
                         <textarea id="inp_trialInfoSummary" name="tSummary"
-                                  data-ng-model="trial.trialInfo.summary" class="trialFacility" required="">
+                                  data-ng-model="trial.trialInfo.summary" class="trialSummary" required="">
                         </textarea>
                         <div ng-show="trialForm.$submitted || trialForm.tSummary.$touched">
                             <div class="errors"
@@ -162,7 +175,7 @@
                     <label for="inp_trialInfoDescription">Full Description</label>
                     <span>
                         <textarea id="inp_trialInfoDescription" name="tDescription"
-                                  data-ng-model="trial.trialInfo.trialFullDescription.fullDescription"
+                                  data-ng-model="trial.trialInfo.trialFullDescription.fullDescription" class="trialDescription"
                                   required>
                         </textarea>
                         <div ng-show="trialForm.$submitted || trialForm.tDescription.$touched">

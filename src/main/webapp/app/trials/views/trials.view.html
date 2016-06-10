@@ -23,7 +23,7 @@
                      AND if it is the link for the active contact (aka contactId) -->
                 <li data-ng-repeat="trial in trials | filter : search" data-ui-sref-active="active">
                     <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                    <a data-ui-sref="trials.edit({trialId:trial.id})" ng-click="showSiteForm()">{{trial.title}}</a>
+                    <a data-ui-sref="trials.edit({trialId:trial.id})" ng-click="showSiteForm()">{{trial.title}}<br><small><b>Code:</b> {{trial.trialCode}}</small></a>
                 </li>
             </ul>
         </div>
