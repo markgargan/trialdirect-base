@@ -103,15 +103,23 @@ body {
 /**
  Integration start
 **/
+/*
+
+#myForm {
+
+}
+
 #myForm label {
   display: inline-block;
   text-align: right;
   font-size: .9em;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 #myForm input {
-  float: right; }
-
+  float: right;
+}
+*/
 span.trial-edit-buttons {
   float: right;
   /*width: 9%;*/
@@ -129,7 +137,7 @@ textarea {
   border: 1px solid #ccc;
   overflow-y: auto;
   height: 8em;
-  margin: 0; }
+  margin-bottom: 10px; }
 
 textarea.trialSummary {
   height: 10em; }
@@ -739,12 +747,15 @@ p {
   width: 66.6666%;
   text-align: right; }
 
-.trialLogoImage {
+/*.trialLogoImage {
   display: block;
   width: 50%;
   min-width: 10em;
   margin: 0 auto 1em;
-  text-align: center; }
+  text-align: center;
+}*/
+.trialLogoImage img {
+  margin-bottom: 10px; }
 
 .trialLogoImage .btn-remove {
   margin-left: 0;
@@ -1031,9 +1042,9 @@ a.more {
 a:active.more, a:hover.more {
   text-decoration: none; }
 
-input.ng-invalid, input.ng-invalid-required,
-textarea.ng-invalid, textarea.ng-invalid-required {
-  border-color: #c00; }
+input.ng-invalid.ng-touched, input.ng-invalid-required.ng-touched,
+textarea.ng-invalid.ng-touched, textarea.ng-invalid-required.ng-touched {
+  border-color: #f00; }
 
 .as-sortable-item {
   border: none;
@@ -1273,7 +1284,9 @@ ul.steps li span {
     float: none;
     text-align: center;
     width: auto; } }
+/*
 .trialImage {
-  text-align: center; }
+  text-align: center;
+}*/
 
 /*# sourceMappingURL=base.css.map */

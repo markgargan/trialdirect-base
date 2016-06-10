@@ -35,6 +35,7 @@ body {
 /**
  Integration start
 **/
+/*
 
 #myForm {
 
@@ -50,6 +51,7 @@ body {
 #myForm input {
   float: right;
 }
+*/
 
 span.trial-edit-buttons {
   float: right;
@@ -70,12 +72,13 @@ textarea {
   border: 1px solid #ccc;
   overflow-y: auto;
   height: 8em;
-  margin: 0;
+  margin-bottom: 10px;
 }
 
 textarea.trialSummary {
   height: 10em;
 }
+
 textarea.trialDescription {
   height: 25em;
 }
@@ -336,13 +339,13 @@ button, input, label, textarea {
   font-family: inherit;
   font-size: inherit;
 }
+
 input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"] {
   height: 34px !important;
 }
-
 
 form {
   margin: 0;
@@ -781,12 +784,16 @@ p {
   text-align: right;
 }
 
-.trialLogoImage {
+/*.trialLogoImage {
   display: block;
   width: 50%;
   min-width: 10em;
   margin: 0 auto 1em;
   text-align: center;
+}*/
+
+.trialLogoImage img {
+  margin-bottom: 10px;
 }
 
 .trialLogoImage .btn-remove {
@@ -1091,9 +1098,9 @@ a:active.more, a:hover.more {
   text-decoration: none;
 }
 
-input.ng-invalid, input.ng-invalid-required,
-textarea.ng-invalid, textarea.ng-invalid-required {
-  border-color: #c00;
+input.ng-invalid.ng-touched, input.ng-invalid-required.ng-touched,
+textarea.ng-invalid.ng-touched, textarea.ng-invalid-required.ng-touched {
+  border-color: #f00;
 }
 
 .as-sortable-item {
@@ -1377,6 +1384,7 @@ ul.steps li span {
   }
 }
 
+/*
 .trialImage {
   text-align: center;
-}
+}*/
