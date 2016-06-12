@@ -41,8 +41,7 @@
                 </label>
             </div>
 
-            <div class="answers" data-ng-if="therapeuticAreas.length>=5"
-            >
+            <div class="answers" data-ng-if="therapeuticAreas.length>=5">
                 <div class="option-list">
                     <label data-ng-repeat="therapeuticArea in therapeuticAreas | orderBy: 'title'">
                         <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}"
