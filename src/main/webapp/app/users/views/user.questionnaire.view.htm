@@ -65,9 +65,13 @@
                 <div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
                     <ul>
                         <li class="trialImage"><img data-ng-src="/trialInfoImage/{{trial.id}}"></li>
-                        <li class="trialBrief">{{trial.summary +' '+ trial.trialFullDescription.fullDescription |
+                        <!--<li class="trialBrief">{{trial.summary +' '+ trial.trialFullDescription.fullDescription |
                             limitTo:400}}...
-                        </li>
+                        </li>-->
+
+                        <li class="trialTitle">Trial Title to be added</li>
+                        
+                        <li class="trialBrief">{{trial.summary}}</li>
                         <li class="trialLink"><i class="fa fa-2x fa-chevron-right"></i></li>
                     </ul>
                     <div class="clear"></div>

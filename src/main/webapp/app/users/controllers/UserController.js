@@ -1,10 +1,13 @@
 angular.module('trialdirect').controller('UserController',
-    ['$scope', '$state', 'UserResourceService', 'users', 'therapeuticAreas',
-        function ($scope, $state, UserResourceService, users, therapeuticAreas) {
+    ['$scope', '$state', 'UserResourceService', 'users', 'therapeuticAreas', 'TherapeuticParentResourceService', 'therapeuticParents',
+        function ($scope, $state, UserResourceService, users, therapeuticAreas, TherapeuticParentResourceService, therapeuticParents) {
 
             $scope.users = users;
 
             $scope.therapeuticAreas = therapeuticAreas;
+            //$scope.therapeuticParents = therapeuticParents;
+
+            //console.log(therapeuticAreas);
 
             $scope.newUser = {};
 

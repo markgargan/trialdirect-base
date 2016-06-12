@@ -11,7 +11,7 @@ angular.module('trialdirect').controller('TherapeuticAreaController',
 
                 new TherapeuticAreaResourceService({
                     title: therapeuticAreaTitle,
-                    therapeuticparent: 'http://localhost:8080/api/therapeuticparent/'+ therapeuticParentId
+                    therapeuticparent: './api/therapeuticparent/'+ therapeuticParentId
                 }).save(function (newTherapeuticArea) {
 
                     $scope.therapeuticAreas.unshift(newTherapeuticArea);

@@ -18,10 +18,10 @@
         <div class="form-group col-xs-3">
 
             <!-- Edit Trial Information -->
-            <div class="simplePanel" data-ng-click="showSiteForm()">
+            <!--<div class="simplePanel" data-ng-click="showSiteForm()">
                 <h3>Trial Information</h3>
                 <p class="edTrial">Edit Trial Information</p>
-            </div>
+            </div>-->
 
             <!-- Trial Sites List -->
             <div class="simplePanel">
@@ -60,7 +60,7 @@
              data-ng-hide="currentTrialSite">
 
             <!-- Left Column, Trial Site Information -->
-            <div class="trialLeaderBio">
+            <div class="col6">
 
                 <div class="trial-info-edit">
                     <div class="form-group">
@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="list-answers answers">
-                    <label>Therapeutic Area</label>
+                    <label>Condition</label>
                     <div class="clear"></div>
 
                     <label data-ng-repeat="therapeuticarea in therapeuticAreas">
@@ -113,7 +113,7 @@
 
 
             <!-- Right Column, Trial Site Information -->
-            <div class="trialSiteLocation">
+            <div class="col6">
 
                 <!-- Trial Information Logo -->
                 <div class="form-group">
@@ -130,7 +130,8 @@
                                 {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
                             <!-- If the model contains the trialLogoPic bytes then the user has just re-uploaded an image or else they've uploaded it for
                                  the first time
-                                  Therefore because we don't save the image until later we can't reference /trialInfoImage/{{trial.id}}
+                                  Therefore because we
+                                  don't save the image until later we can't reference /trialInfoImage/{{trial.id}}
                                   as the src to the image as it hasn't been saved/updated
                                   -->
                             <img ngf-thumbnail="trial.trialInfo.trialLogoPic" class="thumb"
@@ -198,7 +199,7 @@
             <div class="clear"></div>
 
             <!-- Left Column, Trial Facility Summaries -->
-            <div class="trialLeaderBio">
+            <div class="col6">
 
                 <div data-td-id="trialSiteEditor{{$index}}">
                     <!-- Trial Facility Name -->
@@ -216,16 +217,17 @@
                                       name="trial-site-facility-description"
                                       id="trial-site-facility-description{{$index}}"
                                       name="trial-site-facility-description"
-                                      data-ng-model="trialSite.facilityDescription" required>
+                                      data-ng-model="trialSite.facilityDescription"
+                                      class="trialFacility" required>
                             </textarea>
                         </span>
                     </div>
 
-                    <div class="trial-site-logo">
+                    <div class="form-group trial-site-logo" style="min-height:70px">
                         <!-- -------------- -->
                         <!-- Trial Site Pic -->
                         <!-- -------------- -->
-                        <label for="trial-site-logo{{trialSite.sortOrder}}">Trial Site Pic</label>
+                        <label for="trial-site-logo{{trialSite.sortOrder}}">Trial Facility Image</label>
                         <input id="trial-site-logo{{trialSite.sortOrder}}" type="file" ngf-select
                                ng-model="trialSite.sitePic"
                                name="siteFile" ng-change="toggleTrialSiteImage(trialSite)"
@@ -272,7 +274,7 @@
             </div>
 
             <!-- Left Column, Trial Facility Address -->
-            <div class="trialSiteLocation">
+            <div class="col6">
 
                 <!-- Trial Site Address 1 -->
                 <div class="form-group">
