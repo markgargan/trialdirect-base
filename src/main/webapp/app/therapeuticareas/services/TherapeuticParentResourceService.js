@@ -4,7 +4,6 @@ angular.module('trialdirect').factory('TherapeuticParentResourceService',
 
             var RESOURCE_URL = './api/therapeuticparent';
 
-
             TherapeuticParentResourceService.resources = null;
 
             // Load the specific TherapeuticParent drilling for the questionnaire and the nested questions and answers
@@ -31,6 +30,7 @@ angular.module('trialdirect').factory('TherapeuticParentResourceService',
                     });
                 });
             };
+
 
             // Load the specific TherapeuticParent drilling for the questionnaire and the nested questions and answers
             TherapeuticParentResourceService.inflateTherapeuticParent = function (therapeuticParentId) {

@@ -195,10 +195,8 @@ div.list-answers {
   padding-bottom: 1em; }
 
 .trialTitle {
-  font-size: 1.7em;
-  font-weight: 500;
-  margin-top: 20px;
-  margin-bottom: 10px; }
+  font-size: 1.15em;
+  font-weight: bold; }
 
 .trialTitle.isEditing {
   font-style: italic;
@@ -321,6 +319,7 @@ h2 {
 h3 {
   font-size: 1.4em; }
 
+x
 h4 {
   font-size: 1.2em; }
 
@@ -587,12 +586,15 @@ a[href="#top"] span {
   text-decoration: none;
   color: #00857f; }
 
+.logo img {
+  width: 6em; }
+
 .topNav, .topNav1 {
   display: block;
   float: right;
-  width: 65%;
+  /*width: 65%;*/
   background: 0;
-  padding: 1em 0;
+  padding: 2.75em 0;
   border: 0;
   text-align: right;
   transition: all 0.2s ease; }
@@ -810,12 +812,18 @@ p {
   width: 15%;
   padding-right: .6em; }
 
+.trialIntro .trialTitle,
 .trialIntro .trialBrief {
   display: block;
   float: left;
-  width: 81%;
+  width: 80%;
+  margin-left: 1%;
   line-height: 1.25;
-  padding: 0 1em 1em; }
+  padding: .5em 0; }
+
+.trialIntro .trialTitle {
+  color: #00857f;
+  padding-top: 0; }
 
 .trialIntro .trialLink {
   display: block;
@@ -930,7 +938,7 @@ span {
 
 .trialLeaderBio {
   display: block;
-  float: left;
+  float: right;
   width: 49%; }
 
 .col-xs-3 .trialLeaderBio {
@@ -948,7 +956,7 @@ select, input[type="file"] {
 
 .trialSiteLocation {
   display: block;
-  float: right;
+  float: left;
   width: 49%;
   text-align: left; }
 
@@ -979,8 +987,8 @@ select, input[type="file"] {
 .trialCount {
   text-align: center;
   position: relative;
-  top: -2.5em;
-  height: 6.5em; }
+  top: -3.5em;
+  height: 3.5em; }
 
 .trialTotal {
   font-size: 3em;

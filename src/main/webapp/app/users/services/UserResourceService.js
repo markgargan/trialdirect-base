@@ -1,6 +1,6 @@
 angular.module('trialdirect').factory('UserResourceService',
-    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService', 'TherapeuticAreaResourceService',
-        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TherapeuticAreaResourceService) {
+    ['$http', 'SpringDataRestAdapter', 'QuestionnaireEntryResourceService', 'TherapeuticAreaResourceService', 'TherapeuticParentResourceService',
+        function ($http, SpringDataRestAdapter, QuestionnaireEntryResourceService, TherapeuticAreaResourceService, TherapeuticParentResourceService) {
 
             var RESOURCE_URL = './api/users';
 

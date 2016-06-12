@@ -1,33 +1,54 @@
-<h3>Start New Search</h3>
+<h3>Search for Potential Treatment Options</h3>
 
 <div class="panelContent">
 
     <form name="CreateUserArea" class="form-horizontal" role="form" data-ng-click="addUser(newUser)">
 
+
+<!--         <div class="qa">
+
+
+            <div class="question">
+                <p>Select Therapeutic Area</p>
+            </div>
+
+            <label data-ng-repeat="therapeuticParent in therapeuticParents | orderBy: 'title'">
+                <input id="inp_therapeuticParentSelection_{{therapeuticParent.sortOrder}}"
+                       name="therapeuticParentSelection"
+                       type="radio" data-ng-model="therapeuticParent.checked"
+                       data-ng-click="chooseTherapeuticParent(therapeuticParent)">
+                <span>{{therapeuticParent.title}} ({{therapeuticParent.id}})</span>
+            </label>
+
+            <div class="clear"></div>
+        </div> -->
+
+
         <div class="qa">
 
 
             <div class="question">
-                <p>Select main Therapeutic Area</p>
+                <p>Select Condition</p>
             </div>
 
             <div class="answers" data-ng-if="therapeuticAreas.length<=4">
-                <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                <label data-ng-repeat="therapeuticArea in therapeuticAreas | orderBy: 'title'">
                     <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}"
                            name="therapeuticAreaSelection"
                            type="radio" data-ng-model="therapeuticArea.checked"
                            data-ng-click="chooseTherapeuticArea(therapeuticArea)">
-                    <span data-ng-bind="therapeuticArea.title"></span>
+                        <span>{{therapeuticArea.title}}</span>
                 </label>
             </div>
 
-            <div class="answers" data-ng-if="therapeuticAreas.length>=5">
+            <div class="answers" data-ng-if="therapeuticAreas.length>=5"
+            >
                 <div class="option-list">
-                    <label data-ng-repeat="therapeuticArea in therapeuticAreas">
+                    <label data-ng-repeat="therapeuticArea in therapeuticAreas | orderBy: 'title'">
                         <input id="inp_therapeuticAreaSelection_{{therapeuticArea.sortOrder}}"
                                name="therapeuticAreaSelection" type="radio" data-ng-model="therapeuticArea.checked"
                                data-ng-click="chooseTherapeuticArea(therapeuticArea)">
-                        <span data-ng-bind="therapeuticArea.title"></span>
+                        <span>{{therapeuticArea.title}}</span>
                     </label>
                 </div>
             </div>
