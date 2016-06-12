@@ -18,10 +18,10 @@
         <div class="form-group col-xs-3">
 
             <!-- Edit Trial Information -->
-            <div class="simplePanel" data-ng-click="showSiteForm()">
+            <!--<div class="simplePanel" data-ng-click="showSiteForm()">
                 <h3>Trial Information</h3>
                 <p class="edTrial">Edit Trial Information</p>
-            </div>
+            </div>-->
 
             <!-- Trial Sites List -->
             <div class="simplePanel">
@@ -130,7 +130,8 @@
                                 {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
                             <!-- If the model contains the trialLogoPic bytes then the user has just re-uploaded an image or else they've uploaded it for
                                  the first time
-                                  Therefore because we don't save the image until later we can't reference /trialInfoImage/{{trial.id}}
+                                  Therefore because we
+                                  don't save the image until later we can't reference /trialInfoImage/{{trial.id}}
                                   as the src to the image as it hasn't been saved/updated
                                   -->
                             <img ngf-thumbnail="trial.trialInfo.trialLogoPic" class="thumb"

@@ -49,6 +49,7 @@ angular.module('trialdirect').controller('TrialController',
                         savedTrial.trialInfo = $scope.trial.trialInfo;
                         savedTrial.therapeuticArea = $scope.trial.therapeuticArea;
                         $scope.trial = savedTrial;
+
                         callback && callback($scope.trial);
                         $scope.wasSaved = true;
 
@@ -69,8 +70,8 @@ angular.module('trialdirect').controller('TrialController',
                         $scope.trial = savedTrial;
 
                         callback && callback($scope.trial);
-
                         $scope.wasSaved = true;
+                    
                     });
                 }
             };
