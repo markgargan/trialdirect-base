@@ -83,6 +83,10 @@ textarea.trialDescription {
   height: 25em;
 }
 
+textarea.trialFacility {
+  height: 201px;
+}
+
 .edTrial {
   padding: 10px 15px;
   color: #00857f;
@@ -206,7 +210,6 @@ div.list-answers {
 
 div.trialSubmission {
   width: 100%;
-
 }
 
 div.trialSubmission label input + span {

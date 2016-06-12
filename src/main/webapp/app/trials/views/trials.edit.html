@@ -198,7 +198,7 @@
             <div class="clear"></div>
 
             <!-- Left Column, Trial Facility Summaries -->
-            <div class="trialLeaderBio">
+            <div class="col6">
 
                 <div data-td-id="trialSiteEditor{{$index}}">
                     <!-- Trial Facility Name -->
@@ -216,16 +216,17 @@
                                       name="trial-site-facility-description"
                                       id="trial-site-facility-description{{$index}}"
                                       name="trial-site-facility-description"
-                                      data-ng-model="trialSite.facilityDescription" required>
+                                      data-ng-model="trialSite.facilityDescription"
+                                      class="trialFacility" required>
                             </textarea>
                         </span>
                     </div>
 
-                    <div class="trial-site-logo">
+                    <div class="form-group trial-site-logo" style="min-height:70px">
                         <!-- -------------- -->
                         <!-- Trial Site Pic -->
                         <!-- -------------- -->
-                        <label for="trial-site-logo{{trialSite.sortOrder}}">Trial Site Pic</label>
+                        <label for="trial-site-logo{{trialSite.sortOrder}}">Trial Facility Image</label>
                         <input id="trial-site-logo{{trialSite.sortOrder}}" type="file" ngf-select
                                ng-model="trialSite.sitePic"
                                name="siteFile" ng-change="toggleTrialSiteImage(trialSite)"
@@ -272,7 +273,7 @@
             </div>
 
             <!-- Left Column, Trial Facility Address -->
-            <div class="trialSiteLocation">
+            <div class="col6">
 
                 <!-- Trial Site Address 1 -->
                 <div class="form-group">
