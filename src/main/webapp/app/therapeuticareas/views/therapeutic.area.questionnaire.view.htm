@@ -1,5 +1,7 @@
 <div>
+    <form>
     <div class="form-horizontal" role="form">
+
 
         <!--<div class="page-header">
             <h1>Questionnaire for <strong>"{{therapeuticarea.title}}"</strong> Trials</h1>
@@ -35,7 +37,7 @@
                  class="as-sortable-item">
                 <div class="qa">
 
-                    <div class="questionEdit" as-sortable-item-handle class="as-sortable-item-handle"
+                    <div data-as-sortable-item-handle class="questionEdit as-sortable-item-handle"
                          data-ng-mouseleave="updateSortQuestion(questionnaireEntry.question.id, $index)">
                         <button class="left btn btn-remove btn-remove-question" type="button" title="Delete"
                                 data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">
@@ -102,8 +104,8 @@
             </div>
         </div>
 
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 
-
-    <div class="clear"></div>
+<div class="clear"></div>

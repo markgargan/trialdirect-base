@@ -322,7 +322,6 @@ h2 {
 h3 {
   font-size: 1.4em; }
 
-x
 h4 {
   font-size: 1.2em; }
 
@@ -795,9 +794,9 @@ p {
 
 .trialIntro {
   display: block;
-  padding: 2em;
+  padding: 1em;
   background: #fff;
-  margin: .5em 0 1em;
+  margin: .5em 0;
   text-align: left;
   cursor: pointer;
   -webkit-border-radius: 0.3em;

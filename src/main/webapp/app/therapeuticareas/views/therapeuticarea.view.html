@@ -19,8 +19,8 @@
                     </div>-->
 
                     <label for="inp_newTherapeuticAreaParent"><strong>Main Therapeutic Area?</strong></label>
-                    <select id="inp_newTherapeuticAreaParent" ng-model="$parent.newTherapeuticParent"
-                            ng-options="therapeuticParent.id as therapeuticParent.title for therapeuticParent in therapeuticParents | orderBy: 'title'">
+                    <select id="inp_newTherapeuticAreaParent" data-ng-model="$parent.newTherapeuticParent"
+                            data-ng-options="therapeuticParent.id as therapeuticParent.title for therapeuticParent in therapeuticParents | orderBy: 'title'">
                         <option value="">Select Option</option>
                     </select>
 

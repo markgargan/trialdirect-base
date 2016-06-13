@@ -1,6 +1,6 @@
 <div class="col-xs-9">
     <div>
-        <!-- <h2 ng-bind="trial.title"></h2> -->
+        <!-- <h2 data-ng-bind="trial.title"></h2> -->
         <span class="trial-edit-buttons answers">
             <label for="inp_to_selections">
                 <input data-ng-class="{disabled: $state.includes('create')}" id="inp_to_selections" type="radio"
@@ -8,7 +8,7 @@
                 <span>Question Set</span>
             </label>
         </span>
-        <span class="errors right" ng-bind="errors"></span>
+        <span class="errors right" data-ng-bind="errors"></span>
     </div>
 
     <div class="clear"></div>
@@ -39,7 +39,7 @@
                     <li class="trialLeaderName"
                         data-ng-repeat="trialSite in trial.trialInfo.trialSites._embeddedItems | filter : search"
                         data-ng-click="showSiteForm(trialSite)">
-                        <strong ng-bind="trialSite.principalInvestigator"></strong><br>
+                        <strong data-ng-bind="trialSite.principalInvestigator"></strong><br>
                         <small>
                             <span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
                             <span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
@@ -69,8 +69,8 @@
                             <input id="inp_newTrialInput" name="tTitle" type="text" class="form-control"
                                    data-ng-model="trial.title" value="{{trial.title}}" required="">
                         </span>
-                        <div ng-show="trialForm.$submitted || trialForm.tTitle.$touched">
-                            <div class="errors" ng-show="trialForm.tTitle.$error.required">Please supply a title</div>
+                        <div data-ng-show="trialForm.$submitted || trialForm.tTitle.$touched">
+                            <div class="errors" data-ng-show="trialForm.tTitle.$error.required">Please supply a title</div>
                         </div>
                     </div>
 
@@ -81,8 +81,8 @@
                             <input id="inp_newTrialCode" name="tTrialCode" type="text" class="form-control"
                                    data-ng-model="trial.trialCode" value="{{trial.trialCode}}" required>
                         </span>
-                        <div ng-show="trialForm.$submitted || trialForm.tTrialCode.$touched">
-                            <div class="errors" ng-show="trialForm.tTrialCode.$error.required">Please supply a trial code</div>
+                        <div data-ng-show="trialForm.$submitted || trialForm.tTrialCode.$touched">
+                            <div class="errors" data-ng-show="trialForm.tTrialCode.$error.required">Please supply a trial code</div>
                         </div>
                     </div>
 
@@ -98,7 +98,7 @@
                                data-ng-click="chooseTherapeuticArea(therapeuticarea)">
                         <span data-ng-bind="therapeuticarea.title"></span>
                     </label>
-                    <div ng-show="trial.unselectedTherapeuticArea">
+                    <div data-ng-show="trial.unselectedTherapeuticArea">
                         <div class="errors">Please specify a Therapeutic Area</div>
                     </div>
                 </div>
@@ -119,14 +119,14 @@
                 <div class="form-group">
                     <label class="trialImage">Trial Image/Logo</label>
 
-                        <span class="trialLogoImage">
-                            <input id="trialLogo" type="file" ngf-select ng-model="trial.trialInfo.trialLogoPic"
+                        <div class="trialLogoImage">
+                            <input id="trialLogo" type="file" data-ngf-select data-ng-model="trial.trialInfo.trialLogoPic"
                                    name="file"
-                                   accept="image/*" ngf-max-size="2MB" ng-change="toggleTrialInfoImage()"
-                                   ngf-model-invalid="errorFile" ng-show="trial.trialInfo.needsImageUpload">
+                                   accept="image/*" data-ngf-max-size="2MB" data-ng-change="toggleTrialInfoImage()"
+                                   data-ngf-model-invalid="errorFile" data-ng-show="trial.trialInfo.needsImageUpload">
 
-                            <i ng-show="trialInfo.trialLogoPic.$error.required">*</i>
-                            <i ng-show="trialInfo.trialLogoPic.$error.maxSize">File too large
+                            <i data-ng-show="trialInfo.trialLogoPic.$error.required">*</i>
+                            <i data-ng-show="trialInfo.trialLogoPic.$error.maxSize">File too large
                                 {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
                             <!-- If the model contains the trialLogoPic bytes then the user has just re-uploaded an image or else they've uploaded it for
                                  the first time
@@ -134,15 +134,15 @@
                                   don't save the image until later we can't reference /trialInfoImage/{{trial.id}}
                                   as the src to the image as it hasn't been saved/updated
                                   -->
-                            <img ngf-thumbnail="trial.trialInfo.trialLogoPic" class="thumb"
-                                 ng-show="!trial.trialInfo.needsImageUpload">
+                            <img data-ngf-thumbnail="trial.trialInfo.trialLogoPic" class="thumb"
+                                 data-ng-show="!trial.trialInfo.needsImageUpload">
                             <img data-ng-src="/trialInfoImage/{{trialInfo.id}}"
-                                 ng-show="!trial.trialInfo.needsImageUpload && trial.trialInfo.hasUploadedImage">
+                                 data-ng-show="!trial.trialInfo.needsImageUpload && trial.trialInfo.hasUploadedImage">
                             <div>
-                                <button id="btn_change_trial_logo" ng-click="resetUploadedImage();"
-                                        ng-show="!trial.trialInfo.needsImageUpload">Change Logo</button>
+                                <button id="btn_change_trial_logo" data-ng-click="resetUploadedImage();"
+                                        data-ng-show="!trial.trialInfo.needsImageUpload">Change Logo</button>
                             </div>
-                        </span>
+                        </div>
                 </div>
 
             </div>
@@ -155,15 +155,15 @@
             <div class="trial-info-edit">
                 <div class="form-group">
                     <label for="inp_trialInfoSummary">Trial Summary</label>
-                    <span>
+                    <div>
                         <textarea id="inp_trialInfoSummary" name="tSummary"
                                   data-ng-model="trial.trialInfo.summary" class="trialSummary" required="">
                         </textarea>
-                        <div ng-show="trialForm.$submitted || trialForm.tSummary.$touched">
+                        <div data-ng-show="trialForm.$submitted || trialForm.tSummary.$touched">
                             <div class="errors"
-                                 ng-show="trialForm.tSummary.$error.required">Please supply a summary</div>
+                                 data-ng-show="trialForm.tSummary.$error.required">Please supply a summary</div>
                         </div>
-                    </span>
+                    </div>
                 </div>
             </div>
 
@@ -174,15 +174,15 @@
             <div class="trial-info-edit">
                 <div class="form-group">
                     <label for="inp_trialInfoDescription">Full Description</label>
-                    <span>
+                    <div>
                         <textarea id="inp_trialInfoDescription" name="tDescription"
                                   data-ng-model="trial.trialInfo.trialFullDescription.fullDescription" class="trialDescription"
                                   required>
                         </textarea>
-                        <div ng-show="trialForm.$submitted || trialForm.tDescription.$touched">
-                            <div class="errors" ng-show="trialForm.tDescription.$error.required">Please supply a full description</div>
+                        <div data-ng-show="trialForm.$submitted || trialForm.tDescription.$touched">
+                            <div class="errors" data-ng-show="trialForm.tDescription.$error.required">Please supply a full description</div>
                         </div>
-                    </span>
+                    </div>
                 </div>
             </div>
 
@@ -215,8 +215,6 @@
                         <span>
                             <textarea id="inp_facility-description-{{trialSite.sortOrder}}"
                                       name="trial-site-facility-description"
-                                      id="trial-site-facility-description{{$index}}"
-                                      name="trial-site-facility-description"
                                       data-ng-model="trialSite.facilityDescription"
                                       class="trialFacility" required>
                             </textarea>
@@ -226,29 +224,29 @@
                     <div class="form-group trial-site-logo" style="min-height:70px">
                         <!-- Trial Site Pic -->
                         <label for="trial-site-logo{{trialSite.sortOrder}}">Trial Facility Image</label>
-                        <input id="trial-site-logo{{trialSite.sortOrder}}" type="file" ngf-select
-                               ng-model="trialSite.sitePic"
-                               name="siteFile" ng-change="toggleTrialSiteImage(trialSite)"
-                               accept="image/*" ngf-max-size="2MB"
-                               ngf-model-invalid="errorFile" ng-show="trialSite.needsImageUpload">
+                        <input id="trial-site-logo{{trialSite.sortOrder}}" type="file" data-ngf-select
+                               data-ng-model="trialSite.sitePic"
+                               name="siteFile" data-ng-change="toggleTrialSiteImage(trialSite)"
+                               accept="image/*" data-ngf-max-size="2MB"
+                               data-ngf-model-invalid="errorFile" data-ng-show="trialSite.needsImageUpload">
 
                         <img data-ng-src="/trialSiteImage/{{trialSite.id}}"
-                             ng-show="!trialSite.needsImageUpload && trialSite.hasUploadedImage">
-                        <i ng-show="trialSite.sitePic.$error.required">*required</i><br>
-                        <i ng-show="trialSite.sitePic.$error.maxSize">File too large
+                             data-ng-show="!trialSite.needsImageUpload && trialSite.hasUploadedImage">
+                        <i data-ng-show="trialSite.sitePic.$error.required">*required</i><br>
+                        <i data-ng-show="trialSite.sitePic.$error.maxSize">File too large
                             {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
                     </div>
 
                     <!-- Trial Facility Image REMOVE -->
                     <div class="form-group">
                         <span>
-                            <img ngf-thumbnail="trialSite.sitePic" class="thumb"
-                                 ng-show="!trialSite.needsImageUpload">
+                            <img data-ngf-thumbnail="trialSite.sitePic" class="thumb"
+                                 data-ng-show="!trialSite.needsImageUpload">
                         </span>
                         <button id="btn_change_site_logo{{trialSite.sortOrder}}" type="button" class="btn btn-remove"
-                                ng-click="resetUploadedTrialSiteImage(trialSite);"
+                                data-ng-click="resetUploadedTrialSiteImage(trialSite);"
                                 style="float:right;clear:both"
-                                ng-show="!trialSite.needsImageUpload">Change Logo
+                                data-ng-show="!trialSite.needsImageUpload">Change Logo
                         </button>
                     </div>
 
@@ -337,7 +335,7 @@
         <!-- Trial Site End -->
         <span class="trial-edit-buttons answers">
             <label for="input_save_trial">
-                <input id="input_save_trial" ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
+                <input id="input_save_trial" data-ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
                 <span>Save Trial</span>
             </label>
         </span>

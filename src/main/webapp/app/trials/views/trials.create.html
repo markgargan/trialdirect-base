@@ -14,7 +14,7 @@
     </div>
 
     <div class="list-text input-group">
-        <input id="inp_newTrialInput" id="newTrialInput" type="text" class="form-control"
+        <input id="inp_newTrialInput" type="text" class="form-control"
                data-ng-disabled="!newTrial.therapeuticarea"
                data-ng-model="newTrial.title" placeholder="e.g. Acme Trial"/>
         <span id="create-trial-span" class="input-group-btn">
@@ -69,9 +69,9 @@
             <!-- Trial Info Summary -->
             <!-- ------------------ -->
             <div>
-                <span data-ng-show="!editingTrialInfo">
+                <div data-ng-show="!editingTrialInfo">
                     <h4 class="trialInfoDescription" data-ng-bind="newTrial.trialInfo.description"></h4>
-                </span>
+                </div>
             </div>
             <span>
                 <img data-ngf-thumbnail="newTrial.trialInfo.trialLogoPic" class="thumb"
@@ -167,9 +167,9 @@
                 <!-- Trial Info Summary -->
                 <!-- ------------------ -->
                 <div>
-                <span data-ng-show="!trialSite.isEditing">
+                <div data-ng-show="!trialSite.isEditing">
                     <h5 class="trialSiteHeading" data-ng-bind="trialSite.siteDescription"></h5>
-                </span>
+                </div>
                 </div>
                 <span>
                     <img data-ngf-thumbnail="trialSite.sitePic" class="thumb"

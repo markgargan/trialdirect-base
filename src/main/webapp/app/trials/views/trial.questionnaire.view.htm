@@ -41,7 +41,7 @@
                 </div>
 
 
-                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
                     <div class="option-list slim">
                         <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
                             <input type="checkbox"
