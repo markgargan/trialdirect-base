@@ -1,6 +1,6 @@
 angular.module('trialdirect').controller('TrialController',
-    ['$scope', '$state', '$timeout', 'Upload', 'TrialResourceService', 'TrialInfo', 'trials',
-        'therapeuticAreas',
+    [
+        '$scope', '$state', '$timeout', 'Upload', 'TrialResourceService', 'TrialInfo', 'trials', 'therapeuticAreas',
         function ($scope, $state, $timeout, Upload, TrialResourceService, TrialInfo, trials, therapeuticAreas) {
 
 
@@ -348,8 +348,8 @@ angular.module('trialdirect').controller('TrialController',
                     // It's a new trial
                 
                 }
-
             };
 
         }
-    ]);
+    ]
+);

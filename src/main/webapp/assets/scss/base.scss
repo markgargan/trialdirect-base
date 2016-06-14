@@ -752,6 +752,10 @@ td, th {
   @include prefix(border-radius, .4em, webkit moz);
 }
 
+.form-group label {
+  font-weight: bold;
+}
+
 .answers, .question {
   display: block;
   float: left;

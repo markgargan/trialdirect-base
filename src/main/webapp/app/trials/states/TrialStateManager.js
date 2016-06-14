@@ -38,20 +38,12 @@ angular
 
                     
                     .state('trials.list', {
-                        url: '',
-                        templateUrl: 'app/trials/views/trials.list.html'
+                        url: ''//,
+                        //templateUrl: 'app/trials/views/trials.list.html'
                     })
 
                     
                     
-                    /*
-                    .state('trials.oldcreate', {
-                        url: '/oldcreate',
-                        templateUrl: 'app/trials/views/trials.create.html'
-                    })
-                    */
-
-
                     
                     .state('trials.create', {
                         url: '/create',
