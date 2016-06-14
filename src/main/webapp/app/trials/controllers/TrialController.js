@@ -3,8 +3,8 @@ angular.module('trialdirect').controller('TrialController',
         'therapeuticAreas',
         function ($scope, $state, $timeout, Upload, TrialResourceService, TrialInfo, trials, therapeuticAreas) {
 
-            // Initialize the model
 
+            // Initialize the model
             $scope.resetTrial = function () {
                 $scope.trial = {
                     trialInfo: {
@@ -16,7 +16,8 @@ angular.module('trialdirect').controller('TrialController',
                         hasUploadedImage: false
                     }
                 };
-            }
+            };
+
 
             $scope.resetTrial();
             
@@ -30,6 +31,7 @@ angular.module('trialdirect').controller('TrialController',
             $scope.wasSaved = false;
 
             $scope.errorFields = [];
+
 
 
             $scope.updateTrial = function (newTrial, callback) {
@@ -80,6 +82,7 @@ angular.module('trialdirect').controller('TrialController',
             };
 
 
+
             $scope.validateField = function (trial, fieldName) {
                 if (angular.isEmpty(trial[fieldName])) {
                     $scope.errorFields.push(fieldName);
@@ -91,6 +94,7 @@ angular.module('trialdirect').controller('TrialController',
                 }
                 return true;
             };
+
 
 
             // Most of the validation is taken care of by the form
@@ -128,6 +132,7 @@ angular.module('trialdirect').controller('TrialController',
             };
 
 
+
             $scope.validateTrialInfo = function (trial) {
                 if (angular.isEmpty(trial.title)) {
                     trial.title = {};
@@ -138,6 +143,7 @@ angular.module('trialdirect').controller('TrialController',
             };
 
 
+
             $scope.validateTrial = function (trial) {
                 if (angular.isEmpty(trial.therapeuticArea)) {
                     trial.unselectedTherapeuticArea = true;
@@ -146,6 +152,7 @@ angular.module('trialdirect').controller('TrialController',
 
                 return true;
             };
+
 
 
             $scope.initializeTrialSite = function () {
@@ -165,12 +172,15 @@ angular.module('trialdirect').controller('TrialController',
                 trialInfo.trialSites._embeddedItems.unshift(newTrialSite);
 
                 $scope.showSiteForm(newTrialSite);
+           
             };
+
 
 
             $scope.showSiteForm = function (trialSite) {
                 $scope.currentTrialSite = trialSite;
             };
+
 
 
             $scope.reset = function () {
@@ -181,15 +191,18 @@ angular.module('trialdirect').controller('TrialController',
                 });
 
                 $scope.wasSaved = false;
+           
             };
 
             $scope.reset();
+
 
 
             $scope.chooseTherapeuticArea = function (therapeuticArea) {
                 $scope.trial.therapeuticArea = therapeuticArea;
                 $scope.trial.unselectedTherapeuticArea = false;
             };
+
 
 
             $scope.createTrialInfo = function (trial) {
@@ -205,7 +218,9 @@ angular.module('trialdirect').controller('TrialController',
                 $scope.createTrialSites(trial, data);
 
                 return data;
+            
             };
+
 
 
             $scope.createTrialSites = function (trial, data) {
@@ -237,10 +252,12 @@ angular.module('trialdirect').controller('TrialController',
             };
 
 
+
             $scope.clearErrors = function () {
                 $scope.errors = '';
                 $scope.errorFields = [];
             };
+
 
 
             $scope.uploadTrial = function (trial, file) {
@@ -286,14 +303,17 @@ angular.module('trialdirect').controller('TrialController',
             };
 
 
+
             $scope.toggleTrialInfoImage = function () {
                 $scope.trial.trialInfo.needsImageUpload = !$scope.trial.trialInfo.needsImageUpload;
             };
 
 
+
             $scope.toggleTrialSiteImage = function (trialSite) {
                 trialSite.needsImageUpload = !trialSite.needsImageUpload;
             };
+
 
 
             $scope.resetUploadedImage = function () {
@@ -303,11 +323,13 @@ angular.module('trialdirect').controller('TrialController',
             };
 
 
+
             $scope.resetUploadedTrialSiteImage = function (trialSite) {
                 trialSite.sitePic = null;
                 trialSite.needsImageUpload = true;
                 trialSite.hasUploadedImage = false;
             };
+
 
 
             /**
@@ -316,11 +338,15 @@ angular.module('trialdirect').controller('TrialController',
              */
             $scope.isLogoAssociatedWithTrialInfo = function () {
                 if ($scope.trial.id) {
+
                     // then it's a previous trial
                     // has the user clicked to upload a different image
                     return $scope.trial.trialInfo.trialLogoPic;
+                
                 } else {
+                
                     // It's a new trial
+                
                 }
 
             };

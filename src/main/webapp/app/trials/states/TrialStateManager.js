@@ -6,6 +6,7 @@ angular
 
                 $stateProvider
 
+                    
                     .state('trials', {
 
                         abstract: true,
@@ -35,11 +36,13 @@ angular
                     })
 
 
+                    
                     .state('trials.list', {
                         url: '',
                         templateUrl: 'app/trials/views/trials.list.html'
                     })
 
+                    
                     
                     /*
                     .state('trials.oldcreate', {
@@ -49,6 +52,7 @@ angular
                     */
 
 
+                    
                     .state('trials.create', {
                         url: '/create',
                         views: {
@@ -60,6 +64,7 @@ angular
                     })
 
 
+                    
                     .state('trials.edit', {
                         url: '/edit/{trialId:[0-9]{1,4}}',
                         views: {
@@ -70,14 +75,17 @@ angular
                                 controller: 'TrialEditController',
                                 resolve: {
 
+                                    
                                     trialInfo: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrialInfo($stateParams.trialId);
                                     },
 
+                                    
                                     trial: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrial($stateParams.trialId);
                                     },
 
+                                    
                                     questionnaireEntries: function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                                         //Initialise the answer api
                                         Question.initialize();
@@ -87,6 +95,7 @@ angular
                                         // Load all the questions for the particular Trial
                                         return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink('trials', $stateParams.trialId);
                                     },
+                                    
                                     
                                     trialSelectorQuestionnaireEntries: function ($stateParams, TrialSelectorQuestionnaireEntryResourceService, Question, Answer) {
                                         //Initialise the answer api
@@ -104,6 +113,7 @@ angular
                     })
 
 
+                    
                     .state('trials.detail', {
                         url: '/{trialId:[0-9]{1,4}}',
                         views: {
@@ -114,14 +124,17 @@ angular
                                 controller: 'TrialEditController',
                                 resolve: {
 
+                                    
                                     trialInfo: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrialInfo($stateParams.trialId);
                                     },
 
+                                    
                                     trial: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrial($stateParams.trialId);
                                     },
 
+                                    
                                     questionnaireEntries: function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                                         //Initialise the answer api
                                         Question.initialize();
@@ -132,6 +145,7 @@ angular
                                         return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink('trials', $stateParams.trialId);
                                     },
                                     
+                                    
                                     trialSelectorQuestionnaireEntries: function ($stateParams, TrialSelectorQuestionnaireEntryResourceService, Question, Answer) {
                                         //Initialise the answer api
                                         Question.initialize();
@@ -141,6 +155,7 @@ angular
                                         // Load all the questions for the particular Trial
                                         return TrialSelectorQuestionnaireEntryResourceService.loadTrialSelectorQuestionnaireEntriesForTrial($stateParams.trialId);
                                     }
+                                    
                                 }
                             },
 
@@ -163,5 +178,4 @@ angular
                         }
                     });
             }
-        ]
-    );
+        ]);

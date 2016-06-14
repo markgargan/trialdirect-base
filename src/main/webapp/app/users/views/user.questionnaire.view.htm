@@ -13,9 +13,9 @@
 
             <div class="panelContent">
 
-                <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'-question.id'">
+                <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'question.sortOrder'">
                     <div class="question">
-                        <p data-ng-bind="questionnaireEntry.	question.questionText"></p>
+                        <p data-ng-bind="questionnaireEntry.question.questionText"></p>
                         <div class="clear"></div>
                     </div>
                     <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">

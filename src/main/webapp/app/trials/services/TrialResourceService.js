@@ -6,6 +6,8 @@ angular.module('trialdirect').factory('TrialResourceService',
 
             TrialResourceService.resources = null;
 
+            
+            
             // Load the specific Trial drilling for the questionnaire and the nested questions and answers
             TrialResourceService.loadTrial = function (trialId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialId);
@@ -18,6 +20,8 @@ angular.module('trialdirect').factory('TrialResourceService',
                 });
             };
 
+            
+            
             TrialResourceService.loadTrialInfo = function (trialId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialId + '/trialInfos');
 
@@ -32,6 +36,8 @@ angular.module('trialdirect').factory('TrialResourceService',
                 });
             };
 
+            
+            
             // Just load the trials themselves, don't eagerly pull back their questionnaires.
             TrialResourceService.initialize = function () {
                 var deferred = $http.get(RESOURCE_URL);
@@ -41,6 +47,8 @@ angular.module('trialdirect').factory('TrialResourceService',
                     TrialResourceService.resources = data._resources("self");
                 });
             };
+
+            
 
             // Just load the trials themselves, don't eagerly pull back their questionnaires.
             TrialResourceService.load = function () {
@@ -56,6 +64,8 @@ angular.module('trialdirect').factory('TrialResourceService',
                     });
                 });
             };
+
+            
 
             // Load the specific Trial drilling for the questionnaire and the nested questions and answers
             TrialResourceService.inflateTrial = function (trialId) {
@@ -80,6 +90,8 @@ angular.module('trialdirect').factory('TrialResourceService',
                     return new TrialResourceService(data);
                 });
             };
+
+            
 
             // e.g. './api/trials/1' is being initialized
             // as a trialResource in it's own right.

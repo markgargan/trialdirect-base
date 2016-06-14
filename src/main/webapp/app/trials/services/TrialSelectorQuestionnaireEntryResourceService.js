@@ -3,6 +3,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
         function ($http, SpringDataRestAdapter, Question, Answer, $q) {
 
             var TRIAL_PARENT_URL_PREFIX = './api/trials';
+
             var RESOURCE_URL = './api/trialselectorquestionnaireentries';
 
 
@@ -89,6 +90,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
 
                 } else {
                     
+                    
                     trialSelectorQuestionnaireEntry.resources = trialSelectorQuestionnaireEntry._resources("self", {}, {
                         update: {
                             method: 'PUT'
@@ -96,6 +98,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                     });
 
 
+                    
                     trialSelectorQuestionnaireEntry.save = function (callback) {
                         trialSelectorQuestionnaireEntry.resources.update(trialSelectorQuestionnaireEntry, function () {
                             callback && callback(trialSelectorQuestionnaireEntry);
@@ -103,6 +106,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                     };
 
 
+                    
                     trialSelectorQuestionnaireEntry.remove = function (callback) {
                         trialSelectorQuestionnaireEntry.resources.remove(function () {
                             callback && callback(trialSelectorQuestionnaireEntry);
@@ -110,6 +114,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                     };
 
 
+                    
                     trialSelectorQuestionnaireEntry.createAssociation = function (associationName, associatedEntity, callback) {
 
                         var deferred = $http({
@@ -128,6 +133,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                     };
 
 
+                    
                     trialSelectorQuestionnaireEntry.removeAssociation = function (associationName, associatedEntity, callback) {
 
                         var deferred = $http.delete(trialSelectorQuestionnaireEntry._links.self.href + '/' + associationName + '/' + associatedEntity.id);
@@ -140,6 +146,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                     };
 
 
+                    
                     // Must remove the Question and the Trial from the TrialSelectorQuestionnaireEntry row before
                     // we may delete the TrialSelectorQuestionnaireEntry.
                     trialSelectorQuestionnaireEntry.removeQEAssociation = function (trialId, callback) {
@@ -155,6 +162,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                             });
                         });
                     };
+                    
                 }
 
                 return trialSelectorQuestionnaireEntry;

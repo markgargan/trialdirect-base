@@ -43,10 +43,11 @@
                         <small>
                             <span data-ng-if="trialSite.trialDirectAddress.address1.length">{{trialSite.trialDirectAddress.address1}}, </span>
                             <span data-ng-if="trialSite.trialDirectAddress.address2.length">{{trialSite.trialDirectAddress.address2}}, </span>
-                            <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address3}}, </span>
+                            <span data-ng-if="trialSite.trialDirectAddress.address3.length">{{trialSite.trialDirectAddress.address3}}, </span>
                             <span data-ng-if="trialSite.trialDirectAddress.address4.length">{{trialSite.trialDirectAddress.address4}}, </span>
                             <span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
-                            <span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span>
+                            <span data-ng-if="trialSite.trialDirectAddress.country.length">
+                            {{trialSite.trialDirectAddress.country}}. </span>
                         </small>
                     </li>
                 </ul>
