@@ -12,7 +12,7 @@ angular.module('trialdirect').factory('TrialResourceService',
             TrialResourceService.loadTrial = function (trialId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialId);
 
-                return SpringDataRestAdapter.process(deferred, 'thenrapeuticArea').then(function (data) {
+                return SpringDataRestAdapter.process(deferred, 'therapeuticArea').then(function (data) {
 
                     data.therapeuticArea = new TherapeuticAreaResourceService(data.therapeuticArea);
 

@@ -266,6 +266,8 @@ angular.module('trialdirect').controller('TrialController',
                     return;
                 }
 
+                console.log(trial);
+
                 // Firstly create the Trial Object
                 $scope.updateTrial(trial, function (savedTrial) {
 
