@@ -1,4 +1,4 @@
-<div class="col-xs-9">
+<div class="col-9">
     <div>
         <!-- <h2 data-ng-bind="trial.title"></h2> -->
         <span class="trial-edit-buttons answers">
@@ -15,7 +15,7 @@
 
     <form id="myForm" name="trialForm">
 
-        <div class="form-group col-xs-3">
+        <div class="form-group col-3">
 
             <!-- Edit Trial Information -->
             <!--<div class="simplePanel" data-ng-click="showSiteForm()">
@@ -62,11 +62,11 @@
 
 
         <!-- Trial Info Start  -->
-        <div data-td-id="trialInformationEditor" class="simplePanel col-xs-9"
+        <div data-td-id="trialInformationEditor" class="simplePanel col-9"
              data-ng-hide="currentTrialSite">
 
             <!-- Left Column, Trial Site Information -->
-            <div class="col-xs-6">
+            <div class="col-6">
 
                 <div class="trial-info-edit">
                     <div class="form-group">
@@ -114,7 +114,7 @@
 
 
             <!-- Right Column, Trial Site Information -->
-            <div class="col-xs-6">
+            <div class="col-6">
 
                 <!-- Trial Information Logo -->
                 <div class="form-group">
@@ -204,7 +204,7 @@
 
 
         <!-- Trial Sites(Locations) Start -->
-        <div class="form-group simplePanel col-xs-9"
+        <div class="form-group simplePanel col-9"
              data-ng-repeat="trialSite in trial.trialInfo.trialSites._embeddedItems"
              data-ng-show="currentTrialSite == trialSite">
 
@@ -212,7 +212,7 @@
             <div class="clear"></div>
 
             <!-- Left Column, Trial Facility Summaries -->
-            <div class="col-xs-6">
+            <div class="col-6">
 
                 <div data-td-id="trialSiteEditor{{$index}}">
                     <!-- Trial Facility Name -->
@@ -283,7 +283,7 @@
             </div>
 
             <!-- Left Column, Trial Facility Address -->
-            <div class="col-xs-6">
+            <div class="col-6">
 
                 <!-- Trial Site Address 1 -->
                 <div class="form-group">
