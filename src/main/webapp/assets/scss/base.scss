@@ -752,9 +752,9 @@ td, th {
   @include prefix(border-radius, .4em, webkit moz);
 }
 
-.form-group label {
+/*.form-group label {
   font-weight: bold;
-}
+}*/
 
 .answers, .question {
   display: block;
@@ -1224,7 +1224,7 @@ textarea.ng-invalid.ng-touched, textarea.ng-invalid-required.ng-touched {
   border: 1px solid #eee;
   font-size: 1em;
   min-height: 15em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   @include prefix(border-radius, .35em, webkit moz);
 }
 

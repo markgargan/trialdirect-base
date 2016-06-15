@@ -1,94 +1,190 @@
 <div class="mainContent">
 
     <div class="section col-8">
+        <h3>How it works</h3>
+        <div class="panelContent alc">
+
+            <ul class="steps">
+                <li><strong>1</strong> <span>Register for the Trial Direct service</span></li>
+                <li><strong>2</strong> <span>Use our innovative search engine to find suitable trials for your patient in your geographic location</span>
+                </li>
+                <li><strong>3</strong> <span>Learn more about the trial and the physicians running it</span></li>
+                <li><strong>4</strong> <span>If the trial is a viable option, your patient can register for the trial through Trial Direct</span>
+                </li>
+                <li><strong>5</strong> <span>The physician running the trial will contact your patient to discuss further</span>
+                </li>
+            </ul>
+
+            <div class="clear"></div>
+            <br>
+            <p>You can also receive, at your discretion, a small administration fee of &dollar;25 for the time taken to
+                consider the trial for your patient. This payment is paid direct to your bank account in 14 days.</p>
+
+        </div>
+
         <h3>About Trial Direct</h3>
         <div class="panelContent">
 
             <p>Trial Direct empowers physicians to consider clinical trials as a treatment option for their patients.
-            Your patients want to know about clinical trials so they can consider all treatment options.
-            Your patients <strong>PREFER</strong> to learn about trials from their <strong>PHYSICIAN</strong>.</p>
-            <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical trial for your patient. Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you need.</p>
+                Your patients want to know about clinical trials so they can consider all treatment options.
+                Your patients <strong>PREFER</strong> to learn about trials from their <strong>PHYSICIAN</strong>.</p>
+            <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical
+                trial for your patient. Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you
+                need.</p>
             <p>You can take the <strong>DECISION</strong> with your patient to contact a physician running a trial.
-            Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
+                Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment
+                options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
 
         </div>
     </div>
 
+    <!--<div class="section col-4">
+        <h3>About Trial Direct</h3>
+        <div class="panelContent">
+
+            <p>Trial Direct empowers physicians to consider clinical trials as a treatment option for their patients.
+                Your patients want to know about clinical trials so they can consider all treatment options.
+                Your patients <strong>PREFER</strong> to learn about trials from their <strong>PHYSICIAN</strong>.</p>
+            <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical
+                trial for your patient. Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you
+                need.</p>
+            <p>You can take the <strong>DECISION</strong> with your patient to contact a physician running a trial.
+                Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment
+                options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
+
+        </div>
+    </div>-->
+
+
     <div class="section col-4">
         <h3 class="fll">Register</h3>
-        <p class="flr"><a href="./#/login">Login Here</a></p>
+        <p class="flr"><a data-ui-sref="login">Login Here</a></p>
         <div class="panelContent">
-            <form name="regForm" novalidate>
 
+            <form id="myForm" name="loginForm" novalidate>
 
-            <div class="">
+                <div class="form-group">
+                    <div class="col-2">
+                        <label for="inp_registerNameTitle">Title</label>
+                        <input id="inp_registerNameTitle" name="tNameTitle" type="text" class="form-control"
+                               data-ng-model="trial.nameTitle" value="{{trial.nameTitle}}" required>
 
-                <div class="formItem col-2">
-                    <label>Title</label>
-                    <input type="text" required>
+                    </div>
+
+                    <div class="col-5">
+                        <label for="inp_registerFirstName">First Name</label>
+                        <input id="inp_registerFirstName" name="tFirstName" type="text" class="form-control"
+                               data-ng-model="trial.firstname" value="{{trial.firstname}}" required>
+                    </div>
+
+                    <div class="col-5">
+                        <label for="inp_registerLastName">Last Name</label>
+                        <input id="inp_registerLastName" name="tLastName" type="text" class="form-control"
+                               data-ng-model="trial.lastname" value="{{trial.lastname}}" required>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div data-ng-show="loginForm.$submitted || loginForm.tNameTitle.$touched || loginForm.tFirstName.$touched || loginForm.tLastName.$touched">
+                        <div class="errors col-12"
+                             data-ng-show="loginForm.tNameTitle.$error.required || loginForm.tFirstName.$error.required || loginForm.tLastName.$error.required">
+                            Please supply your name (all fields required)
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
                 </div>
 
-                <div class="formItem col-4">
-                    <label>First Name</label>
-                    <input type="text" required>
+
+                <div class="form-group col-12">
+                    <label for="inp_registerEmail">Email</label>
+                    <input id="inp_registerEmail" name="tEmail" type="email" class="form-control"
+                           data-ng-model="trial.email" value="{{trial.email}}" required>
+                    <div data-ng-show="loginForm.$submitted || loginForm.tEmail.$touched">
+                        <div class="errors"
+                             data-ng-show="loginForm.tEmail.$error.required || loginForm.tEmail.$error.email">Please
+                            supply a valid email address
+                        </div>
+                    </div>
                 </div>
 
-                <div class="formItem col-6">
-                    <label>Last Name</label>
-                    <input type="text" required>
+
+                <div class="form-group">
+
+                    <div class="col-6">
+                        <label for="inp_registerPassword">Password</label>
+                        <input id="inp_registerPassword" name="tPassword" type="password" class="form-control"
+                               data-ng-model="trial.password" value="{{trial.password}}" required>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="inp_registerPasswordConfirm">Re-Enter Password</label>
+                        <input id="inp_registerPasswordConfirm" name="tPasswordConfirm" type="password"
+                               class="form-control"
+                               data-ng-model="trial.password2" value="{{trial.password2}}" required>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div data-ng-show="loginForm.$submitted || (loginForm.tPassword.$touched && loginForm.tPasswordConfirm.$touched)">
+                        <div class="errors col-12"
+                             data-ng-show="loginForm.tPassword.$error.required || loginForm.tPasswordConfirm.$error.required">
+                            Please supply and confirm your password
+                        </div>
+
+                        <div class="errors col-12"
+                             data-ng-show="(loginForm.tPassword.$touched && loginForm.tPasswordConfirm.$touched) && (trial.password.length && trial.password2.length && trial.password!=trial.password2)">
+                            Passwords do not match, please confirm
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
                 </div>
 
-                <div class="formItem col-12">
-                    <label>Email</label>
-                    <input type="email" required>
+
+                <div class="form-group col-12">
+                    <label for="inp_registerNPI">NPI (National Provider Identifier) Number</label>
+                    <input id="inp_registerNPI" name="tNPI" type="text" class="form-control"
+                           data-ng-model="trial.npi" value="{{trial.npi}}" required>
+                    <div data-ng-show="loginForm.$submitted || loginForm.tNPI.$touched">
+                        <div class="errors" data-ng-show="loginForm.tNPI.$error.required">Please supply your
+                            NPI Number
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-12">
+                    <label for="inp_registerPractice">Practice Name</label>
+                    <input id="inp_registerPractice" name="tPractice" type="password" class="form-control"
+                           data-ng-model="trial.practice" value="{{trial.practice}}" required>
+                    <div data-ng-show="loginForm.$submitted || loginForm.tPractice.$touched">
+                        <div class="errors" data-ng-show="loginForm.tPractice.$error.required">Please supply your
+                            Practice Name
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-12">
+                    <label for="inp_registerZipCode">ZIP Code</label>
+                    <input id="inp_registerZipCode" name="tZipCode" type="password" class="form-control"
+                           data-ng-model="trial.zipcode" value="{{trial.zipcode}}" required>
+                    <div data-ng-show="loginForm.$submitted || loginForm.tZipCode.$touched">
+                        <div class="errors" data-ng-show="loginForm.tZipCode.$error.required">Please supply your
+                            ZIP Code
+                        </div>
+                    </div>
                 </div>
 
 
-                <div class="formItem col-6">
-                    <label>Password</label>
-                    <input type="password" required>
+                <div class="formItem align-right col-12">
+                    <button>Register</button>
                 </div>
 
-                <div class="formItem col-6">
-                    <label>Re-Enter Password</label>
-                    <input type="password" required>
-                </div>
-
-            </div>
-
-
-            <div class="">
-
-                <div class="formItem col-12">
-                    <label>NPI (National Provider Identifier) Number</label>
-                    <input type="text" required>
-                </div>
-
-                <div class="formItem col-12">
-                    <label>Practice Name</label>
-                    <input type="text" required>
-                </div>
-
-                <div class="formItem col-12">
-                    <label>ZIP Code</label>
-                    <input type="text" required>
-                </div>
-
-                <div class="formItem col-12">
-                    <label>Terms and Conditions</label>
-                    <label>
-                        <input type="checkbox" style="margin: 0"> Please indicate that you agree with the <a href="">terms and conditions</a> for use of the Trial Direct service.
-                    </label>
-                </div>
-
-            </div>
-
-            <div class="formItem align-right col-12">
-                <button>Register</button>
-            </div>
+            </form>
 
             <div class="clear"></div>
-            </form>
         </div>
     </div>
 

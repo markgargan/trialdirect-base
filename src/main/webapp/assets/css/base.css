@@ -720,9 +720,9 @@ td, th {
   -moz-border-radius: 0.4em;
   border-radius: 0.4em; }
 
-.form-group label {
-  font-weight: bold; }
-
+/*.form-group label {
+  font-weight: bold;
+}*/
 .answers, .question {
   display: block;
   float: left;
@@ -1155,7 +1155,7 @@ textarea.ng-invalid.ng-touched, textarea.ng-invalid-required.ng-touched {
   border: 1px solid #eee;
   font-size: 1em;
   min-height: 15em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   -webkit-border-radius: 0.35em;
   -moz-border-radius: 0.35em;
   border-radius: 0.35em; }
