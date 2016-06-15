@@ -157,7 +157,7 @@
 
                 <div class="form-group col-12">
                     <label for="inp_registerPractice">Practice Name</label>
-                    <input id="inp_registerPractice" name="tPractice" type="password" class="form-control"
+                    <input id="inp_registerPractice" name="tPractice" type="text" class="form-control"
                            data-ng-model="trial.practice" value="{{trial.practice}}" required>
                     <div data-ng-show="loginForm.$submitted || loginForm.tPractice.$touched">
                         <div class="errors" data-ng-show="loginForm.tPractice.$error.required">Please supply your
@@ -168,7 +168,7 @@
 
                 <div class="form-group col-12">
                     <label for="inp_registerZipCode">ZIP Code</label>
-                    <input id="inp_registerZipCode" name="tZipCode" type="password" class="form-control"
+                    <input id="inp_registerZipCode" name="tZipCode" type="text" class="form-control"
                            data-ng-model="trial.zipcode" value="{{trial.zipcode}}" required>
                     <div data-ng-show="loginForm.$submitted || loginForm.tZipCode.$touched">
                         <div class="errors" data-ng-show="loginForm.tZipCode.$error.required">Please supply your
