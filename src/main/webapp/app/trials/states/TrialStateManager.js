@@ -3,8 +3,9 @@ angular
     .config(
         ['$stateProvider', '$urlRouterProvider',
             function ($stateProvider, $urlRouterProvider) {
-                
+
                 $stateProvider
+
                     
                     .state('trials', {
 
@@ -33,16 +34,16 @@ angular
                             }
                         }
                     })
+
+
                     
                     .state('trials.list', {
-                        url: '',
-                        templateUrl: 'app/trials/views/trials.list.html'
+                        url: ''//,
+                        //templateUrl: 'app/trials/views/trials.list.html'
                     })
+
                     
-                    .state('trials.oldcreate', {
-                        url: '/oldcreate',
-                        templateUrl: 'app/trials/views/trials.create.html'
-                    })
+                    
                     
                     .state('trials.create', {
                         url: '/create',
@@ -53,6 +54,8 @@ angular
                             }
                         }
                     })
+
+
                     
                     .state('trials.edit', {
                         url: '/edit/{trialId:[0-9]{1,4}}',
@@ -64,14 +67,17 @@ angular
                                 controller: 'TrialEditController',
                                 resolve: {
 
+                                    
                                     trialInfo: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrialInfo($stateParams.trialId);
                                     },
 
+                                    
                                     trial: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrial($stateParams.trialId);
                                     },
 
+                                    
                                     questionnaireEntries: function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                                         //Initialise the answer api
                                         Question.initialize();
@@ -80,8 +86,9 @@ angular
 
                                         // Load all the questions for the particular Trial
                                         return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink('trials', $stateParams.trialId);
-                                    }
-                                    ,
+                                    },
+                                    
+                                    
                                     trialSelectorQuestionnaireEntries: function ($stateParams, TrialSelectorQuestionnaireEntryResourceService, Question, Answer) {
                                         //Initialise the answer api
                                         Question.initialize();
@@ -91,11 +98,14 @@ angular
                                         // Load all the questions for the particular Trial
                                         return TrialSelectorQuestionnaireEntryResourceService.loadTrialSelectorQuestionnaireEntriesForTrial($stateParams.trialId);
                                     }
+                                    
                                 }
                             }
                         }
                     })
 
+
+                    
                     .state('trials.detail', {
                         url: '/{trialId:[0-9]{1,4}}',
                         views: {
@@ -106,13 +116,17 @@ angular
                                 controller: 'TrialEditController',
                                 resolve: {
 
+                                    
                                     trialInfo: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrialInfo($stateParams.trialId);
                                     },
 
+                                    
                                     trial: function ($stateParams, TrialResourceService) {
                                         return TrialResourceService.loadTrial($stateParams.trialId);
                                     },
+
+                                    
                                     questionnaireEntries: function ($stateParams, QuestionnaireEntryResourceService, Question, Answer) {
                                         //Initialise the answer api
                                         Question.initialize();
@@ -121,8 +135,9 @@ angular
 
                                         // Load all the questions for the particular Trial
                                         return QuestionnaireEntryResourceService.loadQuestionnaireEntriesForTherapeuticLink('trials', $stateParams.trialId);
-                                    }
-                                    ,
+                                    },
+                                    
+                                    
                                     trialSelectorQuestionnaireEntries: function ($stateParams, TrialSelectorQuestionnaireEntryResourceService, Question, Answer) {
                                         //Initialise the answer api
                                         Question.initialize();
@@ -132,11 +147,14 @@ angular
                                         // Load all the questions for the particular Trial
                                         return TrialSelectorQuestionnaireEntryResourceService.loadTrialSelectorQuestionnaireEntriesForTrial($stateParams.trialId);
                                     }
+                                    
                                 }
                             },
+
                             //'hint@': {
                             //  template: 'This is trials.detail populating the "hint" ui-view'
                             //},
+                            
                             // This one is targeting the ui-view="menuTip" within the parent state's template.
                             'menuTip': {
                                 // templateProvider is the final method for supplying a template.
@@ -152,5 +170,4 @@ angular
                         }
                     });
             }
-        ]
-    );
+        ]);

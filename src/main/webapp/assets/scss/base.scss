@@ -308,7 +308,7 @@ h2 {
 h3 {
   font-size: 1.4em
 }
-x
+
 h4 {
   font-size: 1.2em
 }
@@ -752,6 +752,10 @@ td, th {
   @include prefix(border-radius, .4em, webkit moz);
 }
 
+/*.form-group label {
+  font-weight: bold;
+}*/
+
 .answers, .question {
   display: block;
   float: left;
@@ -836,9 +840,9 @@ p {
 
 .trialIntro {
   display: block;
-  padding: 2em;
+  padding: 1em;
   background: #fff;
-  margin: .5em 0 1em;
+  margin: .5em 0;
   text-align: left;
   cursor: pointer;
   @include prefix(border-radius, .3em, webkit moz);
@@ -1220,7 +1224,7 @@ textarea.ng-invalid.ng-touched, textarea.ng-invalid-required.ng-touched {
   border: 1px solid #eee;
   font-size: 1em;
   min-height: 15em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   @include prefix(border-radius, .35em, webkit moz);
 }
 

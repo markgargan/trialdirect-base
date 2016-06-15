@@ -6,6 +6,8 @@ angular.module('trialdirect').factory('TrialInfo',
 
             TrialInfo.resources = null;
 
+            
+
             // Just load the trials themselves, don't eagerly pull back their questionnaires.
             TrialInfo.initialize = function () {
                 var deferred = $http.get(RESOURCE_URL);
@@ -16,6 +18,8 @@ angular.module('trialdirect').factory('TrialInfo',
                 });
             };
 
+            
+
             TrialInfo.loadTrialInfo = function (trialInfoId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialInfoId);
 
@@ -25,6 +29,8 @@ angular.module('trialdirect').factory('TrialInfo',
                 });
             };
 
+            
+
             TrialInfo.loadTrialInfoWithCallback = function (trialInfoId, callback) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialInfoId);
 
@@ -33,6 +39,8 @@ angular.module('trialdirect').factory('TrialInfo',
                     callback && callback(new TrialInfo(data));
                 });
             };
+
+            
 
             // Just load the trials themselves, don't eagerly pull back their questionnaires.
             TrialInfo.load = function () {
@@ -48,6 +56,8 @@ angular.module('trialdirect').factory('TrialInfo',
                     });
                 });
             };
+
+            
 
             // e.g. './api/trialInfos/1' is being initialized
             // as a trialInfoResource in it's own right.
