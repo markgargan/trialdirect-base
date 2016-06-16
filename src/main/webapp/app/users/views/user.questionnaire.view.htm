@@ -15,7 +15,7 @@
 
                 <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'question.sortOrder'">
                     <div class="question">
-                        <p data-ng-bind="questionnaireEntry.question.questionText"></p>
+                        <p data-ng-bind="questionnaireEntry.	question.questionText"></p>
                         <div class="clear"></div>
                     </div>
                     <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
@@ -64,12 +64,13 @@
 
                 <div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
                     <ul>
-                        <li class="trialImage"><img data-ng-src="/trialInfoImage/{{trial.id}}"></li>
+                        <li class="trialImage"><img data-ng-src="./trialInfoImage/{{trial.id}}"></li>
                         <!--<li class="trialBrief">{{trial.summary +' '+ trial.trialFullDescription.fullDescription |
                             limitTo:400}}...
                         </li>-->
 
                         <li class="trialTitle">Trial Title to be added</li>
+                        
                         <li class="trialBrief">{{trial.summary}}</li>
                         <li class="trialLink"><i class="fa fa-2x fa-chevron-right"></i></li>
                     </ul>
@@ -80,7 +81,7 @@
         </div>
 
 
-        <div class="trialDataInfo" data-ng-show="trialData" data-ng-model="showTrialData">
+        <div class="trialDataInfo" data-ng-show="trialData">
 
 
             <!-- Trial Summary -->
@@ -149,7 +150,7 @@
 
                                     <a href="/" class="refer">Refer your Patient to this facility</a>
 
-                                    <p data-ng-bind="trialSite.facilityDescription"></p>
+                                    <p ng-bind="trialSite.facilityDescription"></p>
 
                                     <p style="display: block; text-align: center; padding:1em 0;"><i
                                             class="fa fa-map-marker fa-2x" style="position:relative;top:.15em"></i> This

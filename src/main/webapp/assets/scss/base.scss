@@ -262,11 +262,6 @@ hr, span.br {
   clear: both
 }
 
-.clear-margin {
-  clear: both;
-  margin-bottom: 1em;
-}
-
 .align-left, .all {
   text-align: left;
 }
@@ -313,7 +308,7 @@ h2 {
 h3 {
   font-size: 1.4em
 }
-
+x
 h4 {
   font-size: 1.2em
 }
@@ -373,7 +368,7 @@ input, select {
   padding: .5em
 }
 
-.btn.submit, .btn.answers, .answers label span, p.distance {
+.btn.answers, .answers label span, p.distance {
   @include prefix(border-radius, .2em, webkit moz);
 }
 
@@ -412,7 +407,7 @@ form.small label {
   display: inline;
 }
 
-.btn.submit, .btn.answers, .answers label span {
+.btn.answers, .answers label span {
   display: inline-block;
   background: #eee;
   padding: .5em 1em;
@@ -504,7 +499,6 @@ form.small label {
   padding: 0;
 }
 
-.btn.submit:active, .btn.submit:hover,
 .btn.answers:active, .btn.answers:hover,
 .answers label span:active, .answers label span:hover {
   background: #ddd
@@ -758,10 +752,6 @@ td, th {
   @include prefix(border-radius, .4em, webkit moz);
 }
 
-/*.form-group label {
-  font-weight: bold;
-}*/
-
 .answers, .question {
   display: block;
   float: left;
@@ -846,9 +836,9 @@ p {
 
 .trialIntro {
   display: block;
-  padding: 1em;
+  padding: 2em;
   background: #fff;
-  margin: .5em 0;
+  margin: .5em 0 1em;
   text-align: left;
   cursor: pointer;
   @include prefix(border-radius, .3em, webkit moz);
@@ -1230,7 +1220,7 @@ textarea.ng-invalid.ng-touched, textarea.ng-invalid-required.ng-touched {
   border: 1px solid #eee;
   font-size: 1em;
   min-height: 15em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   @include prefix(border-radius, .35em, webkit moz);
 }
 

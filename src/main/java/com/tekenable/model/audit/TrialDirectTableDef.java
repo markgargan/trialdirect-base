@@ -1,8 +1,6 @@
 package com.tekenable.model.audit;
 
 
-import java.util.Objects;
-
 public class TrialDirectTableDef {
 
     private String columnName;
@@ -41,30 +39,26 @@ public class TrialDirectTableDef {
         this.applied = applied;
     }
 
+
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.columnName);
-        hash = 97 * hash + Objects.hashCode(this.columnDef);
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TrialDirectTableDef)) return false;
+
+        TrialDirectTableDef that = (TrialDirectTableDef) o;
+
+        if (applied != that.applied) return false;
+        if (columnName != null ? !columnName.equals(that.columnName) : that.columnName != null) return false;
+        return !(columnDef != null ? !columnDef.equals(that.columnDef) : that.columnDef != null);
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TrialDirectTableDef other = (TrialDirectTableDef) obj;
-        if (!Objects.equals(this.columnName, other.columnName)) {
-            return false;
-        }
-        return Objects.equals(this.columnDef, other.columnDef);
+    public int hashCode() {
+        int result = columnName != null ? columnName.hashCode() : 0;
+        result = 31 * result + (columnDef != null ? columnDef.hashCode() : 0);
+        result = 31 * result + (applied ? 1 : 0);
+        return result;
     }
 
     @Override

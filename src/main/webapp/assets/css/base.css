@@ -10,68 +10,69 @@ CSS files should be edited/created via the assets/scss folder, and compiled usin
   margin: 0 !important; }
 
 /* columns :: defaults */
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
-.col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
-.col-25, .col-50, .col-75, .col-100, .col-33, .col-66 {
+.col1, .col2, .col3, .col4, .col5, .col6,
+.col7, .col8, .col9, .col10, .col11, .col12,
+.col25, .col50, .col75, .col100,
+.col33, .col66 {
   display: block;
   float: left;
   padding: 0 5px; }
 
 /* columns :: bootstrap style, grid-based */
-.col-1 {
+.col1 {
   width: 8.333333333%; }
 
-.col-2 {
+.col2 {
   width: 16.66666667%; }
 
-.col-3 {
+.col3 {
   width: 25%; }
 
-.col-4 {
+.col4 {
   width: 33.33333333%; }
 
-.col-5 {
+.col5 {
   width: 41.66666667%; }
 
-.col-6 {
+.col6 {
   width: 50%; }
 
-.col-7 {
+.col7 {
   width: 58.33333333%; }
 
-.col-8 {
+.col8 {
   width: 66.66666667%; }
 
-.col-9 {
+.col9 {
   width: 75%; }
 
-.col-10 {
+.col10 {
   width: 83.33333333%; }
 
-.col-11 {
+.col11 {
   width: 91.66666667%; }
 
-.col-12 {
+.col12 {
   width: 100%; }
 
 /* columns :: 4-column percentage grid */
-.col-25 {
+.col25 {
   width: 25%; }
 
-.col-50 {
+.col50 {
   width: 50%; }
 
-.col-75 {
+.col75 {
   width: 75%; }
 
-.col-100 {
+.col100 {
   width: 100%; }
 
 /* columns :: 3-column percentage grid */
-.col-33 {
+.col33 {
   width: 33.3333%; }
 
-.col-66 {
+.col66 {
   width: 66.6667%; }
 
 *, *:before, *:after {
@@ -285,10 +286,6 @@ hr, span.br {
 .clear, hr, p.distance {
   clear: both; }
 
-.clear-margin {
-  clear: both;
-  margin-bottom: 1em; }
-
 .align-left, .all {
   text-align: left; }
 
@@ -325,6 +322,7 @@ h2 {
 h3 {
   font-size: 1.4em; }
 
+x
 h4 {
   font-size: 1.2em; }
 
@@ -372,7 +370,7 @@ input, select {
   width: 100%;
   padding: 0.5em; }
 
-.btn.submit, .btn.answers, .answers label span, p.distance {
+.btn.answers, .answers label span, p.distance {
   -webkit-border-radius: 0.2em;
   -moz-border-radius: 0.2em;
   border-radius: 0.2em; }
@@ -405,7 +403,7 @@ form.small label {
 .answers label {
   display: inline; }
 
-.btn.submit, .btn.answers, .answers label span {
+.btn.answers, .answers label span {
   display: inline-block;
   background: #eee;
   padding: .5em 1em;
@@ -491,7 +489,6 @@ form.small label {
 .setArea p {
   padding: 0; }
 
-.btn.submit:active, .btn.submit:hover,
 .btn.answers:active, .btn.answers:hover,
 .answers label span:active, .answers label span:hover {
   background: #ddd; }
@@ -725,9 +722,6 @@ td, th {
   -moz-border-radius: 0.4em;
   border-radius: 0.4em; }
 
-/*.form-group label {
-  font-weight: bold;
-}*/
 .answers, .question {
   display: block;
   float: left;
@@ -801,9 +795,9 @@ p {
 
 .trialIntro {
   display: block;
-  padding: 1em;
+  padding: 2em;
   background: #fff;
-  margin: .5em 0;
+  margin: .5em 0 1em;
   text-align: left;
   cursor: pointer;
   -webkit-border-radius: 0.3em;
@@ -1160,7 +1154,7 @@ textarea.ng-invalid.ng-touched, textarea.ng-invalid-required.ng-touched {
   border: 1px solid #eee;
   font-size: 1em;
   min-height: 15em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   -webkit-border-radius: 0.35em;
   -moz-border-radius: 0.35em;
   border-radius: 0.35em; }

@@ -1,7 +1,5 @@
 <div>
-    <form>
     <div class="form-horizontal" role="form">
-
 
         <!--<div class="page-header">
             <h1>Questionnaire for <strong>"{{therapeuticarea.title}}"</strong> Trials</h1>
@@ -33,11 +31,11 @@
         <br><br>
         <label><strong>Edit Questionnaire</strong></label>
         <div class="form-group" data-as-sortable="sortableOptions" data-ng-model="questionnaireEntries">
-            <div data-ng-repeat="questionnaireEntry in questionnaireEntries" data-as-sortable-item
+            <div data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'question.sortOrder'" data-as-sortable-item
                  class="as-sortable-item">
                 <div class="qa">
 
-                    <div data-as-sortable-item-handle class="questionEdit as-sortable-item-handle"
+                    <div class="questionEdit" as-sortable-item-handle class="as-sortable-item-handle"
                          data-ng-mouseleave="updateSortQuestion(questionnaireEntry.question.id, $index)">
                         <button class="left btn btn-remove btn-remove-question" type="button" title="Delete"
                                 data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">
@@ -56,7 +54,7 @@
                               <span class="input-group-btn">
                                 <button id="btn_newAnswer_{{questionnaireEntry.question.sortOrder}}"
                                         class="btn btn-default" type="button"
-                                        data-ng-click="addAnswer(questionnaireEntry, newAnswer); newAnswer=null"
+                                        data-ng-click="addAnswer(questionnaireEntry, newAnswer)"
                                         data-ng-disabled="!newAnswer" title="Add">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
@@ -104,8 +102,8 @@
             </div>
         </div>
 
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
-<div class="clear"></div>
+
+    <div class="clear"></div>

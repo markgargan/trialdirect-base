@@ -1,5 +1,5 @@
 <!-- ngView:  -->
-<div data-autoscroll="true" class="view-frame col-9">
+<div data-autoscroll="true" class="view-frame col9">
     <form class="wide">
 
         <!-- <div class="setArea">
@@ -19,7 +19,7 @@
             <p class="noTopPad">For each question below, select all options that are acceptable to your trial criteria.</p>
         </div>
 
-        <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'sortOrder'">
+        <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'question.sortOrder'">
             <div class="question">
                 <p data-ng-bind="questionnaireEntry.question.questionText"></p>
                 <div class="clear"></div>
@@ -41,9 +41,9 @@
                 </div>
 
 
-                <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                <div class="answers" ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
                     <div class="option-list slim">
-                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
+                        <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'id'">
                             <input type="checkbox"
                                    data-ng-click="updateQuestionnaireEntrySet(questionnaireEntry)"
                                    data-ng-checked="answer.isAcceptable" data-ng-model="answer.isAcceptable">

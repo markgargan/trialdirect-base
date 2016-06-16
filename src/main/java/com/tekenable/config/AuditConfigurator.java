@@ -21,12 +21,8 @@ public class AuditConfigurator {
     @Autowired
     protected DataSource dataSource;
 
+    @Autowired
     protected JdbcTemplate jdbc;
-
-    @PostConstruct
-    private void init() {
-        this.jdbc = new JdbcTemplate(dataSource);
-    }
 
     /**
      * this is for testing purpose

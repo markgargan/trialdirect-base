@@ -19,6 +19,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -82,6 +83,15 @@ public class AppConfig extends RepositoryRestMvcConfiguration {
         }
 
         return datasource;
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+
+        JdbcTemplate jdbcTemplate = null;
+        jdbcTemplate = new JdbcTemplate(dataSource());
+
+        return jdbcTemplate;
     }
 
     @Bean

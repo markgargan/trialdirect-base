@@ -52,7 +52,7 @@ angular.module('trialdirect').controller('UserEditController',
 
                     $scope.trialInfos = [];
 
-                    if (availableTrialIds.length < 50) {
+                    if (availableTrialIds.length < 5) {
                         angular.forEach(availableTrialIds, function (availableTrialId) {
                             TrialResourceService.loadTrialInfo(availableTrialId).then(function (trialInfos) {
                                 if (!angular.isUndefined(trialInfos)) {
