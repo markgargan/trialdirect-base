@@ -56,7 +56,7 @@
                               <span class="input-group-btn">
                                 <button id="btn_newAnswer_{{questionnaireEntry.question.sortOrder}}"
                                         class="btn btn-default" type="button"
-                                        data-ng-click="addAnswer(questionnaireEntry, newAnswer)"
+                                        data-ng-click="addAnswer(questionnaireEntry, newAnswer); newAnswer=null"
                                         data-ng-disabled="!newAnswer" title="Add">
                                     <span class="glyphicon glyphicon-plus"></span>
                                 </button>
