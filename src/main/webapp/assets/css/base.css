@@ -285,6 +285,10 @@ hr, span.br {
 .clear, hr, p.distance {
   clear: both; }
 
+.clear-margin {
+  clear: both;
+  margin-bottom: 1em; }
+
 .align-left, .all {
   text-align: left; }
 
@@ -368,7 +372,7 @@ input, select {
   width: 100%;
   padding: 0.5em; }
 
-.btn.answers, .answers label span, p.distance {
+.btn.submit, .btn.answers, .answers label span, p.distance {
   -webkit-border-radius: 0.2em;
   -moz-border-radius: 0.2em;
   border-radius: 0.2em; }
@@ -401,7 +405,7 @@ form.small label {
 .answers label {
   display: inline; }
 
-.btn.answers, .answers label span {
+.btn.submit, .btn.answers, .answers label span {
   display: inline-block;
   background: #eee;
   padding: .5em 1em;
@@ -487,6 +491,7 @@ form.small label {
 .setArea p {
   padding: 0; }
 
+.btn.submit:active, .btn.submit:hover,
 .btn.answers:active, .btn.answers:hover,
 .answers label span:active, .answers label span:hover {
   background: #ddd; }

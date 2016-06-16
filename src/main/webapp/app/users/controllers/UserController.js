@@ -5,7 +5,7 @@ angular.module('trialdirect').controller('UserController',
             $scope.users = users;
 
             $scope.therapeuticAreas = therapeuticAreas;
-            //$scope.therapeuticParents = therapeuticParents;
+            $scope.therapeuticParents = therapeuticParents;
 
             //console.log(therapeuticAreas);
 

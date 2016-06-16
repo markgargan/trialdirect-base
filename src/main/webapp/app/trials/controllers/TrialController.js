@@ -36,6 +36,9 @@ angular.module('trialdirect').controller('TrialController',
 
             $scope.updateTrial = function (newTrial, callback) {
 
+                //console.log(newTrial);
+
+
                 if (angular.isDefined(newTrial.id)) {
                     
                     // Means the trial object is being updated
@@ -261,6 +264,8 @@ angular.module('trialdirect').controller('TrialController',
 
 
             $scope.uploadTrial = function (trial, file) {
+
+                //console.log(trial);
 
                 if (!$scope.validateTrial(trial)) {
                     return;

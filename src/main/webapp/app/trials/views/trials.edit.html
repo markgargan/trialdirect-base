@@ -342,22 +342,32 @@
 
             </div>
 
-            <div class="clear"></div>
 
+            <div class="clear"></div>
         </div>
 
+        <div class="align-right">
+            <button type="button" class="btn submit" id="input_save_trial" data-ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">Save Trial</button>
+            <button type="button" class="btn submit" id="input_publish_trial" data-ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">Publish Trial</button>
+        </div>
 
-
-
+        <div class="clear-margin"></div>
 
 
         <!-- Trial Site End -->
-        <span class="trial-edit-buttons answers">
+        <!--<span class="trial-edit-buttons answers">
             <label for="input_save_trial">
                 <input id="input_save_trial" data-ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
                 <span>Save Trial</span>
             </label>
         </span>
+
+        <span class="trial-edit-buttons answers">
+            <label for="input_save_trial">
+                <input id="input_save_trial" data-ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
+                <span>Publish Trial</span>
+            </label>
+        </span>-->
 
 
     </form>

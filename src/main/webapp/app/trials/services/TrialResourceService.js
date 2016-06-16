@@ -24,6 +24,7 @@ angular.module('trialdirect').factory('TrialResourceService',
             
             TrialResourceService.loadTrialInfo = function (trialId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialId + '/trialInfos');
+                var deferredParent = $http.get(RESOURCE_URL + '/' + trialId);
 
                 return SpringDataRestAdapter.process(deferred, 'trialSites').then(function (data) {
 
