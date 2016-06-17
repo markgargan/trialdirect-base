@@ -34,7 +34,7 @@ import java.util.*;
 public class TrialLogoUploadServlet extends HttpServlet {
 
     private final static String TRIAL_ID = "trialId";
-    private final static String TRIAL_SITE_ID = "trialSiteId";
+    private final static String TRIAL_SITE_ID_PATTERN = "trialSites\\[.*\\]\\.id";
     private final static String TRIAL_INFO_ID = "trialInfoId";
     private final static String TRIAL_INFO_SUMMARY = "summary";
     private static final String TRIAL_INFO_FULL_DESCRIPTION = "trialFullDescription";
@@ -108,10 +108,9 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        String trialInfoJson = mapper.writeValueAsString(trialInfo);
-        response.setContentLength(trialInfoJson.length());
+        String trialIdJson = mapper.writeValueAsString(trial.getId());
 
-        mapper.writeValue(response.getOutputStream(), trialInfo);
+        mapper.writeValue(response.getOutputStream(), trialIdJson);
     }
 
     private void persistTrialInfo(Trial trial) {
@@ -257,9 +256,21 @@ public class TrialLogoUploadServlet extends HttpServlet {
 
         trialSite.setTrialDirectAddress(trialDirectAddress);
 
-        if (fieldName.contains(TRIAL_SITE_ID)) {
-            TrialSite existingTrialSite = trialSiteRepository.findOne(Integer.valueOf(fieldValue));
-            trialSite = mergeTrialSite(trialSite, existingTrialSite);
+        if (fieldName.matches(TRIAL_SITE_ID_PATTERN)) {
+            TrialSite existingTrialSite  = trialSiteRepository.findOne(Integer.valueOf(fieldValue));
+
+            // Replace the trialSite in the map with the existing trialSite which
+            // will then be merged.
+            if (existingTrialSite != null) {
+
+                for (Integer key : trialSites.keySet()) {
+                    if (trialSites.get(key).equals(trialSite)){
+                        trialSites.put(key, existingTrialSite);
+                    }
+                }
+            }
+
+            mergeTrialSite(trialSite, existingTrialSite);
         } else if (fieldName.contains(FACILITY_DESCRIPTION)) {
             trialSite.setFacilityDescription(fieldValue);
         } else if (fieldName.contains(FACILITY_NAME)) {
@@ -280,9 +291,7 @@ public class TrialLogoUploadServlet extends HttpServlet {
             trialDirectAddress.setCountry(fieldValue);
         } else if (fieldName.contains(SITE_SORT_ORDER)) {
             trialSite.setSortOrder(Integer.valueOf(fieldValue));
-        }
-
-        else if (fieldName.contains(SITE_MAP)) {
+        } else if (fieldName.contains(SITE_MAP)) {
             trialSite.setSiteMap(fieldValue);
         }
     }

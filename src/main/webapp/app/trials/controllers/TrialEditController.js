@@ -1,14 +1,14 @@
 angular.module('trialdirect').controller('TrialEditController',
-    ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'TrialResourceService', 'trial', 'trialInfo', 
-        'questionnaireEntries', 'trialSelectorQuestionnaireEntries', 'TrialSelectorQuestionnaireEntryResourceService',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, TrialResourceService, trial, trialInfo,
+    ['$scope', '$state', '$window', 'Question', 'Answer', 'Upload', '$timeout', 'QuestionnaireEntryResourceService', 'TrialResourceService',
+        'trial', 'trialInfo', 'questionnaireEntries', 'trialSelectorQuestionnaireEntries', 'TrialSelectorQuestionnaireEntryResourceService',
+        function ($scope, $state, $window, Question, Answer, Upload, $timeout, QuestionnaireEntryResourceService, TrialResourceService, trial, trialInfo,
                   questionnaireEntries, trialSelectorQuestionnaireEntries, TrialSelectorQuestionnaireEntryResourceService) {
 
             $scope.trial = trial;
+
             //$scope.currentTrialSite = null;
 
             $scope.trialInfo = trialInfo;
-
 
             // Previously saved TrialInfo objects
             // must have had an image saved along with them
@@ -16,14 +16,12 @@ angular.module('trialdirect').controller('TrialEditController',
             $scope.trialInfo.hasUploadedImage = true;
             $scope.trialInfo.needsImageUpload = false;
 
-
             if (angular.isDefined($scope.trialInfo.trialSites)) {
                 angular.forEach($scope.trialInfo.trialSites._embeddedItems, function (trialSite) {
                     trialSite.hasUploadedImage = true;
                     trialSite.needsImageUpload = false;
                 });
             }
-
 
             $scope.trial.trialInfo = $scope.trialInfo;
 
@@ -34,7 +32,6 @@ angular.module('trialdirect').controller('TrialEditController',
             $scope.questionnaireEntries = questionnaireEntries;
 
             $scope.isEditing = false;
-
             $scope.wasSaved = false;
 
             // Selections loaded upon hitting the page
@@ -48,13 +45,12 @@ angular.module('trialdirect').controller('TrialEditController',
             // Find the corresponding question
             angular.forEach($scope.questionnaireEntries, function (questionnaireEntry) {
 
-                
+
                 // Set each question in the trial to be an unacceptable answer
                 // i.e. all unchecked
                 angular.forEach(questionnaireEntry.answers._embeddedItems, function (answer) {
                     answer.isAcceptable = true;
                 });
-
 
                 // Then iterate over the
                 angular.forEach($scope.trialSelectorQuestionnaireEntries, function (trialSelectorEntry) {
@@ -67,18 +63,130 @@ angular.module('trialdirect').controller('TrialEditController',
                         });
                     }
                 });
-
-
             });
 
+            $scope.uploadEditedTrial = function (trial, file) {
 
+                if (!$scope.validateTrial(trial)) {
+                    return;
+                }
+
+                // Firstly create the Trial Object
+                $scope.updateTrial(trial, function (savedTrial) {
+
+                    var upload = Upload.upload({
+                        url: './uploadTrialInfo',
+                        data: $scope.createTrialInfo(savedTrial),
+                        objectKey: '.k',
+                        arrayKey: '[i]'
+                    });
+
+                    upload.then(function (response) {
+                        // timeout prevents this from running within the digest cycle
+                        $timeout(function () {
+                            // Update TrialInfo and TrialSites
+                            var savedTrialInfo = response.data;
+
+                            $scope.resetTrial();
+                            $scope.currentTrialSite = null;
+                            // $state.go("trials.edit", {'trialId': savedTrial.id});
+                            $window.reload();
+                            //TrialInfo.loadTrialInfoWithCallback(savedTrialInfo.id, function(trialInfo){
+                            //    $scope.trial.trialInfo = trialInfo;
+                            //    if (file) {
+                            //        file.result = response.data;
+                            //    }
+                            //});
+
+
+                        });
+                    }, function (response) {
+                        if (response.status > 0)
+                            $scope.errorMsg = response.status + ': ' + response.data;
+                    });
+                });
+            };
+
+            $scope.updateTrial = function (newTrial, callback) {
+
+                if (angular.isDefined(newTrial.id)) {
+                    // Means the trial object is being updated
+                    // so just call save and it will call into the update
+                    // version of the save method.
+                    // no 'new' here...
+                    TrialResourceService({
+                        id: newTrial.id,
+                        title: newTrial.title,
+                        trialCode: newTrial.trialCode,
+                        therapeuticArea: newTrial.therapeuticArea.getHrefLink()
+                    }).save(function (savedTrial) {
+
+                        // Update the savedTrial with the trialInfo to be saved.
+                        savedTrial.trialInfo = $scope.trial.trialInfo;
+                        savedTrial.therapeuticArea = $scope.trial.therapeuticArea;
+                        $scope.trial = savedTrial;
+
+                        callback && callback($scope.trial);
+                        $scope.wasSaved = true;
+
+                    });
+                } else {
+
+                    new TrialResourceService({
+                        title: newTrial.title,
+                        trialCode: newTrial.trialCode,
+                        therapeuticArea: newTrial.therapeuticArea.getHrefLink()
+                    }).save(function (savedTrial) {
+                            // Goto the new instance on the far side
+                            $scope.trials.unshift(savedTrial);
+
+                            // Update the savedTrial with the trialInfo to be saved.
+                            savedTrial.trialInfo = $scope.trial.trialInfo;
+                            savedTrial.therapeuticArea = $scope.trial.therapeuticArea;
+                            $scope.trial = savedTrial;
+
+                            callback && callback($scope.trial);
+                            $scope.wasSaved = true;
+
+                        });
+                }
+            };
+
+            $scope.initializeTrialSite = function () {
+
+                var trialInfo = $scope.trial.trialInfo;
+
+                var _sortOrder = 1;
+
+                if (angular.isDefined( trialInfo.trialSites._embeddedItems) ) {
+                    _sortOrder = trialInfo.trialSites._embeddedItems.length + 1;
+                } else {
+                    trialInfo.trialSites._embeddedItems=[];
+                }
+
+                var newTrialSite = {
+                    // temporaryId solely used for view purposes
+                    // stripped out before persisting to the backend.O
+                    sortOrder: _sortOrder,
+                    needsImageUpload: true,
+                    hasUploadedImage: false
+                };
+
+                newTrialSite.trialDirectAddress = {};
+
+                trialInfo.trialSites._embeddedItems.unshift(newTrialSite);
+
+                $scope.showSiteForm(newTrialSite);
+            };
+
+            $scope.showSiteForm = function (trialSite) {
+                $scope.currentTrialSite = trialSite;
+            };
 
             $scope.setEditing = function (isEditing) {
                 $scope.trialTitle = $scope.trial.title + (isEditing ? ' *' : '');
                 $scope.isEditing = isEditing;
             };
-
-
 
             $scope.resetUploadedImage = function () {
                 $scope.trial.trialInfo.trialLogoPic = null;
@@ -86,26 +194,19 @@ angular.module('trialdirect').controller('TrialEditController',
                 $scope.trial.trialInfo.hasUploadedImage = false;
             };
 
-
-
             $scope.resetUploadedTrialSiteImage = function (trialSite) {
                 trialSite.sitePic = null;
                 trialSite.needsImageUpload = true;
                 trialSite.hasUploadedImage = false;
             };
 
-
-
             $scope.toggleTrialInfoImage = function () {
                 $scope.trial.trialInfo.needsImageUpload = !$scope.trial.trialInfo.needsImageUpload;
             };
 
-
-
             $scope.toggleTrialSiteImage = function (trialSite) {
                 trialSite.needsImageUpload = !trialSite.needsImageUpload;
             };
-
 
 
             $scope.submitTrialSelections = function () {
@@ -114,15 +215,14 @@ angular.module('trialdirect').controller('TrialEditController',
                 if (valid) {
                     $scope.saveTrialSelectorQuestionnaireEntries(function () {
 
-                        // Upon successful save, turn off editing
+                        // Upon successful save turn off editing
+
+                        // Turn off editing
                         $scope.setEditing(false);
                         $scope.wasSaved = true;
-
                     });
                 }
             };
-
-
 
             $scope.saveTrialSelectorQuestionnaireEntries = function (callback) {
 
@@ -182,7 +282,6 @@ angular.module('trialdirect').controller('TrialEditController',
             };
 
 
-
             $scope.validateQuestionnaireEntriesAnswered = function () {
 
                 // Is there at least one answer per question.
@@ -208,15 +307,12 @@ angular.module('trialdirect').controller('TrialEditController',
             };
 
 
-
             $scope.selectAll = function (questionnaireEntry) {
 
                 angular.forEach(questionnaireEntry.answers._embeddedItems, function (answer) {
                     answer.isAcceptable = questionnaireEntry.selectAll;
                 });
             };
-
-
 
             $scope.updateQuestionnaireEntrySet = function (questionnaireEntry) {
                 $scope.setEditing(true);
@@ -225,15 +321,12 @@ angular.module('trialdirect').controller('TrialEditController',
                 questionnaireEntry.errors = null;
             };
 
-
-
             $scope.removeFromTrialSelectorQuestionnaireEntryCollection = function (trialSelectorQuestionnaireEntry) {
 
                 $scope.trialSelectorQuestionnaireEntries.splice(
                     $scope.trialSelectorQuestionnaireEntries.indexOf(trialSelectorQuestionnaireEntry), 1);
 
             };
-
         }
     ])
 ;

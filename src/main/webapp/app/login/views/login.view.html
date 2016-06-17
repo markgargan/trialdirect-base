@@ -1,86 +1,36 @@
 <div class="mainContent">
 
-    <div class="section col-8">
-        <!--<h3>How it works</h3>
-        <div class="panelContent alc">
-
-            <ul class="steps">
-                <li><strong>1</strong> <span>Register for the Trial Direct service</span></li>
-                <li><strong>2</strong> <span>Use our innovative search engine to find suitable trials for your patient in your geographic location</span>
-                </li>
-                <li><strong>3</strong> <span>Learn more about the trial and the physicians running it</span></li>
-                <li><strong>4</strong> <span>If the trial is a viable option, your patient can register for the trial through Trial Direct</span>
-                </li>
-                <li><strong>5</strong> <span>The physician running the trial will contact your patient to discuss further</span>
-                </li>
-            </ul>
-
-            <div class="clear"></div>
-            <br>
-            <p>You can also receive, at your discretion, a small administration fee of &dollar;25 for the time taken to
-                consider the trial for your patient. This payment is paid direct to your bank account in 14 days.</p>
-
-        </div>-->
-
+    <div class="section col66">
         <h3>About Trial Direct</h3>
         <div class="panelContent">
 
             <p>Trial Direct empowers physicians to consider clinical trials as a treatment option for their patients.
                 Your patients want to know about clinical trials so they can consider all treatment options.
                 Your patients <strong>PREFER</strong> to learn about trials from their <strong>PHYSICIAN</strong>.</p>
-            <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical
-                trial for your patient. Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you
-                need.</p>
+            <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical trial for your patient.
+                Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you need.</p>
             <p>You can take the <strong>DECISION</strong> with your patient to contact a physician running a trial.
-                Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment
-                options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
+                Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
 
         </div>
     </div>
 
-    <!--<div class="section col-8">
-        <h3>About Trial Direct</h3>
-        <div class="panelContent">
-
-            <p>Trial Direct empowers physicians to consider clinical trials as a treatment option for their patients.
-                Your patients want to know about clinical trials so they can consider all treatment options.
-                Your patients <strong>PREFER</strong> to learn about trials from their <strong>PHYSICIAN</strong>.</p>
-            <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical
-                trial for your patient.
-                Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you need.</p>
-            <p>You can take the <strong>DECISION</strong> with your patient to contact a physician running a trial.
-                Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment
-                options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
-
-        </div>
-    </div>-->
-
-    <div class="section col-4">
+    <div class="section col33">
         <h3 class="fll">Login</h3>
-        <p class="flr"><a data-ui-sref="register">Register Here</a></p>
+        <p class="flr"><a href="./#/register">Register Here</a></p>
         <div class="panelContent">
 
-            <form id="myForm" name="loginForm" novalidate>
+            <form novalidate>
 
-                <div class="form-group col-12">
-                    <label for="inp_loginEmail">Email</label>
-                    <input id="inp_loginEmail" name="tEmail" type="email" class="form-control"
-                           data-ng-model="trial.title" value="{{trial.title}}" required>
-                    <div data-ng-show="loginForm.$submitted || loginForm.tEmail.$touched">
-                        <div class="errors" data-ng-show="loginForm.tEmail.$error.required || loginForm.tEmail.$error.email">Please supply a valid email address</div>
-                    </div>
+                <div class="formItem col100">
+                    <label>Email</label>
+                    <input type="email" required>
                 </div>
 
 
-                <div class="form-group col-12">
-                    <label for="inp_loginPassword">Password</label>
-                    <input id="inp_loginPassword" name="tPassword" type="password" class="form-control"
-                           data-ng-model="trial.trialCode" value="{{trial.trialCode}}" required>
-                    <div data-ng-show="loginForm.$submitted || loginForm.tPassword.$touched">
-                        <div class="errors" data-ng-show="loginForm.tPassword.$error.required">Please supply your
-                            password
-                        </div>
-                    </div>
+                <div class="formItem col100">
+                    <label>Password</label>
+                    <input type="password" required>
                 </div>
 
                 <div class="formItem align-right">

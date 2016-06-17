@@ -3,30 +3,21 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
         function ($http, SpringDataRestAdapter, Question, Answer, $q) {
 
             var TRIAL_PARENT_URL_PREFIX = './api/trials';
-
             var RESOURCE_URL = './api/trialselectorquestionnaireentries';
-
 
             // initialise the resources object.
             TrialSelectorQuestionnaireEntryResourceService.resources = null;
 
-
-
             TrialSelectorQuestionnaireEntryResourceService.initialize = function () {
-            
                 var deferred = $http.get(RESOURCE_URL);
 
                 return SpringDataRestAdapter.process(deferred).then(function (data) {
                     TrialSelectorQuestionnaireEntryResourceService.resources = data._resources("self");
                 });
-            
             };
-
-
 
             // Load the specific Trial drilling for the trialSelectorQuestionnaireEntries, the questions and answers
             TrialSelectorQuestionnaireEntryResourceService.loadTrialSelectorQuestionnaireEntriesForTrial = function (trialId) {
-            
                 var deferred = $http.get(TRIAL_PARENT_URL_PREFIX + '/' + trialId + '/trialselectorquestionnaireentries');
 
                 return SpringDataRestAdapter.process(deferred, ['question', 'answer']).then(function (data) {
@@ -38,14 +29,9 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                         trialSelectorQuestionnaireEntry.answer = new Answer(trialSelectorQuestionnaireEntry.answer);
 
                         return new TrialSelectorQuestionnaireEntryResourceService(trialSelectorQuestionnaireEntry);
-                
                     });
-                
                 });
-
             };
-
-
 
             TrialSelectorQuestionnaireEntryResourceService.inflateTrialSelectorQuestionnaireEntry = function (trialSelectorQuestionnaireEntry) {
 
@@ -60,12 +46,8 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                     data.answer = new Answer(data.answer);
 
                     return new TrialSelectorQuestionnaireEntryResourceService(data);
-                
                 });
-            
             };
-
-
 
             function TrialSelectorQuestionnaireEntryResourceService(trialSelectorQuestionnaireEntry) {
 
@@ -76,45 +58,33 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                         TrialSelectorQuestionnaireEntryResourceService.resources.save(trialSelectorQuestionnaireEntry, function (trialSelectorQuestionnaireEntry, headers) {
 
                             var deferred = $http.get(headers().location);
-                            
                             return SpringDataRestAdapter.process(deferred, ['question', 'answer']).then(function (newTrialSelectorQuestionnaireEntry) {
 
                                 callback && callback(new TrialSelectorQuestionnaireEntryResourceService(newTrialSelectorQuestionnaireEntry));
-                            
                             });
-                        
                         });
-                    
                     };
 
 
                 } else {
-                    
-                    
                     trialSelectorQuestionnaireEntry.resources = trialSelectorQuestionnaireEntry._resources("self", {}, {
                         update: {
                             method: 'PUT'
                         }
                     });
 
-
-                    
                     trialSelectorQuestionnaireEntry.save = function (callback) {
                         trialSelectorQuestionnaireEntry.resources.update(trialSelectorQuestionnaireEntry, function () {
                             callback && callback(trialSelectorQuestionnaireEntry);
                         });
                     };
 
-
-                    
                     trialSelectorQuestionnaireEntry.remove = function (callback) {
                         trialSelectorQuestionnaireEntry.resources.remove(function () {
                             callback && callback(trialSelectorQuestionnaireEntry);
                         });
                     };
 
-
-                    
                     trialSelectorQuestionnaireEntry.createAssociation = function (associationName, associatedEntity, callback) {
 
                         var deferred = $http({
@@ -129,11 +99,8 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
 
                             callback && callback();
                         });
-                    
                     };
 
-
-                    
                     trialSelectorQuestionnaireEntry.removeAssociation = function (associationName, associatedEntity, callback) {
 
                         var deferred = $http.delete(trialSelectorQuestionnaireEntry._links.self.href + '/' + associationName + '/' + associatedEntity.id);
@@ -145,8 +112,6 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                         });
                     };
 
-
-                    
                     // Must remove the Question and the Trial from the TrialSelectorQuestionnaireEntry row before
                     // we may delete the TrialSelectorQuestionnaireEntry.
                     trialSelectorQuestionnaireEntry.removeQEAssociation = function (trialId, callback) {
@@ -162,14 +127,10 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
                             });
                         });
                     };
-                    
                 }
 
                 return trialSelectorQuestionnaireEntry;
-
             }
-
-
 
             TrialSelectorQuestionnaireEntryResourceService.deleteAllTrialsSelectors = function (trial, callback) {
 
@@ -192,9 +153,7 @@ angular.module('trialdirect').factory('TrialSelectorQuestionnaireEntryResourceSe
             };
 
 
-
             return TrialSelectorQuestionnaireEntryResourceService;
-            
         }
     ]
 );

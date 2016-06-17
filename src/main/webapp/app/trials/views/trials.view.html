@@ -1,12 +1,12 @@
 <div class="row">
-    <div class="col-3">
+    <div class="col-xs-3">
 
         <div class="side-panel">
             <!-- <label class="nav-header new-group-label">Add new Clinical Trial</label> -->
             <ul class="nav nav-list">
                 <!-- <li class="nav-header">Add new Clinical Trial</li> -->
                 <li data-ng-class="{ active: $state.includes('trials.create') }">
-                    <a data-ui-sref="trials.create">Add New Trial</a></li>
+                    <a ui-sref="trials.create">Add New Trial</a></li>
             </ul>
         </div>
 
@@ -14,17 +14,16 @@
             <ul class="nav nav-list">
                 <li class="nav-header">Manage Existing Trials</li>
 
-                <li>
-                    <span>
-                        <input id="inp_search" type="text" data-ng-model="search" placeholder="Trial Search...">
-                    </span>
-                </li>
+                <span>
+                    <input id="inp_search" type="text" data-ng-model="search" placeholder="Trial Search...">
+                </span>
+
 
                 <!-- This <li> will only add the 'active' class if 'trials.detail' or its descendants are active
                      AND if it is the link for the active contact (aka contactId) -->
                 <li data-ng-repeat="trial in trials | filter : search" data-ui-sref-active="active">
                     <!-- Here's a data-ui-sref that is also providing necessary parameters -->
-                    <a data-ui-sref="trials.edit({trialId:trial.id})" data-ng-click="showSiteForm()">{{trial.title}}<br><small><b>Code:</b> {{trial.trialCode}}</small></a>
+                    <a data-ui-sref="trials.edit({trialId:trial.id})" ng-click="showSiteForm()">{{trial.title}}<br><small><b>Code:</b> {{trial.trialCode}}</small></a>
                 </li>
             </ul>
         </div>
