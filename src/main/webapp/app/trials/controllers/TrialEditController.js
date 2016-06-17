@@ -1,7 +1,7 @@
 angular.module('trialdirect').controller('TrialEditController',
-    ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'TrialResourceService',
+    ['$scope', '$state', '$window', 'Question', 'Answer', 'Upload', '$timeout', 'QuestionnaireEntryResourceService', 'TrialResourceService',
         'trial', 'trialInfo', 'questionnaireEntries', 'trialSelectorQuestionnaireEntries', 'TrialSelectorQuestionnaireEntryResourceService',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, TrialResourceService, trial, trialInfo,
+        function ($scope, $state, $window, Question, Answer, Upload, $timeout, QuestionnaireEntryResourceService, TrialResourceService, trial, trialInfo,
                   questionnaireEntries, trialSelectorQuestionnaireEntries, TrialSelectorQuestionnaireEntryResourceService) {
 
             $scope.trial = trial;
@@ -64,6 +64,48 @@ angular.module('trialdirect').controller('TrialEditController',
                     }
                 });
             });
+
+            $scope.uploadEditedTrial = function (trial, file) {
+
+                if (!$scope.validateTrial(trial)) {
+                    return;
+                }
+
+                // Firstly create the Trial Object
+                $scope.updateTrial(trial, function (savedTrial) {
+
+                    var upload = Upload.upload({
+                        url: './uploadTrialInfo',
+                        data: $scope.createTrialInfo(savedTrial),
+                        objectKey: '.k',
+                        arrayKey: '[i]'
+                    });
+
+                    upload.then(function (response) {
+                        // timeout prevents this from running within the digest cycle
+                        $timeout(function () {
+                            // Update TrialInfo and TrialSites
+                            var savedTrialInfo = response.data;
+
+                            $scope.resetTrial();
+                            $scope.currentTrialSite = null;
+                            // $state.go("trials.edit", {'trialId': savedTrial.id});
+                            $window.reload();
+                            //TrialInfo.loadTrialInfoWithCallback(savedTrialInfo.id, function(trialInfo){
+                            //    $scope.trial.trialInfo = trialInfo;
+                            //    if (file) {
+                            //        file.result = response.data;
+                            //    }
+                            //});
+
+
+                        });
+                    }, function (response) {
+                        if (response.status > 0)
+                            $scope.errorMsg = response.status + ': ' + response.data;
+                    });
+                });
+            };
 
             $scope.updateTrial = function (newTrial, callback) {
 
