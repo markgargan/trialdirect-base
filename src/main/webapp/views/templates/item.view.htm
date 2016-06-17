@@ -2,28 +2,28 @@
     <div class="page-header">
         <h1>A checklist</h1>
     </div>
-    <div class="alert alert-info" role="alert" ng-hide="items && items.length > 0">
+    <div class="alert alert-info" role="alert" data-ng-hide="items && items.length > 0">
         There are no items yet.
     </div>
-    <form class="form-horizontal" role="form" ng-submit="addItem(newItem)">
-        <div class="form-group" ng-repeat="item in items">
-            <div class="checkbox col9">
+    <form class="form-horizontal" role="form" data-ng-submit="addItem(newItem)">
+        <div class="form-group" data-ng-repeat="item in items">
+            <div class="checkbox col-9">
                 <label>
-                    <input type="checkbox" ng-model="item.checked" ng-change="updateItem(item)"/> {{item.description}}
+                    <input type="checkbox" data-ng-model="item.checked" data-ng-change="updateItem(item)"/> {{item.description}}
                 </label>
             </div>
-            <div class="col3">
+            <div class="col-3">
                 <button class="pull-right btn btn-danger" type="button" title="Delete"
-                        ng-click="deleteItem(item)">
+                        data-ng-click="deleteItem(item)">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
             </div>
         </div>
         <hr />
         <div class="input-group">
-            <input type="text" class="form-control" ng-model="newItem" placeholder="Enter the item..." />
+            <input type="text" class="form-control" data-ng-model="newItem" placeholder="Enter the item..." />
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit" ng-disabled="!newItem" title="Add">
+            <button class="btn btn-default" type="submit" data-ng-disabled="!newItem" title="Add">
                 <span class="glyphicon glyphicon-plus"></span>
             </button>
           </span>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="trialdirect">
+<html lang="en" data-ng-app="trialdirect">
 <head>
     <meta charset="utf-8">
     <title>Trial Direct</title>
@@ -10,13 +10,13 @@
     <meta name="robots" content="noindex, nofollow">
 
     <!--[if IE 8]>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.0.5/es5-shim.min.js"></script>
+        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.0.5/es5-shim.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <style>
             .ng-hide {
                 display: none !important;
             }
-        </style>
+        </style>-->
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800">
@@ -35,8 +35,8 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/base.css">
 
-    <style type="text/css">@charset "UTF-8";
-    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+    <style>
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .ng-hide:not(.ng-hide-animate) {
         display: none !important;
     }
 
@@ -44,9 +44,9 @@
         display: block;
     }
 
-    .ng-animate-shim {
+    /*.ng-animate-shim {
         visibility: hidden;
-    }
+    }*/
 
     .ng-anchor {
         position: absolute;
@@ -61,9 +61,9 @@
     <div class="limiter">
         <div class="view-container">
 
-            <div ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col12" ui-view="viewA"></div>
-            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col6" ui-view="viewA"></div>
-            <div ng-if="$state.current.views.hasOwnProperty('viewB')" class="col6" ui-view="viewB"></div>
+            <div data-ng-if="!$state.current.views.hasOwnProperty('viewB')" class="col-12" data-ui-view="viewA"></div>
+            <div data-ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-6" data-ui-view="viewA"></div>
+            <div data-ng-if="$state.current.views.hasOwnProperty('viewB')" class="col-6" data-ui-view="viewB"></div>
 
         </div>
     </div>
@@ -82,11 +82,9 @@
     <!--&lt;!&ndash; $state.$current is not a public api, we are using it to-->
     <!--display the full url for learning purposes&ndash;&gt;-->
     <!--</pre>-->
-</div>
 
 
-<!-- ngInclude: 'assets/partials/footer.html' -->
-<div data-ng-include="'assets/partials/footer.html'"/>
+<div data-ng-include="'assets/partials/footer.html'"></div>
 
 <script type="text/javascript" src="./bower_components/angularjs-ie8-build/dist/angular.js"></script>
 
@@ -157,8 +155,6 @@
 -->
 
 
-<!-- File end -->
-<a href="#top" style="display: none;"><i class="fa fa-angle-double-up fa-2x"></i><span>Back To Top</span></a>
 </body>
 
 </html>

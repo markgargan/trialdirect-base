@@ -1,10 +1,10 @@
 angular.module('trialdirect').controller('UserEditController',
     ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'UserResourceService',
         'user', 'questionnaireEntries', 'userSelectorQuestionnaireEntries',
-        'UserSelectorQuestionnaireEntryResourceService', 'TrialService', 'TrialResourceService', 'TrialInfo',
+        'UserSelectorQuestionnaireEntryResourceService', 'TrialService', 'TrialResourceService',
         function ($scope, Question, Answer, QuestionnaireEntryResourceService, UserResourceService,
                   user, questionnaireEntries, userSelectorQuestionnaireEntries,
-                  UserSelectorQuestionnaireEntryResourceService, TrialService, TrialResourceService, TrialInfo) {
+                  UserSelectorQuestionnaireEntryResourceService, TrialService, TrialResourceService) {
 
             $scope.user = user;
 
@@ -52,7 +52,7 @@ angular.module('trialdirect').controller('UserEditController',
 
                     $scope.trialInfos = [];
 
-                    if (availableTrialIds.length < 5) {
+                    if (availableTrialIds.length < 50) {
                         angular.forEach(availableTrialIds, function (availableTrialId) {
                             TrialResourceService.loadTrialInfo(availableTrialId).then(function (trialInfos) {
                                 if (!angular.isUndefined(trialInfos)) {
