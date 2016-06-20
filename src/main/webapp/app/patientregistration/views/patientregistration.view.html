@@ -1,0 +1,81 @@
+<div class="mainContent">
+    <div class="section col-4"></div>
+    <div class="section col-4">
+        <h3 class="fll">Patient Registration</h3>
+        <div class="panelContent">
+
+            <form id="myForm" name="loginForm" novalidate>
+
+                <div class="form-group">
+                    <div class="col-2">
+                        <label for="inp_registerNameTitle">Title</label>
+                        <input id="inp_registerNameTitle" name="tNameTitle" type="text" class="form-control"
+                               data-ng-model="trial.nameTitle" value="{{trial.nameTitle}}" required>
+
+                    </div>
+
+                    <div class="col-5">
+                        <label for="inp_registerFirstName">First Name</label>
+                        <input id="inp_registerFirstName" name="tFirstName" type="text" class="form-control"
+                               data-ng-model="trial.firstname" value="{{trial.firstname}}" required>
+                    </div>
+
+                    <div class="col-5">
+                        <label for="inp_registerLastName">Last Name</label>
+                        <input id="inp_registerLastName" name="tLastName" type="text" class="form-control"
+                               data-ng-model="trial.lastname" value="{{trial.lastname}}" required>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div data-ng-show="loginForm.$submitted || loginForm.tNameTitle.$touched || loginForm.tFirstName.$touched || loginForm.tLastName.$touched">
+                        <div class="errors col-12"
+                             data-ng-show="loginForm.tNameTitle.$error.required || loginForm.tFirstName.$error.required || loginForm.tLastName.$error.required">
+                            Please supply your name (all fields required)
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                </div>
+
+
+                <div class="form-group col-12">
+                    <label for="inp_registerEmail">Email</label>
+                    <input id="inp_registerEmail" name="tEmail" type="email" class="form-control"
+                           data-ng-model="trial.email" value="{{trial.email}}" required>
+                    <div data-ng-show="loginForm.$submitted || loginForm.tEmail.$touched">
+                        <div class="errors"
+                             data-ng-show="loginForm.tEmail.$error.required || loginForm.tEmail.$error.email">Please
+                            supply a valid email address
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-12">
+                    <label for="inp_termsAndConditions">Terms and Conditions</label>
+
+                    <span>
+                    <input id="inp_termsAndConditions" name="tTermsConditions" type="checkbox" class="no-margin"
+                           data-ng-model="trial.termsConditions" value="{{trial.termsConditions}}" required>
+                            Please indicate that you agree with the <a href="./assets/docs/fairProcessingNote.pdf" target="_blank">Terms and Conditions</a> for use of the Trial Direct service.
+                    </span>
+                    <div data-ng-show="loginForm.$submitted || loginForm.tTermsConditions.$touched">
+                        <div class="errors" data-ng-show="loginForm.tTermsConditions.$error.required">Please confirm that you accept Terms and Conditions</div>
+                    </div>
+                </div>
+
+
+                <div class="formItem align-right col-12">
+                    <button>Refer Patient</button>
+                </div>
+
+            </form>
+
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="section col-4"></div>
+
+
+</div>

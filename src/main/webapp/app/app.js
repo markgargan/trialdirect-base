@@ -11,6 +11,7 @@ angular.module(
         'uiRouterSample.register',
         'uiRouterSample.profile',
         'uiRouterSample.patients',
+        'uiRouterSample.patientregistration',
         'ngResource',
         'spring-data-rest',
         'ui.router',

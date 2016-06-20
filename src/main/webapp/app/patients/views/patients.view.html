@@ -2,6 +2,22 @@
 
     <div class="section col-12">
         <h3>My Patients</h3>
+        <table ng-controller="MyPatientsController">
+            <tr>
+                <th>Name</th>
+                <th>Referral Date</th>
+                <th>Investigator</th>
+                <th>Location</th>
+            </tr>
+            <tr data-ng-repeat="d in d | orderBy:'name'">
+                <td>{{d.name}}</td>
+                <td>{{d.date}}</td>
+                <td>{{d.investigator}}</td>
+                <td></td>
+            </tr>
+        </table>
+
+
     </div>
 
 </div>

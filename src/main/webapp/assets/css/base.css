@@ -15,7 +15,8 @@ CSS files should be edited/created via the assets/scss folder, and compiled usin
 .col-25, .col-50, .col-75, .col-100, .col-33, .col-66 {
   display: block;
   float: left;
-  padding: 0 5px; }
+  padding: 0 5px;
+  min-height: 1px; }
 
 /* columns :: bootstrap style, grid-based */
 .col-1 {
