@@ -4,6 +4,7 @@ angular.module('trialdirect').controller('TherapeuticAreaController',
 
             $scope.therapeuticAreas = therapeuticAreas;
             $scope.therapeuticParents = therapeuticParents;
+            $scope.newTherapeuticParent = {};
 
             $scope.addTherapeuticArea = function (therapeuticAreaTitle, therapeuticParentId) {
 

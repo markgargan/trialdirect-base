@@ -64,13 +64,11 @@ angular.module('trialdirect').controller('UserEditController',
                 });
             };
 
+
+
+
             // Initialise the trial count
             $scope.updateAvailableTrials();
-
-
-            $scope.chooseTrialData = function (trialData) {
-                $scope.trialData = trialData;
-            };
 
 
             $scope.updateUserSelectorQuestionnaireEntry = function (questionnaireEntry, answer) {

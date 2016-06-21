@@ -8,7 +8,6 @@
                 <form name="CreateTherapeuticArea" role="form"
                       data-ng-submit="addTherapeuticArea(newTherapeuticArea, newTherapeuticParent); newTherapeuticArea=null">
 
-
                     <!--<div data-ng-repeat="therapeuticParent in therapeuticParents">
                         <label>
                             <input type="radio"
@@ -19,7 +18,7 @@
                     </div>-->
 
                     <label for="inp_newTherapeuticAreaParent"><strong>Main Therapeutic Area?</strong></label>
-                    <select id="inp_newTherapeuticAreaParent" data-ng-model="$parent.newTherapeuticParent"
+                    <select id="inp_newTherapeuticAreaParent" data-ng-model="newTherapeuticParent"
                             data-ng-options="therapeuticParent.id as therapeuticParent.title for therapeuticParent in therapeuticParents | orderBy: 'title'">
                         <option value="">Select Option</option>
                     </select>
