@@ -71,6 +71,11 @@ angular.module('trialdirect').controller('UserEditController',
             $scope.updateAvailableTrials();
 
 
+            $scope.chooseTrialData = function (trialData) {
+                $scope.trialData = trialData;
+            };
+
+
             $scope.updateUserSelectorQuestionnaireEntry = function (questionnaireEntry, answer) {
 
                 // User clicks a button
