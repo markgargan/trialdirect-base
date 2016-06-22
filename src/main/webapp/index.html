@@ -9,59 +9,40 @@
     <meta name="viewport" content="initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
 
+    <!-- DISABLED AS IE8 SUPPORT N/A -->
     <!--[if IE 8]>
-        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.0.5/es5-shim.min.js"></script>
+        <!--
+        <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.0.5/es5-shim.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <style>
             .ng-hide {
                 display: none !important;
             }
-        </style>-->
+        </style>
+        -->
+    <!--
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700,800">
-    <link rel="stylesheet" type="text/css" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
-
-
-    <link rel="stylesheet" href="./assets/css/bootstrap.2.3.1.min.css">
-    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.css"/>
-
-    <link rel="stylesheet" type="text/css" href="assets/css/ng-sortable.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/ng-sortable.style.min.css">
-
-
-    <link rel="stylesheet" type="text/css" href="assets/css/file-upload.css">
-    <link rel="stylesheet" href="./assets/css/style.css"/>
-
-    <link rel="stylesheet" type="text/css" href="assets/css/base.css">
-
-    <style>
-    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .ng-hide:not(.ng-hide-animate) {
-        display: none !important;
-    }
-
-    ng\:form {
-        display: block;
-    }
-
-    /*.ng-animate-shim {
-        visibility: hidden;
-    }*/
-
-    .ng-anchor {
-        position: absolute;
-    }</style>
+    <link rel="stylesheet" type="text/css" href="./assets/font-awesome-4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.2.3.1.min.css">
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap-css-only/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/css/ng-sortable.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/ng-sortable.style.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/file-upload.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./assets/css/base.css">
 
 </head>
-<body data-pinterest-extension-installed="cr1.39.1">
+<body>
+
 <!-- Google Tag Manager -->
-<!--<noscript>
-    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-T2TDNF"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- COMMENT OUT(DISABLED), TO BE RE-ENABLED AT RELEVANT STAGE -->
+<!--<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T2TDNF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-T2TDNF');</script>-->
 <!-- End Google Tag Manager -->
 
@@ -77,96 +58,95 @@
 
         </div>
     </div>
-        <div class="clear"></div>
+    <div class="clear"></div>
 </main>
 
-<!--                                                      -->
-    <!-- Uncomment to be able to follow the current state     -->
-    <!--                                                      -->
-    <!--<pre>-->
-    <!--&lt;!&ndash; Here's some values to keep an eye on in the sample in order to understand $state and $stateParams &ndash;&gt;-->
-    <!--$state = {{$state.$current.name}}-->
-    <!--$state full url = {{ $state.$current.url.source }}-->
-    <!--$stateParams = {{$stateParams}}-->
-    <!--Use full screen = {{$state.current.views.hasOwnProperty('viewB')}}-->
-    <!--&lt;!&ndash; $state.$current is not a public api, we are using it to-->
-    <!--display the full url for learning purposes&ndash;&gt;-->
-    <!--</pre>-->
+
+<!-- Uncomment to be able to follow the current state -->
+<!--<pre>
+    &lt;!&ndash;
+    Here's some values to keep an eye on in the sample in order to understand $state and $stateParams &ndash;&gt;
+    $state = {{$state.$current.name}}
+    $state full url = {{ $state.$current.url.source }}
+    $stateParams = {{$stateParams}}
+    Use full screen = {{$state.current.views.hasOwnProperty('viewB')}}
+    &lt;!&ndash; $state.$current is not a public api, we are using it to
+    display the full url for learning purposes&ndash;&gt;
+    </pre>-->
 
 
 <div data-ng-include="'assets/partials/footer.html'"></div>
 
-<script type="text/javascript" src="./bower_components/angularjs-ie8-build/dist/angular.js"></script>
+<!-- angular components -->
+<script src="./bower_components/angularjs-ie8-build/dist/angular.js"></script>
+<script src="./bower_components/angular-animate/angular-animate.js"></script>
+<script src="./bower_components/angular-resource/angular-resource.js"></script>
+<script src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="./bower_components/angular-spring-data-rest/dist/angular-spring-data-rest.js"></script>
+<script src="./bower_components/lodash/dist/lodash.js"></script>
+<script src="./app/ng-sortable.js"></script>
+<script src="./app/app.js"></script>
 
-<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
-<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
-<script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script type="text/javascript"
-        src="./bower_components/angular-spring-data-rest/dist/angular-spring-data-rest.js"></script>
-<script type="text/javascript" src="./bower_components/lodash/dist/lodash.js"></script>
-
-<script type="text/javascript" src="./app/ng-sortable.js"></script>
-
-<script type="text/javascript" src="./app/app.js"></script>
-
-<script type="text/javascript" src="./app/common/services/QuestionService.js"></script>
-<script type="text/javascript" src="./app/common/services/AnswerService.js"></script>
-<script type="text/javascript" src="./app/common/services/QuestionnaireEntryResourceService.js"></script>
-
-<script type="text/javascript" src="./app/home/states/HomeStateManager.js"></script>
-<script type="text/javascript" src="./app/login/states/LoginStateManager.js"></script>
-<script type="text/javascript" src="./app/logout/states/LogoutStateManager.js"></script>
-<script type="text/javascript" src="./app/register/states/RegisterStateManager.js"></script>
-<script type="text/javascript" src="./app/help/states/HelpStateManager.js"></script>
-<script type="text/javascript" src="./app/about/states/AboutStateManager.js"></script>
-<script type="text/javascript" src="./app/profile/states/ProfileStateManager.js"></script>
-<script type="text/javascript" src="./app/patients/states/PatientsStateManager.js"></script>
-<script type="text/javascript" src="./app/patients/controllers/PatientsController.js"></script>
-<script type="text/javascript" src="./app/patientregistration/states/PatientRegistrationStateManager.js"></script>
+<!-- common services -->
+<script src="./app/common/services/QuestionService.js"></script>
+<script src="./app/common/services/AnswerService.js"></script>
+<script src="./app/common/services/QuestionnaireEntryResourceService.js"></script>
 
 <!-- TherapeuticAreas start -->
-<script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaController.js"></script>
-<script type="text/javascript" src="app/therapeuticareas/controllers/TherapeuticAreaEditController.js"></script>
-<script type="text/javascript" src="app/therapeuticareas/states/TherapeuticAreaStateManager.js"></script>
-<script type="text/javascript" src="app/therapeuticareas/services/TherapeuticAreaResourceService.js"></script>
-<script type="text/javascript" src="app/therapeuticareas/services/TherapeuticParentResourceService.js"></script>
+<script src="./app/therapeuticareas/controllers/TherapeuticAreaController.js"></script>
+<script src="./app/therapeuticareas/controllers/TherapeuticAreaEditController.js"></script>
+<script src="./app/therapeuticareas/states/TherapeuticAreaStateManager.js"></script>
+<script src="./app/therapeuticareas/services/TherapeuticAreaResourceService.js"></script>
+<script src="./app/therapeuticareas/services/TherapeuticParentResourceService.js"></script>
 <!-- TherapeuticAreas end -->
 
 <!-- Trials start -->
-<script type="text/javascript" src="app/trials/controllers/TrialController.js"></script>
-<script type="text/javascript" src="app/trials/controllers/TrialEditController.js"></script>
-<script type="text/javascript" src="app/trials/states/TrialStateManager.js"></script>
-<script type="text/javascript" src="app/trials/services/TrialResourceService.js"></script>
-<script type="text/javascript" src="app/trials/services/TrialInfo.js"></script>
-<script type="text/javascript" src="app/trials/services/TrialService.js"></script>
-<script type="text/javascript" src="app/trials/services/TrialSelectorQuestionnaireEntryResourceService.js"></script>
+<script src="./app/trials/controllers/TrialController.js"></script>
+<script src="./app/trials/controllers/TrialEditController.js"></script>
+<script src="./app/trials/states/TrialStateManager.js"></script>
+<script src="./app/trials/services/TrialResourceService.js"></script>
+<script src="./app/trials/services/TrialInfo.js"></script>
+<script src="./app/trials/services/TrialService.js"></script>
+<script src="./app/trials/services/TrialSelectorQuestionnaireEntryResourceService.js"></script>
 <!-- Trials end -->
 
-
 <!-- Users start -->
-<script type="text/javascript" src="app/users/controllers/UserController.js"></script>
-<script type="text/javascript" src="app/users/controllers/UserEditController.js"></script>
-<script type="text/javascript" src="app/users/states/UserStateManager.js"></script>
-<script type="text/javascript" src="app/users/services/UserResourceService.js"></script>
-<script type="text/javascript" src="app/users/services/UserSelectorQuestionnaireEntryResourceService.js"></script>
+<script src="./app/users/controllers/UserController.js"></script>
+<script src="./app/users/controllers/UserEditController.js"></script>
+<script src="./app/users/states/UserStateManager.js"></script>
+<script src="./app/users/services/UserResourceService.js"></script>
+<script src="./app/users/services/UserSelectorQuestionnaireEntryResourceService.js"></script>
 <!-- Users end -->
 
+<!-- other states start (to be organised into sections when additional JS module files are added) -->
+<script src="./app/home/states/HomeStateManager.js"></script>
+<script src="./app/login/states/LoginStateManager.js"></script>
+<script src="./app/logout/states/LogoutStateManager.js"></script>
+<script src="./app/register/states/RegisterStateManager.js"></script>
+<script src="./app/help/states/HelpStateManager.js"></script>
+<script src="./app/about/states/AboutStateManager.js"></script>
+<script src="./app/profile/states/ProfileStateManager.js"></script>
+<script src="./app/patients/states/PatientsStateManager.js"></script>
+<script src="./app/patients/controllers/PatientsController.js"></script>
+<script src="./app/patientregistration/states/PatientRegistrationStateManager.js"></script>
+<!-- other states end -->
+
 <!-- File start -->
-<!--<script type="text/javascript" src="app/common/controllers/FileController.js"></script>-->
-<!--<script type="text/javascript" src="app/common/directives/FileModel.js"></script>-->
-<!--<script type="text/javascript" src="app/common/services/FileService.js"></script>-->
-
-<script type="text/javascript" src="./bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
-<script type="text/javascript" src="./bower_components/ng-file-upload/ng-file-upload.js"></script>
+<!--<script src="./app/common/controllers/FileController.js"></script>-->
+<!--<script src="./app/common/directives/FileModel.js"></script>-->
+<!--<script src="./app/common/services/FileService.js"></script>-->
 
 
+<!-- File uploads -->
+<script src="./bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+<script src="./bower_components/ng-file-upload/ng-file-upload.js"></script>
+
+<!-- Convert textarea inputs into HTML inputs with content formatting features, not currently used -->
 <!--
-<script type="text/javascript" src="./bower_components/tinymce-dist/tinymce.js"></script>
-<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
-<script type="text/javascript" src="./bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+<script src="./bower_components/tinymce-dist/tinymce.js"></script>
+<script src="./bower_components/angular/angular.js"></script>
+<script src="./bower_components/angular-ui-tinymce/src/tinymce.js"></script>
 -->
 
-
 </body>
-
 </html>
