@@ -18,18 +18,29 @@ angular.module('trialdirect').factory('TrialResourceService',
                 });
             };
 
+
             TrialResourceService.loadTrialInfo = function (trialId) {
                 var deferred = $http.get(RESOURCE_URL + '/' + trialId + '/trialInfos');
+                var deferred2 = $http.get(RESOURCE_URL + '/' + trialId);
+                var trialTitle = {};
 
+                // get trial title from deferred2
+                SpringDataRestAdapter.process(deferred2).then(function(data) {
+                    trialTitle = data.title;
+                });
+
+
+                // get trial info from deferred
                 return SpringDataRestAdapter.process(deferred, 'trialSites').then(function (data) {
-
                     if ( angular.isDefined(data._embeddedItems) && angular.isDefined(data._embeddedItems[0])) {
+                        data._embeddedItems[0].trialTitle = trialTitle;
                         return new TrialInfo(data._embeddedItems[0]);
                     } else {
+                        data.trialTitle = trialTitle;
                         return new TrialInfo(data);
-
                     }
                 });
+
             };
 
             // Just load the trials themselves, don't eagerly pull back their questionnaires.

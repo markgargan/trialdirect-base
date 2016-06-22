@@ -54,10 +54,8 @@
 
 
         <!-- Display Result List -->
-
         <div class="trialResults" data-ng-hide="trialData">
 
-            <!-- <h3>Search Results for: {{user.therapeuticArea.title}}</h3> -->
             <h3>Potential Treatment Options</h3>
 
             <div class="trialList">
@@ -65,13 +63,8 @@
                 <div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
                     <ul>
                         <li class="trialImage"><img data-ng-src="./trialInfoImage/{{trial.id}}"></li>
-                        <!--<li class="trialBrief">{{trial.summary +' '+ trial.trialFullDescription.fullDescription |
-                            limitTo:400}}...
-                        </li>-->
-
-                        <li class="trialTitle">Trial Title to be added</li>
-                        
-                        <li class="trialBrief">{{trial.summary}}</li>
+                        <li class="trialTitle">{{trial.trialTitle}}</li>
+                        <li class="trialBrief">{{trial.summary | limitTo:600}}</li>
                         <li class="trialLink"><i class="fa fa-2x fa-chevron-right"></i></li>
                     </ul>
                     <div class="clear"></div>
@@ -148,7 +141,7 @@
 
                                 <div class="trialLeaderBio">
 
-                                    <a href="/" class="refer">Refer your Patient to this facility</a>
+                                    <a data-ui-sref="patientregistration" class="refer">Refer your Patient to this facility</a>
 
                                     <p data-ng-bind="trialSite.facilityDescription"></p>
 

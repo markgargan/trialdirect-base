@@ -8,10 +8,10 @@
         </div>-->
 
         <label><strong>Add New Question</strong></label>
-        <div class="alert alert-info" role="alert"
+        <!-- <div class="alert alert-info" role="alert"
              data-ng-hide="questionnaireEntries && questionnaireEntries.length > 0">
             There are no questions yet.
-        </div>
+        </div> -->
 
         <div class="clear"></div>
 
@@ -35,7 +35,7 @@
                  class="as-sortable-item">
                 <div class="qa">
 
-                    <div class="questionEdit" as-sortable-item-handle class="as-sortable-item-handle"
+                    <div class="questionEdit" data-as-sortable-item-handle class="as-sortable-item-handle"
                          data-ng-mouseleave="updateSortQuestion(questionnaireEntry.question.id, $index)">
                         <button class="left btn btn-remove btn-remove-question" type="button" title="Delete"
                                 data-ng-click="deleteQuestionnaireEntry(questionnaireEntry)">

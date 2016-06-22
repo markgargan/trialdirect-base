@@ -64,6 +64,9 @@ angular.module('trialdirect').controller('UserEditController',
                 });
             };
 
+
+
+
             // Initialise the trial count
             $scope.updateAvailableTrials();
 
