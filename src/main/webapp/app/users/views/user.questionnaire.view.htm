@@ -63,7 +63,7 @@
                 <div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
                     <ul>
                         <li class="trialImage"><img data-ng-src="./trialInfoImage/{{trial.id}}"></li>
-                        <li class="trialTitle">Trial Title to be added <!--{{trial._links.trial.href}}--></li>
+                        <li class="trialTitle">{{trial.trialTitle}}</li>
                         <li class="trialBrief">{{trial.summary | limitTo:600}}</li>
                         <li class="trialLink"><i class="fa fa-2x fa-chevron-right"></i></li>
                     </ul>
