@@ -980,7 +980,8 @@ select, input[type="file"] {
   display: block;
   float: left;
   width: 49%;
-  text-align: left; }
+  text-align: left;
+  background: #fff url("../images/loading-map.gif") no-repeat center center/auto 100%; }
 
 .trialSiteExpand {
   margin-top: 1em; }

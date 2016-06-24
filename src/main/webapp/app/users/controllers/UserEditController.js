@@ -1,8 +1,8 @@
 angular.module('trialdirect').controller('UserEditController',
-    ['$scope', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'UserResourceService',
+    ['$scope', '$http', '$sce', 'Question', 'Answer', 'QuestionnaireEntryResourceService', 'UserResourceService',
         'user', 'questionnaireEntries', 'userSelectorQuestionnaireEntries',
         'UserSelectorQuestionnaireEntryResourceService', 'TrialService', 'TrialResourceService',
-        function ($scope, Question, Answer, QuestionnaireEntryResourceService, UserResourceService,
+        function ($scope, $http, $sce, Question, Answer, QuestionnaireEntryResourceService, UserResourceService,
                   user, questionnaireEntries, userSelectorQuestionnaireEntries,
                   UserSelectorQuestionnaireEntryResourceService, TrialService, TrialResourceService) {
 
@@ -13,6 +13,34 @@ angular.module('trialdirect').controller('UserEditController',
             $scope.userSelectorQuestionnaireEntries = userSelectorQuestionnaireEntries;
 
             $scope.trialInfos = [];
+
+            //
+            $scope.getGoogleMap = function (name, loc) {
+
+                /*
+                var url = 'http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA';
+                $http.get(url).success(function(data){
+                    console.log(data);
+                });
+                */
+
+                // build map
+                var map =
+                    '<iframe width="100%" height="250" frameborder="0" style="border:0"'
+                    + ' src="https://www.google.com/maps/embed/v1/place'
+                    + '?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw'
+                    + '&q='
+                    + name.replace(/\s+/g, '+') + ','
+                    + loc.address1.replace(/\s+/g, '+') + ','
+                    + loc.address5.replace(/\s+/g, '+') + ','
+                    + loc.country.replace(/\s+/g, '+')
+                    + '"></iframe>';
+
+                //console.log(name, loc);
+
+                // return info as HTML code
+                return $sce.trustAsHtml(map);
+            }
 
             // Iterate over the userSelectors setting
             // 'answer.isSelected=true' on the answers that correspond
@@ -63,8 +91,6 @@ angular.module('trialdirect').controller('UserEditController',
                     }
                 });
             };
-
-
 
 
             // Initialise the trial count

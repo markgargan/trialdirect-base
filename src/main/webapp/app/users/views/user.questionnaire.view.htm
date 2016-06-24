@@ -129,7 +129,6 @@
                             <span data-ng-if="trialSite.trialDirectAddress.address5.length">{{trialSite.trialDirectAddress.address5}}, </span>
                             <span data-ng-if="trialSite.trialDirectAddress.country.length">{{trialSite.trialDirectAddress.country}}. </span><br>
                             <i class="fa fa-map-marker"></i> XXX Miles away
-
                         </p>
 
                         <div class="clear"></div>
@@ -152,9 +151,15 @@
 
                                 </div>
 
-                                <div class="trialSiteLocation">
+                                <!--<div class="trialSiteLocation">
                                     <iframe width="100%" height="250" frameborder="0" style="border:0"
                                             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
+                                </div>-->
+
+                                <div class="trialSiteLocation" data-ng-if="trialSite.showBio">
+                                    <div class="" data-ng-bind-html="getGoogleMap(trialSite.facilityName, trialSite.trialDirectAddress)">
+                                </div>
+
                                 </div>
 
                                 <div class="clear"></div>
