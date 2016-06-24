@@ -14,8 +14,19 @@ angular.module('trialdirect').controller('UserEditController',
 
             $scope.trialInfos = [];
 
+
+            var getGooglePos = function() {
+                $http.get('http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA')
+                    .then(function (response) {
+                        //$scope.myWelcome = response.data;
+                        console.log(response.data);
+                    });
+            };
+
             //
             $scope.getGoogleMap = function (name, loc) {
+
+                //$scope.cords = getGooglePos();
 
                 /*
                 var url = 'http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA';
