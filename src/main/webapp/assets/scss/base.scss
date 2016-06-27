@@ -779,6 +779,12 @@ td, th {
   font-weight: bold;
 }*/
 
+.loginMessage {
+  color:#c00;
+}
+.loginMessage.success {
+  color:#690;
+}
 .answers, .question {
   display: block;
   float: left;

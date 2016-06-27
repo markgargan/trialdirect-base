@@ -11,7 +11,7 @@
             <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical
                 trial for your patient. Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you
                 need.</p>
-            <p>You can take the <strong>DECISION</strong> with your patient to contact a physician running a trial.
+            <p>You can take the <strong>DECISION</strong> with your patient to contact a physician running a 
                 Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment
                 options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
 
@@ -23,12 +23,20 @@
         <p class="flr"><a data-ui-sref="register">Register Here</a></p>
         <div class="panelContent">
 
+
             <form id="myForm" name="loginForm" novalidate>
+
+                <div class="form-group col-12" data-ng-if="loginMessage">
+                    <p data-ng-class="{success: loginSuccess}" class="loginMessage">
+                        {{loginMessage}}
+                    </p>
+                </div>
+
 
                 <div class="form-group col-12">
                     <label for="inp_loginEmail">Email</label>
                     <input id="inp_loginEmail" name="tEmail" type="email" class="form-control"
-                           data-ng-model="trial.title" value="{{trial.title}}" required>
+                           data-ng-model="login.email" value="{{login.email}}" required>
                     <div data-ng-show="loginForm.$submitted || loginForm.tEmail.$touched">
                         <div class="errors" data-ng-show="loginForm.tEmail.$error.required || loginForm.tEmail.$error.email">Please supply a valid email address</div>
                     </div>
@@ -38,7 +46,7 @@
                 <div class="form-group col-12">
                     <label for="inp_loginPassword">Password</label>
                     <input id="inp_loginPassword" name="tPassword" type="password" class="form-control"
-                           data-ng-model="trial.trialCode" value="{{trial.trialCode}}" required>
+                           data-ng-model="login.password" value="{{login.password}}" required>
                     <div data-ng-show="loginForm.$submitted || loginForm.tPassword.$touched">
                         <div class="errors" data-ng-show="loginForm.tPassword.$error.required">Please supply a
                             password
@@ -47,9 +55,16 @@
                 </div>
 
                 <div class="formItem align-right">
-                    <button>Login</button>
+                    <button data-ng-disabled="!login.email || !login.password" data-ng-click="submitLogin(login.email, login.password)">Login</button>
                 </div>
+
+                <!--<input type="button" value="Write Cookie" data-ng-click="WriteCookie()" />
+                <input type="button" value="Read Cookie" data-ng-click="ReadCookie()" />
+                <input type="button" value="Remove Cookie" data-ng-click="RemoveCookie()" />-->
+
             </form>
+
+
 
             <div class="clear"></div>
 

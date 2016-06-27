@@ -1,18 +1,17 @@
 <header>
-    <div class="header" data-ng-controller="NavController" data-ng-init="navUserType='hcp'; showNavUserType=false">
+    <div class="header" data-ng-controller="NavController" data-ng-init="showNavUserType=false"><!--navUserType='reg'; -->
 
 
         <!-- // DEMO Nav Toggle, to emulate Navigation by User Type. WILL NEED TO BE REMOVED BEFORE LIVE LAUNCH -->
-        <div class="emulateUserNav"> <!--data-ng-show="showNavUserType"-->
+        <!--<div class="emulateUserNav"> &lt;!&ndash;data-ng-show="showNavUserType"&ndash;&gt;
             <ul>
                 <li><b>User Type</b></li>
-                <!--<li data-ng-click="navUserType='sa'">SuperAdmin <i class="fa fa-check" data-ng-show="navUserType=='sa'"></i></li>-->
-                <li data-ng-click="navUserType='qa'">Q&amp;A Admin <i class="fa fa-check" data-ng-show="navUserType=='qa'"></i></li>
-                <li data-ng-click="navUserType='to'">Trial Owner <i class="fa fa-check" data-ng-show="navUserType=='to'"></i></li>
-                <li data-ng-click="navUserType='hcp'">Health Care Pro <i class="fa fa-check" data-ng-show="navUserType=='hcp'"></i></li>
+                <li data-ng-click="navUserType='admin'">Q&amp;A Admin <i class="fa fa-check" data-ng-show="navUserType=='admin'"></i></li>
+                <li data-ng-click="navUserType='owner'">Trial Owner <i class="fa fa-check" data-ng-show="navUserType=='owner'"></i></li>
+                <li data-ng-click="navUserType='doctor'">Health Care Pro <i class="fa fa-check" data-ng-show="navUserType=='doctor'"></i></li>
                 <li data-ng-click="navUserType='reg'">Not Logged In <i class="fa fa-check" data-ng-show="navUserType=='reg'"></i></li>
             </ul>
-        </div>
+        </div>-->
         <!-- // END DEMO Nav Toggle -->
 
 
@@ -48,7 +47,7 @@
                                      its descendant states are activated. -->
                                     <li class="mobileOnly" data-ng-class="{active: $state.includes('therapeuticAreas')}"><a data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
                                     <li class="mobileOnly" data-ng-class="{active: $state.includes('trials')}"><a data-ui-sref="trials.list">Manage Trials</a></li>
-                                    <li><a data-ui-sref="profile">My Profile</a></li>
+                                    <li><a data-ui-sref="profile">My Account</a></li>
                                     <li><a data-ui-sref="logout">Logout</a></li>
                                 </ul>
                             </div>
@@ -60,8 +59,8 @@
                         <ul>
                             <li data-ng-show="navUserType=='reg'" data-ng-class="{active: $state.includes('register')}"><a data-ui-sref="register">Register</a></li>
                             <li data-ng-show="navUserType=='reg'" data-ng-class="{active: $state.includes('login')}"><a data-ui-sref="login">Login</a></li>
-                            <li data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('profile')}"><a data-ui-sref="profile">My Profile</a></li>
-                            <li data-ng-show="navUserType=='hcp'" data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('patients')}"><a data-ui-sref="patients">My Patients</a></li>
+                            <li data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('profile')}"><a data-ui-sref="profile">My Account</a></li>
+                            <li data-ng-show="navUserType=='doctor'" data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('patients')}"><a data-ui-sref="patients">My Patients</a></li>
                             <li data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('logout')}"><a data-ui-sref="logout">Logout</a></li>
                         </ul>
                     </div>
@@ -77,11 +76,11 @@
             <div class="limiter">
 
                 <ul>
-                    <li data-ng-show="navUserType=='sa' || navUserType=='qa'"  data-ng-class="{active: $state.includes('therapeuticAreas')}"><a data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
-                    <li data-ng-show="navUserType=='sa' || navUserType=='to'" data-ng-class="{active: $state.includes('trials')}"><a data-ui-sref="trials.list">Manage Trials</a></li>
-                    <li data-ng-show="navUserType=='hcp'" data-ng-class="{active: $state.includes('users')}"><a data-ui-sref="users.list">Search for Clinical Trials</a></li>
-                    <li data-ng-show="navUserType=='hcp' || navUserType=='reg'" data-ng-class="{active: $state.includes('about')}"><a data-ui-sref="about">About Trial Direct</a></li>
-                    <li data-ng-show="navUserType=='hcp' || navUserType=='reg'" data-ng-class="{active: $state.includes('help')}"><a data-ui-sref="help">Help</a></li>
+                    <li data-ng-show="navUserType=='admin'"  data-ng-class="{active: $state.includes('therapeuticAreas')}"><a data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
+                    <li data-ng-show="navUserType=='owner'" data-ng-class="{active: $state.includes('trials')}"><a data-ui-sref="trials.list">Manage Trials</a></li>
+                    <li data-ng-show="navUserType=='doctor'" data-ng-class="{active: $state.includes('users')}"><a data-ui-sref="users.list">Search for Clinical Trials</a></li>
+                    <li data-ng-show="navUserType=='doctor' || navUserType=='reg'" data-ng-class="{active: $state.includes('about')}"><a data-ui-sref="about">About Trial Direct</a></li>
+                    <li data-ng-show="navUserType=='doctor' || navUserType=='reg'" data-ng-class="{active: $state.includes('help')}"><a data-ui-sref="help">Help</a></li>
                 </ul>
             </div>
         </div>
