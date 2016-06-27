@@ -112,7 +112,7 @@
 
                     <div class="trialLeader"
                          data-ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search"
-                         data-ng-click="toggleBio(trialSite, trialData)">
+                         data-ng-click="toggleBio(trialSite, trialData); getGooglePos(trialSite.facilityName, trialSite.trialDirectAddress)">
 
                         <div class="updown" style="float:right;color:#ccc">
                             <i class="fa fa-2x fa-chevron-down" data-ng-hide="trialSite.showBio"></i>
@@ -145,8 +145,11 @@
                                     <p data-ng-bind="trialSite.facilityDescription"></p>
 
                                     <p style="display: block; text-align: center; padding:1em 0;"><i
-                                            class="fa fa-map-marker fa-2x" style="position:relative;top:.15em"></i> This
-                                        facility is XXX Miles away</p>
+                                            class="fa fa-map-marker fa-2x" style="position:relative;top:.15em"></i> This facility is <span data-ng-if="mapLatitude && mapLongtitude && docLatitude && docLongtitude" data-ng-bind="calcDistance(mapLatitude, mapLongtitude, docLatitude, docLongtitude, 'M')"></span> Miles away
+                                            <!--<br><br><small>Long: {{mapLongtitude}}, Lat: {{mapLatitude}}</small>-->
+                                    </p>
+
+
 
 
                                 </div>
@@ -159,6 +162,8 @@
                                 <div class="trialSiteLocation" data-ng-if="trialSite.showBio">
                                     <div class="" data-ng-bind-html="getGoogleMap(trialSite.facilityName, trialSite.trialDirectAddress)">
                                 </div>
+
+                                    <!--{{'1: '+ mapLatitude +', 2: '+ mapLongtitude +', 3: '+ docLatitude +', 4: '+ docLongtitude}}-->
 
                                 </div>
 

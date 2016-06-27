@@ -884,9 +884,9 @@ span {
 .trialLeader:hover {
   background: #f4f4f4; }
 
-.trialLeader:hover .fa {
-  color: #999; }
-
+/*.trialLeader:hover .fa {
+  color: #999;
+}*/
 .trialLeadersContainer {
   display: block;
   margin-top: 3em; }
@@ -981,7 +981,7 @@ select, input[type="file"] {
   float: left;
   width: 49%;
   text-align: left;
-  background: #fff url("../images/loading-map.gif") no-repeat center center/auto 100%; }
+  background: url("../images/loading-map.gif") no-repeat center center/auto 100%; }
 
 .trialSiteExpand {
   margin-top: 1em; }

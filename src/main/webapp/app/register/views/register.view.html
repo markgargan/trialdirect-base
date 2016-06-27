@@ -150,7 +150,7 @@
                 <div class="form-group col-12">
                     <label for="inp_registerZipCode">ZIP Code</label>
                     <input id="inp_registerZipCode" name="tZipCode" type="text" class="form-control"
-                           data-ng-model="trial.zipcode" value="{{trial.zipcode}}" required>
+                           data-ng-change="loadGoogleMap=false" data-ng-blur="getGooglePos(trial.zipcode)" data-ng-model="trial.zipcode" value="{{trial.zipcode}}" required>
                     <div data-ng-show="loginForm.$submitted || loginForm.tZipCode.$touched">
                         <div class="errors" data-ng-show="loginForm.tZipCode.$error.required">Please supply your
                             ZIP Code
@@ -174,8 +174,16 @@
 
 
                 <div class="formItem align-right col-12">
-                <button>Register</button>
-            </div>
+                    <button>Register</button>
+                </div>
+
+                <div class="clear"></div>
+
+                Long: {{mapLongtitude}}, Lat: {{mapLatitude}}, Zip: {{trial.zipcode}}
+
+                <div class="" style="min-height:250px">
+                    <div class="" data-ng-bind-html="getGoogleMap(trial.zipcode)" data-ng-if="loadGoogleMap"></div>
+                </div>
 
             </form>
 
