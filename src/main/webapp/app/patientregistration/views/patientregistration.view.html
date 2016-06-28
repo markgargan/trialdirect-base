@@ -2,7 +2,7 @@
     <div class="section col-4"></div>
     <div class="section col-4">
         <h3 class="fll">Patient Registration</h3>
-        <div class="panelContent">
+        <div class="panelContent clearfix">
 
             <form id="myForm" name="loginForm" novalidate>
 
@@ -26,16 +26,12 @@
                                data-ng-model="trial.lastname" value="{{trial.lastname}}" required>
                     </div>
 
-                    <div class="clear"></div>
-
                     <div data-ng-show="loginForm.$submitted || loginForm.tNameTitle.$touched || loginForm.tFirstName.$touched || loginForm.tLastName.$touched">
                         <div class="errors col-12"
                              data-ng-show="loginForm.tNameTitle.$error.required || loginForm.tFirstName.$error.required || loginForm.tLastName.$error.required">
                             Please supply your name (all fields required)
                         </div>
                     </div>
-
-                    <div class="clear"></div>
 
                 </div>
 
@@ -58,10 +54,13 @@
                     <span>
                     <input id="inp_termsAndConditions" name="tTermsConditions" type="checkbox" class="no-margin"
                            data-ng-model="trial.termsConditions" value="{{trial.termsConditions}}" required>
-                            Please indicate that you agree with the <a href="./assets/docs/fairProcessingNote.pdf" target="_blank">Terms and Conditions</a> for use of the Trial Direct service.
+                            Please indicate that you agree with the <a href="./assets/docs/fairProcessingNote.pdf"
+                                                                       target="_blank">Terms and Conditions</a> for use of the Trial Direct service.
                     </span>
                     <div data-ng-show="loginForm.$submitted || loginForm.tTermsConditions.$touched">
-                        <div class="errors" data-ng-show="loginForm.tTermsConditions.$error.required">Please confirm that you accept Terms and Conditions</div>
+                        <div class="errors" data-ng-show="loginForm.tTermsConditions.$error.required">Please confirm
+                            that you accept Terms and Conditions
+                        </div>
                     </div>
                 </div>
 
@@ -72,7 +71,7 @@
 
             </form>
 
-            <div class="clear"></div>
+
         </div>
     </div>
     <div class="section col-4"></div>

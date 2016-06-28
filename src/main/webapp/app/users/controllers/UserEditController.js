@@ -110,7 +110,7 @@ angular.module('trialdirect').controller('UserEditController',
                 if (unit=="K") { dist = dist * 1.609344 }
                 if (unit=="N") { dist = dist * 0.8684 }
 
-                console.log(dist.toFixed(0));
+                //console.log(dist.toFixed(0));
 
                 return dist.toFixed(0);
             }

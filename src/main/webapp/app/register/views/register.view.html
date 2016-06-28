@@ -2,9 +2,9 @@
 
     <div class="section col-8">
         <h3>How it works</h3>
-        <div class="panelContent alc">
+        <div class="panelContent clearfix alc">
 
-            <ul class="steps">
+            <ul class="steps clearfix">
                 <li><strong>1</strong> <span>Register for the Trial Direct service</span></li>
                 <li><strong>2</strong> <span>Use our innovative search engine to find suitable trials for your patient in your geographic location</span>
                 </li>
@@ -15,7 +15,6 @@
                 </li>
             </ul>
 
-            <div class="clear"></div>
             <br>
             <p>You can also receive, at your discretion, a small administration fee of &dollar;25 for the time taken to
                 consider the trial for your patient. This payment is paid direct to your bank account in 14 days.</p>
@@ -23,15 +22,17 @@
         </div>
 
         <h3>About Trial Direct</h3>
-        <div class="panelContent">
+        <div class="panelContent clearfix">
 
             <p>Trial Direct empowers physicians to consider clinical trials as a treatment option for their patients.
-            Your patients want to know about clinical trials so they can consider all treatment options.
-            Your patients <strong>PREFER</strong> to learn about trials from their <strong>PHYSICIAN</strong>.</p>
-            <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical trial for your patient.
-            Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you need.</p>
+                Your patients want to know about clinical trials so they can consider all treatment options.
+                Your patients <strong>PREFER</strong> to learn about trials from their <strong>PHYSICIAN</strong>.</p>
+            <p>Like any other treatment option, you need the <strong>RIGHT INFORMATION</strong> to consider a clinical
+                trial for your patient.
+                Trial Direct provides <strong>INSTANT ACCESS</strong> to the information you need.</p>
             <p>You can take the <strong>DECISION</strong> with your patient to contact a physician running a trial.
-            Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
+                Trial Direct, putting the power and access of <strong>TOMORROW'S</strong> medicines and treatment
+                options in the hands of doctors and their patients <strong>TODAY</strong>.</p>
 
         </div>
     </div>
@@ -40,7 +41,7 @@
     <div class="section col-4">
         <h3 class="fll">Register</h3>
         <p class="flr"><a data-ui-sref="login">Login Here</a></p>
-        <div class="panelContent">
+        <div class="panelContent clearfix">
 
             <form id="myForm" name="loginForm" novalidate>
 
@@ -50,30 +51,28 @@
                         <input id="inp_registerNameTitle" name="tNameTitle" type="text" class="form-control"
                                data-ng-model="trial.nameTitle" value="{{trial.nameTitle}}" required>
 
-                </div>
+                    </div>
 
                     <div class="col-5">
                         <label for="inp_registerFirstName">First Name</label>
                         <input id="inp_registerFirstName" name="tFirstName" type="text" class="form-control"
                                data-ng-model="trial.firstname" value="{{trial.firstname}}" required>
-                </div>
+                    </div>
 
                     <div class="col-5">
                         <label for="inp_registerLastName">Last Name</label>
                         <input id="inp_registerLastName" name="tLastName" type="text" class="form-control"
                                data-ng-model="trial.lastname" value="{{trial.lastname}}" required>
-                </div>
+                    </div>
 
-                    <div class="clear"></div>
 
                     <div data-ng-show="loginForm.$submitted || loginForm.tNameTitle.$touched || loginForm.tFirstName.$touched || loginForm.tLastName.$touched">
                         <div class="errors col-12"
                              data-ng-show="loginForm.tNameTitle.$error.required || loginForm.tFirstName.$error.required || loginForm.tLastName.$error.required">
                             Please supply your name (all fields required)
-                </div>
-                </div>
+                        </div>
+                    </div>
 
-                    <div class="clear"></div>
 
                 </div>
 
@@ -86,8 +85,8 @@
                         <div class="errors"
                              data-ng-show="loginForm.tEmail.$error.required || loginForm.tEmail.$error.email">Please
                             supply a valid email address
-            </div>
-                </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -97,22 +96,21 @@
                         <label for="inp_registerPassword">Password</label>
                         <input id="inp_registerPassword" name="tPassword" type="password" class="form-control"
                                data-ng-model="trial.password" value="{{trial.password}}" required>
-                </div>
+                    </div>
 
                     <div class="col-6">
                         <label for="inp_registerPasswordConfirm">Re-Enter Password</label>
                         <input id="inp_registerPasswordConfirm" name="tPasswordConfirm" type="password"
                                class="form-control"
                                data-ng-model="trial.password2" value="{{trial.password2}}" required>
-                </div>
+                    </div>
 
-                    <div class="clear"></div>
 
                     <div data-ng-show="loginForm.$submitted || (loginForm.tPassword.$touched && loginForm.tPasswordConfirm.$touched)">
                         <div class="errors col-12"
                              data-ng-show="loginForm.tPassword.$error.required || loginForm.tPasswordConfirm.$error.required">
                             Please supply and confirm your password
-            </div>
+                        </div>
 
                         <div class="errors col-12"
                              data-ng-show="(loginForm.tPassword.$touched && loginForm.tPasswordConfirm.$touched) && (trial.password.length && trial.password2.length && trial.password!=trial.password2)">
@@ -120,7 +118,6 @@
                         </div>
                     </div>
 
-                    <div class="clear"></div>
 
                 </div>
 
@@ -150,7 +147,8 @@
                 <div class="form-group col-12">
                     <label for="inp_registerZipCode">ZIP Code</label>
                     <input id="inp_registerZipCode" name="tZipCode" type="text" class="form-control"
-                           data-ng-change="loadGoogleMap=false" data-ng-blur="getGooglePos(trial.zipcode)" data-ng-model="trial.zipcode" value="{{trial.zipcode}}" required>
+                           data-ng-change="loadGoogleMap=false" data-ng-blur="getGooglePos(trial.zipcode)"
+                           data-ng-model="trial.zipcode" value="{{trial.zipcode}}" required>
                     <div data-ng-show="loginForm.$submitted || loginForm.tZipCode.$touched">
                         <div class="errors" data-ng-show="loginForm.tZipCode.$error.required">Please supply your
                             ZIP Code
@@ -165,10 +163,13 @@
                     <span>
                     <input id="inp_termsAndConditions" name="tTermsConditions" type="checkbox" class="no-margin"
                            data-ng-model="trial.termsConditions" value="{{trial.termsConditions}}" required>
-                            Please indicate that you agree with the <a href="./assets/docs/fairProcessingNote.pdf" target="_blank">Terms and Conditions</a> for use of the Trial Direct service.
+                            Please indicate that you agree with the <a href="./assets/docs/fairProcessingNote.pdf"
+                                                                       target="_blank">Terms and Conditions</a> for use of the Trial Direct service.
                     </span>
                     <div data-ng-show="loginForm.$submitted || loginForm.tTermsConditions.$touched">
-                        <div class="errors" data-ng-show="loginForm.tTermsConditions.$error.required">Please confirm that you accept Terms and Conditions</div>
+                        <div class="errors" data-ng-show="loginForm.tTermsConditions.$error.required">Please confirm
+                            that you accept Terms and Conditions
+                        </div>
                     </div>
                 </div>
 
@@ -177,9 +178,13 @@
                     <button>Register</button>
                 </div>
 
-                <div class="clear"></div>
 
-                Long: {{mapLongtitude}}, Lat: {{mapLatitude}}, Zip: {{trial.zipcode}}
+                <input name="tLongtitude" type="hidden" value="{{mapLongtitude}}">
+                <input name="tLatitude" type="hidden" value="{{mapLatitude}}">
+
+                <p>Longtitude: {{mapLongtitude}}
+                <br>Latitude: {{mapLatitude}}
+                <br>Zip: {{trial.zipcode}}</p>
 
                 <div class="" style="min-height:250px">
                     <div class="" data-ng-bind-html="getGoogleMap(trial.zipcode)" data-ng-if="loadGoogleMap"></div>
@@ -187,7 +192,7 @@
 
             </form>
 
-            <div class="clear"></div>
+
         </div>
     </div>
 

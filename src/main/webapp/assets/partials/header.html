@@ -1,6 +1,6 @@
 <header>
-    <div class="header" data-ng-controller="NavController" data-ng-init="showNavUserType=false"><!--navUserType='reg'; -->
-
+    <div class="header" data-ng-controller="NavController" data-ng-init="showNavUserType=false">
+        <!--navUserType='reg'; -->
 
         <!-- // DEMO Nav Toggle, to emulate Navigation by User Type. WILL NEED TO BE REMOVED BEFORE LIVE LAUNCH -->
         <!--<div class="emulateUserNav"> &lt;!&ndash;data-ng-show="showNavUserType"&ndash;&gt;
@@ -14,9 +14,7 @@
         </div>-->
         <!-- // END DEMO Nav Toggle -->
 
-
-
-        <div class="topHeader">
+        <div class="topHeader clearfix">
             <div class="limiter">
                 <div class="headerPanel">
                     <div class="limiter inline">
@@ -24,14 +22,14 @@
                             <h2>
                                 <a href="./">
                                     <img src="./assets/images/trial-direct-logo.png" alt="Trial Direct Logo">
-                                    <!--Trial<b>Direct</b>-->
                                 </a>
                             </h2>
                         </div>
-                        <div class="menu" title="open/close menu" data-ng-click="ShowHide()"><i class="fa fa-bars"></i>
+                        <div class="menu" title="open/close menu" data-ng-click="ShowHide()">
+                            <i class="fa fa-bars"></i>
                         </div>
-                        <div class="clear"></div>
                     </div>
+
                     <nav>
                         <div class="limiter inline">
                             <div class="nav topNav" data-ng-show="IsHidden" data-ng-click="ShowHide()">
@@ -39,14 +37,19 @@
                                     <!-- Here you can see data-ui-sref in action again. Also notice the use of $state.includes, which
                                      will set the links to 'active' if, for example on the first link, 'contacts' or any of
                                      its descendant states are activated. -->
-                                    <li data-ng-class="{active: $state.includes('therapeuticAreas')}"><a data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
-                                    <li data-ng-class="{active: $state.includes('trials')}"><a data-ui-sref="trials.list">Manage Trials</a></li>
+                                    <li data-ng-class="{active: $state.includes('therapeuticAreas')}"><a
+                                            data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
+                                    <li data-ng-class="{active: $state.includes('trials')}"><a
+                                            data-ui-sref="trials.list">Manage Trials</a></li>
 
                                     <!-- Here you can see data-ui-sref in action again. Also notice the use of $state.includes, which
                                      will set the links to 'active' if, for example on the first link, 'contacts' or any of
                                      its descendant states are activated. -->
-                                    <li class="mobileOnly" data-ng-class="{active: $state.includes('therapeuticAreas')}"><a data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
-                                    <li class="mobileOnly" data-ng-class="{active: $state.includes('trials')}"><a data-ui-sref="trials.list">Manage Trials</a></li>
+                                    <li class="mobileOnly"
+                                        data-ng-class="{active: $state.includes('therapeuticAreas')}"><a
+                                            data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
+                                    <li class="mobileOnly" data-ng-class="{active: $state.includes('trials')}"><a
+                                            data-ui-sref="trials.list">Manage Trials</a></li>
                                     <li><a data-ui-sref="profile">My Account</a></li>
                                     <li><a data-ui-sref="logout">Logout</a></li>
                                 </ul>
@@ -54,41 +57,51 @@
                         </div>
                     </nav>
                 </div>
+
                 <nav>
-                    <div class="nav topNav1">
+                    <div class="nav topNav1 clearfix">
                         <ul>
-                            <li data-ng-show="navUserType=='reg'" data-ng-class="{active: $state.includes('register')}"><a data-ui-sref="register">Register</a></li>
-                            <li data-ng-show="navUserType=='reg'" data-ng-class="{active: $state.includes('login')}"><a data-ui-sref="login">Login</a></li>
-                            <li data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('profile')}"><a data-ui-sref="profile">My Account</a></li>
-                            <li data-ng-show="navUserType=='doctor'" data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('patients')}"><a data-ui-sref="patients">My Patients</a></li>
-                            <li data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('logout')}"><a data-ui-sref="logout">Logout</a></li>
+                            <li data-ng-show="navUserType=='reg'" data-ng-class="{active: $state.includes('register')}">
+                                <a data-ui-sref="register">Register</a></li>
+                            <li data-ng-show="navUserType=='reg'" data-ng-class="{active: $state.includes('login')}"><a
+                                    data-ui-sref="login">Login</a></li>
+                            <li data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('profile')}">
+                                <a data-ui-sref="profile">My Account</a></li>
+                            <li data-ng-show="navUserType=='doctor'" data-ng-hide="navUserType=='reg'"
+                                data-ng-class="{active: $state.includes('patients')}"><a data-ui-sref="patients">My
+                                Patients</a></li>
+                            <li data-ng-hide="navUserType=='reg'" data-ng-class="{active: $state.includes('logout')}"><a
+                                    data-ui-sref="logout">Logout</a></li>
                         </ul>
                     </div>
                 </nav>
-                <div class="clear"></div>
-            </div>
-            <div class="clear"></div>
-        </div>
-
-
-    <nav>
-        <div class="nav admin">
-            <div class="limiter">
-
-                <ul>
-                    <li data-ng-show="navUserType=='admin'"  data-ng-class="{active: $state.includes('therapeuticAreas')}"><a data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
-                    <li data-ng-show="navUserType=='owner'" data-ng-class="{active: $state.includes('trials')}"><a data-ui-sref="trials.list">Manage Trials</a></li>
-                    <li data-ng-show="navUserType=='doctor'" data-ng-class="{active: $state.includes('users')}"><a data-ui-sref="users.list">Search for Clinical Trials</a></li>
-                    <li data-ng-show="navUserType=='doctor' || navUserType=='reg'" data-ng-class="{active: $state.includes('about')}"><a data-ui-sref="about">About Trial Direct</a></li>
-                    <li data-ng-show="navUserType=='doctor' || navUserType=='reg'" data-ng-class="{active: $state.includes('help')}"><a data-ui-sref="help">Help</a></li>
-                </ul>
             </div>
         </div>
-    </nav>
+
+
+        <nav>
+            <div class="nav admin">
+                <div class="limiter">
+
+                    <ul>
+                        <li data-ng-show="navUserType=='admin'"
+                            data-ng-class="{active: $state.includes('therapeuticAreas')}"><a
+                                data-ui-sref="therapeuticAreas.list">Manage Question Set</a></li>
+                        <li data-ng-show="navUserType=='owner'" data-ng-class="{active: $state.includes('trials')}"><a
+                                data-ui-sref="trials.list">Manage Trials</a></li>
+                        <li data-ng-show="navUserType=='doctor'" data-ng-class="{active: $state.includes('users')}"><a
+                                data-ui-sref="users.list">Search for Clinical Trials</a></li>
+                        <li data-ng-show="navUserType=='doctor' || navUserType=='reg'"
+                            data-ng-class="{active: $state.includes('about')}"><a data-ui-sref="about">About Trial
+                            Direct</a></li>
+                        <li data-ng-show="navUserType=='doctor' || navUserType=='reg'"
+                            data-ng-class="{active: $state.includes('help')}"><a data-ui-sref="help">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
     </div>
 
-
-    <!--<div class="no-home-banner"></div>-->
     <div class="home-banner"></div>
 </header>

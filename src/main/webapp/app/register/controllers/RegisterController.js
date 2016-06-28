@@ -23,8 +23,12 @@ angular.module('trialdirect').controller('RegisterController',
                 $http.get('http://maps.google.com/maps/api/geocode/json?address=' + zip.replace(/\s+/g, '+'))
                     .then(function (response) {
 
-                        $scope.mapLatitude = response.data.results[0].geometry.location.lat;
-                        $scope.mapLongtitude = response.data.results[0].geometry.location.lng;
+                        var lat = response.data.results[0].geometry.location.lat;
+                        var lng = response.data.results[0].geometry.location.lng;
+
+                        $scope.mapLatitude = lat.toFixed(6);
+                        $scope.mapLongtitude = lng.toFixed(6);
+
                         $scope.loadGoogleMap = true; // allow google map to load
 
                     });
@@ -60,17 +64,17 @@ angular.module('trialdirect').controller('RegisterController',
 
 
             function calcDistance(lat1, lon1, lat2, lon2, unit) {
-                var radlat1 = Math.PI * lat1/180
-                var radlat2 = Math.PI * lat2/180
-                var theta = lon1-lon2
-                var radtheta = Math.PI * theta/180
+                var radlat1 = Math.PI * lat1/180;
+                var radlat2 = Math.PI * lat2/180;
+                var theta = lon1-lon2;
+                var radtheta = Math.PI * theta/180;
                 var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-                dist = Math.acos(dist)
-                dist = dist * 180/Math.PI
-                dist = dist * 60 * 1.1515
-                if (unit=="K") { dist = dist * 1.609344 }
-                if (unit=="N") { dist = dist * 0.8684 }
-                return dist
+                dist = Math.acos(dist);
+                dist = dist * 180/Math.PI;
+                dist = dist * 60 * 1.1515;
+                if (unit=="K") { dist = dist * 1.609344; }
+                if (unit=="N") { dist = dist * 0.8684; }
+                return dist;
             }
 
         }

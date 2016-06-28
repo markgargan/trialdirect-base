@@ -38,7 +38,7 @@ angular.module(
     )
     .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/therapeuticareas');
+            $urlRouterProvider.otherwise('/about');
         }
     ])
 

@@ -24,7 +24,7 @@ angular
                 $scope.profile3 =
                 {
                     "name": "Admin Q&A",
-                    "email": "admin@icon.com",
+                    "email": "admin@iconplc.com",
                     "password": "admin",
                     "type": "admin"
                 };
@@ -38,26 +38,26 @@ angular
                         || (loginEmail == $scope.profile3.email && loginPassword == $scope.profile3.password)
                     ) {
                         $scope.loginSuccess = true;
-                        // $scope.login.email = null;
-                        // $scope.login.password = null;
+
+                        $scope.loginMessage = 'Login Successful';
 
                         $cookieStore.remove('userType');
 
                         if (loginEmail == $scope.profile1.email) {
                             $cookieStore.put('userType', $scope.profile1.type);
+                            //$window.location.href = '/#/users';
                         }
                         else if (loginEmail == $scope.profile2.email) {
                             $cookieStore.put('userType', $scope.profile2.type);
+                            //$window.location.href = '/#/trials';
                         }
                         else if (loginEmail == $scope.profile3.email) {
                             $cookieStore.put('userType', $scope.profile3.type);
+                            //$window.location.href = '/#/therapeuticareas';
                         }
 
-                        $scope.loginMessage = 'Login Successful';
-
-                        //alert($cookieStore.get('userType'));
-
                         $window.location.href = '/';
+
 
                     } else {
                         $scope.loginSuccess = false;
@@ -65,22 +65,16 @@ angular
                     }
 
 
-                    //$cookieStore.put('Name', loginEmail);
-                    //alert($cookieStore.get('Name'));
-                    //return $scope.loginMessage = 'You Submitted the Login Form '+ loginEmail +' - '+ loginPassword;
-
                 };
 
 
-                /*				$scope.WriteCookie = function () {
-                 $cookieStore.put('Name', $scope.Name);
-                 };
-                 $scope.ReadCookie = function () {
-                 $window.alert($cookieStore.get('Name'));
-                 };
-                 $scope.RemoveCookie = function () {
-                 $cookieStore.remove('Name');
-                 };*/
-
+                /*
+                    // write
+                    $cookieStore.put('Name', $scope.Name);
+                    // read
+                    $cookieStore.get('Name');
+                    // remove
+                    $cookieStore.remove('Name');
+                */
             }
         ]);
