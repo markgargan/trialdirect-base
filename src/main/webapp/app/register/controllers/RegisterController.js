@@ -20,7 +20,7 @@ angular.module('trialdirect').controller('RegisterController',
 
 
                 // run api link, and return result
-                $http.get('http://maps.google.com/maps/api/geocode/json?address=' + zip.replace(/\s+/g, '+'))
+                $http.get('https://maps.google.com/maps/api/geocode/json?address=' + zip.replace(/\s+/g, '+'))
                     .then(function (response) {
 
                         var lat = response.data.results[0].geometry.location.lat;
@@ -42,7 +42,7 @@ angular.module('trialdirect').controller('RegisterController',
                 //$scope.cords = getGooglePos();
 
                 /*
-                 var url = 'http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA';
+                 var url = 'https://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA';
                  $http.get(url).success(function(data){
                  console.log(data);
                  });
