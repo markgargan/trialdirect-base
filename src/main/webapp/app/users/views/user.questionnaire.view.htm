@@ -11,14 +11,14 @@
             <h3 class="float-left">Refine Search</h3>
             <h3 class="trialArea float-right">{{user.therapeuticArea.title}}</h3>
 
-            <div class="panelContent">
+            <div class="panelContent clearfix">
 
-                <div class="qa" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'question.sortOrder'">
+                <div class="qa clearfix" data-ng-repeat="questionnaireEntry in questionnaireEntries | orderBy:'question.sortOrder'">
                     <div class="question">
                         <p data-ng-bind="questionnaireEntry.	question.questionText"></p>
-                        <div class="clear"></div>
+                        
                     </div>
-                    <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
+                    <div class="answers clearfix" data-ng-if="questionnaireEntry.answers._embeddedItems.length<=4">
                         <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
                             <input id="inp_answer_{{answer.sortOrder}}" type="checkbox"
                                    data-ng-click="updateUserSelectorQuestionnaireEntry(questionnaireEntry, answer)"
@@ -27,7 +27,7 @@
                         </label>
                     </div>
 
-                    <div class="answers" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
+                    <div class="answers clearfix" data-ng-if="questionnaireEntry.answers._embeddedItems.length>=5">
                         <div class="option-list">
                             <label data-ng-repeat="answer in questionnaireEntry.answers._embeddedItems | orderBy:'sortOrder'">
                                 <input id="inp_answer_{{answer.sortOrder}}" type="checkbox"
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div class="clear"></div>
+                    
 
                 </div>
             </div>
@@ -58,16 +58,15 @@
 
             <h3>Potential Treatment Options</h3>
 
-            <div class="trialList">
+            <div class="trialList clearfix">
 
-                <div class="trialIntro" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
+                <div class="trialIntro clearfix" data-ng-repeat="trial in trialInfos" data-ng-click="chooseTrialData(trial)">
                     <ul>
                         <li class="trialImage"><img data-ng-src="./trialInfoImage/{{trial.id}}"></li>
                         <li class="trialTitle">{{trial.trialTitle}}</li>
                         <li class="trialBrief">{{trial.summary | limitTo:600}}</li>
                         <li class="trialLink"><i class="fa fa-2x fa-chevron-right"></i></li>
                     </ul>
-                    <div class="clear"></div>
                 </div>
 
             </div>
@@ -92,8 +91,6 @@
                         <span data-ng-bind="value"></span>
                     </p>
 
-                    <div class="clear"></div>
-
                 </div>
             </div>
 
@@ -108,11 +105,11 @@
                            placeholder="Trial Site Search...">
                 </div>
 
-                <div class="panelContent trialLeaderList">
+                <div class="panelContent clearfix trialLeaderList">
 
                     <div class="trialLeader"
                          data-ng-repeat="trialSite in trialData.trialSites._embeddedItems | orderBy:'id' | filter : search"
-                         data-ng-click="toggleBio(trialSite, trialData)">
+                         data-ng-click="toggleBio(trialSite, trialData); getGooglePos(trialSite.facilityName, trialSite.trialDirectAddress)">
 
                         <div class="updown" style="float:right;color:#ccc">
                             <i class="fa fa-2x fa-chevron-down" data-ng-hide="trialSite.showBio"></i>
@@ -131,12 +128,12 @@
                             <i class="fa fa-map-marker"></i> XXX Miles away
                         </p>
 
-                        <div class="clear"></div>
+                        <!--<div class="clear"></div>-->
 
 
                         <div class="trialSiteExpand" data-ng-show="trialSite.showBio">
 
-                            <div class="panelContent">
+                            <div class="panelContent clearfix">
 
                                 <div class="trialLeaderBio">
 
@@ -145,42 +142,28 @@
                                     <p data-ng-bind="trialSite.facilityDescription"></p>
 
                                     <p style="display: block; text-align: center; padding:1em 0;"><i
-                                            class="fa fa-map-marker fa-2x" style="position:relative;top:.15em"></i> This
-                                        facility is XXX Miles away</p>
+                                            class="fa fa-map-marker fa-2x" style="position:relative;top:.15em"></i> This facility is <span data-ng-if="mapLatitude && mapLongtitude && docLatitude && docLongtitude" data-ng-bind="calcDistance(mapLatitude, mapLongtitude, docLatitude, docLongtitude, 'M')"></span> Miles away
+                                            <!--<br><br><small>Long: {{mapLongtitude}}, Lat: {{mapLatitude}}</small>-->
+                                    </p>
+
+
 
 
                                 </div>
-
-                                <!--<div class="trialSiteLocation">
-                                    <iframe width="100%" height="250" frameborder="0" style="border:0"
-                                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDPnVez_E7pNgjNPxNKWqy8tTsnlFpKJaw&q=University+of+Texas+MD+Anderson+Cancer+Center"></iframe>
-                                </div>-->
 
                                 <div class="trialSiteLocation" data-ng-if="trialSite.showBio">
                                     <div class="" data-ng-bind-html="getGoogleMap(trialSite.facilityName, trialSite.trialDirectAddress)">
                                 </div>
 
+                                    <!--{{'1: '+ mapLatitude +', 2: '+ mapLongtitude +', 3: '+ docLatitude +', 4: '+ docLongtitude}}-->
                                 </div>
-
-                                <div class="clear"></div>
-
                             </div>
-
                         </div>
-
-
                     </div>
-
-                    <div class="clear"></div>
                 </div>
-
             </div>
-
         </div>
-
-
     </form>
-    <div class="clear"></div>
 </div>
 
 

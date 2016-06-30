@@ -2,8 +2,8 @@ angular.module('uiRouterSample.login', [
     'ui.router'
 ])
     .config(
-        ['$stateProvider', '$urlRouterProvider',
-            function ($stateProvider, $urlRouterProvider) {
+        ['$stateProvider',
+            function ($stateProvider) {
                 $stateProvider
                     .state('login', {
 
@@ -11,7 +11,8 @@ angular.module('uiRouterSample.login', [
                         url: '/login',
                         views: {
                             "viewA": {
-                                templateUrl: 'app/login/views/login.view.html'
+                                templateUrl: 'app/login/views/login.view.html',
+                                controller: 'LoginController'
                             }
                         }
 

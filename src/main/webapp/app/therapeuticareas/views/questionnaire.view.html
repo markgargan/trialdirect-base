@@ -1,6 +1,6 @@
 <h3>Edit Questionnaire</h3>
 
-<div class="panelContent">
+<div class="panelContent clearfix">
 
     <div class="col-3">
 
@@ -9,14 +9,7 @@
             <label><strong>Load Condition Questionnaire</strong></label>
 
             <ul class="nav nav-list">
-
-                <!-- <li class="nav-header">Therapeutic Area: Questionnaires</li> -->
-
-                <!-- This <li> will only add the 'active' class if 'therapeuticAreas.detail' or its descendants are active
-                     AND if it is the link for the active contact (aka contactId) -->
                 <li data-ng-repeat="therapeuticarea in therapeuticAreas " data-ui-sref-active="active">
-
-                    <!-- Here's a data-ui-sref that is also providing necessary parameters -->
                     <a data-ui-sref="therapeuticAreas.detail({therapeuticAreaId:therapeuticarea.id})"
                        id="lnk_therapeuticArea_{{therapeuticarea.sortOrder}}">{{therapeuticarea.title}}</a>
                 </li>
@@ -28,5 +21,5 @@
     <!-- Our unnamed main data-ui-view for this template -->
     <div data-ui-view class="col-9"></div>
 
-    <div class="clear"></div>
+
 </div>

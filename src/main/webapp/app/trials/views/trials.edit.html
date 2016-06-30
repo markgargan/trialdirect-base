@@ -1,5 +1,5 @@
 <div class="col-xs-9">
-    <div>
+    <div class="clearfix">
         <!-- <h2 data-ng-bind="trial.title"></h2> -->
         <span class="trial-edit-buttons answers">
             <label for="inp_to_selections">
@@ -11,7 +11,7 @@
         <span class="errors right" data-ng-bind="errors"></span>
     </div>
 
-    <div class="clear"></div>
+    
 
     <form id="myForm" name="trialForm">
 
@@ -88,9 +88,9 @@
 
                 </div>
 
-                <div class="list-answers answers">
-                    <label>Condition</label>
-                    <div class="clear"></div>
+                <div class="list-answers answers clearfix">
+                    <label class="clearfix">Condition</label>
+                    
 
                     <label data-ng-repeat="therapeuticarea in therapeuticAreas">
                         <input id="inp_therapeuticAreaSelection_{{therapeuticarea.sortOrder}}"
@@ -103,12 +103,7 @@
                     </div>
                 </div>
 
-                <!--
-                <div class="list-text input-group">
-                </div>
-                -->
-
-                <div class="clear"></div>
+                
             </div>
 
 
@@ -148,7 +143,7 @@
             </div>
 
 
-            <div class="clear"></div>
+            <div class="clear"></div>            
 
 
             <!-- Trial Summary -->
@@ -168,9 +163,7 @@
             </div>
 
 
-            <!-- ----------------- -->
             <!-- Trial Description -->
-            <!-- ----------------- -->
             <div class="trial-info-edit">
                 <div class="form-group">
                     <label for="inp_trialInfoDescription">Full Description</label>
@@ -196,7 +189,7 @@
              data-ng-show="currentTrialSite == trialSite">
 
 
-            <div class="clear"></div>
+            
 
             <!-- Left Column, Trial Facility Summaries -->
             <div class="col-6">
@@ -224,9 +217,8 @@
                     </div>
 
                     <div class="form-group trial-site-logo" style="min-height:70px">
-                        <!-- -------------- -->
+
                         <!-- Trial Site Pic -->
-                        <!-- -------------- -->
                         <label for="trial-site-logo{{trialSite.sortOrder}}">Trial Facility Image</label>
                         <input id="trial-site-logo{{trialSite.sortOrder}}" type="file" data-ngf-select
                                data-ng-model="trialSite.sitePic"
@@ -255,7 +247,7 @@
                     </div>
 
 
-                    <div class="clear"></div>
+                    
 
                     <!-- Trial Facility Location (Google Map URL) -->
                     <div class="form-group">
@@ -317,9 +309,23 @@
                     <label for="inp_trialSiteAddress5_{{trialSite.sortOrder}}">ZIP Code</label>
                     <span>
                         <input id="inp_trialSiteAddress5_{{trialSite.sortOrder}}" type="text" name="trial-site-address5"
+                               data-ng-change="loadGoogleMap=false" data-ng-blur="getGooglePos(trialSite.trialDirectAddress.address5)"
                                data-ng-model="trialSite.trialDirectAddress.address5" size="31" required>
                     </span>
                 </div>
+
+
+                <!--<div class="form-group col-12">
+                    <label for="inp_registerZipCode">ZIP Code</label>
+                    <input id="inp_registerZipCode" name="tZipCode" type="text" class="form-control"
+                           data-ng-change="loadGoogleMap=false" data-ng-blur="getGooglePos(trial.zipcode)"
+                           data-ng-model="trial.zipcode" value="{{trial.zipcode}}" required>
+                    <div data-ng-show="loginForm.$submitted || loginForm.tZipCode.$touched">
+                        <div class="errors" data-ng-show="loginForm.tZipCode.$error.required">Please supply your
+                            ZIP Code
+                        </div>
+                    </div>
+                </div>-->
 
                 <!-- Trial Site Address (Country) -->
                 <div class="form-group">
@@ -331,37 +337,39 @@
                 </div>
 
 
+                <input name="tLongtitude" type="hidden" value="{{mapLongtitude}}">
+                <input name="tLatitude" type="hidden" value="{{mapLatitude}}">
+
+
+                Long: {{mapLongtitude}}, Lat: {{mapLatitude}}, Zip: {{trialSite.trialDirectAddress.address5}}
+
+                <div class="" style="min-height:250px">
+                    <div class="" data-ng-bind-html="getGoogleMap(trialSite.trialDirectAddress.address5)" data-ng-if="loadGoogleMap"></div>
+                </div>
+
             </div>
 
-            <div class="clear"></div>
+            
 
         </div>
         <!-- Trial Site End -->
+        
 
-
-        <!--<div class="align-right">
-            <button id="input_save_trial" data-ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)" ng-hide="trial.id">Save</button>
-            <button id="input_upload_trial" data-ng-click="uploadEditedTrial(trial, trial.trialInfo.trialLogoPic)" ng-hide="!trial.id">Update</button>
-            <button id="input_publish_trial" data-ng-click="uploadEditedTrial(trial, trial.trialInfo.trialLogoPic)" ng-hide="!trial.id">Publish</button>
-        </div>-->
-
-        <div class="clear"></div>
-
-        <span class="trial-edit-buttons answers" style="float:right;width:auto" ng-hide="trial.id">
+        <span class="trial-edit-buttons answers" style="float:right;width:auto" data-ng-hide="trial.id">
             <label for="input_save_trial">
                 <input id="input_save_trial" data-ng-click="uploadTrial(trial, trial.trialInfo.trialLogoPic)">
                 <span>Save Trial</span>
             </label>
         </span>
 
-        <span class="trial-edit-buttons answers" style="float:right;width:auto" ng-hide="!trial.id">
+        <span class="trial-edit-buttons answers" style="float:right;width:auto" data-ng-hide="!trial.id">
             <label for="input_publish_trial">
                 <input id="input_publish_trial" data-ng-click="uploadEditedTrial(trial, trial.trialInfo.trialLogoPic)">
                 <span>Publish Trial</span>
             </label>
         </span>
 
-        <span class="trial-edit-buttons answers" style="float:right;width:auto" ng-hide="!trial.id">
+        <span class="trial-edit-buttons answers" style="float:right;width:auto" data-ng-hide="!trial.id">
             <label for="input_update_trial">
                 <input id="input_update_trial" data-ng-click="uploadEditedTrial(trial, trial.trialInfo.trialLogoPic)">
                 <span>Update Trial</span>

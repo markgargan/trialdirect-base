@@ -7,11 +7,12 @@ angular.module('uiRouterSample.register', [
                 $stateProvider
                     .state('register', {
 
-                        /*abstract: true,*/
+                        // abstract: true,
                         url: '/register',
                         views: {
                             "viewA": {
-                                templateUrl: 'app/register/views/register.view.html'
+                                templateUrl: 'app/register/views/register.view.html',
+                                controller: 'RegisterController'
                             }
                         }
 

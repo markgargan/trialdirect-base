@@ -1,5 +1,5 @@
 angular.module(
-        'trialdirect', [
+    'trialdirect', [
         'uiRouterSample.about',
         'uiRouterSample.help',
         'uiRouterSample.home',
@@ -13,6 +13,7 @@ angular.module(
         'uiRouterSample.patients',
         'uiRouterSample.patientregistration',
         'ngResource',
+        'ngCookies',
         'spring-data-rest',
         'ui.router',
         'ngFileUpload',
@@ -37,7 +38,7 @@ angular.module(
     )
     .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/therapeuticareas');
+            $urlRouterProvider.otherwise('/about');
         }
     ])
 
@@ -47,13 +48,19 @@ angular.module(
         };
     })
 
-    .controller("NavController", function ($scope) {
-        $scope.IsHidden = !1,
+    .controller("NavController", function ($scope, $cookieStore) {
+        $scope.IsHidden = !1;
+
         $scope.ShowHide = function () {
             $scope.IsHidden = !$scope.IsHidden
+        };
+
+        if ($cookieStore.get('userType')) {
+            $scope.navUserType = $cookieStore.get('userType');
+        } else {
+            $scope.navUserType = 'reg';
         }
     });
-
 
 
 angular.isEmpty = function (obj) {

@@ -15,11 +15,40 @@ angular.module('trialdirect').controller('UserEditController',
             $scope.trialInfos = [];
 
 
-            var getGooglePos = function() {
-                $http.get('http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA')
-                    .then(function (response) {
-                        //$scope.myWelcome = response.data;
-                        console.log(response.data);
+            /*$scope.getGooglePos = function() {
+             $http.get('http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA')
+             .then(function (response) {
+             console.log(response.data);
+             });
+             };*/
+
+
+            $scope.mapLatitude = 'Lat';
+            $scope.mapLongtitude = 'Lng';
+
+            // sample doctor zip code and  (for test)
+            $scope.docZip = 'IL 60611';
+            $scope.docLongtitude = -87.61616959999999;
+            $scope.docLatitude = 41.8925085;
+
+            $scope.getGooglePos = function (name, loc) {
+
+                var q =
+                    name.replace(/\s+/g, '+') + ','
+                    + loc.address1.replace(/\s+/g, '+') + ','
+                    + loc.address5.replace(/\s+/g, '+') + ','
+                    + loc.country.replace(/\s+/g, '+');
+
+                $http.get('http://maps.google.com/maps/api/geocode/json?address=' + q)
+                    .then(function(response) {
+
+                        if (response) {
+                            $scope.mapLatitude = response.data.results[0].geometry.location.lat;
+                            $scope.mapLongtitude = response.data.results[0].geometry.location.lng;
+
+                            console.log(response.data.results[0].geometry.location);
+                        }
+
                     });
             };
 
@@ -29,11 +58,11 @@ angular.module('trialdirect').controller('UserEditController',
                 //$scope.cords = getGooglePos();
 
                 /*
-                var url = 'http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA';
-                $http.get(url).success(function(data){
-                    console.log(data);
-                });
-                */
+                 var url = 'http://maps.google.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA';
+                 $http.get(url).success(function(data){
+                 console.log(data);
+                 });
+                 */
 
                 // build map
                 var map =
@@ -51,7 +80,43 @@ angular.module('trialdirect').controller('UserEditController',
 
                 // return info as HTML code
                 return $sce.trustAsHtml(map);
+            };
+
+
+
+            //:::       Definitions:                                                           :::
+            //:::    South latitudes are negative, east longitudes are positive           :::
+            //:::                                                                         :::
+            //:::  Passed to function:                                                    :::
+            //:::    lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)  :::
+            //:::    lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)  :::
+            //:::    unit = the unit you desire for results                               :::
+            //:::           where: 'M' is statute miles (default)                         :::
+            //:::                  'K' is kilometers                                      :::
+            //:::                  'N' is nautical miles                                  :::
+
+            $scope.calcDistance = function(lat1, lon1, lat2, lon2, unit) {
+
+                //console.log(lat1, lon1, lat2, lon2, unit);
+
+                var radlat1 = Math.PI * lat1/180;
+                var radlat2 = Math.PI * lat2/180;
+                var theta = lon1-lon2;
+                var radtheta = Math.PI * theta/180;
+                var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+                dist = Math.acos(dist);
+                dist = dist * 180/Math.PI;
+                dist = dist * 60 * 1.1515;
+                if (unit=="K") { dist = dist * 1.609344 }
+                if (unit=="N") { dist = dist * 0.8684 }
+
+                //console.log(dist.toFixed(0));
+
+                return dist.toFixed(0);
             }
+
+
+
 
             // Iterate over the userSelectors setting
             // 'answer.isSelected=true' on the answers that correspond

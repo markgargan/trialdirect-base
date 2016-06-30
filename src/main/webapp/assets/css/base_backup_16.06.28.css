@@ -1,14 +1,16 @@
-/**
-** IMPORTANT NOTE
-** DO NOT edit base.css directly, as changes will be overwritten by the SASS file process.
-** CSS files should be edited/created via the 'assets/scss/' folder, then converted to CSS via SASS.
-**/
+/* ::: IMPORTANT NOTE :::
+  DO NOT edit base.css directly, as changes will be overwritten by the SASS file process.
+  CSS files should be edited/created via the 'assets/scss/' folder, then converted to CSS via SASS.
+*/
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .ng-hide:not(.ng-hide-animate) {
   display: none !important; }
 
 ng\:form {
   display: block; }
 
+/*.ng-animate-shim {
+    visibility: hidden;
+}*/
 .ng-anchor {
   position: absolute; }
 
@@ -16,74 +18,6 @@ ng\:form {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
-
-.no-padding {
-  padding: 0 !important; }
-
-.no-margin {
-  margin: 0 !important; }
-
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
-.col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
-.col-25, .col-50, .col-75, .col-100, .col-33, .col-66 {
-  display: block;
-  float: left;
-  padding: 0 5px;
-  min-height: 1px; }
-
-.col-1 {
-  width: 8.33333%; }
-
-.col-2 {
-  width: 16.66667%; }
-
-.col-3 {
-  width: 25%; }
-
-.col-4 {
-  width: 33.33333%; }
-
-.col-5 {
-  width: 41.66667%; }
-
-.col-6 {
-  width: 50%; }
-
-.col-7 {
-  width: 58.33333%; }
-
-.col-8 {
-  width: 66.66667%; }
-
-.col-9 {
-  width: 75%; }
-
-.col-10 {
-  width: 83.33333%; }
-
-.col-11 {
-  width: 91.66667%; }
-
-.col-12 {
-  width: 100%; }
-
-.col-25 {
-  width: 25%; }
-
-.col-50 {
-  width: 50%; }
-
-.col-75 {
-  width: 75%; }
-
-.col-100 {
-  width: 100%; }
-
-.col-33 {
-  width: 33.3333%; }
-
-.col-66 {
-  width: 66.6667%; }
 
 body {
   font-family: "Open Sans", sans-serif; }
@@ -105,8 +39,12 @@ body {
   height: 5px;
   background: #bcbebd; }
 
+/**
+ Integration start
+**/
 span.trial-edit-buttons {
   float: right;
+  /*width: 9%;*/
   padding: 11px 0; }
 
 span.trial-selection-buttons {
@@ -237,6 +175,7 @@ div.trialSubmission label input + span {
   font-size: 1.25em;
   margin-top: 1em; }
 
+/** When disabled the trialSelector submit button shouldn't respond to :hover **/
 div.trialSubmission label input:disabled + span,
 div.trialSubmission label input:disabled:hover + span {
   background: #ddd;
@@ -247,6 +186,9 @@ div.trialSubmission label input:hover + span {
   background: #555;
   color: #fff; }
 
+/**
+ Integration End
+**/
 a, img {
   outline: 0; }
 
@@ -978,11 +920,8 @@ select, input[type="file"] {
 .trialCount {
   text-align: center;
   position: relative;
-  top: -2em;
+  top: -3.5em;
   height: 3.5em; }
-
-.trialCount p {
-  padding: 0; }
 
 .trialTotal {
   font-size: 3em;
@@ -1140,13 +1079,9 @@ textarea.ng-invalid.ng-touched, textarea.ng-invalid-required.ng-touched {
   border: 1px solid #eee;
   font-size: 1em;
   margin-bottom: 1em;
-  min-height: 14em;
   -webkit-border-radius: 0.35em;
   -moz-border-radius: 0.35em;
   border-radius: 0.35em; }
-
-.panelContent.nomin {
-  min-height: 0; }
 
 .panelClear {
   display: block;
@@ -1284,4 +1219,4 @@ ul.steps li span {
     text-align: center;
     width: auto; } }
 
-/*# sourceMappingURL=base.css.map */
+/*# sourceMappingURL=base_backup_16.06.28.css.map */

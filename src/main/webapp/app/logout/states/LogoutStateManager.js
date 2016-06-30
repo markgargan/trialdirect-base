@@ -2,8 +2,8 @@ angular.module('uiRouterSample.logout', [
     'ui.router'
 ])
     .config(
-        ['$stateProvider', '$urlRouterProvider',
-            function ($stateProvider, $urlRouterProvider) {
+        ['$stateProvider',
+            function ($stateProvider) {
                 $stateProvider
                     .state('logout', {
 
@@ -11,7 +11,8 @@ angular.module('uiRouterSample.logout', [
                         url: '/logout',
                         views: {
                             "viewA": {
-                                templateUrl: 'app/logout/views/logout.view.html'
+                                templateUrl: 'app/logout/views/logout.view.html',
+                                controller: 'LogoutController',
                             }
                         }
 

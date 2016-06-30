@@ -1,8 +1,8 @@
 <div class="mainContent">
     <div class="section col-4"></div>
     <div class="section col-4">
-        <h3 class="fll">My Profile</h3>
-        <div class="panelContent">
+        <h3 class="fll">My Account</h3>
+        <div class="panelContent clearfix">
 
             <form id="myForm" name="loginForm" novalidate>
 
@@ -26,7 +26,6 @@
                                data-ng-model="trial.lastname" value="{{trial.lastname}}" required>
                     </div>
 
-                    <div class="clear"></div>
 
                     <div data-ng-show="loginForm.$submitted || loginForm.tNameTitle.$touched || loginForm.tFirstName.$touched || loginForm.tLastName.$touched">
                         <div class="errors col-12"
@@ -35,7 +34,6 @@
                         </div>
                     </div>
 
-                    <div class="clear"></div>
 
                 </div>
 
@@ -50,40 +48,6 @@
                             supply a valid email address
                         </div>
                     </div>
-                </div>
-
-
-                <div class="form-group">
-
-                    <div class="col-6">
-                        <label for="inp_registerPassword">Password</label>
-                        <input id="inp_registerPassword" name="tPassword" type="password" class="form-control"
-                               data-ng-model="trial.password" value="{{trial.password}}" required>
-                    </div>
-
-                    <div class="col-6">
-                        <label for="inp_registerPasswordConfirm">Re-Enter Password</label>
-                        <input id="inp_registerPasswordConfirm" name="tPasswordConfirm" type="password"
-                               class="form-control"
-                               data-ng-model="trial.password2" value="{{trial.password2}}" required>
-                    </div>
-
-                    <div class="clear"></div>
-
-                    <div data-ng-show="loginForm.$submitted || (loginForm.tPassword.$touched && loginForm.tPasswordConfirm.$touched)">
-                        <div class="errors col-12"
-                             data-ng-show="loginForm.tPassword.$error.required || loginForm.tPasswordConfirm.$error.required">
-                            Please supply and confirm your password
-                        </div>
-
-                        <div class="errors col-12"
-                             data-ng-show="(loginForm.tPassword.$touched && loginForm.tPasswordConfirm.$touched) && (trial.password.length && trial.password2.length && trial.password!=trial.password2)">
-                            Passwords do not match, please try again
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-
                 </div>
 
 
@@ -126,7 +90,6 @@
 
             </form>
 
-            <div class="clear"></div>
         </div>
     </div>
     <div class="section col-4"></div>

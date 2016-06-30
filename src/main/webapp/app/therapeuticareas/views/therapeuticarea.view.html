@@ -1,6 +1,6 @@
 <h3>Add Condition</h3>
 
-<div class="panelContent">
+<div class="panelContent clearfix">
 
     <div class="col-6">
         <div class="">
@@ -8,22 +8,13 @@
                 <form name="CreateTherapeuticArea" role="form"
                       data-ng-submit="addTherapeuticArea(newTherapeuticArea, newTherapeuticParent); newTherapeuticArea=null">
 
-                    <!--<div data-ng-repeat="therapeuticParent in therapeuticParents">
-                        <label>
-                            <input type="radio"
-                                   id="inp_newTherapeuticAreaInput_{{therapeuticParent.id}}"
-                                   value="{{therapeuticParent.id}}" data-ng-value="{{therapeuticParent.id}}"
-                                   data-ng-model="$parent.newTherapeuticParent">{{therapeuticParent.title}}
-                        </label>
-                    </div>-->
-
                     <label for="inp_newTherapeuticAreaParent"><strong>Main Therapeutic Area?</strong></label>
                     <select id="inp_newTherapeuticAreaParent" data-ng-model="newTherapeuticParent"
                             data-ng-options="therapeuticParent.id as therapeuticParent.title for therapeuticParent in therapeuticParents | orderBy: 'title'">
                         <option value="">Select Option</option>
                     </select>
 
-                    <div class="clear"></div>
+                    
                     <div class="input-group">
                         <label for="inp_newTherapeuticAreaInput"><strong>Condition Name</strong></label>
                         <input id="inp_newTherapeuticAreaInput" type="text" class="form-control"
@@ -57,5 +48,5 @@
 
         </div>
 
-        <div class="clear"></div>
+        
     </div>
