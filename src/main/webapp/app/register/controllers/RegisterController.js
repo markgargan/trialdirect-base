@@ -19,7 +19,7 @@ angular.module('trialdirect').controller('RegisterController',
                 }
 
 
-                // run api link, and return result
+                // run api link, and return result HTTPS
                 $http.get('https://maps.google.com/maps/api/geocode/json?address=' + zip.replace(/\s+/g, '+'))
                     .then(function (response) {
 
