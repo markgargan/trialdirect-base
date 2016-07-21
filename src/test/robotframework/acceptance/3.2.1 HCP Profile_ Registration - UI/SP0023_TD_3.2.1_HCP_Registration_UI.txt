@@ -1,0 +1,161 @@
+*** Settings ***
+#Test Setup Test Setup
+#Test Teardown Test Teardown
+
+Library    Selenium2Library    20
+Test Teardown Test Teardown
+Library Selenium2Library
+Force Tage 3.2.1   3.2.1_HCP_Profile_Registration_UI
+#Library  DB
+#Library    FirecrestLibrary
+#Library    Collections
+#Library    Dialogs
+#Resourse   ../../..resource/common_resource/selenium2_utils.txt
+#Resourse   ../../..resource/common_resource/common_ui_console.txt
+#Resourse   ../../..resource/common_resource/common_keywords.txt
+Resource    ../resources/common_ui_console.txt
+
+
+*** Variables ***
+${URL} =    https://test2.firecrestclinical.com/trial-direct/#/about
+${BROWSER}        Firefox
+${DELAY}  4        1
+
+
+*** Keywords ***
+#Before Suits
+    #Sleep 3s
+
+#After Suite
+
+#Before Test
+#SQL Connect DB
+
+#After Test
+   # Clear All Cookies
+   # Clean database
+   # SQL Disconnect DB
+
+Test Setup
+    Set selenium speed  ${DELAY}
+    Set selenium implicit wait  10
+    Open browser  ${SERVER}   ${BROWSER}
+    Maximize browser window
+
+
+Suite Setup
+    Browser is opened to  ${URL Application}
+    Delete All Cookies
+    Maximize Browser Window
+    Reload Page
+    Sleep  8s
+
+Set Browser Implicit Wait  5 seconds
+    Given user is on Trial Direct Website
+    Sleep  2s
+    Click Element    ${cookie}
+    Sleep  2s
+
+Suite Teardown
+    Close all Browsers
+
+*** Test Cases ***
+
+3.2.1-1 User is able to navigate to the registration page from the registration link
+    #[Documentation]
+    #[Tags]  3.2.1-1
+    #[Setup] Test Setup for ...
+    Given  user is on Trial Direct Website
+    And  not logged in
+    #And  accepts cookie policy
+    When  user proceeds from home page to register page
+    And  user is on the register page
+    And  screenshot 3.2.2.1-1.1 is taken
+
+3.2.1-2 User is able to enter personal information to register on the Trial Direct site
+     #[Documentation]
+     #[Tags]  3.2.1
+     #[Setup] Test Setup for ...
+     Given  user is on the register page
+     And  screenshot 3.2.2.1-1.2 is taken
+     When  user fills out register form with correct information
+     And  accepts terms and conditions
+     And  submits registration form
+     #Then user should see successful registration message
+     And  screenshot 3.2.2.1-1.2 is taken
+
+
+
+3.2.1-3 The system verifies all fields have been filled out by the user
+    #[Documentation]
+    #[Tags]  3.2.1
+    # Test Setup
+    Given  user is on the register page
+    When  user leaves registration fields blank
+    Then  user should see field verifcation warnings
+    #And  user cannot proceed to next page
+
+
+
+3.2.1-4 The system verifies the password and re-enter password fields match
+    [Documentation]
+    [Tags]  3.2.1
+    # Test Setup
+    Given  user is on the register page
+    When  user fills out register form with correct information
+    Then  user should not see field verifcation warnings
+
+
+3.2.1-5 The system verifies the password and re-enter password fields do not match
+    [Documentation]
+    [Tags]  3.2.1
+    # Test Setup
+    Given  user is on the register page
+    When  user enters information to registration fields with passwords not matching
+    Then  user should see field verifcation warnings
+
+#3.2.1-5 The system verifies the email address entered is valid and unique
+    #[Documentation]
+    #[Tags]  3.2.1
+     #Test Setup
+
+#3.2.1-6 The system verifies the password meets the minimum password requirement
+    #[Documentation]
+    #[Tags]  3.2.1
+     #Test Setup
+
+
+3.2.1-7 The system verifies the user has accepted the terms and conditions
+    #[Documentation]
+    #[Tags]  3.2.1
+    #Test Setup
+    Given  user is on the register page
+    And  user fills out register form with correct information
+    And  submits registration form
+    #And  proceeds to successful registration page
+
+
+3.2.1-8 The system verifies the user has not accepted the terms and conditions
+    #[Documentation]
+    #[Tags]  3.2.1
+    #Test Setup
+    Given  user is on the register page
+    And  user fills out register form with correct information
+    And  submits registration form
+    Then  user should see field verifcation warnings
+
+#3.2.1-8 The system verifies the user has entered a valid zip code (2characters followed by 4-6 digits)
+    #[Documentation]
+    #[Tags]  3.2.1
+     Test Setup
+     Input Registation Information
+
+
+
+#3.2.1-9 The registration is created in the database
+    #[Documentation]
+    #[Tags]  3.2.1
+     Test Setup
+     Input Registation Information
+
+

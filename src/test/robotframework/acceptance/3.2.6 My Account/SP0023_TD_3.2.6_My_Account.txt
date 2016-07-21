@@ -1,0 +1,82 @@
+# Author: Ashleigh Connors
+# Created : 01/Jun/2016
+
+*** Settings ***
+#Test Setup Test Setup
+#Test Teardown Test Teardown
+
+Library    Selenium2Library    20
+#Library    FirecrestLibrary
+#Library    Collections
+#Library    Dialogs
+#Resourse   ../../..resource/common_resource/selenium2_utils.txt
+#Force Tage 3.2.1
+
+*** Variables ***
+
+${SERVER} =    http://trialdirectuat-tekenable.rhcloud.com/#/login
+${BROWSER}        Firefox
+${DELAY}          1
+
+
+#As a HCP, I want to be able to view and edit my title
+#As a HCP, I want to be able to view and edit my first and/or last name
+#As a HCP, I want to be able to view my email address
+#As a HCP, I want to be able to view and change my password
+#As a HCP, I want to be able to view and edit my location
+#As a HCP, I want to be able to view and edit my NPI number
+#As a HCP, the content on this page will be presented to me in a layout consistent with Design Layout, Page (Brian to Add). This also includes header and footer and other static content.
+
+*** Test Cases ***
+
+Log in
+    Open Browser To Trial Login Page
+    Log in
+
+Select My Account
+    Select My Profile
+
+Enter My Account Information
+    Enter My Information
+   [Teardown]  close browser
+
+
+*** Keywords ***
+Open Browser To Trial Login Page
+    set selenium speed  ${DELAY}
+    set selenium implicit wait  10
+    open browser  ${SERVER}   ${BROWSER}
+    maximize browser window
+
+Log in
+    click element  xpath=.//*[@id='inp_loginEmail']
+    input text    xpath=.//*[@id='inp_loginEmail']    A@gmail.com
+    click element  xpath=.//*[@id='inp_loginPassword']
+    input text    xpath=.//*[@id='inp_loginPassword']    qwerty123
+    click element  xpath=.//*[@id='myForm']/div[3]/button
+    capture page screenshot    filename=Login_Success_3.2.6.png
+    click element  xpath=html/body/div[1]/header/div[1]/div[1]/ul/li[3]
+
+Select My Profile
+    click element  xpath=html/body/div[1]/header/div[1]/div[2]/div[1]/nav/div/ul/li[3]/a
+
+
+Enter My Information
+    click element  xpath=.//*[@id='inp_registerNameTitle']
+    click element  xpath=.//*[@id='inp_registerFirstName']
+    input text    xpath=.//*[@id='inp_registerFirstName']    Testing
+    click element  xpath=.//*[@id='inp_registerLastName']
+    input text    xpath=.//*[@id='inp_registerLastName']    Test
+    click element  xpath=.//*[@id='inp_registerEmail']
+    input text    xpath=.//*[@id='inp_registerEmail']   test@test.com
+    click element  xpath=.//*[@id='inp_registerPassword']
+    input text    xpath=.//*[@id='inp_registerPassword']   Password@123
+    click element  xpath=.//*[@id='inp_registerPasswordConfirm']
+    click element  xpath=//*[@id='inp_registerNPI']
+    input text    xpath=//*[@id='inp_registerNPI']   123456789
+    click element  xpath=.//*[@id='inp_registerPractice']
+    input text    xpath=.//*[@id='inp_registerPractice']   My Practice
+    click element  xpath=.//*[@id='inp_registerZipCode']
+    input text    xpath=.//*[@id='inp_registerZipCode']   1234
+    click element  xpath=.//*[@id='myForm']/div[7]/button
+    capture page screenshot    filename=SP0023_TD_3.2.6_My_Account_Blank_Fields.png

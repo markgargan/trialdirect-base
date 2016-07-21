@@ -1,0 +1,161 @@
+*** Settings ***
+Resource        ../../../resource/common_resources/selenium2_utils.txt
+
+*** Variables ***
+${URL application}  https://test2.firecrestclinical.com/trial-direct/#/about
+${cookie}     xpath=//*[@id="html/body/div[1]/header/div[1]/div/div/p"]
+${register Tab}  xpath=//*[@id="html/body/div[1]/header/div[1]/div[2]/div/nav/div/ul/li[1]/a"]
+${login Tab}  xpath=//*[id="html/body/div[1]/header/div[2]/div/div/nav/div/ul/li[2]/a"]
+${logout tab}  xpath=//*[id="html/body/div[1]/header/div[2]/div/div/nav/div/ul/li[5]/a"]
+${register static title}  /xpath=/*[@id="html/body/main/div/div/div/div/div[2]/h3"]
+${how it works}  xpath=//*[@id="html/body/main/div/div/div/div/div[1]/h3[1]"]
+${register name}  xpath=.//*[@id='inp_registerNameTitle']
+${register name title}   xpath=.//*[@id='inp_registerNameTitle']
+${register first name}  xpath=.//*[@id='inp_registerFirstName']
+${register last name}  xpath=.//*[@id='inp_registerLastName']
+${name verification}  xpath=.//*[@id='myForm']/div[2]/div[4]/div
+${register email}  xpath=.//*[@id='inp_registerEmail']
+${email verification}  xpath=.//*[@id='myForm']/div[3]/div/div
+${register password}  xpath=.//*[@id='inp_registerPassword']
+${register password confirm}  xpath=.//*[@id='inp_registerPasswordConfirm']
+${password verification}  xpath=.//*[@id='myForm']/div[4]/div[3]/div[1]
+${register NPI}  xpath=.//*[@id='inp_registerNPI']
+${register practice}  xpath=.//*[@id='inp_registerPractice']
+${register zip code}  xpath=.//*[@id='inp_registerZipCode']
+${register submit button}  xpath=.//*[@id='myForm']/div[9]/button
+${how it works}  /xpath=/*[@id="html/body/main/div/div/div/div/div[1]/h3[1]"]
+${name title}  Mr
+${first name}  John
+${last name}  Doe
+${last name blank}
+${correct email}  jd@gmail.com
+${capitalized email}  JD@GMAIL.COM
+${register incorrect email}  JDGMAIL
+${Password meeting minimum security standards}  qwerty123!
+${password not meeting minimum security standards}  a
+${password confirm}  qwerty123!
+${password confirm capitalized}  QWERTY123!
+${password confirm wrong}  wrongpassword
+${npi}  123456asd!
+${npi verification}  zpath=.//*[@id='myForm']/div[5]/div/div
+${practice name}  123456asd!
+${practice name verification}  xpath=.//*[@id='myForm']/div[6]/div/div
+${zip code}  123456asd!
+${zip code verification}  xpath=.//*[@id='myForm']/div[7]/div/div
+${agree to terms}  xpath=.//*[@id='inp_termsAndConditions']
+${banner}  xpath=//[*id="html/body/div[1]/header/div[3]"]
+${video Player}  xpath=.//*[@id='vjs_video_3']/div[6]/div
+
+*** Keywords ***
+user is on Trial Direct Website
+    Page Should Contain  ${banner}
+    Page Should Contain  ${video Player}
+    Sleep  2s
+
+user proceeds from home page to register page
+     Page Should Contain  ${banner}
+     Click Link  ${register tab}
+     Page Should Contain  ${register static title}
+
+
+user is on the register page
+      Wait Until Page Contains Element  ${how it works}
+      Wait Until Page Containt Element  ${video Player}
+      Sleep2s
+
+#accepts cookie policy
+
+
+accepts terms and conditions
+    Wait until page contains element  .//*[@id='myForm']/div[8]/span
+    Click Element  .//*[@id='myForm']/div[8]/span/a
+    #Wait until page contains
+    Click Element  .//*[@id='inp_termsAndConditions']
+
+
+user fills out register form with correct information
+    click element  ${register name title}
+    Input text  ${name title}
+    click element  ${register name}
+    Input text  ${first name}
+    click element  ${register last name}
+    input text  ${last name}
+    click element  ${register email}
+    input text  ${correct email}
+    click element  ${register password}
+    input text  ${password meeting minimum security standards}
+    click element  ${register password confirm}
+    input text  ${password meeting minimum security standards}
+    click element  ${register NPI}
+    input text  ${NPI}
+    click element  ${register practice}
+    input text  ${practice name}
+    click element  ${register zip code}
+    input text  ${zip code}
+
+user leaves registration fields blank
+    click element  ${register name title}
+    click element  ${register name}
+    click element  ${register last name}
+    click element  ${register email}
+    click element  ${register password}
+    click element  ${register password confirm}
+    click element  ${register NPI}
+    click element  ${register practice}
+    click element  ${register zip code}
+
+
+user enters information to registration fields with passwords not matching
+    click element  ${register name title}
+    Input text  ${name title}
+    click element  ${register name}
+    Input text  ${first name}
+    click element  ${register last name}
+    input text  ${last name}
+    click element  ${register email}
+    input text  ${correct email}
+    click element  ${register password}
+    input text  ${password meeting minimum security standards}
+    click element  ${register password confirm}
+    input text  ${wrong password}
+    click element  ${register NPI}
+    input text  ${NPI}
+    click element  ${register practice}
+    input text  ${practice name}
+    click element  ${register zip code}
+    input text  ${zip code}
+
+
+user should see field verifcation warnings
+    page should contain  ${name verification}
+    page should contain  ${email verification}
+    page should contain  ${password verification}
+    page should contain  ${npi verification}
+    page should contain  ${zip code verification}
+    element should be disabled  ${register submit button}
+
+user should not see field verifcation warnings
+    page should not contain  ${name verification}
+    page should not contain  ${email verification}
+    page should not contain  ${password verification}
+    page should not contain  ${npi verification}
+    page should not contain  ${zip code verification}
+    element should be disabled  ${register submit button}
+
+
+
+submits registration form
+    wait until page contains  ${register submit button}
+    click element  ${register submit button}
+    #will have to verify that the page proceeds to the next page when no production
+
+not logged in
+    page should contain   ${register Tab}
+    page should contain  ${login tab}
+    page should not contain  ${logout tab}
+
+logged in
+    page should contain  ${logout tab}
+    page should not contain  ${login tab}
+    page should not contain  ${register Tab}
+

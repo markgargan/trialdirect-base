@@ -1,0 +1,39 @@
+# Author: Ashleigh Connors
+# Created : 01/Jun/2016
+
+*** Settings ***
+#Test Setup Test Setup
+#Test Teardown Test Teardown
+
+Library    Selenium2Library    20
+#Library    FirecrestLibrary
+#Library    Collections
+#Library    Dialogs
+#Resourse   ../../..resource/common_resource/selenium2_utils.txt
+#Force Tage 3.2.1
+
+*** Variables ***
+
+${robotVar} =            FooBarBaz
+
+
+#As a patient, I will enter my first name
+#As a patient, I will enter my second name
+#As a patient, I will enter my telephone number
+#As a patient, I can click a button to register my interest in the trial
+
+#The following will happen
+#Verify that all fields are completed
+#Verify that email address does not exist on system – if not display error message
+#If all of above are verified, display terms and conditions in a pop up box
+#Patient information transferred to patient management console (See SP0023)
+#As a patient, if I accept terms and conditions, I will be brought to 3.2.10 Patient Registration Complete
+#As a HCP and Patient, the content on this page will be presented to me in a layout consistent with Design Layout, Page (brian to add).. This also includes header and footer and other static content.
+
+*** Testcases ***
+
+Foo Test Case
+    [tags]              FooTag
+    [Documentation]     Created by John Doe
+    Do An Action        Argument
+    Do Another Action   ${robotVar}

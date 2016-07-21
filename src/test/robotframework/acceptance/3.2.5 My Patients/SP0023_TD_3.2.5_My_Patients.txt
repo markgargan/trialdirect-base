@@ -1,0 +1,46 @@
+# Author: Ashleigh Connors
+# Created : 01/Jun/2016
+
+*** Settings ***
+#Test Setup Test Setup
+#Test Teardown Test Teardown
+
+Library    Selenium2Library    20
+#Library    FirecrestLibrary
+#Library    Collections
+#Library    Dialogs
+#Resourse   ../../..resource/common_resource/selenium2_utils.txt
+#Force Tage 3.2.1
+
+*** Variables ***
+
+${robotVar} =            FooBarBaz
+
+
+*** Testcases ***
+
+
+#As a HCP, I may enter my information required for payment. These fields are:
+
+#This information is stored with other HCP information on identify servies
+
+#As a HCP, I can also continue to register without submitting my payment details
+#As HCP, I want to be able to see my status for payment is pending on
+
+#The system sends over an excel file of new HCPs added to the system each week to x email address with the following information 	M 	N
+#s Admin, I want to send an excel spreadsheet with new vendor requests to finance department each weekly with newly added HCPs to the system
+#As an Admin, I want to be able to change the HCPs payment status from pending to processed in..... based in information received from the finance department 	M 	N
+#As a HCP, once I am registered on the system, 	M 	N
+#As a Question Author, I want to be able to delete an answer option 	M 	N
+#As a Question Author, I want to be able to save/edit the question set 	M 	N
+#As a Question Author, I want to be able to see an audit trail of when and who made changes to the question set 	M 	N
+#As a Question Author, I want to be able to see view a list of all question sets for a disease under each associated therapeutic area 	M 	N
+#As a Content Editor, i want to be able to see the list of trials each question set is associated with. 	D 	N
+#As an Administrator, I want to be able to delete a question set from the system. I will need to confirm deletion and be prevented from doing so if the question set is associated with any trials published on the system
+
+
+Foo Test Case
+    [tags]              FooTag
+    [Documentation]     Created by John Doe
+    Do An Action        Argument
+    Do Another Action   ${robotVar}

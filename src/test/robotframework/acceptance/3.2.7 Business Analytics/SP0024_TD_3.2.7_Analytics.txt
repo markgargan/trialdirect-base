@@ -1,0 +1,29 @@
+# Author: Ashleigh Connors
+# Created : 01/Jun/2016
+
+*** Settings ***
+#Test Setup Test Setup
+#Test Teardown Test Teardown
+
+Library    Selenium2Library    20
+#Library    FirecrestLibrary
+#Library    Collections
+#Library    Dialogs
+#Resourse   ../../..resource/common_resource/selenium2_utils.txt
+#Force Tage 3.2.1
+
+
+*** Variables ***
+
+#To be added
+
+${robotVar} =            FooBarBaz
+
+
+*** Testcases ***
+
+Foo Test Case
+    [tags]              FooTag
+    [Documentation]     Created by John Doe
+    Do An Action        Argument
+    Do Another Action   ${robotVar}

@@ -1,0 +1,48 @@
+# Author: Ashleigh Connors
+# Created : 01/Jun/2016
+
+*** Settings ***
+#Test Setup Test Setup
+#Test Teardown Test Teardown
+
+Library    Selenium2Library    20
+#Library    FirecrestLibrary
+#Library    Collections
+#Library    Dialogs
+#Resourse   ../../..resource/common_resource/selenium2_utils.txt
+#Force Tage 3.2.1
+
+*** Variables ***
+
+${SERVER} =    http://trialdirectuat-tekenable.rhcloud.com/#/login
+${BROWSER}        Firefox
+${DELAY}          1
+
+*** Test Cases ***
+Register
+     Open Browser To Login Page
+     Input Login Information
+
+#As a HCP, I will enter my username
+#As a HCP, I will enter my password
+#As a HCP, when I press the login button, the following will happen:
+#Verify that username/password combination is valid – if not, display an error message If verified, Trial Search
+#As a HCP, I will be able to click a Forgot Password link which will bring me to 3.2.4 Forgot Password 	M 	N
+#As a HCP, I will be able to click an Already Registered link to bring me to 3.2.1 HCP Registration if I have not already registered 	M 	N
+#As a HCP, I will be informed about cookies and their use on the site.
+#The user can continue to browse the site by closing the pop up. Once the cookie has been accepted it should persist and the user should not be requested to re-accept the cookie. 	M 	N
+#As a HCP, the content will be presented to me in a layout consistent with Design Layout, Page (brian to add).. This also includes header and footer and other static content
+
+
+*** Keywords ***
+Open Browser To Login Page
+    set selenium speed  ${DELAY}
+    set selenium implicit wait  10
+    open browser  ${SERVER}   ${BROWSER}
+    maximize browser window
+
+Input Login Information
+    click element  xpath=.//*[@id='inp_loginEmail']
+    click element  xpath=.//*[@id='inp_loginPassword']
+    click element  xpath=.//*[@id='myForm']/div[3]/button
+    capture page screenshot    filename=SP0023_TD_3.2.2_HCP_Login_Blank_Fields.png
